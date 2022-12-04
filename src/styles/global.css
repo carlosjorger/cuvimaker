@@ -15,6 +15,11 @@ body {
 .dark a.social {
   color: #fff;
 }
+.dark .nav-links a:hover,
+a:focus {
+  color: white;
+  background-color: #12123b;
+}
 a {
   text-decoration: none;
 }
