@@ -2,9 +2,11 @@
 const { platform, username, extraPath = "" } = Astro.props;
 ---
 
-<a href={`https://www.${platform}.com${extraPath}/${username}`}>{platform}</a>
+<a class="social" href={`https://www.${platform}.com${extraPath}/${username}`}
+  >{platform}</a
+>
 <style>
-  a {
+  a.social {
     padding: 0.5rem 1rem;
     color: white;
     background-color: #4c1d95;
