@@ -1,22 +1,7 @@
 ---
-import "../styles/global.css";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Online CV Editor</title>
-  </head>
-  <body>
-    <Header />
-    <h1>Online CV Editor</h1>
-    <h3>Create an elegant cv online.</h3>
-    <Footer />
-  </body>
-</html>
-<style></style>
+<BaseLayout pageTitle="Online CV Editor">
+  <h2>Create an elegant cv online.</h2>
+</BaseLayout>

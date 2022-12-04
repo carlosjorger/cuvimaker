@@ -1,11 +1,7 @@
 ---
-import "../styles/global.css";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<Header />
-
-<h1>About Me</h1>
-<h2>I'm a software engineer!</h2>
-<Footer />
+<BaseLayout pageTitle="About Me">
+  <h2>I'm a software engineer!</h2>
+</BaseLayout>
