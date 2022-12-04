@@ -1,0 +1,15 @@
+body {
+  background-color: rgb(28, 8, 47);
+}
+h1,
+h2,
+h3 {
+  color: white;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  color: grey;
+}
