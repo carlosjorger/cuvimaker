@@ -1,20 +1,27 @@
 <template>
   <section>
     <div class="form">
+      <header class="form-header">
+        <h3>Add a Section</h3>
+      </header>
       <div class="form-group">
-        <label for="sectionName">Section Name</label>
-        <input type="text" class="form-control" v-model="tempSectionName" />
+        <input
+          type="text"
+          class="form-control"
+          v-model="tempSectionName"
+          placeholder="Section Name"
+        />
       </div>
       <div class="form-group">
-        <label for="sectionDescription">Section Description</label>
         <input
           type="text"
           class="form-control"
           v-model="tempSectionDescription"
+          placeholder="Section Description"
         />
       </div>
 
-      <button v-on:click="addToDo">Add toDo</button>
+      <button v-on:click="addToDo" class="form-button">Add Section</button>
     </div>
 
     <div v-for="section in sections">
@@ -44,17 +51,28 @@ export default {
 </script>
 <style>
 .form {
-  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
   width: 40%;
-  padding: 1rem;
+  padding: 2rem;
+  font-size: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+}
+.form-header {
+  margin-bottom: 0.5rem;
 }
 .form-group {
-  display: flex;
-  margin-bottom: 1rem;
-  justify-content: space-between;
-  padding: 0.5rem;
+  margin-bottom: 2rem;
+  box-sizing: border-box;
 }
 .form-control {
-  width: 60%;
+  width: 100%;
+  box-sizing: inherit;
+}
+.form-button {
+  width: 70%;
+  margin: 0 auto;
 }
 </style>

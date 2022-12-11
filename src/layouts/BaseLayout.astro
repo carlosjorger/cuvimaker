@@ -15,9 +15,15 @@ const { pageTitle } = Astro.props;
   </head>
   <body>
     <Header />
-    <h1>{pageTitle}</h1>
-    <slot />
-    <Footer />
+    <main>
+      <h1>{pageTitle}</h1>
+      <slot />
+      <Footer />
+    </main>
   </body>
 </html>
-<style></style>
+<style>
+ main{
+  margin: 2rem;
+ }
+</style>

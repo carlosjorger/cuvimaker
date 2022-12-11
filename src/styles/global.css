@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(199, 199, 199);
+  background-color: #f3eefb;
 }
 .dark body {
   background-color: #04041a;
@@ -25,4 +25,20 @@ a {
 }
 a:hover {
   text-decoration: underline;
+}
+button {
+  padding: 1rem;
+  border-radius: 2rem;
+  background-color: #4c1d95;
+  border-color: transparent;
+  color: #fff;
+  font-size: 1rem;
+}
+button:active {
+  background-color: #6c5392;
+}
+input {
+  padding: 1rem;
+  border-radius: 2rem;
+  border: rgb(126, 126, 126) solid 0.08rem;
 }
