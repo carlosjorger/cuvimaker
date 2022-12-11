@@ -1,6 +1,6 @@
 <template>
   <section>
-    <create-section-modal />
+    <create-section-modal :sections="sections" />
     <div v-for="section in sections">
       <article>
         <header>
@@ -19,18 +19,8 @@ export default {
   components: { CreateSectionModal },
   data() {
     return {
-      tempSectionName: "",
-      tempSectionDescription: "",
       sections: [],
     };
-  },
-  methods: {
-    addToDo() {
-      this.sections.push({
-        name: this.tempSectionName,
-        description: this.tempSectionDescription,
-      });
-    },
   },
 };
 </script>

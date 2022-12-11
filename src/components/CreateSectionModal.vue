@@ -19,16 +19,17 @@
         placeholder="Section Description"
       />
     </div>
+    <button v-on:click="addToDo" class="form-button">Add Section</button>
   </div>
 </template>
 <script>
 export default {
   name: "CreateSectionModal",
+  props: ["sections"],
   data() {
     return {
       tempSectionName: "",
       tempSectionDescription: "",
-      sections: [],
     };
   },
   methods: {
