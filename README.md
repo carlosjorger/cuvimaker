@@ -1,13 +1,6 @@
-# Astro Starter Kit: Minimal
+# Online CV Maker
 
-```
-npm create astro@latest -- --template minimal
-```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/withastro/astro/tree/latest/examples/minimal)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+An online cv maker made in astro using vuejs components. With the Astro's island arquitecture we are able to combine SPA and SSG approaches
 
 ## 🚀 Project Structure
 
