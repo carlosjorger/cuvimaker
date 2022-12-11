@@ -13,6 +13,7 @@
   "dependencies": {
     "@astrojs/vue": "^1.2.1",
     "astro": "^1.6.12",
+    "typescript": "^4.9.4",
     "vue": "^3.2.45"
   }
 }
