@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article class="section-card">
     <header>
       <h3>{{ name }}</h3>
       <hr />
@@ -13,3 +13,12 @@ export default {
   props: ["name", "description"],
 };
 </script>
+<style>
+.section-card {
+  width: 40%;
+  padding: 2rem;
+
+  border: 0.2rem solid white;
+  border-radius: 0.5rem;
+}
+</style>
