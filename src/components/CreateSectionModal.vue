@@ -8,16 +8,14 @@
         type="text"
         class="form-control"
         v-model="tempSectionName"
-        placeholder="Section Name"
-      />
+        placeholder="Section Name" />
     </div>
     <div class="form-group">
       <input
         type="text"
         class="form-control"
         v-model="tempSectionDescription"
-        placeholder="Section Description"
-      />
+        placeholder="Section Description" />
     </div>
     <button v-on:click="addToDo" class="form-button">Add Section</button>
   </div>
@@ -52,6 +50,9 @@ export default {
   font-size: 1rem;
   background-color: white;
   border-radius: 0.5rem;
+}
+.dark .form {
+  color: black;
 }
 .form-header {
   margin-bottom: 0.5rem;
