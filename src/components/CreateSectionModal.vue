@@ -65,7 +65,9 @@ export default {
   box-sizing: inherit;
 }
 .form-button {
-  width: 70%;
+  height: 5vh;
+  padding: 0.2vw;
+  width: 100%;
   margin: 0 auto;
 }
 </style>

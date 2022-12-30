@@ -13,11 +13,4 @@ export default {
   props: ["name", "description"],
 };
 </script>
-<style>
-.section-card {
-  width: 40%;
-  padding: 2rem;
-  margin: 2%;
-  border-radius: 0.5rem;
-}
-</style>
+<style></style>
