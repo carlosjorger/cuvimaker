@@ -1,5 +1,5 @@
 <template>
-  <div class="form">
+  <div class="form section-card">
     <header class="form-header">
       <h3>Add a Section</h3>
     </header>
@@ -45,11 +45,10 @@ export default {
   display: flex;
   flex-direction: column;
   margin: 0;
-  width: 40%;
-  padding: 2rem;
+  border: 0.2rem solid white;
+
   font-size: 1rem;
   background-color: white;
-  border-radius: 0.5rem;
 }
 .dark .form {
   color: black;

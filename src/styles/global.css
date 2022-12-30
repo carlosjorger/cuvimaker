@@ -6,7 +6,6 @@ body {
   background-color: #04041a;
   color: #fff;
 }
-
 .dark .nav-links a {
   color: #fff;
 }
@@ -42,4 +41,28 @@ input {
   padding: 1rem;
   border-radius: 2rem;
   border: rgb(126, 126, 126) solid 0.08rem;
+}
+.section-card {
+  width: 40%;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  border: 0.2rem solid black;
+}
+.dark .section-card {
+  border: 0.2rem solid white;
+}
+@media (max-width: 1250px) {
+  .section-card {
+    width: 50%;
+  }
+}
+@media (max-width: 1000px) {
+  .section-card {
+    width: 60%;
+  }
+}
+@media (max-width: 450px) {
+  .section-card {
+    width: 75%;
+  }
 }

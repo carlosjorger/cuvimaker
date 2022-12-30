@@ -17,8 +17,7 @@ export default {
 .section-card {
   width: 40%;
   padding: 2rem;
-
-  border: 0.2rem solid white;
+  margin: 2%;
   border-radius: 0.5rem;
 }
 </style>
