@@ -67,7 +67,7 @@ export default {
   justify-content: space-around;
 }
 .close {
-  margin: 2%;
+  margin: 1%;
   cursor: pointer;
 }
 .form {
