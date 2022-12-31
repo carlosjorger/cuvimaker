@@ -3,6 +3,12 @@
     <div class="form section-card">
       <header class="form-header">
         <h3>Add a Section</h3>
+        <div class="close" @click="$emit('close-modal')">
+          <img
+            class="close-img"
+            src="./../../public/assets/close-icon.svg"
+            alt="" />
+        </div>
       </header>
       <div class="form-group">
         <input
@@ -60,6 +66,10 @@ export default {
   align-items: center;
   justify-content: space-around;
 }
+.close {
+  margin: 2%;
+  cursor: pointer;
+}
 .form {
   display: flex;
   flex-direction: column;
@@ -73,7 +83,10 @@ export default {
   color: black;
 }
 .form-header {
+  display: flex;
   margin-bottom: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
 }
 .form-group {
   margin-bottom: 2rem;
