@@ -1,6 +1,12 @@
 <template>
   <section>
-    <create-section-modal :sections="sections" />
+    <div class="save-btn">
+      <button @click="showModal = true">Add Section</button>
+    </div>
+    <create-section-modal
+      v-show="showModal"
+      :sections="sections"
+      @close-modal="showModal = false" />
     <div v-for="section in sections">
       <section-component
         :name="section.name"
@@ -15,6 +21,7 @@ export default {
   components: {CreateSectionModal, SectionComponent},
   data() {
     return {
+      showModal: false,
       sections: [],
     };
   },

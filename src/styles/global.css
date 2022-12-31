@@ -46,7 +46,8 @@ input {
   width: 40%;
   padding: 2rem;
   border-radius: 0.5rem;
-  border: 0.2rem solid black;
+  border: 0.1rem solid black;
+  margin: 0.5rem;
 }
 .dark .section-card {
   border: 0.2rem solid white;
