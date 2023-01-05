@@ -24,6 +24,16 @@
           v-model="tempSectionDescription"
           placeholder="Section Description" />
       </div>
+      <div>
+        <div v-for="subSection in subSections">
+          <button>
+            <img
+              class="close-img"
+              src="./../../public/assets/close-icon.svg"
+              alt="" />
+          </button>
+        </div>
+      </div>
       <button
         v-on:click="addToDo"
         class="form-button"
@@ -39,6 +49,7 @@ export default {
   props: ["sections"],
   data() {
     return {
+      subSections: [{title: "", text: ""}],
       tempSectionName: "",
       tempSectionDescription: "",
     };
@@ -101,5 +112,8 @@ export default {
   padding: 0.2vw;
   width: 100%;
   margin: 0 auto;
+}
+.close-img {
+  border-radius: 50%;
 }
 </style>
