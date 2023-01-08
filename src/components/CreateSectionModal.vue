@@ -3,11 +3,11 @@
     <div class="form section-card">
       <header class="form-header">
         <h3>Add a Section</h3>
-        <div class="close" @click="$emit('close-modal')">
-          <img
-            class="close-img"
-            src="./../../public/assets/close-icon.svg"
-            alt="" />
+        <div
+          class="sub-section-icon close-subsection"
+          @click="$emit('close-modal')">
+          <div class="leftright close"></div>
+          <div class="rightleft close"></div>
         </div>
       </header>
       <div class="form-group">
@@ -24,13 +24,13 @@
           v-model="tempSectionDescription"
           placeholder="Section Description" />
       </div>
-      <div>
+      <div class="form-group">
         <div v-for="subSection in subSections">
-          <button>
-            <img
-              class="close-img"
-              src="./../../public/assets/close-icon.svg"
-              alt="" />
+          <button v-on:click="addSubSection">
+            <div class="sub-section-icon add">
+              <div class="leftright"></div>
+              <div class="rightleft"></div>
+            </div>
           </button>
         </div>
       </div>
@@ -61,10 +61,15 @@ export default {
         description: this.tempSectionDescription,
       });
     },
+    addSubSection() {
+      document
+        .getElementsByClassName("add")[0]
+        .classList.toggle("close-subsection");
+    },
   },
 };
 </script>
-<style>
+<style lang="scss">
 .modal-overlay {
   display: flex;
   position: fixed;
@@ -77,9 +82,43 @@ export default {
   align-items: center;
   justify-content: space-around;
 }
-.close {
-  margin: 1%;
+.sub-section-icon {
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
   cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+.leftright {
+  position: absolute;
+
+  height: 0.25rem;
+  width: 1.5rem;
+  background-color: white;
+  border-radius: 2px;
+  transform: rotate(90deg);
+  transition: all 0.3s ease-in;
+  margin-top: 0.62rem;
+}
+
+.rightleft {
+  position: absolute;
+
+  height: 0.25rem;
+  width: 1.5rem;
+  background-color: white;
+  border-radius: 2px;
+  transform: rotate(180deg);
+  transition: all 0.3s ease-in;
+  margin-top: 0.62rem;
+}
+
+.sub-section-icon.close-subsection {
+  transform: rotate(-45deg);
+}
+
+.close {
+  background-color: #4c1d95;
 }
 .form {
   display: flex;

@@ -13,4 +13,14 @@ export default {
   props: ["name", "description"],
 };
 </script>
-<style></style>
+<style>
+.section-card {
+  animation: 0.5s show-presentation ease;
+}
+@keyframes show-presentation {
+  0% {
+    opacity: 0;
+    transform: translate(0px, -10px);
+  }
+}
+</style>
