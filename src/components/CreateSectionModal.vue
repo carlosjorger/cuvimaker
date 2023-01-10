@@ -28,7 +28,8 @@
         <transition-group name="sub-section" tag="div">
           <div
             v-for="(subSection, index) in subSections"
-            v-bind:key="subSection">
+            v-bind:key="subSection"
+            class="sub-section-item">
             <div v-on:click="addSubSection(index)">
               <button class="sub-section-icon add">
                 <div class="leftright"></div>
@@ -90,11 +91,26 @@ export default {
   align-items: center;
   justify-content: space-around;
 }
-.sub-section-enter-active {
-  animation: 0.5s show-subsection ease;
+
+.sub-section-move {
+  transition: all 0.5s ease;
 }
 .sub-section-leave-active {
-  animation: 0.5s show-subsection ease reverse;
+  transition: all 0.5s ease;
+}
+.sub-section-enter-active {
+  transition: all 0.5s ease;
+}
+.sub-section-enter-from,
+.sub-section-leave-to {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+.sub-section-item {
+  margin-top: 0.5rem;
+}
+.sub-section-leave-active {
+  position: absolute;
 }
 @keyframes show-subsection {
   0% {
