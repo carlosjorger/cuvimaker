@@ -25,12 +25,10 @@
           placeholder="Section Description" />
       </div>
       <div class="form-group">
-        <transition-group
-          name="sub-section"
-          enter-active-class="bounceInLeft"
-          leave-active-class="bounceOutRight"
-          tag="div">
-          <div v-for="(subSection, index) in subSections">
+        <transition-group name="sub-section" tag="div">
+          <div
+            v-for="(subSection, index) in subSections"
+            v-bind:key="subSection">
             <div v-on:click="addSubSection(index)">
               <button class="sub-section-icon add">
                 <div class="leftright"></div>
