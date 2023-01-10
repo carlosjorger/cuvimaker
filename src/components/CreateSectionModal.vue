@@ -25,14 +25,20 @@
           placeholder="Section Description" />
       </div>
       <div class="form-group">
-        <div v-for="subSection in subSections">
-          <button v-on:click="addSubSection">
-            <div class="sub-section-icon add">
-              <div class="leftright"></div>
-              <div class="rightleft"></div>
+        <transition-group
+          name="sub-section"
+          enter-active-class="bounceInLeft"
+          leave-active-class="bounceOutRight"
+          tag="div">
+          <div v-for="(subSection, index) in subSections">
+            <div v-on:click="addSubSection(index)">
+              <button class="sub-section-icon add">
+                <div class="leftright"></div>
+                <div class="rightleft"></div>
+              </button>
             </div>
-          </button>
-        </div>
+          </div>
+        </transition-group>
       </div>
       <button
         v-on:click="addToDo"
@@ -61,10 +67,14 @@ export default {
         description: this.tempSectionDescription,
       });
     },
-    addSubSection() {
-      document
-        .getElementsByClassName("add")[0]
-        .classList.toggle("close-subsection");
+    addSubSection(index) {
+      var classes = document.getElementsByClassName("add")[index].classList;
+      classes.toggle("close-subsection");
+      if (classes.contains("close-subsection")) {
+        this.subSections.push({title: "", text: ""});
+      } else {
+        this.subSections.splice(index, 1);
+      }
     },
   },
 };
@@ -82,23 +92,35 @@ export default {
   align-items: center;
   justify-content: space-around;
 }
+.sub-section-enter-active {
+  animation: 0.5s show-subsection ease;
+}
+.sub-section-leave-active {
+  animation: 0.5s show-subsection ease reverse;
+}
+@keyframes show-subsection {
+  0% {
+    opacity: 0;
+    transform: translate(-10px, 0);
+  }
+}
 .sub-section-icon {
   position: relative;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 3rem;
+  height: 3rem;
   cursor: pointer;
   transition: all 0.3s ease-in;
 }
 .leftright {
   position: absolute;
-
   height: 0.25rem;
   width: 1.5rem;
   background-color: white;
   border-radius: 2px;
   transform: rotate(90deg);
   transition: all 0.3s ease-in;
-  margin-top: 0.62rem;
+  margin-left: -0.36rem;
+  margin-top: -0.12rem;
 }
 
 .rightleft {
@@ -110,7 +132,8 @@ export default {
   border-radius: 2px;
   transform: rotate(180deg);
   transition: all 0.3s ease-in;
-  margin-top: 0.62rem;
+  margin-left: -0.36rem;
+  margin-top: -0.12rem;
 }
 
 .sub-section-icon.close-subsection {
