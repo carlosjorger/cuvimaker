@@ -31,7 +31,13 @@
             v-bind:key="subSection"
             class="sub-section-item">
             <div v-on:click="addSubSection(index)">
-              <button class="sub-section-icon add">
+              <button
+                class="sub-section-icon add"
+                :style="{
+                  transform: `rotate(${
+                    -(subSections.length - 1 != index) * 45
+                  }deg)`,
+                }">
                 <div class="leftright"></div>
                 <div class="rightleft"></div>
               </button>
@@ -67,9 +73,7 @@ export default {
       });
     },
     addSubSection(index) {
-      var classes = document.getElementsByClassName("add")[index].classList;
-      classes.toggle("close-subsection");
-      if (classes.contains("close-subsection")) {
+      if (this.subSections.length - 1 == index) {
         this.subSections.push({title: "", text: ""});
       } else {
         this.subSections.splice(index, 1);
@@ -148,10 +152,6 @@ export default {
   transition: all 0.3s ease-in;
   margin-left: -0.36rem;
   margin-top: -0.12rem;
-}
-
-.sub-section-icon.close-subsection {
-  transform: rotate(-45deg);
 }
 
 .close {
