@@ -116,12 +116,7 @@ export default {
 .sub-section-leave-active {
   position: absolute;
 }
-@keyframes show-subsection {
-  0% {
-    opacity: 0;
-    transform: translate(-10px, 0);
-  }
-}
+
 .sub-section-icon {
   position: relative;
   width: 3rem;
