@@ -29,10 +29,16 @@
           <div
             v-for="(subSection, index) in subSections"
             v-bind:key="subSection"
-            class="sub-section-item">
-            <div v-on:click="addSubSection(index)">
+            class="sub-section-item"
+            :style="{
+              backgroundColor: `rgb(76, 29, 149,${
+                (subSections.length - 1 != index) * 255
+              })`,
+            }">
+            <div>
               <button
                 class="sub-section-icon add"
+                v-on:click="addSubSection(index)"
                 :style="{
                   transform: `rotate(${
                     -(subSections.length - 1 != index) * 45
@@ -41,6 +47,16 @@
                 <div class="leftright"></div>
                 <div class="rightleft"></div>
               </button>
+              <div v-if="subSections.length - 1 != index">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Section Name" />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Section Name" />
+              </div>
             </div>
           </div>
         </transition-group>
@@ -108,27 +124,34 @@ export default {
 .sub-section-enter-from,
 .sub-section-leave-to {
   opacity: 0;
-  transform: translateX(-10px);
+  transform: translateX(-1rem);
 }
 .sub-section-item {
+  width: 30rem;
   margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease-in;
 }
 .sub-section-leave-active {
   position: absolute;
 }
 
 .sub-section-icon {
+  background-color: white;
+
   position: relative;
   width: 3rem;
   height: 3rem;
   cursor: pointer;
   transition: all 0.3s ease-in;
+  border: #4c1d95 solid 0.1rem;
 }
 .leftright {
   position: absolute;
   height: 0.25rem;
   width: 1.5rem;
-  background-color: white;
+  background-color: #4c1d95;
   border-radius: 2px;
   transform: rotate(90deg);
   transition: all 0.3s ease-in;
@@ -141,7 +164,7 @@ export default {
 
   height: 0.25rem;
   width: 1.5rem;
-  background-color: white;
+  background-color: #4c1d95;
   border-radius: 2px;
   transform: rotate(180deg);
   transition: all 0.3s ease-in;
@@ -175,7 +198,8 @@ export default {
   box-sizing: border-box;
 }
 .form-control {
-  width: 100%;
+  margin-top: 0.5rem;
+  width: 92%;
   box-sizing: inherit;
 }
 .form-button {
