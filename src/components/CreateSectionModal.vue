@@ -3,12 +3,12 @@
     <div class="form section-card">
       <header class="form-header">
         <h3>Add a Section</h3>
-        <div
-          class="sub-section-icon close-subsection"
+        <button
+          class="subsection-icon subsection-icon-close"
           @click="$emit('close-modal')">
-          <div class="leftright close"></div>
-          <div class="rightleft close"></div>
-        </div>
+          <div class="line line-90deg"></div>
+          <div class="line line-180deg"></div>
+        </button>
       </header>
       <div class="form-group">
         <input
@@ -25,29 +25,32 @@
           placeholder="Section Description" />
       </div>
       <div class="form-group">
-        <transition-group name="sub-section" tag="div">
+        <transition-group name="subsection" class="subsection" tag="div">
           <div
-            v-for="(subSection, index) in subSections"
-            v-bind:key="subSection"
-            class="sub-section-item"
+            v-for="(subsection, index) in subsections"
+            v-bind:key="subsection"
+            class="subsection-item"
+            v-bind:class="{
+              'add-button': subsections.length - 1 == index,
+            }"
             :style="{
               backgroundColor: `rgb(76, 29, 149,${
-                (subSections.length - 1 != index) * 255
+                (subsections.length - 1 != index) * 255
               })`,
             }">
             <div>
               <button
-                class="sub-section-icon add"
+                class="subsection-icon"
                 v-on:click="addSubSection(index)"
                 :style="{
                   transform: `rotate(${
-                    -(subSections.length - 1 != index) * 45
+                    -(subsections.length - 1 != index) * 45
                   }deg)`,
                 }">
-                <div class="leftright"></div>
-                <div class="rightleft"></div>
+                <div class="line line-90deg"></div>
+                <div class="line line-180deg"></div>
               </button>
-              <div v-if="subSections.length - 1 != index">
+              <div v-if="subsections.length - 1 != index">
                 <input
                   type="text"
                   class="form-control"
@@ -76,7 +79,7 @@ export default {
   props: ["sections"],
   data() {
     return {
-      subSections: [{title: "", text: ""}],
+      subsections: [{title: "", text: ""}],
       tempSectionName: "",
       tempSectionDescription: "",
     };
@@ -89,11 +92,26 @@ export default {
       });
     },
     addSubSection(index) {
-      if (this.subSections.length - 1 == index) {
-        this.subSections.push({title: "", text: ""});
+      if (this.subsections.length - 1 == index) {
+        this.subsections.push({title: "", text: ""});
       } else {
-        this.subSections.splice(index, 1);
+        this.subsections.splice(index, 1);
       }
+      // var addButton = this.$el.querySelector(".add-button");
+      var scrollDiv = this.$el.querySelector(".subsection");
+      var addButton = scrollDiv.querySelector(".add-button");
+      console.log(scrollDiv);
+      let scrollDivRect = scrollDiv.getBoundingClientRect();
+      let idRect = addButton.getBoundingClientRect();
+      let y1 = scrollDivRect.y;
+      let y2 = idRect.y;
+      let offset = y2 - idRect.height - y1;
+      console.log(offset);
+      // addButton.scrollIntoView({behavior: "smooth"});
+      scrollDiv.scrollBy({
+        top: 1000,
+        behavior: "smooth",
+      });
     },
   },
 };
@@ -111,65 +129,63 @@ export default {
   align-items: center;
   justify-content: space-around;
 }
-
-.sub-section-move {
+.subsection {
+  max-height: 40vh;
+  overflow: scroll;
+}
+.subsection-move {
   transition: all 0.5s ease;
 }
-.sub-section-leave-active {
+.subsection-leave-active {
   transition: all 0.5s ease;
 }
-.sub-section-enter-active {
+.subsection-enter-active {
   transition: all 0.5s ease;
 }
-.sub-section-enter-from,
-.sub-section-leave-to {
+.subsection-enter-from,
+.subsection-leave-to {
   opacity: 0;
   transform: translateX(-1rem);
 }
-.sub-section-item {
+.subsection-item {
   width: 30rem;
   margin-top: 0.5rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
   transition: all 0.3s ease-in;
 }
-.sub-section-leave-active {
+.subsection-leave-active {
   position: absolute;
 }
 
-.sub-section-icon {
+.subsection-icon {
   background-color: white;
-
+  display: flex;
   position: relative;
   width: 3rem;
   height: 3rem;
   cursor: pointer;
   transition: all 0.3s ease-in;
-  border: #4c1d95 solid 0.1rem;
+  border: #4c1d95 solid 0.2rem;
+  justify-content: space-evenly;
+  align-items: center;
 }
-.leftright {
+.subsection-icon-close {
+  transform: rotate(45deg);
+}
+.line {
   position: absolute;
   height: 0.25rem;
-  width: 1.5rem;
+  width: 50%;
   background-color: #4c1d95;
   border-radius: 2px;
+  transition: all 0.3s ease-in;
+}
+.line-90deg {
   transform: rotate(90deg);
-  transition: all 0.3s ease-in;
-  margin-left: -0.36rem;
-  margin-top: -0.12rem;
 }
-
-.rightleft {
-  position: absolute;
-
-  height: 0.25rem;
-  width: 1.5rem;
-  background-color: #4c1d95;
-  border-radius: 2px;
+.line-180deg {
   transform: rotate(180deg);
-  transition: all 0.3s ease-in;
-  margin-left: -0.36rem;
-  margin-top: -0.12rem;
 }
 
 .close {
