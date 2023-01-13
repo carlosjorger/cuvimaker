@@ -1,4 +1,4 @@
-# Online CV Maker
+# CUVIMAKER
 
 An online cv maker made in astro using vuejs components. With the Astro's island arquitecture we are able to combine SPA and SSG approaches
 
