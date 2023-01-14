@@ -29,29 +29,25 @@
           <div
             v-for="(subsection, index) in subsections"
             v-bind:key="subsection"
-            v-scroll-if="subsections.length - 1 == index"
+            v-scroll-if="subsection.last"
             class="subsection-item"
             v-bind:class="{
-              'add-button': subsections.length - 1 == index,
+              'add-button': subsection.last,
             }"
             :style="{
-              backgroundColor: `rgb(76, 29, 149,${
-                (subsections.length - 1 != index) * 255
-              })`,
+              backgroundColor: `rgb(76, 29, 149,${!subsection.last * 255})`,
             }">
             <div>
               <button
                 class="subsection-icon"
                 v-on:click="addSubSection(index)"
                 :style="{
-                  transform: `rotate(${
-                    -(subsections.length - 1 != index) * 45
-                  }deg)`,
+                  transform: `rotate(${-!subsection.last * 45}deg)`,
                 }">
                 <div class="line line-90deg"></div>
                 <div class="line line-180deg"></div>
               </button>
-              <div v-if="subsections.length - 1 != index">
+              <div v-if="!subsection.last">
                 <input
                   type="text"
                   class="form-control"
@@ -87,7 +83,7 @@ export default {
   },
   data() {
     return {
-      subsections: [{title: "", text: ""}],
+      subsections: [{title: "", text: "", last: true}],
       tempSectionName: "",
       tempSectionDescription: "",
     };
@@ -101,7 +97,8 @@ export default {
     },
     addSubSection(index) {
       if (this.subsections.length - 1 == index) {
-        this.subsections.push({title: "", text: ""});
+        this.subsections[index].last = false;
+        this.subsections.push({title: "", text: "", last: true});
       } else {
         this.subsections.splice(index, 1);
       }
