@@ -3,12 +3,9 @@
     <div class="form section-card">
       <header class="form-header">
         <h3>Add a Section</h3>
-        <button
-          class="subsection-icon subsection-icon-close"
-          @click="$emit('close-modal')">
-          <div class="line line-90deg"></div>
-          <div class="line line-180deg"></div>
-        </button>
+        <close-add-button
+          @close-modal="$emit('close-modal')"
+          :closeButton="true" />
       </header>
       <div class="form-group">
         <input
@@ -38,15 +35,13 @@
               backgroundColor: `rgb(76, 29, 149,${!subsection.last * 255})`,
             }">
             <div>
-              <button
-                class="subsection-icon"
+              <close-add-button
                 v-on:click="addSubSection(index)"
                 :style="{
                   transform: `rotate(${-!subsection.last * 45}deg)`,
-                }">
-                <div class="line line-90deg"></div>
-                <div class="line line-180deg"></div>
-              </button>
+                }"
+                @close-modal="$emit('close-modal')" />
+
               <div v-if="!subsection.last">
                 <input
                   type="text"
@@ -71,9 +66,11 @@
   </div>
 </template>
 <script>
+import CloseAddButton from "./CloseAddButton.vue";
 export default {
   name: "CreateSectionModal",
   props: ["sections"],
+  components: {CloseAddButton},
   directives: {
     scrollIf(el, {value}) {
       if (value) {
@@ -148,39 +145,6 @@ export default {
   position: absolute;
 }
 
-.subsection-icon {
-  background-color: white;
-  display: flex;
-  position: relative;
-  width: 3rem;
-  height: 3rem;
-  cursor: pointer;
-  transition: all 0.3s ease-in;
-  border: #4c1d95 solid 0.2rem;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.subsection-icon-close {
-  transform: rotate(45deg);
-}
-.line {
-  position: absolute;
-  height: 0.25rem;
-  width: 50%;
-  background-color: #4c1d95;
-  border-radius: 2px;
-  transition: all 0.3s ease-in;
-}
-.line-90deg {
-  transform: rotate(90deg);
-}
-.line-180deg {
-  transform: rotate(180deg);
-}
-
-.close {
-  background-color: #4c1d95;
-}
 .form {
   display: flex;
   flex-direction: column;
