@@ -29,6 +29,7 @@
           <div
             v-for="(subsection, index) in subsections"
             v-bind:key="subsection"
+            v-scroll-if="subsections.length - 1 == index"
             class="subsection-item"
             v-bind:class="{
               'add-button': subsections.length - 1 == index,
@@ -77,6 +78,13 @@
 export default {
   name: "CreateSectionModal",
   props: ["sections"],
+  directives: {
+    scrollIf(el, {value}) {
+      if (value) {
+        el.scrollIntoView({behavior: "smooth"});
+      }
+    },
+  },
   data() {
     return {
       subsections: [{title: "", text: ""}],
@@ -97,21 +105,6 @@ export default {
       } else {
         this.subsections.splice(index, 1);
       }
-      // var addButton = this.$el.querySelector(".add-button");
-      var scrollDiv = this.$el.querySelector(".subsection");
-      var addButton = scrollDiv.querySelector(".add-button");
-      console.log(scrollDiv);
-      let scrollDivRect = scrollDiv.getBoundingClientRect();
-      let idRect = addButton.getBoundingClientRect();
-      let y1 = scrollDivRect.y;
-      let y2 = idRect.y;
-      let offset = y2 - idRect.height - y1;
-      console.log(offset);
-      // addButton.scrollIntoView({behavior: "smooth"});
-      scrollDiv.scrollBy({
-        top: 1000,
-        behavior: "smooth",
-      });
     },
   },
 };
