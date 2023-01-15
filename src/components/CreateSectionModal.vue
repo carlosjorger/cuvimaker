@@ -42,15 +42,15 @@
                 }"
                 @close-modal="$emit('close-modal')" />
 
-              <div v-if="!subsection.last">
+              <div v-if="!subsection.last" class="subsection-form-group">
                 <input
                   type="text"
-                  class="form-control"
-                  placeholder="Section Name" />
+                  class="subsection-form-control"
+                  placeholder="Property Name" />
                 <input
                   type="text"
-                  class="form-control"
-                  placeholder="Section Name" />
+                  class="subsection-form-control"
+                  placeholder="Value" />
               </div>
             </div>
           </div>
@@ -171,6 +171,22 @@ export default {
   margin-top: 0.5rem;
   width: 92%;
   box-sizing: inherit;
+}
+.subsection-form-group {
+  padding: 0.5rem;
+}
+.subsection-form-control {
+  padding: 0.1rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  border: 0;
+  border-bottom: white solid 0.1rem;
+  border-radius: 0;
+  background-color: inherit;
+  color: white;
+}
+.subsection-form-control:focus {
+  outline: none;
 }
 .form-button {
   height: 5vh;
