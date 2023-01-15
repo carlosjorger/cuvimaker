@@ -4,7 +4,7 @@
       <header class="form-header">
         <h3>Add a Section</h3>
         <close-add-button
-          @close-modal="$emit('close-modal')"
+          v-on:click="$emit('close-modal')"
           :closeButton="true" />
       </header>
       <div class="form-group">
@@ -35,21 +35,31 @@
               backgroundColor: `rgb(76, 29, 149,${!subsection.last * 255})`,
             }">
             <div>
-              <close-add-button
-                v-on:click="addSubSection(index)"
-                :style="{
-                  transform: `rotate(${-!subsection.last * 45}deg)`,
-                }"
-                @close-modal="$emit('close-modal')" />
-
+              <div class="subsection-form-header">
+                <close-add-button
+                  v-on:click="addSubSection(index)"
+                  :closeButton="!subsection.last" />
+                <close-add-button
+                  v-if="!subsection.last"
+                  v-on:click="editCancel(index)" />
+              </div>
               <div v-if="!subsection.last" class="subsection-form-group">
                 <input
                   type="text"
-                  class="subsection-form-control"
+                  :class="[
+                    `subsection-form-${index}`,
+                    'subsection-form-control',
+                    'subsection-form-control-property',
+                  ]"
                   placeholder="Property Name" />
                 <input
+                  :class="[
+                    `subsection-form-${index}`,
+                    'subsection-form-control',
+                    'subsection-form-control-property-description',
+                  ]"
                   type="text"
-                  class="subsection-form-control"
+                  class="subsection-form subsection-form-control"
                   placeholder="Value" />
               </div>
             </div>
@@ -99,6 +109,13 @@ export default {
       } else {
         this.subsections.splice(index, 1);
       }
+    },
+    editCancel(index) {
+      [...document.getElementsByClassName(`subsection-form-${index}`)].forEach(
+        (item) => {
+          item.classList.toggle("edit");
+        }
+      );
     },
   },
 };
@@ -172,6 +189,10 @@ export default {
   width: 92%;
   box-sizing: inherit;
 }
+.subsection-form-header {
+  display: flex;
+  justify-content: space-between;
+}
 .subsection-form-group {
   padding: 0.5rem;
 }
@@ -180,10 +201,26 @@ export default {
   width: 100%;
   margin-top: 0.5rem;
   border: 0;
-  border-bottom: white solid 0.1rem;
   border-radius: 0;
   background-color: inherit;
   color: white;
+  pointer-events: none;
+  transition: all 0.1s ease-in;
+}
+.subsection-form-control.edit {
+  border-bottom: white solid 0.1rem;
+  pointer-events: auto;
+  font-size: 1em;
+}
+.subsection-form-control-property {
+  font-size: 1.2em;
+}
+.subsection-form-control-property-description::placeholder {
+  opacity: 0;
+  transition: all 0.1s ease-in;
+}
+.subsection-form-control-property-description.edit::placeholder {
+  opacity: 1;
 }
 .subsection-form-control:focus {
   outline: none;

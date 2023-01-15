@@ -3,31 +3,16 @@
     v-bind:class="{
       'close-icon': closeButton,
     }"
-    class="add-icon"
-    @click="
-      () => {
-        if (closeButton) {
-          $emit('close-modal');
-        }
-      }
-    ">
+    class="add-icon">
     <div class="line line-90deg"></div>
     <div class="line line-180deg"></div>
   </button>
 </template>
 <script>
 export default {
-  props: ["closeButton", "clickFunc"],
+  props: ["closeButton"],
   name: "CloseAddButton",
-  methods: {
-    clickMethod() {
-      if (this.closeButton) {
-        $emit("close-modal");
-      } else {
-        clickFunc();
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 <style>
