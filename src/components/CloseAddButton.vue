@@ -1,17 +1,26 @@
 <template>
   <circle-button
+    :buttonColor="buttonColor"
     v-bind:class="{
       'close-icon': closeButton,
     }">
-    <div class="line line-90deg"></div>
-    <div class="line line-180deg"></div>
+    <div
+      :style="{
+        backgroundColor: lineColor,
+      }"
+      class="line line-90deg"></div>
+    <div
+      :style="{
+        backgroundColor: lineColor,
+      }"
+      class="line line-180deg"></div>
   </circle-button>
 </template>
 <script>
 import CircleButton from "./CircleButton.vue";
 
 export default {
-  props: ["closeButton"],
+  props: ["closeButton", "lineColor", "buttonColor"],
   name: "CloseAddButton",
   components: {CircleButton},
   methods: {},

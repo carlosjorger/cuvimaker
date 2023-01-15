@@ -1,10 +1,15 @@
 <template>
-  <button class="button-icon">
+  <button
+    :style="{
+      backgroundColor: buttonColor,
+    }"
+    class="button-icon">
     <slot></slot>
   </button>
 </template>
 <script>
 export default {
+  props: ["buttonColor"],
   name: "CircleButton",
   methods: {},
 };

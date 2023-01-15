@@ -5,7 +5,9 @@
         <h3>Add a Section</h3>
         <close-add-button
           v-on:click="$emit('close-modal')"
-          :closeButton="true" />
+          :closeButton="true"
+          :lineColor="'#FFFFFF'"
+          :buttonColor="'#4c1d95'" />
       </header>
       <div class="form-group">
         <input
