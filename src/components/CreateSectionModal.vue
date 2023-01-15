@@ -34,14 +34,15 @@
                 <close-add-button
                   v-on:click="addSubSection(index)"
                   :closeButton="!subsection.last" />
-                <circle-button
-                  v-if="!subsection.last"
-                  v-on:click="editCancel(index)">
-                  <Icon
-                    icon="ic:baseline-mode-edit"
-                    width="25"
-                    color="#4c1d95" />
-                </circle-button>
+                <transition name="editButton">
+                  <circle-button
+                    v-on:click="editCancel(index)"
+                    v-if="!subsection.last && !subsection.editing">
+                    <Icon
+                      icon="ic:baseline-mode-edit"
+                      width="25"
+                      color="#4c1d95" /> </circle-button
+                ></transition>
               </div>
               <div v-if="!subsection.last" class="subsection-form-group">
                 <input
@@ -61,6 +62,14 @@
                   type="text"
                   class="subsection-form subsection-form-control"
                   placeholder="Property description" />
+                <transition name="editButton">
+                  <button
+                    v-on:click="editCancel(index)"
+                    class="save-button"
+                    v-if="!subsection.last && subsection.editing">
+                    Save
+                  </button>
+                </transition>
               </div>
             </div>
           </div>
@@ -92,7 +101,7 @@ export default {
   },
   data() {
     return {
-      subsections: [{title: "", text: "", last: true}],
+      subsections: [{title: "", text: "", last: true, editing: false}],
       tempSectionName: "",
     };
   },
@@ -111,11 +120,18 @@ export default {
       }
     },
     editCancel(index) {
-      [...document.getElementsByClassName("edit")].forEach((item) => {
-        if (!item.classList.contains(`subsection-form-${index}`)) {
-          item.classList.remove("edit");
-        }
-      });
+      this.subsections[index].editing = !this.subsections[index].editing;
+      for (let i = 0; i < this.subsections.length; i++) {
+        [...document.getElementsByClassName(`subsection-form-${i}`)].forEach(
+          (item) => {
+            if (i != index) {
+              item.classList.remove("edit");
+              this.subsections[i].editing = false;
+            }
+          }
+        );
+      }
+
       [...document.getElementsByClassName(`subsection-form-${index}`)].forEach(
         (item) => {
           item.classList.toggle("edit");
@@ -126,6 +142,14 @@ export default {
 };
 </script>
 <style lang="scss">
+.save-button {
+  background-color: white;
+  color: #4c1d95;
+  padding: 0.1rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
 .modal-overlay {
   display: flex;
   position: fixed;
@@ -138,12 +162,23 @@ export default {
   align-items: center;
   justify-content: space-around;
 }
+.editButton-leave-active {
+  transition: all 0.5s ease-out;
+}
+.editButton-enter-active {
+  transition: all 0.5s ease-in;
+}
+.editButton-leave-to,
+.editButton-enter-from {
+  opacity: 0;
+}
 .subsection {
   display: block;
   max-height: 40vh;
   padding: 0.5rem;
   overflow: scroll;
 }
+
 .subsection-move {
   transition: all 0.5s ease;
 }
