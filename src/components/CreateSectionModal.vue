@@ -15,13 +15,6 @@
           placeholder="Section Name" />
       </div>
       <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          v-model="tempSectionDescription"
-          placeholder="Section Description" />
-      </div>
-      <div class="form-group">
         <transition-group name="subsection" class="subsection" tag="div">
           <div
             v-for="(subsection, index) in subsections"
@@ -39,9 +32,14 @@
                 <close-add-button
                   v-on:click="addSubSection(index)"
                   :closeButton="!subsection.last" />
-                <close-add-button
+                <circle-button
                   v-if="!subsection.last"
-                  v-on:click="editCancel(index)" />
+                  v-on:click="editCancel(index)">
+                  <Icon
+                    icon="ic:baseline-mode-edit"
+                    width="25"
+                    color="#4c1d95" />
+                </circle-button>
               </div>
               <div v-if="!subsection.last" class="subsection-form-group">
                 <input
@@ -51,7 +49,7 @@
                     'subsection-form-control',
                     'subsection-form-control-property',
                   ]"
-                  placeholder="Property Name" />
+                  placeholder="Property name" />
                 <input
                   :class="[
                     `subsection-form-${index}`,
@@ -60,7 +58,7 @@
                   ]"
                   type="text"
                   class="subsection-form subsection-form-control"
-                  placeholder="Value" />
+                  placeholder="Property description" />
               </div>
             </div>
           </div>
@@ -77,10 +75,12 @@
 </template>
 <script>
 import CloseAddButton from "./CloseAddButton.vue";
+import CircleButton from "./CircleButton.vue";
+import {Icon} from "@iconify/vue";
 export default {
   name: "CreateSectionModal",
   props: ["sections"],
-  components: {CloseAddButton},
+  components: {CloseAddButton, CircleButton, Icon},
   directives: {
     scrollIf(el, {value}) {
       if (value) {
@@ -92,14 +92,12 @@ export default {
     return {
       subsections: [{title: "", text: "", last: true}],
       tempSectionName: "",
-      tempSectionDescription: "",
     };
   },
   methods: {
     addToDo() {
       this.sections.push({
         name: this.tempSectionName,
-        description: this.tempSectionDescription,
       });
     },
     addSubSection(index) {
@@ -111,6 +109,11 @@ export default {
       }
     },
     editCancel(index) {
+      [...document.getElementsByClassName("edit")].forEach((item) => {
+        if (!item.classList.contains(`subsection-form-${index}`)) {
+          item.classList.remove("edit");
+        }
+      });
       [...document.getElementsByClassName(`subsection-form-${index}`)].forEach(
         (item) => {
           item.classList.toggle("edit");
@@ -134,14 +137,16 @@ export default {
   justify-content: space-around;
 }
 .subsection {
+  display: block;
   max-height: 40vh;
+  padding: 0.5rem;
   overflow: scroll;
 }
 .subsection-move {
   transition: all 0.5s ease;
 }
 .subsection-leave-active {
-  transition: all 0.5s ease;
+  animation: all 0.5s ease;
 }
 .subsection-enter-active {
   transition: all 0.5s ease;
@@ -152,7 +157,7 @@ export default {
   transform: translateX(-1rem);
 }
 .subsection-item {
-  width: 30rem;
+  width: 95%;
   margin-top: 0.5rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -180,18 +185,23 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+.form-header > h3 {
+  color: #4c1d95;
+  font-size: 1.8em;
+}
 .form-group {
   margin-bottom: 2rem;
   box-sizing: border-box;
 }
 .form-control {
   margin-top: 0.5rem;
-  width: 92%;
+  width: 100%;
   box-sizing: inherit;
 }
 .subsection-form-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .subsection-form-group {
   padding: 0.5rem;

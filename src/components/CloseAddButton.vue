@@ -1,33 +1,23 @@
 <template>
-  <button
+  <circle-button
     v-bind:class="{
       'close-icon': closeButton,
-    }"
-    class="add-icon">
+    }">
     <div class="line line-90deg"></div>
     <div class="line line-180deg"></div>
-  </button>
+  </circle-button>
 </template>
 <script>
+import CircleButton from "./CircleButton.vue";
+
 export default {
   props: ["closeButton"],
   name: "CloseAddButton",
+  components: {CircleButton},
   methods: {},
 };
 </script>
 <style>
-.add-icon {
-  background-color: white;
-  display: flex;
-  position: relative;
-  width: 3rem;
-  height: 3rem;
-  cursor: pointer;
-  transition: all 0.3s ease-in;
-  border: #4c1d95 solid 0.2rem;
-  justify-content: space-evenly;
-  align-items: center;
-}
 .close-icon {
   transform: rotate(45deg);
 }
