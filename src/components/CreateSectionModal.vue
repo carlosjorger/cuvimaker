@@ -21,9 +21,9 @@
           <div
             v-for="(subsection, index) in subsections"
             v-bind:key="subsection"
-            v-scroll-if="subsection.last"
+            v-scroll-if="subsection"
             class="subsection-item"
-            v-bind:class="{
+            :class="{
               'add-button': subsection.last,
             }"
             :style="{
@@ -47,20 +47,13 @@
               <div v-if="!subsection.last" class="subsection-form-group">
                 <input
                   type="text"
-                  :class="[
-                    `subsection-form-${index}`,
-                    'subsection-form-control',
-                    'subsection-form-control-property',
-                  ]"
+                  class="subsection-form-control subsection-form-control-property"
+                  :class="{edit: subsection.editing}"
                   placeholder="Property name" />
                 <input
-                  :class="[
-                    `subsection-form-${index}`,
-                    'subsection-form-control',
-                    'subsection-form-control-property-description',
-                  ]"
+                  class="subsection-form-control subsection-form-control-property-description"
+                  :class="{edit: subsection.editing}"
                   type="text"
-                  class="subsection-form subsection-form-control"
                   placeholder="Property description" />
                 <transition name="editButton">
                   <button
@@ -94,14 +87,17 @@ export default {
   components: {CloseAddButton, CircleButton, Icon},
   directives: {
     scrollIf(el, {value}) {
-      if (value) {
+      if ((value.last && value.isNew) || value.editing) {
+        value.isNew = false;
         el.scrollIntoView({behavior: "smooth"});
       }
     },
   },
   data() {
     return {
-      subsections: [{title: "", text: "", last: true, editing: false}],
+      subsections: [
+        {title: "", text: "", last: true, editing: false, isNew: true},
+      ],
       tempSectionName: "",
     };
   },
@@ -114,7 +110,13 @@ export default {
     addSubSection(index) {
       if (this.subsections.length - 1 == index) {
         this.subsections[index].last = false;
-        this.subsections.push({title: "", text: "", last: true});
+        this.subsections.push({
+          title: "",
+          text: "",
+          last: true,
+          editing: false,
+          isNew: true,
+        });
       } else {
         this.subsections.splice(index, 1);
       }
@@ -122,21 +124,10 @@ export default {
     editCancel(index) {
       this.subsections[index].editing = !this.subsections[index].editing;
       for (let i = 0; i < this.subsections.length; i++) {
-        [...document.getElementsByClassName(`subsection-form-${i}`)].forEach(
-          (item) => {
-            if (i != index) {
-              item.classList.remove("edit");
-              this.subsections[i].editing = false;
-            }
-          }
-        );
-      }
-
-      [...document.getElementsByClassName(`subsection-form-${index}`)].forEach(
-        (item) => {
-          item.classList.toggle("edit");
+        if (i != index) {
+          this.subsections[i].editing = false;
         }
-      );
+      }
     },
   },
 };
@@ -163,10 +154,10 @@ export default {
   justify-content: space-around;
 }
 .editButton-leave-active {
-  transition: all 0.5s ease-out;
+  transition: all 0.5s ease;
 }
 .editButton-enter-active {
-  transition: all 0.5s ease-in;
+  transition: all 0.5s ease;
 }
 .editButton-leave-to,
 .editButton-enter-from {
@@ -177,16 +168,21 @@ export default {
   max-height: 40vh;
   padding: 0.5rem;
   overflow: scroll;
+  position: relative;
 }
 
 .subsection-move {
-  transition: all 0.5s ease;
+  transition: opacity 0.5s ease;
+  transition: transform 0.5s ease;
 }
 .subsection-leave-active {
-  animation: all 0.5s ease;
+  animation: opacity 0.5s ease;
+  animation: transform 0.5s ease;
+  max-height: 10vh;
 }
 .subsection-enter-active {
-  transition: all 0.5s ease;
+  transition: opacity 0.5s ease;
+  transition: transform 0.5s ease;
 }
 .subsection-enter-from,
 .subsection-leave-to {
@@ -194,6 +190,7 @@ export default {
   transform: translateX(-1rem);
 }
 .subsection-item {
+  min-height: 21vh;
   width: 95%;
   margin-top: 0.5rem;
   padding: 0.5rem;
