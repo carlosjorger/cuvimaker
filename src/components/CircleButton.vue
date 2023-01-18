@@ -16,6 +16,7 @@ export default {
 </script>
 <style>
 .button-icon {
+  border-radius: 50%;
   background-color: white;
   display: flex;
   position: relative;

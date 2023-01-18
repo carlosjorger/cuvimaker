@@ -1,3 +1,6 @@
+:root {
+  --vdp-elem-font-size: 0.6em;
+}
 body {
   background-color: #f3eefb;
   font-family: Montserrat, sans-serif;
@@ -28,7 +31,7 @@ a:hover {
 }
 button {
   padding: 1rem;
-  border-radius: 2rem;
+  border-radius: 1.5rem;
   background-color: #4c1d95;
   border-color: transparent;
   color: #fff;
@@ -38,13 +41,13 @@ button:active {
   background-color: #6c5392;
 }
 input {
-  padding: 1rem;
-  border-radius: 2rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
   border: rgb(126, 126, 126) solid 0.08rem;
 }
 .section-card {
   width: 40%;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 0.5rem;
   border: 0.1rem solid black;
   margin: 0.5rem;

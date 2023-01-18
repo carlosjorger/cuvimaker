@@ -54,7 +54,15 @@ export default {
   data() {
     return {
       subsections: [
-        {title: "", text: "", last: true, editing: false, isNew: true},
+        {
+          title: "",
+          text: "",
+          last: true,
+          editing: false,
+          isNew: true,
+          dateFrom: new Date().setDate(new Date().getDate() - 5),
+          dateTo: new Date(),
+        },
       ],
       tempSectionName: "",
     };
@@ -92,7 +100,7 @@ export default {
 
 .subsection {
   display: block;
-  max-height: 40vh;
+  max-height: 45vh;
   padding: 0.5rem;
   overflow: scroll;
   position: relative;

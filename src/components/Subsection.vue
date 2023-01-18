@@ -34,6 +34,22 @@
           :class="{edit: subsection.editing}"
           type="text"
           placeholder="Property description" />
+
+        <div class="subsection-form-control-datepicker-group">
+          <Datepicker
+            class="subsection-form-control-datepicker"
+            v-model="subsection.dateFrom"
+            :upper-limit="to"
+            :lower-limit="from"
+            :clearable="true" />
+
+          <Datepicker
+            class="subsection-form-control-datepicker"
+            v-model="subsection.dateTo"
+            :upper-limit="to"
+            :lower-limit="subsection.dateFrom"
+            :clearable="true" />
+        </div>
         <transition name="editButton">
           <button
             v-on:click="editCancel(index)"
@@ -50,10 +66,11 @@
 import CloseAddButton from "./CloseAddButton.vue";
 import CircleButton from "./CircleButton.vue";
 import {Icon} from "@iconify/vue";
+import Datepicker from "vue3-datepicker";
 export default {
   name: "Subsection",
   props: ["subsections", "subsection", "index"],
-  components: {CloseAddButton, CircleButton, Icon},
+  components: {CloseAddButton, CircleButton, Icon, Datepicker},
   directives: {
     scrollIf(el, {value}) {
       if ((value.last && value.isNew) || value.editing) {
@@ -63,7 +80,10 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      from: new Date(1999, 1, 1),
+      to: new Date(),
+    };
   },
   methods: {
     addSubSection(index) {
@@ -75,6 +95,8 @@ export default {
           last: true,
           editing: false,
           isNew: true,
+          dateFrom: new Date().setDate(new Date().getDate() - 5),
+          dateTo: new Date(),
         });
       } else {
         this.subsections.splice(index, 1);
@@ -89,13 +111,14 @@ export default {
       }
     },
   },
+  watch: {},
 };
 </script>
 <style lang="scss">
 .subsection-item {
   min-height: 21vh;
   width: 95%;
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
   transition: all 0.3s ease-in;
@@ -130,6 +153,7 @@ export default {
   padding: 0.5rem;
 }
 .subsection-form-control {
+  // display: flex;
   padding: 0.1rem;
   width: 100%;
   margin-top: 0.5rem;
@@ -157,5 +181,13 @@ export default {
 }
 .subsection-form-control:focus {
   outline: none;
+}
+.subsection-form-control-datepicker-group {
+  display: flex;
+  justify-content: flex-start;
+}
+.subsection-form-control-datepicker {
+  position: relative;
+  margin-top: 0.8rem;
 }
 </style>
