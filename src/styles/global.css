@@ -49,9 +49,7 @@ input {
   border: 0.1rem solid black;
   margin: 0.5rem;
 }
-.dark .section-card {
-  border: 0.2rem solid white;
-}
+
 @media (max-width: 1250px) {
   .section-card {
     width: 50%;
