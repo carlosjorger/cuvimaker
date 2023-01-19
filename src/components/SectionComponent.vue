@@ -7,10 +7,13 @@
     <p>{{ description }}</p>
   </article>
 </template>
-<script>
+<script lang="ts">
 export default {
   name: "SectionComponent",
-  props: ["name", "description"],
+  props: {
+    name: String,
+    description: String,
+  },
 };
 </script>
 <style>

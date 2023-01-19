@@ -18,7 +18,7 @@
       </div>
       <div class="form-group">
         <transition-group name="subsection" class="subsection" tag="div">
-          <subsection
+          <subsection-menu
             v-for="(subsection, index) in subsections"
             :key="subsection.title"
             :index="index"
@@ -36,14 +36,15 @@
   </div>
 </template>
 <script lang="ts">
-import {Section} from "../models/Section";
+import {Subsection} from "../models/Subsection";
 import CloseAddButton from "./CloseAddButton.vue";
-import Subsection from "./Subsection.vue";
+import SubsectionMenu from "./SubsectionMenu.vue";
 import {Icon} from "@iconify/vue";
+import {Section} from "../models/Section";
 export default {
   name: "CreateSectionModal",
   props: ["sections"],
-  components: {Subsection, CloseAddButton, Icon},
+  components: {SubsectionMenu, CloseAddButton, Icon},
   directives: {
     scrollIf(el, {value}) {
       if ((value.last && value.isNew) || value.editing) {
@@ -54,15 +55,13 @@ export default {
   },
   data() {
     return {
-      subsections: [new Section("", "")],
+      subsections: [new Subsection("", "")],
       tempSectionName: "",
     };
   },
   methods: {
     addToDo() {
-      this.sections.push({
-        name: this.tempSectionName,
-      });
+      this.sections.push(new Section(this.tempSectionName, ""));
     },
   },
 };

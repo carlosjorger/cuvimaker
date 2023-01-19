@@ -14,7 +14,8 @@
     </div>
   </section>
 </template>
-<script>
+<script lang="ts">
+import type {Section} from "../models/Section";
 import CreateSectionModal from "./CreateSectionModal.vue";
 import SectionComponent from "./SectionComponent.vue";
 export default {
@@ -22,7 +23,7 @@ export default {
   data() {
     return {
       showModal: false,
-      sections: [],
+      sections: [] as Section[],
     };
   },
 };

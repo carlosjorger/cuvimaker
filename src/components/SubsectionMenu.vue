@@ -78,17 +78,17 @@ import CloseAddButton from "./CloseAddButton.vue";
 import CircleButton from "./CircleButton.vue";
 import {Icon} from "@iconify/vue";
 import Datepicker from "vue3-datepicker";
-import {Section} from "../models/Section";
+import {Subsection} from "../models/Subsection";
 import type {PropType} from "vue";
 export default {
-  name: "Subsection",
+  name: "SubsectionMenu",
   props: {
     subsections: {
-      type: Array as PropType<Section[]>,
+      type: Array as PropType<Subsection[]>,
       required: true,
     },
     subsection: {
-      type: Section,
+      type: Subsection,
       required: true,
     },
     index: {
@@ -116,7 +116,7 @@ export default {
     addSubSection(index: number) {
       if (this.subsections.length - 1 == index) {
         this.subsections[index].last = false;
-        this.subsections.push(new Section("", ""));
+        this.subsections.push(new Subsection("", ""));
       } else {
         console.log(this.subsections);
         this.subsections.splice(index, 1);
