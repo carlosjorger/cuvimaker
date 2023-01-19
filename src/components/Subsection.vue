@@ -6,7 +6,7 @@
       'add-button': subsection.last,
     }"
     :style="{
-      backgroundColor: `rgb(76, 29, 149,${!subsection.last * 255})`,
+      backgroundColor: `rgb(76, 29, 149,${Number(!subsection.last) * 255})`,
     }">
     <div>
       <div class="subsection-form-header">
@@ -25,11 +25,13 @@
       </div>
       <div v-if="!subsection.last" class="subsection-form-group">
         <input
+          v-model="subsection.title"
           type="text"
           class="subsection-form-control subsection-form-control-property"
           :class="{edit: subsection.editing}"
           placeholder="Property name" />
         <input
+          v-model="subsection.text"
           class="subsection-form-control subsection-form-control-property-description"
           :class="{edit: subsection.editing}"
           type="text"
@@ -71,14 +73,30 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="ts">
 import CloseAddButton from "./CloseAddButton.vue";
 import CircleButton from "./CircleButton.vue";
 import {Icon} from "@iconify/vue";
 import Datepicker from "vue3-datepicker";
+import {Section} from "../models/Section";
+import type {PropType} from "vue";
 export default {
   name: "Subsection",
-  props: ["subsections", "subsection", "index"],
+  props: {
+    subsections: {
+      type: Array as PropType<Section[]>,
+      required: true,
+    },
+    subsection: {
+      type: Section,
+      required: true,
+    },
+    index: {
+      type: Number,
+      required: true,
+    },
+  },
+
   components: {CloseAddButton, CircleButton, Icon, Datepicker},
   directives: {
     scrollIf(el, {value}) {
@@ -95,23 +113,17 @@ export default {
     };
   },
   methods: {
-    addSubSection(index) {
+    addSubSection(index: number) {
       if (this.subsections.length - 1 == index) {
         this.subsections[index].last = false;
-        this.subsections.push({
-          title: "",
-          text: "",
-          last: true,
-          editing: false,
-          isNew: true,
-          dateFrom: "",
-          dateTo: "",
-        });
+        this.subsections.push(new Section("", ""));
       } else {
+        console.log(this.subsections);
         this.subsections.splice(index, 1);
+        console.log(this.subsections);
       }
     },
-    editCancel(index) {
+    editCancel(index: number) {
       this.subsections[index].editing = !this.subsections[index].editing;
       for (let i = 0; i < this.subsections.length; i++) {
         if (i != index) {
@@ -133,7 +145,7 @@ export default {
   margin-top: 0.8rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  transition: all 0.3s ease-in;
+  transition: all 0.5s ease-in;
 }
 .subsection-leave-active {
   position: absolute;

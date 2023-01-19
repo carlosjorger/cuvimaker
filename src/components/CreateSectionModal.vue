@@ -19,8 +19,8 @@
       <div class="form-group">
         <transition-group name="subsection" class="subsection" tag="div">
           <subsection
-            v-bind:key="subsection"
             v-for="(subsection, index) in subsections"
+            :key="subsection.title"
             :index="index"
             :subsections="subsections"
             :subsection="subsection" />
@@ -35,7 +35,8 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="ts">
+import {Section} from "../models/Section";
 import CloseAddButton from "./CloseAddButton.vue";
 import Subsection from "./Subsection.vue";
 import {Icon} from "@iconify/vue";
@@ -53,17 +54,7 @@ export default {
   },
   data() {
     return {
-      subsections: [
-        {
-          title: "",
-          text: "",
-          last: true,
-          editing: false,
-          isNew: true,
-          dateFrom: new Date().setDate(new Date().getDate() - 5),
-          dateTo: new Date(),
-        },
-      ],
+      subsections: [new Section("", "")],
       tempSectionName: "",
     };
   },
