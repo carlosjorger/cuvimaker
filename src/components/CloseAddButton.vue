@@ -34,7 +34,7 @@ export default {
   position: absolute;
   height: 0.25rem;
   width: 50%;
-  background-color: #4c1d95;
+  background-color: var(--primary-color);
   border-radius: 2px;
   transition: all 0.3s ease-in;
 }

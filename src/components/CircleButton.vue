@@ -26,7 +26,7 @@ export default {
   padding: 0.25rem;
   cursor: pointer;
   transition: all 0.3s ease-in;
-  border: #4c1d95 solid 0.2rem;
+  border: var(--primary-color) solid 0.2rem;
   justify-content: space-evenly;
   align-items: center;
 }

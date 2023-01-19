@@ -7,7 +7,7 @@
           v-on:click="$emit('close-modal')"
           :closeButton="true"
           :lineColor="'#FFFFFF'"
-          :buttonColor="'#4c1d95'" />
+          :buttonColor="'var(--primary-color)'" />
       </header>
       <div class="form-group">
         <input
@@ -79,7 +79,7 @@ export default {
 <style lang="scss">
 .save-button {
   background-color: white;
-  color: #4c1d95;
+  color: var(--primary-color);
   padding: 0.1rem;
   width: 100%;
   margin-top: 0.5rem;
@@ -148,7 +148,7 @@ export default {
   align-items: center;
 }
 .form-header > h3 {
-  color: #4c1d95;
+  color: var(--primary-color);
   font-size: 1.8em;
 }
 .form-group {

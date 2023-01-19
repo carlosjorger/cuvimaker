@@ -20,7 +20,7 @@
             <Icon
               icon="ic:baseline-mode-edit"
               width="25"
-              color="#4c1d95" /> </circle-button
+              color="var(--primary-color)" /> </circle-button
         ></transition>
       </div>
       <div v-if="!subsection.last" class="subsection-form-group">
@@ -38,17 +38,26 @@
         <div class="subsection-form-control-datepicker-group">
           <Datepicker
             class="subsection-form-control-datepicker"
+            :class="{edit: subsection.editing}"
             v-model="subsection.dateFrom"
-            :upper-limit="to"
+            :upper-limit="subsection.dateTo"
             :lower-limit="from"
-            :clearable="true" />
-
+            :inline="true"
+            :disabled="!subsection.editing" />
+          <span
+            v-if="
+              subsection.dateFrom || subsection.dateTo || subsection.editing
+            "
+            class="subsection-form-control-datepicker-span"
+            >-</span
+          >
           <Datepicker
             class="subsection-form-control-datepicker"
+            :class="{edit: subsection.editing}"
             v-model="subsection.dateTo"
             :upper-limit="to"
             :lower-limit="subsection.dateFrom"
-            :clearable="true" />
+            :disabled="!subsection.editing" />
         </div>
         <transition name="editButton">
           <button
@@ -95,8 +104,8 @@ export default {
           last: true,
           editing: false,
           isNew: true,
-          dateFrom: new Date().setDate(new Date().getDate() - 5),
-          dateTo: new Date(),
+          dateFrom: "",
+          dateTo: "",
         });
       } else {
         this.subsections.splice(index, 1);
@@ -111,11 +120,14 @@ export default {
       }
     },
   },
-  watch: {},
+  watch: {
+    "subsection.dateTo"(newValue) {},
+  },
 };
 </script>
 <style lang="scss">
 .subsection-item {
+  color: white;
   min-height: 21vh;
   width: 95%;
   margin-top: 0.8rem;
@@ -128,7 +140,7 @@ export default {
 }
 .save-button {
   background-color: white;
-  color: #4c1d95;
+  color: var(--primary-color);
   padding: 0.1rem;
   width: 100%;
   margin-top: 0.5rem;
@@ -160,9 +172,9 @@ export default {
   border: 0;
   border-radius: 0;
   background-color: inherit;
-  color: white;
   pointer-events: none;
   transition: all 0.1s ease-in;
+  color: white;
 }
 .subsection-form-control.edit {
   border-bottom: white solid 0.1rem;
@@ -185,9 +197,26 @@ export default {
 .subsection-form-control-datepicker-group {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+  margin-top: 0.5rem;
 }
 .subsection-form-control-datepicker {
   position: relative;
-  margin-top: 0.8rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  pointer-events: none;
+  margin: 0;
+  width: 80%;
+}
+.subsection-form-control-datepicker.edit {
+  border: white solid 0.1rem;
+  pointer-events: auto;
+}
+.subsection-form-control-datepicker-span {
+  padding: 0.5rem;
+}
+.v3dp__datepicker {
+  width: 5.4em;
 }
 </style>
