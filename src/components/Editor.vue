@@ -6,11 +6,10 @@
     <create-section-modal
       v-show="showModal"
       :sections="sections"
+      :showModal="showModal"
       @close-modal="showModal = false" />
     <div v-for="section in sections">
-      <section-component
-        :name="section.name"
-        :description="section.description" />
+      <section-component :section="section" />
     </div>
   </section>
 </template>

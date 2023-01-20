@@ -13,17 +13,17 @@
         <input
           type="text"
           class="form-control"
-          v-model="tempSectionName"
+          v-model="section.name"
           placeholder="Section Name" />
       </div>
       <div class="form-group">
         <transition-group name="subsection" class="subsection" tag="div">
           <subsection-menu
-            v-for="(subsection, index) in subsections"
+            v-for="(subsection, index) in section.subsections"
             :key="subsection.id"
             :index="index"
             :section="section"
-            :subsections="subsections"
+            :subsections="section.subsections"
             :subsection="subsection" />
         </transition-group>
       </div>
@@ -42,9 +42,19 @@ import CloseAddButton from "./CloseAddButton.vue";
 import SubsectionMenu from "./SubsectionMenu.vue";
 import {Icon} from "@iconify/vue";
 import {Section} from "../models/Section";
+import type {PropType} from "vue";
 export default {
   name: "CreateSectionModal",
-  props: ["sections"],
+  props: {
+    sections: {
+      type: Array as PropType<Section[]>,
+      required: true,
+    },
+    showModal: {
+      type: Boolean,
+      required: true,
+    },
+  },
   components: {SubsectionMenu, CloseAddButton, Icon},
   directives: {
     scrollIf(el, {value}) {
@@ -54,16 +64,28 @@ export default {
       }
     },
   },
-  data() {
-    return {
-      section: new Section(),
-      subsections: [new Subsection()],
-      tempSectionName: "",
-    };
+  data(): {section: Section} {
+    return this.initialState();
   },
   methods: {
+    initialState(): {section: Section} {
+      return {
+        section: new Section(),
+      };
+    },
     addToDo() {
-      this.sections.push(new Section(this.tempSectionName, ""));
+      this.sections.push(this.section);
+    },
+    resetWindow: function () {
+      Object.assign(this.$data, this.initialState());
+    },
+  },
+
+  watch: {
+    showModal(newValue) {
+      if (newValue) {
+        this.resetWindow();
+      }
     },
   },
 };

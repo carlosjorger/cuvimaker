@@ -16,7 +16,7 @@
         <transition name="editButton">
           <circle-button
             v-on:click="editCancel(index)"
-            v-if="!subsection.last && !subsection.editing">
+            v-if="!subsection.last && !editing">
             <Icon
               icon="ic:baseline-mode-edit"
               width="25"
@@ -31,45 +31,43 @@
           v-model="subsection.title"
           type="text"
           class="subsection-form-control subsection-form-control-property"
-          :class="{edit: subsection.editing}"
+          :class="{edit: editing}"
           placeholder="Property name" />
         <span v-if="!errors.text.valid">{{ errors.text.error }}</span>
         <input
           v-model="subsection.text"
           class="subsection-form-control subsection-form-control-property-description"
-          :class="{edit: subsection.editing}"
+          :class="{edit: editing}"
           type="text"
           placeholder="Property description" />
 
         <div class="subsection-form-control-datepicker-group">
           <Datepicker
             class="subsection-form-control-datepicker"
-            :class="{edit: subsection.editing}"
+            :class="{edit: editing}"
             v-model="subsection.dateFrom"
             :upper-limit="subsection.dateTo"
             :lower-limit="from"
             :inline="true"
-            :disabled="!subsection.editing" />
+            :disabled="!editing" />
           <span
-            v-if="
-              subsection.dateFrom || subsection.dateTo || subsection.editing
-            "
+            v-if="subsection.dateFrom || subsection.dateTo || editing"
             class="subsection-form-control-datepicker-span"
             >-</span
           >
           <Datepicker
             class="subsection-form-control-datepicker"
-            :class="{edit: subsection.editing}"
+            :class="{edit: editing}"
             v-model="subsection.dateTo"
             :upper-limit="to"
             :lower-limit="subsection.dateFrom"
-            :disabled="!subsection.editing" />
+            :disabled="!editing" />
         </div>
         <transition name="editButton">
           <button
             type="submit"
             class="save-button"
-            v-if="!subsection.last && subsection.editing">
+            v-if="!subsection.last && editing">
             Save
           </button>
         </transition>
@@ -110,7 +108,7 @@ export default {
   components: {CloseAddButton, CircleButton, Icon, Datepicker},
   directives: {
     scrollIf(el, {value}) {
-      if ((value.last && value.isNew) || value.editing) {
+      if (value.last && value.isNew) {
         value.isNew = false;
         el.scrollIntoView({behavior: "smooth"});
       }
@@ -120,6 +118,7 @@ export default {
     return {
       from: new Date(1999, 1, 1),
       to: new Date(),
+      editing: true,
       errors: {
         text: {valid: true, error: ""},
       },
@@ -128,25 +127,20 @@ export default {
   methods: {
     addSubSection(index: number) {
       if (this.subsections.length - 1 == index) {
-        this.subsections[index].last = false;
-        this.section.count++;
-        this.subsections.push(new Subsection(this.section.count));
+        this.section.addNewSubsection();
       } else {
         this.subsections.splice(index, 1);
       }
     },
     editCancel(index: number) {
-      if (
-        this.subsections[index].editing &&
-        !this.validateTitle(this.subsections[index].title)
-      ) {
+      if (this.editing && !this.validateTitle(this.subsections[index].title)) {
         return;
       }
-      this.subsections[index].editing = !this.subsections[index].editing;
-      for (let i = 0; i < this.subsections.length; i++) {
-        if (i != index) {
-          this.subsections[i].editing = false;
-        }
+      if (this.editing) {
+        this.section.name = "a";
+        this.section.editingIndex = -1;
+      } else {
+        this.section.editingIndex = this.index;
       }
     },
     validateTitle(title: string) {
@@ -161,7 +155,9 @@ export default {
     },
   },
   watch: {
-    "subsection.dateTo"(newValue) {},
+    "section.editingIndex"(newValue: number) {
+      this.editing = newValue == this.index;
+    },
   },
 };
 </script>

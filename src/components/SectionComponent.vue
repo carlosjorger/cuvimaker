@@ -1,18 +1,20 @@
 <template>
   <article class="section-card">
     <header>
-      <h3>{{ name }}</h3>
-      <hr />
+      <h3>{{ section?.name }}</h3>
     </header>
-    <p>{{ description }}</p>
   </article>
 </template>
 <script lang="ts">
+import {Section} from "../models/Section";
+
 export default {
   name: "SectionComponent",
   props: {
-    name: String,
-    description: String,
+    section: {
+      type: Section,
+      require: true,
+    },
   },
 };
 </script>

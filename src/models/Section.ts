@@ -1,10 +1,20 @@
+import {Subsection} from "./Subsection";
+
 export class Section {
   count: number;
   name: string;
-  description: string;
-  constructor(name?: string, description?: string) {
+  subsections: Subsection[];
+  editingIndex: number;
+  constructor(name?: string, subsections?: Subsection[]) {
     this.count = 0;
     this.name = name ?? "";
-    this.description = description ?? "";
+    this.subsections = subsections ?? [new Subsection(this.count)];
+    this.editingIndex = -1;
+  }
+  addNewSubsection() {
+    this.subsections[this.subsections.length - 1].last = false;
+    this.count++;
+    this.subsections.push(new Subsection(this.count));
+    this.editingIndex = this.subsections.length - 2;
   }
 }
