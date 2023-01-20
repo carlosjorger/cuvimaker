@@ -1,6 +1,6 @@
-# CUVIMAKER
+# CUVIMAKER - CV Maker
 
-An online cv maker made in astro using vuejs components. With the Astro's island arquitecture we are able to combine SPA and SSG approaches
+An online cv maker made in astro with vuejs components using typescript. With the Astro's island arquitecture we are able to combine SPA and SSG approaches.
 
 ## 🚀 Project Structure
 
@@ -10,10 +10,16 @@ Inside of your Astro project, you'll see the following folders and files:
 /
 ├── public/
 ├── src/
-│   └── pages/
-│       └── about.astro
-|       └── editor.astro
-|       └── index.astro
+│   ├─── components/
+│   |   └── ...
+|   ├─── layouts/
+|   |   └── ...
+|   ├─── models/
+|   |   └── ...
+|   ├─── pages/
+|   |   └── ...
+|   ├─── styles/
+|   |   └── ...
 └── package.json
 ```
 
