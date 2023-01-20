@@ -20,8 +20,9 @@
         <transition-group name="subsection" class="subsection" tag="div">
           <subsection-menu
             v-for="(subsection, index) in subsections"
-            :key="subsection.title"
+            :key="subsection.id"
             :index="index"
+            :section="section"
             :subsections="subsections"
             :subsection="subsection" />
         </transition-group>
@@ -55,7 +56,8 @@ export default {
   },
   data() {
     return {
-      subsections: [new Subsection("", "")],
+      section: new Section(),
+      subsections: [new Subsection()],
       tempSectionName: "",
     };
   },

@@ -23,13 +23,17 @@
               color="var(--primary-color)" /> </circle-button
         ></transition>
       </div>
-      <div v-if="!subsection.last" class="subsection-form-group">
+      <form
+        v-on:submit.prevent="editCancel(index)"
+        v-if="!subsection.last"
+        class="subsection-form-group">
         <input
           v-model="subsection.title"
           type="text"
           class="subsection-form-control subsection-form-control-property"
           :class="{edit: subsection.editing}"
           placeholder="Property name" />
+        <span v-if="!errors.text.valid">{{ errors.text.error }}</span>
         <input
           v-model="subsection.text"
           class="subsection-form-control subsection-form-control-property-description"
@@ -63,13 +67,13 @@
         </div>
         <transition name="editButton">
           <button
-            v-on:click="editCancel(index)"
+            type="submit"
             class="save-button"
             v-if="!subsection.last && subsection.editing">
             Save
           </button>
         </transition>
-      </div>
+      </form>
     </div>
   </div>
 </template>
@@ -79,10 +83,16 @@ import CircleButton from "./CircleButton.vue";
 import {Icon} from "@iconify/vue";
 import Datepicker from "vue3-datepicker";
 import {Subsection} from "../models/Subsection";
+import {Section} from "../models/Section";
+
 import type {PropType} from "vue";
 export default {
   name: "SubsectionMenu",
   props: {
+    section: {
+      type: Section,
+      required: true,
+    },
     subsections: {
       type: Array as PropType<Subsection[]>,
       required: true,
@@ -110,26 +120,44 @@ export default {
     return {
       from: new Date(1999, 1, 1),
       to: new Date(),
+      errors: {
+        text: {valid: true, error: ""},
+      },
     };
   },
   methods: {
     addSubSection(index: number) {
       if (this.subsections.length - 1 == index) {
         this.subsections[index].last = false;
-        this.subsections.push(new Subsection("", ""));
+        this.section.count++;
+        this.subsections.push(new Subsection(this.section.count));
       } else {
-        console.log(this.subsections);
         this.subsections.splice(index, 1);
-        console.log(this.subsections);
       }
     },
     editCancel(index: number) {
+      if (
+        this.subsections[index].editing &&
+        !this.validateTitle(this.subsections[index].title)
+      ) {
+        return;
+      }
       this.subsections[index].editing = !this.subsections[index].editing;
       for (let i = 0; i < this.subsections.length; i++) {
         if (i != index) {
           this.subsections[i].editing = false;
         }
       }
+    },
+    validateTitle(title: string) {
+      if (title == "") {
+        this.errors.text.valid = false;
+        this.errors.text.error = "Title are requerid";
+      } else {
+        this.errors.text.valid = true;
+        this.errors.text.error = "";
+      }
+      return this.errors.text.valid;
     },
   },
   watch: {
