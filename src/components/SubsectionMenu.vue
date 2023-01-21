@@ -11,7 +11,7 @@
     <div>
       <div class="subsection-form-header">
         <close-add-button
-          v-on:click="addSubSection()"
+          v-on:click="addRemoveSubSection()"
           :closeButton="!subsection.last" />
         <transition name="editButton">
           <circle-button
@@ -127,17 +127,21 @@ export default {
     };
   },
   methods: {
-    addSubSection() {
+    addRemoveSubSection() {
       if (this.subsections.length - 1 == this.index) {
-        if (this.section.editingIndex != -1) {
-          emitter?.emit("editing", this.section.editingIndex);
-          return;
-        }
-        this.section.addNewSubsection();
+        this.addSubSection();
       } else {
         this.section.removeSubsection(this.index);
       }
     },
+    addSubSection() {
+      if (this.section.subsectionEditing) {
+        emitter?.emit("editing", this.section.editingIndex);
+        return;
+      }
+      this.section.addNewSubsection();
+    },
+
     editCancel() {
       if (!this.validate()) {
         return;
@@ -145,12 +149,15 @@ export default {
       if (this.editing) {
         this.section.editingIndex = -1;
       } else {
-        if (this.section.editingIndex != -1) {
-          emitter?.emit("editing", this.section.editingIndex);
-          return;
-        }
-        this.section.editingIndex = this.index;
+        this.editSubSection();
       }
+    },
+    editSubSection() {
+      if (this.section.subsectionEditing) {
+        emitter?.emit("editing", this.section.editingIndex);
+        return;
+      }
+      this.section.editingIndex = this.index;
     },
     validate() {
       return !this.editing || this.validateTitle();

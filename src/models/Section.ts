@@ -5,11 +5,15 @@ export class Section {
   name: string;
   subsections: Subsection[];
   editingIndex: number;
+
   constructor(name?: string, subsections?: Subsection[]) {
     this.count = 0;
     this.name = name ?? "";
-    this.subsections = subsections ?? [new Subsection(this.count)];
+    this.subsections = subsections ?? [new Subsection(this.count - 1)];
     this.editingIndex = -1;
+  }
+  get subsectionEditing(): boolean {
+    return this.editingIndex != -1;
   }
   addNewSubsection() {
     this.subsections[this.subsections.length - 1].last = false;
