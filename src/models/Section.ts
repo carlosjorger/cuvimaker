@@ -9,7 +9,7 @@ export class Section {
   constructor(name?: string, subsections?: Subsection[]) {
     this.count = 0;
     this.name = name ?? "";
-    this.subsections = subsections ?? [new Subsection(this.count - 1)];
+    this.subsections = subsections ?? [new Subsection(this.count)];
     this.editingIndex = -1;
   }
   get subsectionEditing(): boolean {

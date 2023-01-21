@@ -93,10 +93,7 @@ export default {
       type: Section,
       required: true,
     },
-    subsections: {
-      type: Array as PropType<Subsection[]>,
-      required: true,
-    },
+
     subsection: {
       type: Subsection,
       required: true,
@@ -128,9 +125,10 @@ export default {
   },
   methods: {
     addRemoveSubSection() {
-      if (this.subsections.length - 1 == this.index) {
+      if (this.section.subsections.length - 1 == this.index) {
         this.addSubSection();
       } else {
+        console.log(this.index);
         this.section.removeSubsection(this.index);
       }
     },

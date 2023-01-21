@@ -23,7 +23,6 @@
             :key="subsection.id"
             :index="index"
             :section="section"
-            :subsections="section.subsections"
             :subsection="subsection" />
         </transition-group>
       </div>
@@ -37,7 +36,6 @@
   </div>
 </template>
 <script lang="ts">
-import {Subsection} from "../models/Subsection";
 import CloseAddButton from "./CloseAddButton.vue";
 import SubsectionMenu from "./SubsectionMenu.vue";
 import {Icon} from "@iconify/vue";
@@ -125,13 +123,10 @@ export default {
   transition: transform 0.5s ease;
 }
 .subsection-leave-active {
-  animation: opacity 0.5s ease;
-  animation: transform 0.5s ease;
-  max-height: 10vh;
+  transition: all 0.5s ease;
 }
 .subsection-enter-active {
-  transition: opacity 0.5s ease;
-  transition: transform 0.5s ease;
+  transition: all 0.5s ease;
 }
 .subsection-enter-from,
 .subsection-leave-to {
