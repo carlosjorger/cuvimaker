@@ -11,11 +11,11 @@
     <div>
       <div class="subsection-form-header">
         <close-add-button
-          v-on:click="addSubSection(index)"
+          v-on:click="addSubSection()"
           :closeButton="!subsection.last" />
         <transition name="editButton">
           <circle-button
-            v-on:click="editCancel(index)"
+            v-on:click="editCancel()"
             v-if="!subsection.last && !editing">
             <Icon
               icon="ic:baseline-mode-edit"
@@ -24,7 +24,7 @@
         ></transition>
       </div>
       <form
-        v-on:submit.prevent="editCancel(index)"
+        v-on:submit.prevent="editCancel()"
         v-if="!subsection.last"
         class="subsection-form-group">
         <input
@@ -82,8 +82,10 @@ import {Icon} from "@iconify/vue";
 import Datepicker from "vue3-datepicker";
 import {Subsection} from "../models/Subsection";
 import {Section} from "../models/Section";
-
 import type {PropType} from "vue";
+import mitt from "mitt";
+
+const emitter = mitt();
 export default {
   name: "SubsectionMenu",
   props: {
@@ -118,33 +120,43 @@ export default {
     return {
       from: new Date(1999, 1, 1),
       to: new Date(),
-      editing: true,
+      editing: false,
       errors: {
         text: {valid: true, error: ""},
       },
     };
   },
   methods: {
-    addSubSection(index: number) {
-      if (this.subsections.length - 1 == index) {
+    addSubSection() {
+      if (this.subsections.length - 1 == this.index) {
+        if (this.section.editingIndex != -1) {
+          emitter?.emit("editing", this.section.editingIndex);
+          return;
+        }
         this.section.addNewSubsection();
       } else {
-        this.subsections.splice(index, 1);
+        this.section.removeSubsection(this.index);
       }
     },
-    editCancel(index: number) {
-      if (this.editing && !this.validateTitle(this.subsections[index].title)) {
+    editCancel() {
+      if (!this.validate()) {
         return;
       }
       if (this.editing) {
-        this.section.name = "a";
         this.section.editingIndex = -1;
       } else {
+        if (this.section.editingIndex != -1) {
+          emitter?.emit("editing", this.section.editingIndex);
+          return;
+        }
         this.section.editingIndex = this.index;
       }
     },
-    validateTitle(title: string) {
-      if (title == "") {
+    validate() {
+      return !this.editing || this.validateTitle();
+    },
+    validateTitle() {
+      if (this.subsection.title == "") {
         this.errors.text.valid = false;
         this.errors.text.error = "Title are requerid";
       } else {
@@ -153,6 +165,13 @@ export default {
       }
       return this.errors.text.valid;
     },
+  },
+  mounted() {
+    emitter.on("editing", (index) => {
+      if (index == this.index) {
+        this.$el.scrollIntoView({behavior: "smooth"});
+      }
+    });
   },
   watch: {
     "section.editingIndex"(newValue: number) {

@@ -14,7 +14,13 @@ export class Section {
   addNewSubsection() {
     this.subsections[this.subsections.length - 1].last = false;
     this.count++;
+    this.editingIndex = this.subsections.length - 1;
     this.subsections.push(new Subsection(this.count));
-    this.editingIndex = this.subsections.length - 2;
+  }
+  removeSubsection(index: number) {
+    if (this.editingIndex == index) {
+      this.editingIndex = -1;
+    }
+    this.subsections.splice(index, 1);
   }
 }
