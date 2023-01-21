@@ -19,9 +19,6 @@ export default {
 };
 </script>
 <style>
-.section-card {
-  animation: 0.5s show-presentation ease;
-}
 .dark .section-card {
   border: 0.2rem solid white;
 }

@@ -3,11 +3,14 @@
     <div class="save-btn">
       <button @click="showModal = true">Add Section</button>
     </div>
-    <create-section-modal
-      v-show="showModal"
-      :sections="sections"
-      :showModal="showModal"
-      @close-modal="showModal = false" />
+    <transition name="createSectionModal">
+      <create-section-modal
+        v-show="showModal"
+        :sections="sections"
+        :showModal="showModal"
+        @close-modal="showModal = false" />
+    </transition>
+
     <div v-for="section in sections">
       <section-component :section="section" />
     </div>
@@ -30,5 +33,16 @@ export default {
 <style>
 article {
   width: 40%;
+}
+.createSectionModal-leave-active {
+  transition: all 0.5s ease;
+}
+.createSectionModal-enter-active {
+  transition: all 0.5s ease;
+}
+.createSectionModal-leave-to,
+.createSectionModal-enter-from {
+  transform: translateY(-1rem);
+  opacity: 0;
 }
 </style>
