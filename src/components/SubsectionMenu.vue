@@ -83,7 +83,6 @@ import {Icon} from "@iconify/vue";
 import Datepicker from "vue3-datepicker";
 import {Subsection} from "../models/Subsection";
 import {Section} from "../models/Section";
-import type {PropType} from "vue";
 import mitt from "mitt";
 
 const emitter = mitt();
@@ -126,17 +125,21 @@ export default {
     };
   },
   methods: {
+    emmitSending() {
+      if (this.section.subsectionEditing) {
+        emitter?.emit("editing", this.section.editingIndex);
+      }
+      return this.section.subsectionEditing;
+    },
     addRemoveSubSection() {
       if (this.section.subsections.length - 1 == this.index) {
         this.addSubSection();
       } else {
-        console.log(this.index);
         this.section.removeSubsection(this.index);
       }
     },
     addSubSection() {
-      if (this.section.subsectionEditing) {
-        emitter?.emit("editing", this.section.editingIndex);
+      if (this.emmitSending()) {
         return;
       }
       this.section.addNewSubsection();
@@ -153,8 +156,7 @@ export default {
       }
     },
     editSubSection() {
-      if (this.section.subsectionEditing) {
-        emitter?.emit("editing", this.section.editingIndex);
+      if (this.emmitSending()) {
         return;
       }
       this.section.editingIndex = this.index;
