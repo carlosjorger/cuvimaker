@@ -108,6 +108,7 @@ export default {
   background-color: #000000da;
   align-items: center;
   justify-content: space-around;
+  height: calc(100% + 20px);
 }
 
 .subsection {
