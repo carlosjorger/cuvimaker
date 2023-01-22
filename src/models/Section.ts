@@ -24,7 +24,12 @@ export class Section {
   removeSubsection(index: number) {
     if (this.editingIndex == index) {
       this.editingIndex = -1;
+    } else if (this.editingIndex > index) {
+      this.editingIndex--;
     }
     this.subsections.splice(index, 1);
+  }
+  disabledEditing() {
+    this.editingIndex = -1;
   }
 }

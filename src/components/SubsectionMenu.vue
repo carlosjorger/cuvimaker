@@ -150,7 +150,7 @@ export default {
         return;
       }
       if (this.editing) {
-        this.section.editingIndex = -1;
+        this.section.disabledEditing();
       } else {
         this.editSubSection();
       }
