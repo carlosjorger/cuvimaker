@@ -52,9 +52,11 @@
             :inline="true"
             :disabled="!editing" />
           <span
-            v-if="subsection.dateFrom || subsection.dateTo || editing"
+            :class="{
+              hidden: !subsection.dateFrom && !subsection.dateTo && !editing,
+            }"
             class="subsection-form-control-datepicker-span"
-            >-</span
+            >|</span
           >
           <Datepicker
             class="subsection-form-control-datepicker"
@@ -64,14 +66,14 @@
             :lower-limit="subsection.dateFrom"
             :disabled="!editing" />
         </div>
-        <transition name="editButton">
-          <button
-            type="submit"
-            class="save-button"
-            v-if="!subsection.last && editing">
-            Save
-          </button>
-        </transition>
+        <button
+          type="submit"
+          class="save-button"
+          :class="{
+            hidden: subsection.last || !editing,
+          }">
+          Save
+        </button>
       </form>
     </div>
   </div>
@@ -239,6 +241,11 @@ export default {
   width: 100%;
   margin-top: 0.5rem;
   font-weight: bold;
+  transition: all 0.5s ease;
+}
+.save-button.hidden {
+  background-color: rgba(255, 255, 255, 0);
+  transition: all 0.5s ease;
 }
 .editButton-leave-active {
   transition: all 0.5s ease;
@@ -259,7 +266,6 @@ export default {
   padding: 0.5rem;
 }
 .subsection-form-control {
-  // display: flex;
   padding: 0.1rem;
   width: 100%;
   margin-top: 0.5rem;
@@ -267,11 +273,13 @@ export default {
   border-radius: 0;
   background-color: inherit;
   pointer-events: none;
-  transition: all 0.1s ease-in;
+  transition: all 0.3s ease-in;
   color: white;
+  border-bottom: rgba(255, 255, 255, 0) solid 0.1rem;
 }
 .subsection-form-control.edit {
   border-bottom: white solid 0.1rem;
+  transition: all 0.3s ease-out;
   pointer-events: auto;
   font-size: 1em;
 }
@@ -298,19 +306,27 @@ export default {
   position: relative;
   background-color: var(--primary-color);
   color: white;
-  border: none;
+  border: rgba(255, 255, 255, 0) solid 0.1rem;
   pointer-events: none;
   margin: 0;
-  width: 80%;
+  width: 88%;
+  transition: all 0.3s ease-in;
+  border-radius: 0.6rem;
+  padding: 0.2rem;
 }
 .subsection-form-control-datepicker.edit {
   border: white solid 0.1rem;
   pointer-events: auto;
+  transition: all 0.3s ease-out;
 }
 .subsection-form-control-datepicker-span {
-  padding: 0.5rem;
+  padding: 0.2rem;
+  color: white;
+}
+.subsection-form-control-datepicker-span.hidden {
+  color: rgba(255, 255, 255, 0);
 }
 .v3dp__datepicker {
-  width: 5.4em;
+  width: 4.8em;
 }
 </style>
