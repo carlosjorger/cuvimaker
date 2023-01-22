@@ -116,6 +116,7 @@ export default {
   max-height: 45vh;
   padding: 0.5rem;
   overflow: scroll;
+  overflow-x: hidden;
   position: relative;
 }
 

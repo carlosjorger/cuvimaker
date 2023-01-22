@@ -221,7 +221,6 @@ export default {
 }
 .subsection-item {
   color: white;
-  min-height: 21vh;
   width: 95%;
   margin-top: 0.8rem;
   padding: 0.5rem;
