@@ -3,8 +3,7 @@
     v-model="value"
     class="subsection-form-control"
     :class="{edit: editing}"
-    type="text"
-    placeholder="Property description" />
+    type="text" />
 </template>
 
 <script lang="ts">

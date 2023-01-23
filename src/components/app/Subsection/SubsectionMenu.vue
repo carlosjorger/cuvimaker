@@ -28,18 +28,16 @@
         v-on:submit.prevent="editCancel()"
         v-if="!subsection.last"
         class="subsection-form-group">
-        <input
+        <subsection-form
+          :editing="editing"
+          class="subsection-form-control-property"
           v-model="subsection.title"
-          type="text"
-          class="subsection-form-control subsection-form-control-property"
-          :class="{edit: editing}"
           placeholder="Property name" />
         <span v-if="!errors.text.valid">{{ errors.text.error }}</span>
-        <input
+        <subsection-form
+          :editing="editing"
+          class="subsection-form-control-property-description"
           v-model="subsection.text"
-          class="subsection-form-control subsection-form-control-property-description"
-          :class="{edit: editing}"
-          type="text"
           placeholder="Property description" />
 
         <div class="subsection-form-control-datepicker-group">
@@ -82,7 +80,7 @@ import {Subsection} from "../../../models/Subsection";
 import {Section} from "../../../models/Section";
 import DatePickerSubsection from "./DatePickerSubsection.vue";
 import mitt from "mitt";
-
+import SubsectionForm from "./SubsectionForm.vue";
 const emitter = mitt();
 export default {
   name: "SubsectionMenu",
@@ -108,6 +106,7 @@ export default {
     Icon,
     Datepicker,
     DatePickerSubsection,
+    SubsectionForm,
   },
   directives: {
     scrollIf(el, {value}) {
@@ -267,24 +266,7 @@ export default {
 .subsection-form-group {
   padding: 0.5rem;
 }
-.subsection-form-control {
-  padding: 0.1rem;
-  width: 100%;
-  margin-top: 0.5rem;
-  border: 0;
-  border-radius: 0;
-  background-color: inherit;
-  pointer-events: none;
-  transition: all 0.3s ease-in;
-  color: white;
-  border-bottom: rgba(255, 255, 255, 0) solid 0.1rem;
-}
-.subsection-form-control.edit {
-  border-bottom: white solid 0.1rem;
-  transition: all 0.3s ease-out;
-  pointer-events: auto;
-  font-size: 1em;
-}
+
 .subsection-form-control-property {
   font-size: 1.2em;
 }
