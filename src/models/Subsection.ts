@@ -7,6 +7,7 @@ export class Subsection {
   isNew: boolean;
   dateFrom: Date | undefined;
   dateTo: Date | undefined;
+  description: string;
   constructor(id?: number, title?: string, text?: string) {
     this.id = id ?? 0;
     this.title = title ?? "";
@@ -14,5 +15,6 @@ export class Subsection {
     this.last = true;
     this.editing = true;
     this.isNew = true;
+    this.description = "";
   }
 }

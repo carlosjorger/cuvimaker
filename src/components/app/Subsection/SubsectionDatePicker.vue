@@ -13,7 +13,7 @@
 import Datepicker from "vue3-datepicker";
 
 export default {
-  name: "DatePickerSubsection",
+  name: "SubsectionDatePicker",
   props: {
     upperLimit: {
       type: Date,

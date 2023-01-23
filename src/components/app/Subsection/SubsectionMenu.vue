@@ -32,16 +32,17 @@
           :editing="editing"
           class="subsection-form-control-property"
           v-model="subsection.title"
-          placeholder="Property name" />
+          placeholder="Subsection title" />
         <span v-if="!errors.text.valid">{{ errors.text.error }}</span>
         <subsection-form
           :editing="editing"
           class="subsection-form-control-property-description"
           v-model="subsection.text"
-          placeholder="Property description" />
+          placeholder="Subsection subtitle" />
+        <span v-if="!errors.text.valid">{{ errors.text.error }}</span>
 
         <div class="subsection-form-control-datepicker-group">
-          <date-picker-subsection
+          <subsection-date-picker
             v-model="subsection.dateFrom"
             :editing="editing"
             :upperLimit="subsection.dateTo"
@@ -53,12 +54,16 @@
             class="subsection-form-control-datepicker-span"
             >|</span
           >
-          <date-picker-subsection
+          <subsection-date-picker
             v-model="subsection.dateTo"
             :editing="editing"
             :upperLimit="to"
             :lowerLimit="subsection.dateFrom" />
         </div>
+        <textarea
+          :class="{edit: editing}"
+          class="subsection-textarea"
+          v-model="subsection.description"></textarea>
         <button
           type="submit"
           class="save-button"
@@ -78,7 +83,7 @@ import {Icon} from "@iconify/vue";
 import Datepicker from "vue3-datepicker";
 import {Subsection} from "../../../models/Subsection";
 import {Section} from "../../../models/Section";
-import DatePickerSubsection from "./DatePickerSubsection.vue";
+import SubsectionDatePicker from "./SubsectionDatePicker.vue";
 import mitt from "mitt";
 import SubsectionForm from "./SubsectionForm.vue";
 const emitter = mitt();
@@ -105,7 +110,7 @@ export default {
     CircleButton,
     Icon,
     Datepicker,
-    DatePickerSubsection,
+    SubsectionDatePicker,
     SubsectionForm,
   },
   directives: {
@@ -276,6 +281,20 @@ export default {
 }
 .subsection-form-control-property-description.edit::placeholder {
   opacity: 1;
+}
+.subsection-textarea {
+  width: 100%;
+  margin-top: 0.5rem;
+  background-color: inherit;
+  color: white;
+  transition: all 0.1s ease-in;
+  pointer-events: none;
+  border: rgba(255, 255, 255, 0) solid 0.1rem;
+}
+.subsection-textarea.edit {
+  border: white solid 0.1rem;
+  pointer-events: auto;
+  transition: all 0.3s ease-out;
 }
 .subsection-form-control:focus {
   outline: none;
