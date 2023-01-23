@@ -2,7 +2,7 @@
   <Datepicker
     class="subsection-form-control-datepicker"
     :class="{edit: editing}"
-    v-model="date"
+    v-model="value"
     :upper-limit="upperLimit"
     :lower-limit="lowerLimit"
     :inline="true"
@@ -11,56 +11,40 @@
 
 <script lang="ts">
 import Datepicker from "vue3-datepicker";
-import {Subsection} from "../models/Subsection";
 
 export default {
   name: "DatePickerSubsection",
   props: {
-    subsection: {
-      type: Subsection,
-      required: true,
-    },
-
     upperLimit: {
       type: Date,
     },
     lowerLimit: {
       type: Date,
     },
-    ifFrom: {
-      type: Boolean,
-      required: true,
-    },
     editing: {
       type: Boolean,
-      required: true,
+    },
+    modelValue: {
+      type: Date,
     },
   },
-
+  emits: ["update:modelValue"],
   components: {Datepicker},
 
   computed: {
-    date: {
+    value: {
       get() {
-        if (this.ifFrom) {
-          return this.subsection.dateFrom;
-        } else {
-          return this.subsection.dateTo;
-        }
+        return this.modelValue;
       },
-      set(val: Date) {
-        if (this.ifFrom) {
-          this.subsection.dateFrom = val;
-        } else {
-          this.subsection.dateTo = val;
-        }
+      set(value: Date) {
+        this.$emit("update:modelValue", value);
       },
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .subsection-form-control-datepicker {
   position: relative;
   background-color: var(--primary-color);

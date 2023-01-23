@@ -44,8 +44,7 @@
 
         <div class="subsection-form-control-datepicker-group">
           <date-picker-subsection
-            :subsection="subsection"
-            :ifFrom="true"
+            v-model="subsection.dateFrom"
             :editing="editing"
             :upperLimit="subsection.dateTo"
             :lowerLimit="from" />
@@ -57,8 +56,7 @@
             >|</span
           >
           <date-picker-subsection
-            :subsection="subsection"
-            :ifFrom="false"
+            v-model="subsection.dateTo"
             :editing="editing"
             :upperLimit="to"
             :lowerLimit="subsection.dateFrom" />
