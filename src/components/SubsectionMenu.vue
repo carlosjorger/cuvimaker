@@ -43,14 +43,12 @@
           placeholder="Property description" />
 
         <div class="subsection-form-control-datepicker-group">
-          <Datepicker
-            class="subsection-form-control-datepicker"
-            :class="{edit: editing}"
-            v-model="subsection.dateFrom"
-            :upper-limit="subsection.dateTo"
-            :lower-limit="from"
-            :inline="true"
-            :disabled="!editing" />
+          <date-picker-subsection
+            :subsection="subsection"
+            :ifFrom="true"
+            :editing="editing"
+            :upperLimit="subsection.dateTo"
+            :lowerLimit="from" />
           <span
             :class="{
               hidden: !subsection.dateFrom && !subsection.dateTo && !editing,
@@ -58,13 +56,12 @@
             class="subsection-form-control-datepicker-span"
             >|</span
           >
-          <Datepicker
-            class="subsection-form-control-datepicker"
-            :class="{edit: editing}"
-            v-model="subsection.dateTo"
-            :upper-limit="to"
-            :lower-limit="subsection.dateFrom"
-            :disabled="!editing" />
+          <date-picker-subsection
+            :subsection="subsection"
+            :ifFrom="false"
+            :editing="editing"
+            :upperLimit="to"
+            :lowerLimit="subsection.dateFrom" />
         </div>
         <button
           type="submit"
@@ -85,6 +82,7 @@ import {Icon} from "@iconify/vue";
 import Datepicker from "vue3-datepicker";
 import {Subsection} from "../models/Subsection";
 import {Section} from "../models/Section";
+import DatePickerSubsection from "./DatePickerSubsection.vue";
 import mitt from "mitt";
 
 const emitter = mitt();
@@ -106,7 +104,13 @@ export default {
     },
   },
 
-  components: {CloseAddButton, CircleButton, Icon, Datepicker},
+  components: {
+    CloseAddButton,
+    CircleButton,
+    Icon,
+    Datepicker,
+    DatePickerSubsection,
+  },
   directives: {
     scrollIf(el, {value}) {
       if (value.last && value.isNew) {
@@ -302,31 +306,11 @@ export default {
   align-items: center;
   margin-top: 0.5rem;
 }
-.subsection-form-control-datepicker {
-  position: relative;
-  background-color: var(--primary-color);
-  color: white;
-  border: rgba(255, 255, 255, 0) solid 0.1rem;
-  pointer-events: none;
-  margin: 0;
-  width: 88%;
-  transition: all 0.3s ease-in;
-  border-radius: 0.6rem;
-  padding: 0.2rem;
-}
-.subsection-form-control-datepicker.edit {
-  border: white solid 0.1rem;
-  pointer-events: auto;
-  transition: all 0.3s ease-out;
-}
 .subsection-form-control-datepicker-span {
   padding: 0.2rem;
   color: white;
 }
 .subsection-form-control-datepicker-span.hidden {
   color: rgba(255, 255, 255, 0);
-}
-.v3dp__datepicker {
-  width: 4.8em;
 }
 </style>
