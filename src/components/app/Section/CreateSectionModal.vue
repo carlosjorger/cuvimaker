@@ -36,10 +36,10 @@
   </div>
 </template>
 <script lang="ts">
-import CloseAddButton from "./CloseAddButton.vue";
-import SubsectionMenu from "./SubsectionMenu.vue";
+import CloseAddButton from "../../shared/Button/CloseAddButton.vue";
+import SubsectionMenu from "../Subsection/SubsectionMenu.vue";
 import {Icon} from "@iconify/vue";
-import {Section} from "../models/Section";
+import {Section} from "../../../models/Section";
 import type {PropType} from "vue";
 export default {
   name: "CreateSectionModal",

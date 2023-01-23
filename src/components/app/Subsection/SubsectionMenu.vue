@@ -74,12 +74,12 @@
   </div>
 </template>
 <script lang="ts">
-import CloseAddButton from "./CloseAddButton.vue";
-import CircleButton from "./CircleButton.vue";
+import CloseAddButton from "../../shared/Button/CloseAddButton.vue";
+import CircleButton from "../../shared/Button/CircleButton.vue";
 import {Icon} from "@iconify/vue";
 import Datepicker from "vue3-datepicker";
-import {Subsection} from "../models/Subsection";
-import {Section} from "../models/Section";
+import {Subsection} from "../../../models/Subsection";
+import {Section} from "../../../models/Section";
 import DatePickerSubsection from "./DatePickerSubsection.vue";
 import mitt from "mitt";
 

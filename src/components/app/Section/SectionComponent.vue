@@ -6,7 +6,7 @@
   </article>
 </template>
 <script lang="ts">
-import {Section} from "../models/Section";
+import {Section} from "../../../models/Section";
 
 export default {
   name: "SectionComponent",

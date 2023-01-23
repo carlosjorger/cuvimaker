@@ -18,8 +18,8 @@
 </template>
 <script lang="ts">
 import type {Section} from "../models/Section";
-import CreateSectionModal from "./CreateSectionModal.vue";
-import SectionComponent from "./SectionComponent.vue";
+import CreateSectionModal from "./app/Section/CreateSectionModal.vue";
+import SectionComponent from "./app/Section/SectionComponent.vue";
 export default {
   components: {CreateSectionModal, SectionComponent},
   data() {
