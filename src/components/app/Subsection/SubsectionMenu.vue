@@ -64,6 +64,19 @@
           :class="{edit: editing}"
           class="subsection-textarea"
           v-model="subsection.description"></textarea>
+        <div class="subsection-addelement">
+          <input
+            class="subsection-addelement-input"
+            v-model="newElement"
+            placeholder="New element" />
+          <close-add-button v-on:click="addElement()" />
+        </div>
+        <ul>
+          <li v-for="element in subsection.elements" v-bind:my="element">
+            {{ element }}
+          </li>
+        </ul>
+
         <button
           type="submit"
           class="save-button"
@@ -123,6 +136,7 @@ export default {
   },
   data() {
     return {
+      newElement: "",
       from: new Date(1999, 1, 1),
       to: new Date(),
       editing: false,
@@ -182,6 +196,10 @@ export default {
       }
       return this.errors.text.valid;
     },
+    addElement() {
+      this.subsection.elements.push(this.newElement);
+      this.newElement = "";
+    },
   },
   mounted() {
     emitter.on("editing", (index) => {
@@ -194,6 +212,7 @@ export default {
       }
     });
   },
+
   watch: {
     "section.editingIndex"(newValue: number) {
       this.editing = newValue == this.index;
@@ -311,5 +330,18 @@ export default {
 }
 .subsection-form-control-datepicker-span.hidden {
   color: rgba(255, 255, 255, 0);
+}
+.subsection-addelement {
+  display: flex;
+  background-color: white;
+  border-radius: 1.5rem;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+.subsection-addelement-input {
+  font-size: 1.2em;
+  width: 80%;
+  border: none;
+  outline: none;
 }
 </style>
