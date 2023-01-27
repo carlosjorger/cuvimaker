@@ -88,7 +88,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style>
 .save-button {
   background-color: white;
   color: var(--primary-color);

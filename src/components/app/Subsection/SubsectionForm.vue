@@ -31,7 +31,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 .subsection-form-control {
   padding: 0.1rem;
   width: 100%;

@@ -44,7 +44,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 .subsection-form-control-datepicker {
   position: relative;
   background-color: var(--primary-color);
