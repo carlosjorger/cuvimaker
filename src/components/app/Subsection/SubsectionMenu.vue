@@ -64,19 +64,7 @@
           :class="{edit: editing}"
           class="subsection-textarea"
           v-model="subsection.description"></textarea>
-        <div class="subsection-addelement">
-          <input
-            class="subsection-addelement-input"
-            v-model="newElement"
-            placeholder="New element" />
-          <close-add-button v-on:click="addElement()" />
-        </div>
-        <ul>
-          <li v-for="element in subsection.elements" v-bind:my="element">
-            {{ element }}
-          </li>
-        </ul>
-
+        <subsection-elements :subsection="subsection" />
         <button
           type="submit"
           class="save-button"
@@ -99,6 +87,7 @@ import {Section} from "../../../models/Section";
 import SubsectionDatePicker from "./SubsectionDatePicker.vue";
 import mitt from "mitt";
 import SubsectionForm from "./SubsectionForm.vue";
+import SubsectionElements from "./SubsectionElements.vue";
 const emitter = mitt();
 export default {
   name: "SubsectionMenu",
@@ -125,6 +114,7 @@ export default {
     Datepicker,
     SubsectionDatePicker,
     SubsectionForm,
+    SubsectionElements,
   },
   directives: {
     scrollIf(el, {value}) {
@@ -195,10 +185,6 @@ export default {
         this.errors.text.error = "";
       }
       return this.errors.text.valid;
-    },
-    addElement() {
-      this.subsection.elements.push(this.newElement);
-      this.newElement = "";
     },
   },
   mounted() {
@@ -323,25 +309,5 @@ export default {
   justify-content: flex-start;
   align-items: center;
   margin-top: 0.5rem;
-}
-.subsection-form-control-datepicker-span {
-  padding: 0.2rem;
-  color: white;
-}
-.subsection-form-control-datepicker-span.hidden {
-  color: rgba(255, 255, 255, 0);
-}
-.subsection-addelement {
-  display: flex;
-  background-color: white;
-  border-radius: 1.5rem;
-  justify-content: space-between;
-  padding: 0.5rem;
-}
-.subsection-addelement-input {
-  font-size: 1.2em;
-  width: 80%;
-  border: none;
-  outline: none;
 }
 </style>
