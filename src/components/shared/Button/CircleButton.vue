@@ -2,14 +2,24 @@
   <button
     :style="{
       backgroundColor: buttonColor,
+      width: `${size}rem`,
+      height: `${size}rem`,
+      padding: `${(size??0)/12}rem`
     }"
     class="button-icon">
     <slot></slot>
   </button>
 </template>
-<script>
+<script lang="ts">
 export default {
-  props: ["buttonColor"],
+  props:{
+    buttonColor:{
+      type:String
+    },
+    size:{
+      type:Number
+    }
+  },
   name: "CircleButton",
   methods: {},
 };

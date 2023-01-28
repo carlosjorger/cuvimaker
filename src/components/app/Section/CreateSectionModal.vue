@@ -114,7 +114,6 @@ export default {
 .subsection {
   display: block;
   max-height: 45vh;
-  padding: 0.5rem;
   overflow: scroll;
   overflow-x: hidden;
   position: relative;
@@ -163,7 +162,7 @@ export default {
   font-size: 1.8em;
 }
 .form-group {
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   box-sizing: border-box;
 }
 .form-control {

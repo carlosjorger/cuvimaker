@@ -280,13 +280,7 @@ export default {
 .subsection-form-control-property {
   font-size: 1.2em;
 }
-.subsection-form-control-property-description::placeholder {
-  opacity: 0;
-  transition: all 0.1s ease-in;
-}
-.subsection-form-control-property-description.edit::placeholder {
-  opacity: 1;
-}
+
 .subsection-textarea {
   width: 100%;
   margin-top: 0.5rem;
@@ -309,5 +303,12 @@ export default {
   justify-content: flex-start;
   align-items: center;
   margin-top: 0.5rem;
+}
+.subsection-form-control-datepicker-span{
+  transition: all 0.5s ease;
+}
+.subsection-form-control-datepicker-span.hidden{
+  color: rgba(255, 255, 255, 0);
+  transition: all 0.5s ease;
 }
 </style>

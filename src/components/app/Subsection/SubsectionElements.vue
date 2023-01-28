@@ -4,7 +4,9 @@
       class="subsection-addelement-input"
       v-model="newElement"
       placeholder="New element" />
-    <close-add-button v-on:click="addElement()" />
+    <close-add-button 
+        :size="2.5"
+        v-on:click="addElement()" />
   </div>
   <ul>
     <li v-for="element in subsection.elements" v-bind:my="element">
@@ -43,13 +45,17 @@ export default {
 <style>
 .subsection-addelement {
   display: flex;
-  background-color: white;
+  background-color: inherit;
   border-radius: 1.5rem;
   justify-content: space-between;
-  padding: 0.5rem;
+  padding: 0.3rem;
+  border: solid 0.1rem white;
+  margin-top: 0.5rem;
 }
 .subsection-addelement-input {
-  font-size: 1.2em;
+  color: white;
+  background-color: inherit;
+  font-size: 1.1em;
   width: 80%;
   border: none;
   outline: none;
