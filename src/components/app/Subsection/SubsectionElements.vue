@@ -1,6 +1,6 @@
 <template>
-  <div class="subsection-addelement">
-    <input
+  <div class="subsection-addelement" v-if="editing">
+    <input 
       class="subsection-addelement-input"
       v-model="newElement"
       placeholder="New element" />
@@ -8,14 +8,15 @@
         :size="2.5"
         v-on:click="addElement()" />
   </div>
-  <ul>
-    <li v-for="element in subsection.elements" v-bind:my="element">
-      {{ element }}
-    </li>
-  </ul>
+ 
+  <transition-group name="subsection-elements" tag="ul">
+      <li v-for="element in subsection.elements" :key="element.trim()" >
+        {{ element }}
+      </li>
+    </transition-group>
 </template>
 
-<script>
+<script lang="ts">
 import {Subsection} from "../../../models/Subsection";
 import CloseAddButton from "../../shared/Button/CloseAddButton.vue";
 export default {
@@ -31,6 +32,11 @@ export default {
   props: {
     subsection: {
       type: Subsection,
+      required: true,
+      
+    },
+    editing: {
+      type: Boolean,
     },
   },
   methods: {
@@ -60,4 +66,20 @@ export default {
   border: none;
   outline: none;
 }
+
+.subsection-elements-move {
+  transition: all 0.5s ease;
+}
+.subsection-elements-leave-active {
+  transition: all 0.5s ease;
+}
+.subsection-elements-enter-active {
+  transition: all 0.5s ease;
+}
+.subsection-elements-enter-from,
+.subsection-elements-leave-to {
+  opacity: 0;
+  transform: translateX(-1rem);
+}
+
 </style>

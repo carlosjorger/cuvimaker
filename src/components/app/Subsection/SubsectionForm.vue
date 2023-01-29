@@ -2,6 +2,7 @@
   <input
     v-model="value"
     class="subsection-form-control"
+    v-if="editing||value"
     :class="{edit: editing}"
     type="text" />
 </template>
@@ -44,10 +45,21 @@ export default {
   color: white;
   border-bottom: rgba(255, 255, 255, 0) solid 0.1rem;
 }
+
 .subsection-form-control.edit {
   border-bottom: white solid 0.1rem;
   transition: all 0.3s ease-out;
   pointer-events: auto;
   font-size: 1em;
+}
+.subsection-form-control::placeholder{
+  transition: all 0.3s ease-in;
+  color: rgba(166, 166, 166, 0);
+
+}
+.subsection-form-control.edit::placeholder{
+  transition: all 0.3s ease-out;
+  color: rgba(166, 166, 166);
+
 }
 </style>

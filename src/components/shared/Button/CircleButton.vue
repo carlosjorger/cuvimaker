@@ -6,6 +6,7 @@
       height: `${size}rem`,
       padding: `${(size??0)/12}rem`
     }"
+    type="button"
     class="button-icon">
     <slot></slot>
   </button>

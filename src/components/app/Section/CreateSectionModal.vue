@@ -113,7 +113,7 @@ export default {
 
 .subsection {
   display: block;
-  max-height: 45vh;
+  height: 65vh;
   overflow: scroll;
   overflow-x: hidden;
   position: relative;

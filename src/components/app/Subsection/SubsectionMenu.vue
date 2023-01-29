@@ -39,9 +39,8 @@
           class="subsection-form-control-property-description"
           v-model="subsection.text"
           placeholder="Subsection subtitle" />
-        <span v-if="!errors.text.valid">{{ errors.text.error }}</span>
 
-        <div class="subsection-form-control-datepicker-group">
+        <div class="subsection-form-control-datepicker-group" v-if="editing||(subsection.dateFrom&&subsection.dateTo)">
           <subsection-date-picker
             v-model="subsection.dateFrom"
             :editing="editing"
@@ -61,10 +60,11 @@
             :lowerLimit="subsection.dateFrom" />
         </div>
         <textarea
+          v-if="editing ||subsection.description"
           :class="{edit: editing}"
           class="subsection-textarea"
           v-model="subsection.description"></textarea>
-        <subsection-elements :subsection="subsection" />
+        <subsection-elements :subsection="subsection" :editing="editing"/>
         <button
           type="submit"
           class="save-button"
