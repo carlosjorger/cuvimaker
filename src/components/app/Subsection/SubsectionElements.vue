@@ -1,24 +1,30 @@
 <template>
   <div class="subsection-addelement" v-if="editing">
-    <input 
+    <input
       class="subsection-addelement-input"
       v-model="newElement"
       placeholder="New element" />
-    <close-add-button 
-        :size="2.5"
-        v-on:click="addElement()" />
+    <close-add-button :size="2.5" v-on:click="addElement()" />
   </div>
- 
+
   <transition-group name="subsection-elements" tag="ul">
-      <li v-for="(element,index) in subsection.elements" :key="element.trim()">
-        <SubsectionElement editing
-        @selectElement="selectedElement=selectedElement!=index?index:undefined" 
-        @removeElement="subsection.elements.splice(index,1)"
-        :element="element.trim()" 
-        :index-element="index" 
-        :selectedElement="selectedElement"/>
-      </li>
-    </transition-group>
+    <li v-for="(element, index) in subsection.elements" :key="element.trim()">
+      <SubsectionElement
+        editing
+        @selectElement="
+          selectedElement = selectedElement != index ? index : undefined
+        "
+        @removeElement="subsection.elements.splice(index, 1)"
+        @changeElement="
+          (v:string) => {
+            subsection.elements[index] = v;
+          }
+        "
+        :element="element.trim()"
+        :index-element="index"
+        :selectedElement="selectedElement" />
+    </li>
+  </transition-group>
 </template>
 
 <script lang="ts">
@@ -28,19 +34,19 @@ import SubsectionElement from "./SubsectionElement.vue";
 export default {
   name: "SubsectionElements",
   components: {
-    CloseAddButton, SubsectionElement
+    CloseAddButton,
+    SubsectionElement,
   },
   data() {
     return {
       newElement: "",
-      selectedElement:true? undefined:0,
+      selectedElement: true ? undefined : 0,
     };
   },
   props: {
     subsection: {
       type: Subsection,
       required: true,
-      
     },
     editing: {
       type: Boolean,
@@ -88,11 +94,11 @@ export default {
   opacity: 0;
   transform: translateX(-1rem);
 }
-.subsection-elements{
+.subsection-elements {
   display: flex;
   justify-content: space-between;
 }
-.subsection-elements-action-buttons{
+.subsection-elements-action-buttons {
   display: flex;
   align-items: center;
 }
