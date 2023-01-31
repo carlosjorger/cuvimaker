@@ -47,7 +47,7 @@ export default {
 <style>
 .subsection-form-control-datepicker {
   position: relative;
-  background-color: var(--primary-color);
+  background-color: inherit;
   color: white;
   border: rgba(255, 255, 255, 0) solid 0.1rem;
   pointer-events: none;

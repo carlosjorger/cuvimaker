@@ -10,8 +10,26 @@
   </div>
  
   <transition-group name="subsection-elements" tag="ul">
-      <li v-for="element in subsection.elements" :key="element.trim()" >
-        {{ element }}
+      <li v-for="element in subsection.elements" :key="element.trim()" class="subsection-elements">
+        <h3>
+          {{ element }}
+        </h3>
+        <div class="subsection-elements-action-buttons">
+          <circle-button :size="2.2"
+            v-if="editing">
+            <Icon
+              icon="ic:baseline-mode-edit"
+              width="25"
+              color="var(--primary-color)" /> </circle-button
+        >
+        <circle-button :size="2.2"
+            v-if="editing">
+            <Icon
+              icon="ic:baseline-delete"
+              width="25"
+              color="var(--primary-color)" /> </circle-button
+        >
+        </div>
       </li>
     </transition-group>
 </template>
@@ -19,10 +37,13 @@
 <script lang="ts">
 import {Subsection} from "../../../models/Subsection";
 import CloseAddButton from "../../shared/Button/CloseAddButton.vue";
+import {Icon} from "@iconify/vue";
+import CircleButton from "../../shared/Button/CircleButton.vue";
+
 export default {
   name: "SubsectionElements",
   components: {
-    CloseAddButton,
+    CloseAddButton, Icon, CircleButton
   },
   data() {
     return {
@@ -81,5 +102,12 @@ export default {
   opacity: 0;
   transform: translateX(-1rem);
 }
-
+.subsection-elements{
+  display: flex;
+  justify-content: space-between;
+}
+.subsection-elements-action-buttons{
+  display: flex;
+  align-items: center;
+}
 </style>

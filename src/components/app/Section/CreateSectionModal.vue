@@ -38,7 +38,6 @@
 <script lang="ts">
 import CloseAddButton from "../../shared/Button/CloseAddButton.vue";
 import SubsectionMenu from "../Subsection/SubsectionMenu.vue";
-import {Icon} from "@iconify/vue";
 import {Section} from "../../../models/Section";
 import type {PropType} from "vue";
 export default {
@@ -53,7 +52,7 @@ export default {
       required: true,
     },
   },
-  components: {SubsectionMenu, CloseAddButton, Icon},
+  components: {SubsectionMenu, CloseAddButton},
   directives: {
     scrollIf(el, {value}) {
       if ((value.last && value.isNew) || value.editing) {
