@@ -23,7 +23,15 @@
             :key="subsection.id"
             :index="index"
             :section="section"
-            :subsection="subsection" />
+            :subsection="subsection"
+            @removeSubsection="(index:number)=>{
+              section.removeSubsection(index)
+            }"
+            @addNewSubsection="section.addNewSubsection()"
+            @disabledEditing="section.disabledEditing()"
+            @setEditingIndex="(index:number)=>{
+              section.editingIndex = index;
+            }" />
         </transition-group>
       </div>
       <button

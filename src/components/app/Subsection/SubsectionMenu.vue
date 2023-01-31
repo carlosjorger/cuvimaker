@@ -148,14 +148,14 @@ export default {
       if (this.section.subsections.length - 1 == this.index) {
         this.addSubSection();
       } else {
-        this.section.removeSubsection(this.index);
+        this.$emit("removeSubsection", this.index);
       }
     },
     addSubSection() {
       if (this.emmitSending()) {
         return;
       }
-      this.section.addNewSubsection();
+      this.$emit("addNewSubsection");
     },
 
     editCancel() {
@@ -163,7 +163,7 @@ export default {
         return;
       }
       if (this.editing) {
-        this.section.disabledEditing();
+        this.$emit("disabledEditing");
       } else {
         this.editSubSection();
       }
@@ -172,7 +172,7 @@ export default {
       if (this.emmitSending()) {
         return;
       }
-      this.section.editingIndex = this.index;
+      this.$emit("setEditingIndex", this.index);
     },
     validate() {
       return !this.editing || this.validateTitle();

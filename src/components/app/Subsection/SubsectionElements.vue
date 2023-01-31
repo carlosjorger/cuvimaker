@@ -8,7 +8,7 @@
   </div>
 
   <transition-group name="subsection-elements" tag="ul">
-    <li v-for="(element, index) in subsection.elements" :key="element.trim()">
+    <li v-for="(element, index) in subsection.elements" :key="element.id">
       <SubsectionElement
         editing
         @selectElement="
@@ -17,10 +17,10 @@
         @removeElement="subsection.elements.splice(index, 1)"
         @changeElement="
           (v:string) => {
-            subsection.elements[index] = v;
+            subsection.elements[index].name = v;
           }
         "
-        :element="element.trim()"
+        :element="element.name"
         :index-element="index"
         :selectedElement="selectedElement" />
     </li>
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     addElement() {
-      this.subsection.elements.push(this.newElement);
+      this.subsection.addElement(this.newElement);
       this.newElement = "";
     },
   },

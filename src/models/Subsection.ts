@@ -1,3 +1,5 @@
+import {SubsectionElement} from "./SubsectionElement";
+
 export class Subsection {
   id: number;
   title: string;
@@ -8,8 +10,8 @@ export class Subsection {
   dateFrom: Date | undefined;
   dateTo: Date | undefined;
   description: string;
-  elements: String[];
-
+  elements: SubsectionElement[];
+  count: number;
   constructor(id?: number, title?: string, text?: string) {
     this.id = id ?? 0;
     this.title = title ?? "";
@@ -19,5 +21,9 @@ export class Subsection {
     this.isNew = true;
     this.description = "";
     this.elements = [];
+    this.count = 0;
+  }
+  addElement(elementName: string) {
+    this.elements.push(new SubsectionElement(this.count++, elementName));
   }
 }
