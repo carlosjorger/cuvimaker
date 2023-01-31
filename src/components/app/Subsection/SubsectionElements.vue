@@ -10,26 +10,13 @@
   </div>
  
   <transition-group name="subsection-elements" tag="ul">
-      <li v-for="element in subsection.elements" :key="element.trim()" class="subsection-elements">
-        <h3>
-          {{ element }}
-        </h3>
-        <div class="subsection-elements-action-buttons">
-          <circle-button :size="2.2"
-            v-if="editing">
-            <Icon
-              icon="ic:baseline-mode-edit"
-              width="25"
-              color="var(--primary-color)" /> </circle-button
-        >
-        <circle-button :size="2.2"
-            v-if="editing">
-            <Icon
-              icon="ic:baseline-delete"
-              width="25"
-              color="var(--primary-color)" /> </circle-button
-        >
-        </div>
+      <li v-for="(element,index) in subsection.elements" :key="element.trim()">
+        <SubsectionElement editing
+        @selectElement="selectedElement=selectedElement!=index?index:undefined" 
+        @removeElement="subsection.elements.splice(index,1)"
+        :element="element.trim()" 
+        :index-element="index" 
+        :selectedElement="selectedElement"/>
       </li>
     </transition-group>
 </template>
@@ -37,17 +24,16 @@
 <script lang="ts">
 import {Subsection} from "../../../models/Subsection";
 import CloseAddButton from "../../shared/Button/CloseAddButton.vue";
-import {Icon} from "@iconify/vue";
-import CircleButton from "../../shared/Button/CircleButton.vue";
-
+import SubsectionElement from "./SubsectionElement.vue";
 export default {
   name: "SubsectionElements",
   components: {
-    CloseAddButton, Icon, CircleButton
+    CloseAddButton, SubsectionElement
   },
   data() {
     return {
       newElement: "",
+      selectedElement:true? undefined:0,
     };
   },
   props: {
