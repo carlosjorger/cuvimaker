@@ -296,9 +296,7 @@ export default {
   pointer-events: auto;
   transition: all 0.3s ease-out;
 }
-.subsection-form-control:focus {
-  outline: none;
-}
+
 .subsection-form-control-datepicker-group {
   display: flex;
   justify-content: flex-start;

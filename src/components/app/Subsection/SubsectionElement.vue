@@ -1,24 +1,37 @@
 <template>
-  <div class="subsection-elements" @click="select">
+  <div
+    class="subsection-elements"
+    :class="{
+      edit: editingElement && indexElement == selectedElement,
+      selected: indexElement == selectedElement,
+    }"
+    @click="selectElement">
     <input
       v-model="currentElement"
       class="element-input"
       :class="{
-        edit: editingElement,
+        edit: editingElement && indexElement == selectedElement,
       }"
       type="text" />
     <div
-      v-if="indexElement == selectedElement"
+      v-if="indexElement == selectedElement && editingElement"
       class="subsection-elements-action-buttons">
-      <circle-button :size="2.2" @click="editSaveElement" v-if="editing">
-        <Icon
-          :icon="editingElement ? 'el:ok' : 'ic:baseline-edit'"
-          width="25"
-          color="var(--primary-color)" />
+      <circle-button :size="2.2" @click="saveElement" v-if="editing">
+        <Icon icon="el:ok" width="25" color="var(--primary-color)" />
       </circle-button>
-      <circle-button :size="2.2" @click="deleteCancel" v-if="editing">
+      <circle-button :size="2.2" @click="cancelElement" v-if="editing">
+        <Icon icon="mdi:cancel-bold" width="25" color="var(--primary-color)" />
+      </circle-button>
+    </div>
+    <div
+      v-if="indexElement == selectedElement && !editingElement"
+      class="subsection-elements-action-buttons">
+      <circle-button :size="2.2" @click="editElement" v-if="editing">
+        <Icon icon="ic:baseline-edit" width="25" color="var(--primary-color)" />
+      </circle-button>
+      <circle-button :size="2.2" @click="deleteElement" v-if="editing">
         <Icon
-          :icon="editingElement ? 'mdi:cancel-bold' : 'ic:baseline-delete'"
+          icon="ic:baseline-delete"
           width="25"
           color="var(--primary-color)" />
       </circle-button>
@@ -56,22 +69,20 @@ export default {
     };
   },
   methods: {
-    deleteCancel() {
-      if (!this.editingElement) {
-        this.$emit("removeElement");
-      } else {
-        this.resetElementValue();
-      }
+    deleteElement() {
+      this.$emit("removeElement");
     },
-    editSaveElement() {
-      if (!this.editingElement) {
-        this.editingElement = true;
-      } else {
-        this.$emit("changeElement", this.currentElement);
-        this.editingElement = false;
-      }
+    cancelElement() {
+      this.resetElementValue();
     },
-    select() {
+    editElement() {
+      this.editingElement = true;
+    },
+    saveElement() {
+      this.$emit("changeElement", this.currentElement);
+      this.editingElement = false;
+    },
+    selectElement() {
       if (!this.editingElement) {
         this.$emit("selectElement");
       }
@@ -84,13 +95,29 @@ export default {
   mounted() {
     this.resetElementValue();
   },
+  watch: {
+    selectedElement(newValue: number) {
+      if (newValue != this.indexElement) {
+        this.cancelElement();
+      }
+    },
+  },
 };
 </script>
 
 <style>
 .subsection-elements {
+  border-radius: 1.5rem;
+  padding: 0.3rem;
   display: flex;
   justify-content: space-between;
+  border: rgba(255, 255, 255, 0) solid 0.1rem;
+}
+.subsection-elements.selected {
+  background-color: #664596;
+}
+.subsection-elements.edit {
+  border: rgba(255, 255, 255) solid 0.1rem;
 }
 .subsection-elements-action-buttons {
   display: flex;
@@ -102,10 +129,12 @@ export default {
   background-color: inherit;
   border: 0;
   border-radius: 0;
-  border-bottom: rgba(255, 255, 255, 0) solid 0.1rem;
+  width: 80%;
 }
 .element-input.edit {
   pointer-events: auto;
-  border-bottom: rgba(255, 255, 255) solid 0.1rem;
+}
+.element-input:focus {
+  outline: none;
 }
 </style>

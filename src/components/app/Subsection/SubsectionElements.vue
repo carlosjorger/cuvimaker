@@ -7,7 +7,10 @@
     <close-add-button :size="2.5" v-on:click="addElement()" />
   </div>
 
-  <transition-group name="subsection-elements" tag="ul">
+  <transition-group
+    name="subsection-elements"
+    class="subsection-elements-list"
+    tag="ul">
     <li v-for="(element, index) in subsection.elements" :key="element.id">
       <SubsectionElement
         editing
@@ -101,5 +104,8 @@ export default {
 .subsection-elements-action-buttons {
   display: flex;
   align-items: center;
+}
+.subsection-elements-list {
+  list-style-type: none;
 }
 </style>
