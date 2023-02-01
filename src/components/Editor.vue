@@ -5,6 +5,9 @@
     </div>
     <transition name="createSectionModal">
       <create-section-modal
+        @addSection="(section:Section)=>{
+          sections.push(section)
+        }"
         v-show="showModal"
         :sections="sections"
         :showModal="showModal"

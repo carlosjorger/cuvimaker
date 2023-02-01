@@ -35,7 +35,7 @@
         </transition-group>
       </div>
       <button
-        v-on:click="addToDo"
+        v-on:click="$emit('addSection', section)"
         class="form-button"
         @click="$emit('close-modal')">
         Add Section
@@ -77,9 +77,6 @@ export default {
       return {
         section: new Section(),
       };
-    },
-    addToDo() {
-      this.sections.push(this.section);
     },
     resetWindow: function () {
       Object.assign(this.$data, this.initialState());
