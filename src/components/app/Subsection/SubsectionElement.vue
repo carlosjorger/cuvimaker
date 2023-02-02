@@ -118,6 +118,7 @@ export default {
   background-color: #664596;
 }
 .subsection-element.edit {
+  transition: all 0.5s ease;
   border: rgba(255, 255, 255) solid 0.3rem;
 }
 .subsection-element-action-buttons {
