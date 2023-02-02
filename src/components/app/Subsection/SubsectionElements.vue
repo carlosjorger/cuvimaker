@@ -10,23 +10,22 @@
   <transition-group
     name="subsection-elements"
     class="subsection-elements-list"
-    tag="ul">
-    <li v-for="(element, index) in subsection.elements" :key="element.id">
-      <SubsectionElement
-        editing
-        @selectElement="
-          selectedElement = selectedElement != index ? index : undefined
-        "
-        @removeElement="subsection.elements.splice(index, 1)"
-        @changeElement="
+    tag="div">
+    <SubsectionElement
+      v-for="(element, index) in subsection.elements"
+      :key="element.id"
+      editing
+      @selectElement="
+        selectedElement = selectedElement != index ? index : undefined
+      "
+      @removeElement="subsection.elements.splice(index, 1)"
+      @changeElement="
           (v:string) => {
             subsection.elements[index].name = v;
           }
         "
-        :element="element.name"
-        :index-element="index"
-        :selectedElement="selectedElement" />
-    </li>
+      :selecting="selectedElement == index"
+      :element="element.name" />
   </transition-group>
 </template>
 
@@ -97,6 +96,9 @@ export default {
   opacity: 0;
   transform: translateX(-1rem);
 }
+.subsection-elements-leave-active {
+  position: absolute;
+}
 .subsection-elements {
   display: flex;
   justify-content: space-between;
@@ -106,6 +108,7 @@ export default {
   align-items: center;
 }
 .subsection-elements-list {
-  list-style-type: none;
+  position: relative;
+  display: block;
 }
 </style>

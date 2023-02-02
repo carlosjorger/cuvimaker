@@ -1,21 +1,21 @@
 <template>
   <div
-    class="subsection-elements"
+    class="subsection-element"
     :class="{
-      edit: editingElement && indexElement == selectedElement,
-      selected: indexElement == selectedElement,
+      edit: editingElement && selecting,
+      selected: selecting,
     }"
     @click="selectElement">
     <input
       v-model="currentElement"
       class="element-input"
       :class="{
-        edit: editingElement && indexElement == selectedElement,
+        edit: editingElement && selecting,
       }"
       type="text" />
     <div
-      v-if="indexElement == selectedElement && editingElement"
-      class="subsection-elements-action-buttons">
+      v-if="selecting && editingElement"
+      class="subsection-element-action-buttons">
       <circle-button :size="2.2" @click="saveElement" v-if="editing">
         <Icon icon="el:ok" width="25" color="var(--primary-color)" />
       </circle-button>
@@ -24,8 +24,8 @@
       </circle-button>
     </div>
     <div
-      v-if="indexElement == selectedElement && !editingElement"
-      class="subsection-elements-action-buttons">
+      v-if="selecting && !editingElement"
+      class="subsection-element-action-buttons">
       <circle-button :size="2.2" @click="editElement" v-if="editing">
         <Icon icon="ic:baseline-edit" width="25" color="var(--primary-color)" />
       </circle-button>
@@ -45,8 +45,9 @@ import {Icon} from "@iconify/vue";
 export default {
   name: "SubsectionElement",
   props: {
-    selectedElement: {
-      type: Number,
+    selecting: {
+      type: Boolean,
+      required: true,
     },
     editing: {
       type: Boolean,
@@ -54,10 +55,6 @@ export default {
     },
     element: {
       type: String,
-      required: true,
-    },
-    indexElement: {
-      type: Number,
       required: true,
     },
   },
@@ -96,8 +93,8 @@ export default {
     this.resetElementValue();
   },
   watch: {
-    selectedElement(newValue: number) {
-      if (newValue != this.indexElement) {
+    selecting(newValue: boolean) {
+      if (!newValue) {
         this.cancelElement();
       }
     },
@@ -106,20 +103,24 @@ export default {
 </script>
 
 <style>
-.subsection-elements {
+.subsection-element {
+  margin: 0.5rem;
   border-radius: 1.5rem;
   padding: 0.3rem;
   display: flex;
   justify-content: space-between;
-  border: rgba(255, 255, 255, 0) solid 0.1rem;
+  border: rgba(255, 255, 255, 0) solid 0.3rem;
+  background-color: #4c1d95;
+  transition: all 0.5s ease;
 }
-.subsection-elements.selected {
+.subsection-element.selected {
+  transition: all 0.5s ease;
   background-color: #664596;
 }
-.subsection-elements.edit {
-  border: rgba(255, 255, 255) solid 0.1rem;
+.subsection-element.edit {
+  border: rgba(255, 255, 255) solid 0.3rem;
 }
-.subsection-elements-action-buttons {
+.subsection-element-action-buttons {
   display: flex;
   align-items: center;
 }
