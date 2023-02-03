@@ -2,15 +2,16 @@
   <div
     class="subsection-element"
     :class="{
-      edit: editingElement && selecting,
-      selected: selecting,
+      edit: editingElement && selecting && editing,
+      selected: selecting && editing,
     }"
     @click="selectElement">
     <input
+      ref="fileInput"
       v-model="currentElement"
       class="element-input"
       :class="{
-        edit: editingElement && selecting,
+        edit: editingElement && selecting && editing,
       }"
       type="text" />
 
@@ -51,6 +52,7 @@
 <script lang="ts">
 import CircleButton from "../../shared/Button/CircleButton.vue";
 import {Icon} from "@iconify/vue";
+import {ref} from "vue";
 
 export default {
   name: "SubsectionElement",
@@ -75,6 +77,12 @@ export default {
       editingElement: false,
     };
   },
+  setup() {
+    const fileInput = ref<HTMLInputElement | null>(null);
+    return {
+      fileInput,
+    };
+  },
   methods: {
     deleteElement() {
       this.$emit("removeElement");
@@ -84,13 +92,14 @@ export default {
     },
     editElement() {
       this.editingElement = true;
+      this.fileInput?.focus();
     },
     saveElement() {
       this.$emit("changeElement", this.currentElement);
       this.editingElement = false;
     },
     selectElement() {
-      if (!this.editingElement) {
+      if (!this.editingElement && this.editing) {
         this.$emit("selectElement");
       }
     },
@@ -122,7 +131,8 @@ export default {
   border: rgba(255, 255, 255, 0) solid 0.3rem;
   background-color: #4c1d95;
   transition: all 0.5s ease;
-  width: 90%;
+  width: 93%;
+  box-shadow: 0px 5px 10px 7px #381868e7;
 }
 .subsection-element.selected {
   transition: all 0.5s ease;
@@ -143,7 +153,7 @@ export default {
   background-color: inherit;
   border: 0;
   border-radius: 0;
-  width: 90%;
+  width: 100%;
 }
 .element-input.edit {
   pointer-events: auto;

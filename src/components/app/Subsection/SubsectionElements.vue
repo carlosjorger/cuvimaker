@@ -6,7 +6,7 @@
       placeholder="New element" />
     <close-add-button :size="2.5" v-on:click="addElement()" />
   </div>
-
+  <span v-if="!errors.text.valid">{{ errors.text.error }}</span>
   <transition-group
     name="subsection-elements"
     class="subsection-elements-list"
@@ -14,7 +14,7 @@
     <SubsectionElement
       v-for="(element, index) in subsection.elements"
       :key="element.id"
-      editing
+      :editing="editing"
       @selectElement="
         selectedElement = selectedElement != index ? index : undefined
       "
@@ -43,6 +43,9 @@ export default {
     return {
       newElement: "",
       selectedElement: true ? undefined : 0,
+      errors: {
+        text: {valid: true, error: ""},
+      },
     };
   },
   props: {
@@ -56,8 +59,24 @@ export default {
   },
   methods: {
     addElement() {
+      if (!this.validate()) {
+        return;
+      }
       this.subsection.addElement(this.newElement);
       this.newElement = "";
+    },
+    validate() {
+      return !this.editing || this.validateElement();
+    },
+    validateElement() {
+      if (this.newElement == "") {
+        this.errors.text.valid = false;
+        this.errors.text.error = "Element are required";
+      } else {
+        this.errors.text.valid = true;
+        this.errors.text.error = "";
+      }
+      return this.errors.text.valid;
     },
   },
 };
@@ -72,6 +91,7 @@ export default {
   padding: 0.3rem;
   border: solid 0.1rem white;
   margin-top: 0.5rem;
+  box-shadow: 0px 5px 10px 7px #381868e7;
 }
 .subsection-addelement-input {
   color: white;
