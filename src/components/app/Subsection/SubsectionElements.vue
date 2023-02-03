@@ -99,14 +99,6 @@ export default {
 .subsection-elements-leave-active {
   position: absolute;
 }
-.subsection-elements {
-  display: flex;
-  justify-content: space-between;
-}
-.subsection-elements-action-buttons {
-  display: flex;
-  align-items: center;
-}
 .subsection-elements-list {
   position: relative;
   display: block;

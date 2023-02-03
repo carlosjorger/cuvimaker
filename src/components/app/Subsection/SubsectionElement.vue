@@ -13,29 +13,39 @@
         edit: editingElement && selecting,
       }"
       type="text" />
-    <div
-      v-if="selecting && editingElement"
-      class="subsection-element-action-buttons">
-      <circle-button :size="2.2" @click="saveElement" v-if="editing">
-        <Icon icon="el:ok" width="25" color="var(--primary-color)" />
-      </circle-button>
-      <circle-button :size="2.2" @click="cancelElement" v-if="editing">
-        <Icon icon="mdi:cancel-bold" width="25" color="var(--primary-color)" />
-      </circle-button>
-    </div>
-    <div
-      v-if="selecting && !editingElement"
-      class="subsection-element-action-buttons">
-      <circle-button :size="2.2" @click="editElement" v-if="editing">
-        <Icon icon="ic:baseline-edit" width="25" color="var(--primary-color)" />
-      </circle-button>
-      <circle-button :size="2.2" @click="deleteElement" v-if="editing">
-        <Icon
-          icon="ic:baseline-delete"
-          width="25"
-          color="var(--primary-color)" />
-      </circle-button>
-    </div>
+
+    <Transition>
+      <div
+        v-if="selecting && editingElement"
+        class="subsection-element-action-buttons">
+        <circle-button :size="2.2" @click="saveElement" v-if="editing">
+          <Icon icon="el:ok" width="25" color="var(--primary-color)" />
+        </circle-button>
+        <circle-button :size="2.2" @click="cancelElement" v-if="editing">
+          <Icon
+            icon="mdi:cancel-bold"
+            width="25"
+            color="var(--primary-color)" />
+        </circle-button>
+      </div>
+    </Transition>
+    <Transition>
+      <div
+        v-if="selecting && !editingElement"
+        class="subsection-element-action-buttons">
+        <circle-button :size="2.2" @click="editElement" v-if="editing">
+          <Icon
+            icon="ic:baseline-edit"
+            width="25"
+            color="var(--primary-color)" />
+        </circle-button>
+        <circle-button :size="2.2" @click="deleteElement" v-if="editing">
+          <Icon
+            icon="ic:baseline-delete"
+            width="25"
+            color="var(--primary-color)" />
+        </circle-button></div
+    ></Transition>
   </div>
 </template>
 <script lang="ts">
@@ -104,14 +114,15 @@ export default {
 
 <style>
 .subsection-element {
+  display: flex;
+  justify-content: flex-end;
   margin: 0.5rem;
   border-radius: 1.5rem;
   padding: 0.3rem;
-  display: flex;
-  justify-content: space-between;
   border: rgba(255, 255, 255, 0) solid 0.3rem;
   background-color: #4c1d95;
   transition: all 0.5s ease;
+  width: 90%;
 }
 .subsection-element.selected {
   transition: all 0.5s ease;
@@ -122,6 +133,7 @@ export default {
   border: rgba(255, 255, 255) solid 0.3rem;
 }
 .subsection-element-action-buttons {
+  position: absolute;
   display: flex;
   align-items: center;
 }
@@ -131,12 +143,21 @@ export default {
   background-color: inherit;
   border: 0;
   border-radius: 0;
-  width: 80%;
+  width: 90%;
 }
 .element-input.edit {
   pointer-events: auto;
 }
 .element-input:focus {
   outline: none;
+}
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
