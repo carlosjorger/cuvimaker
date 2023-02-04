@@ -6,7 +6,6 @@ export class Subsection {
   text: string;
   last: boolean;
   editing: boolean;
-  isNew: boolean;
   dateFrom: Date | undefined;
   dateTo: Date | undefined;
   description: string;
@@ -18,7 +17,6 @@ export class Subsection {
     this.text = text ?? "";
     this.last = true;
     this.editing = true;
-    this.isNew = true;
     this.description = "";
     this.elements = [];
     this.count = 0;

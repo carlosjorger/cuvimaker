@@ -48,6 +48,7 @@ import CloseAddButton from "../../shared/Button/CloseAddButton.vue";
 import SubsectionMenu from "../Subsection/SubsectionMenu.vue";
 import {Section} from "../../../models/Section";
 import type {PropType} from "vue";
+import {scrollSmoothToElement} from "../../../utils/scrollServices";
 export default {
   name: "CreateSectionModal",
   props: {
@@ -61,14 +62,7 @@ export default {
     },
   },
   components: {SubsectionMenu, CloseAddButton},
-  directives: {
-    scrollIf(el, {value}) {
-      if ((value.last && value.isNew) || value.editing) {
-        value.isNew = false;
-        el.scrollIntoView({behavior: "smooth"});
-      }
-    },
-  },
+
   data(): {section: Section} {
     return this.initialState();
   },

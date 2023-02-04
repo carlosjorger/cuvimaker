@@ -89,6 +89,7 @@ import SubsectionDatePicker from "./SubsectionDatePicker.vue";
 import mitt from "mitt";
 import SubsectionForm from "./SubsectionForm.vue";
 import SubsectionElements from "./SubsectionElements.vue";
+import {scrollSmoothToElement} from "../../../utils/scrollServices";
 const emitter = mitt();
 export default {
   name: "SubsectionMenu",
@@ -118,10 +119,9 @@ export default {
     SubsectionElements,
   },
   directives: {
-    scrollIf(el, {value}) {
-      if (value.last && value.isNew) {
-        value.isNew = false;
-        el.scrollIntoView({behavior: "smooth"});
+    scrollIf(el: Element, {value}) {
+      if (value.last) {
+        scrollSmoothToElement(el);
       }
     },
   },
@@ -191,7 +191,7 @@ export default {
   mounted() {
     emitter.on("editing", (index) => {
       if (index == this.index) {
-        this.$el.scrollIntoView({behavior: "smooth"});
+        scrollSmoothToElement(this.$el);
         this.shake = true;
         setTimeout(() => {
           this.shake = false;

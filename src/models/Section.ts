@@ -15,15 +15,18 @@ export class Section {
   get subsectionEditing(): boolean {
     return this.editingIndex != -1;
   }
+  get lastSubsectionIndex(): number {
+    return this.subsections.length - 1;
+  }
   addNewSubsection() {
-    this.subsections[this.subsections.length - 1].last = false;
+    this.subsections[this.lastSubsectionIndex].last = false;
     this.count++;
-    this.editingIndex = this.subsections.length - 1;
+    this.editingIndex = this.lastSubsectionIndex;
     this.subsections.push(new Subsection(this.count));
   }
   removeSubsection(index: number) {
     if (this.editingIndex == index) {
-      this.editingIndex = -1;
+      this.disabledEditing();
     } else if (this.editingIndex > index) {
       this.editingIndex--;
     }
