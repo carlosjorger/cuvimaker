@@ -6,7 +6,8 @@
       placeholder="New element" />
     <close-add-button :size="2.5" v-on:click="addElement()" />
   </div>
-  <span v-if="!errors.text.valid">{{ errors.text.error }}</span>
+  <!-- TODO close this error -->
+  <span v-if="!errors.text.valid && editing">{{ errors.text.error }}</span>
   <transition-group
     name="subsection-elements"
     class="subsection-elements-list"

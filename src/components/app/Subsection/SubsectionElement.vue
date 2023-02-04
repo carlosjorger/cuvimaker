@@ -117,6 +117,11 @@ export default {
         this.cancelElement();
       }
     },
+    editing(newValue: boolean) {
+      if (!newValue) {
+        this.resetElementValue();
+      }
+    },
   },
 };
 </script>
