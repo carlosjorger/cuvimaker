@@ -43,8 +43,7 @@
           :editing="editing"
           v-model="subsection.text"
           placeholder="Subsection subtitle" />
-
-        <input type="checkbox" v-model="hasPeriodOfTime" />
+        <SwitchCheckbox v-if="editing" v-model="hasPeriodOfTime" />
         <div
           class="subsection-form-control-datepicker-group"
           v-if="
@@ -69,7 +68,7 @@
             :upperLimit="to"
             :lowerLimit="subsection.dateFrom" />
         </div>
-        <input type="checkbox" v-model="hasElementList" />
+        <SwitchCheckbox v-if="editing" v-model="hasElementList" />
         <subsection-elements
           v-if="hasElementList"
           @addElement="addElement"
@@ -101,7 +100,7 @@ import SubsectionElements from "./SubsectionElements.vue";
 import {scrollSmoothToElement} from "../../../utils/scrollServices";
 import {useVuelidate} from "@vuelidate/core";
 import {required} from "@vuelidate/validators";
-
+import SwitchCheckbox from "../../shared/checkbox/SwitchCheckbox.vue";
 const emitter = mitt();
 export default {
   name: "SubsectionMenu",
@@ -129,6 +128,7 @@ export default {
     SubsectionDatePicker,
     SubsectionForm,
     SubsectionElements,
+    SwitchCheckbox,
   },
   setup() {
     return {v$: useVuelidate({$scope: false})};
