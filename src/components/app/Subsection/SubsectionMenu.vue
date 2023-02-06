@@ -70,7 +70,10 @@
           :class="{edit: editing}"
           class="subsection-textarea"
           v-model="subsection.description"></textarea>
-        <subsection-elements :subsection="subsection" :editing="editing" />
+        <subsection-elements
+          @addElement="addElement"
+          :subsection="subsection"
+          :editing="editing" />
         <button
           type="submit"
           class="save-button"
@@ -146,6 +149,9 @@ export default {
     };
   },
   methods: {
+    addElement(newElement: string) {
+      this.subsection.addElement(newElement);
+    },
     addRemoveSubSection() {
       if (this.section.lastSubsectionIndex == this.index) {
         this.addSubSection();
