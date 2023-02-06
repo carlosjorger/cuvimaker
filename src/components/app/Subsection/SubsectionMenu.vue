@@ -44,9 +44,13 @@
           v-model="subsection.text"
           placeholder="Subsection subtitle" />
 
+        <input type="checkbox" v-model="hasPeriodOfTime" />
         <div
           class="subsection-form-control-datepicker-group"
-          v-if="editing || (subsection.dateFrom && subsection.dateTo)">
+          v-if="
+            (editing || (subsection.dateFrom && subsection.dateTo)) &&
+            hasPeriodOfTime
+          ">
           <subsection-date-picker
             v-model="subsection.dateFrom"
             :editing="editing"
@@ -65,12 +69,9 @@
             :upperLimit="to"
             :lowerLimit="subsection.dateFrom" />
         </div>
-        <textarea
-          v-if="editing || subsection.description"
-          :class="{edit: editing}"
-          class="subsection-textarea"
-          v-model="subsection.description"></textarea>
+        <input type="checkbox" v-model="hasElementList" />
         <subsection-elements
+          v-if="hasElementList"
           @addElement="addElement"
           :subsection="subsection"
           :editing="editing" />
@@ -141,6 +142,8 @@ export default {
   },
   data() {
     return {
+      hasPeriodOfTime: false,
+      hasElementList: false,
       newElement: "",
       from: new Date(1999, 1, 1),
       to: new Date(),
@@ -290,21 +293,6 @@ export default {
 
 .subsection-form-control-property {
   font-size: 1.2em;
-}
-
-.subsection-textarea {
-  width: 100%;
-  margin-top: 0.5rem;
-  background-color: inherit;
-  color: white;
-  transition: all 0.1s ease-in;
-  pointer-events: none;
-  border: rgba(255, 255, 255, 0) solid 0.1rem;
-}
-.subsection-textarea.edit {
-  border: white solid 0.1rem;
-  pointer-events: auto;
-  transition: all 0.3s ease-out;
 }
 
 .subsection-form-control-datepicker-group {
