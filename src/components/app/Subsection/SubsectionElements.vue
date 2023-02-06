@@ -7,7 +7,15 @@
     <close-add-button :size="2.5" v-on:click="addElement()" />
   </div>
   <!-- TODO close this error -->
-  <span v-if="!errors.text.valid && editing">{{ errors.text.error }}</span>
+  <!-- <span v-if="v$.newElement.$error && editing">
+    <p v-if="v$.email.required.$invalid">Required</p>
+  </span> -->
+  <div
+    class="input-errors"
+    v-for="error of v$.newElement.$errors"
+    :key="error.$uid">
+    <div class="error-msg">{{ error.$message }}</div>
+  </div>
   <transition-group
     name="subsection-elements"
     class="subsection-elements-list"
@@ -34,19 +42,21 @@
 import {Subsection} from "../../../models/Subsection";
 import CloseAddButton from "../../shared/Button/CloseAddButton.vue";
 import SubsectionElement from "./SubsectionElement.vue";
+import {required} from "@vuelidate/validators";
+import {useVuelidate} from "@vuelidate/core";
 export default {
   name: "SubsectionElements",
   components: {
     CloseAddButton,
     SubsectionElement,
   },
+  setup() {
+    return {v$: useVuelidate()};
+  },
   data() {
     return {
       newElement: "",
       selectedElement: true ? undefined : 0,
-      errors: {
-        text: {valid: true, error: ""},
-      },
     };
   },
   props: {
@@ -58,26 +68,18 @@ export default {
       type: Boolean,
     },
   },
+  validations: {
+    newElement: {
+      required,
+    },
+  },
   methods: {
     addElement() {
-      if (!this.validate()) {
-        return;
+      this.v$.$validate();
+      if (!this.v$.$error) {
+        this.subsection.addElement(this.newElement);
+        this.newElement = "";
       }
-      this.subsection.addElement(this.newElement);
-      this.newElement = "";
-    },
-    validate() {
-      return !this.editing || this.validateElement();
-    },
-    validateElement() {
-      if (this.newElement == "") {
-        this.errors.text.valid = false;
-        this.errors.text.error = "Element are required";
-      } else {
-        this.errors.text.valid = true;
-        this.errors.text.error = "";
-      }
-      return this.errors.text.valid;
     },
   },
 };

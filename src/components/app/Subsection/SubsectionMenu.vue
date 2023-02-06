@@ -33,7 +33,12 @@
           class="subsection-form-control-property"
           v-model="subsection.title"
           placeholder="Subsection title" />
-        <span v-if="!errors.text.valid">{{ errors.text.error }}</span>
+        <div
+          class="input-errors"
+          v-for="error of v$.subsection.title.$errors"
+          :key="error.$uid">
+          <div class="error-msg">{{ error.$message }}</div>
+        </div>
         <subsection-form
           :editing="editing"
           v-model="subsection.text"
@@ -90,6 +95,9 @@ import mitt from "mitt";
 import SubsectionForm from "./SubsectionForm.vue";
 import SubsectionElements from "./SubsectionElements.vue";
 import {scrollSmoothToElement} from "../../../utils/scrollServices";
+import {useVuelidate} from "@vuelidate/core";
+import {required} from "@vuelidate/validators";
+
 const emitter = mitt();
 export default {
   name: "SubsectionMenu",
@@ -118,6 +126,9 @@ export default {
     SubsectionForm,
     SubsectionElements,
   },
+  setup() {
+    return {v$: useVuelidate()};
+  },
   directives: {
     scrollIf(el: Element, {value}) {
       if (value.last) {
@@ -132,34 +143,26 @@ export default {
       to: new Date(),
       editing: false,
       shake: false,
-      errors: {
-        text: {valid: true, error: ""},
-      },
     };
   },
   methods: {
-    emmitSending() {
-      if (this.section.subsectionEditing) {
-        emitter?.emit("editing", this.section.editingIndex);
-      }
-      return this.section.subsectionEditing;
-    },
     addRemoveSubSection() {
-      if (this.section.subsections.length - 1 == this.index) {
+      if (this.section.lastSubsectionIndex == this.index) {
         this.addSubSection();
       } else {
         this.$emit("removeSubsection", this.index);
       }
     },
     addSubSection() {
-      if (this.emmitSending()) {
-        return;
+      if (this.section.subsectionEditing) {
+        this.emmitSendEditing();
+      } else {
+        this.$emit("addNewSubsection");
       }
-      this.$emit("addNewSubsection");
     },
-
     editCancel() {
-      if (!this.validate()) {
+      this.v$.$validate();
+      if (this.v$.$error) {
         return;
       }
       if (this.editing) {
@@ -169,37 +172,38 @@ export default {
       }
     },
     editSubSection() {
-      if (this.emmitSending()) {
-        return;
-      }
-      this.$emit("setEditingIndex", this.index);
-    },
-    validate() {
-      return !this.editing || this.validateTitle();
-    },
-    validateTitle() {
-      if (this.subsection.title == "") {
-        this.errors.text.valid = false;
-        this.errors.text.error = "Title are requerid";
+      if (this.section.subsectionEditing) {
+        this.emmitSendEditing();
       } else {
-        this.errors.text.valid = true;
-        this.errors.text.error = "";
+        this.$emit("setEditingIndex", this.index);
       }
-      return this.errors.text.valid;
+    },
+    emmitSendEditing() {
+      emitter?.emit("editing", this.section.editingIndex);
+    },
+
+    shakeSubsection() {
+      this.shake = true;
+      setTimeout(() => {
+        this.shake = false;
+      }, 1500);
     },
   },
   mounted() {
     emitter.on("editing", (index) => {
       if (index == this.index) {
         scrollSmoothToElement(this.$el);
-        this.shake = true;
-        setTimeout(() => {
-          this.shake = false;
-        }, 1500);
+        this.shakeSubsection();
       }
     });
   },
-
+  validations: {
+    subsection: {
+      title: {
+        required,
+      },
+    },
+  },
   watch: {
     "section.editingIndex"(newValue: number) {
       this.editing = newValue == this.index;

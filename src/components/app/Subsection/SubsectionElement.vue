@@ -87,9 +87,6 @@ export default {
     deleteElement() {
       this.$emit("removeElement");
     },
-    cancelElement() {
-      this.resetElementValue();
-    },
     editElement() {
       this.editingElement = true;
       this.fileInput?.focus();
@@ -102,6 +99,9 @@ export default {
       if (!this.editingElement && this.editing) {
         this.$emit("selectElement");
       }
+    },
+    cancelElement() {
+      this.resetElementValue();
     },
     resetElementValue() {
       this.currentElement = this.element;
