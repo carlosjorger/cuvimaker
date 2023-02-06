@@ -127,7 +127,7 @@ export default {
     SubsectionElements,
   },
   setup() {
-    return {v$: useVuelidate()};
+    return {v$: useVuelidate({$scope: false})};
   },
   directives: {
     scrollIf(el: Element, {value}) {

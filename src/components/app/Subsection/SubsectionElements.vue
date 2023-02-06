@@ -7,9 +7,6 @@
     <close-add-button :size="2.5" v-on:click="addElement()" />
   </div>
   <!-- TODO close this error -->
-  <!-- <span v-if="v$.newElement.$error && editing">
-    <p v-if="v$.email.required.$invalid">Required</p>
-  </span> -->
   <div
     class="input-errors"
     v-for="error of v$.newElement.$errors"
@@ -51,7 +48,7 @@ export default {
     SubsectionElement,
   },
   setup() {
-    return {v$: useVuelidate()};
+    return {v$: useVuelidate({$scope: false})};
   },
   data() {
     return {
@@ -75,10 +72,9 @@ export default {
   },
   methods: {
     addElement() {
-      this.v$.$validate();
+      this.v$.$touch();
       if (!this.v$.$error) {
         this.subsection.addElement(this.newElement);
-        this.newElement = "";
       }
     },
   },
