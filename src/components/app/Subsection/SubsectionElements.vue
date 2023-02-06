@@ -74,6 +74,7 @@ export default {
     addElement() {
       this.v$.$touch();
       if (!this.v$.$error) {
+        this.v$.$reset();
         this.subsection.addElement(this.newElement);
       }
     },
