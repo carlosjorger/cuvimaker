@@ -69,6 +69,10 @@ export default {
       type: String,
       required: true,
     },
+    index: {
+      type: Number,
+      required: true,
+    },
   },
   components: {CircleButton, Icon},
   data() {
@@ -85,14 +89,14 @@ export default {
   },
   methods: {
     deleteElement() {
-      this.$emit("removeElement");
+      this.$emit("removeElement", this.index);
     },
     editElement() {
       this.editingElement = true;
       this.fileInput?.focus();
     },
     saveElement() {
-      this.$emit("changeElement", this.currentElement);
+      this.$emit("changeElement", this.currentElement, this.index);
       this.editingElement = false;
     },
     selectElement() {

@@ -48,7 +48,7 @@ export default {
   width: 6rem;
   height: 2rem;
   border-radius: 45px;
-  padding: 0.5rem;
+  padding-right: 0.5rem;
 }
 .switch-checkbox > * {
   grid-area: 1/1;
@@ -68,7 +68,7 @@ export default {
 }
 
 .two.skin {
-  background-color: white;
+  background-color: rgb(185, 185, 185);
 
   --mask: radial-gradient(
     circle at 1rem 1rem,
@@ -83,6 +83,8 @@ export default {
 }
 
 .input-checkbox:checked ~ .two.skin {
+  background-color: white;
+
   --mask: radial-gradient(
     circle at 1rem 1rem,
     rgba(0, 0, 0, 0) 0.8rem,

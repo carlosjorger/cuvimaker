@@ -24,12 +24,8 @@
       @selectElement="
         selectedElement = selectedElement != index ? index : undefined
       "
-      @removeElement="subsection.elements.splice(index, 1)"
-      @changeElement="
-          (v:string) => {
-            subsection.elements[index].name = v;
-          }
-        "
+      :index="index"
+      v-bind="$attrs"
       :selecting="selectedElement == index"
       :element="element.name" />
   </transition-group>
@@ -90,7 +86,6 @@ export default {
   justify-content: space-between;
   padding: 0.3rem;
   border: solid 0.1rem white;
-  margin-top: 0.5rem;
   box-shadow: 0px 5px 10px 7px #381868e7;
 }
 .subsection-addelement-input {

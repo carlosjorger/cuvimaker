@@ -78,6 +78,12 @@
         <subsection-elements
           v-if="hasElementList"
           @addElement="addElement"
+          @removeElement="(index:number)=>{subsection.elements.splice(index, 1)}"
+          @changeElement="
+          (v:string,index:number) => {
+            subsection.elements[index].name = v;
+          }
+        "
           :subsection="subsection"
           :editing="editing" />
         <button
@@ -305,7 +311,6 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 0.5rem;
 }
 .subsection-form-control-datepicker-span {
   transition: all 0.5s ease;
