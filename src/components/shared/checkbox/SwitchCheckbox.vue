@@ -1,8 +1,11 @@
 <template>
-  <div class="switch-checkbox">
-    <input type="checkbox" class="input-checkbox" v-model="value" />
-    <div class="skin one"></div>
-    <div class="skin two"></div>
+  <div class="switch-checkbox-section">
+    <div class="switch-checkbox">
+      <input type="checkbox" class="input-checkbox" v-model="value" />
+      <div class="skin one"></div>
+      <div class="skin two"></div>
+    </div>
+    <h4>{{ title }}</h4>
   </div>
 </template>
 
@@ -10,6 +13,10 @@
 export default {
   name: "SwitchCheckbox",
   props: {
+    title: {
+      type: String,
+      required: true,
+    },
     modelValue: {
       type: Boolean,
     },
@@ -32,6 +39,10 @@ export default {
 </script>
 
 <style>
+.switch-checkbox-section {
+  display: flex;
+  align-items: center;
+}
 .switch-checkbox {
   display: grid;
   width: 6rem;
@@ -53,11 +64,11 @@ export default {
 }
 
 .one.skin {
-  background-color: white;
+  background-color: var(--primary-color);
 }
 
 .two.skin {
-  background-color: purple;
+  background-color: white;
 
   --mask: radial-gradient(
     circle at 1rem 1rem,
@@ -68,7 +79,7 @@ export default {
   -webkit-mask-image: var(--mask);
   -webkit-mask-position: 0rem 0rem;
   mask-position: 0rem 0rem;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease-out;
 }
 
 .input-checkbox:checked ~ .two.skin {
@@ -82,6 +93,6 @@ export default {
   -webkit-mask-image: var(--mask);
   -webkit-mask-position: 4rem 0rem;
   mask-position: 4rem 0rem;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease-out;
 }
 </style>

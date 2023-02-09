@@ -48,14 +48,9 @@ import CloseAddButton from "../../shared/Button/CloseAddButton.vue";
 import SubsectionMenu from "../Subsection/SubsectionMenu.vue";
 import {Section} from "../../../models/Section";
 import type {PropType} from "vue";
-import {scrollSmoothToElement} from "../../../utils/scrollServices";
 export default {
   name: "CreateSectionModal",
   props: {
-    sections: {
-      type: Array as PropType<Section[]>,
-      required: true,
-    },
     showModal: {
       type: Boolean,
       required: true,

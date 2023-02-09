@@ -43,7 +43,10 @@
           :editing="editing"
           v-model="subsection.text"
           placeholder="Subsection subtitle" />
-        <SwitchCheckbox v-if="editing" v-model="hasPeriodOfTime" />
+        <SwitchCheckbox
+          v-if="editing"
+          v-model="hasPeriodOfTime"
+          :title="'Add a time interval'" />
         <div
           class="subsection-form-control-datepicker-group"
           v-if="
@@ -68,7 +71,10 @@
             :upperLimit="to"
             :lowerLimit="subsection.dateFrom" />
         </div>
-        <SwitchCheckbox v-if="editing" v-model="hasElementList" />
+        <SwitchCheckbox
+          v-if="editing"
+          v-model="hasElementList"
+          :title="'Add a list'" />
         <subsection-elements
           v-if="hasElementList"
           @addElement="addElement"
