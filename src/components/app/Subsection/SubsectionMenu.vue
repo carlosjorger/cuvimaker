@@ -16,7 +16,7 @@
           :closeButton="!subsection.last" />
         <transition name="editButton">
           <circle-button
-            v-on:click="editCancel()"
+            v-on:click="editSubSection()"
             v-if="!subsection.last && !editing">
             <Icon
               icon="ic:baseline-mode-edit"
@@ -25,7 +25,7 @@
         ></transition>
       </div>
       <form
-        v-on:submit.prevent="editCancel()"
+        v-on:submit.prevent="cancelSubSection()"
         v-if="!subsection.last"
         class="subsection-form-group">
         <subsection-form
@@ -181,16 +181,12 @@ export default {
         this.$emit("addNewSubsection");
       }
     },
-    editCancel() {
+    cancelSubSection() {
       this.v$.$validate();
       if (this.v$.$error) {
         return;
       }
-      if (this.editing) {
-        this.$emit("disabledEditing");
-      } else {
-        this.editSubSection();
-      }
+      this.$emit("disabledEditing");
     },
     editSubSection() {
       if (this.section.subsectionEditing) {
@@ -202,7 +198,6 @@ export default {
     emmitSendEditing() {
       emitter?.emit("editing", this.section.editingIndex);
     },
-
     shakeSubsection() {
       this.shake = true;
       setTimeout(() => {

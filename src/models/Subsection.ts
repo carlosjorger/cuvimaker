@@ -8,7 +8,6 @@ export class Subsection {
   editing: boolean;
   dateFrom: Date | undefined;
   dateTo: Date | undefined;
-  description: string;
   elements: SubsectionElement[];
   count: number;
   constructor(id?: number, title?: string, text?: string) {
@@ -17,7 +16,6 @@ export class Subsection {
     this.text = text ?? "";
     this.last = true;
     this.editing = true;
-    this.description = "";
     this.elements = [];
     this.count = 0;
   }
