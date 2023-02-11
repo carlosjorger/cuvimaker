@@ -1,6 +1,9 @@
 :root {
   --vdp-elem-font-size: 0.6em;
-  --primary-color: #4c1d95;
+  --primary-color: #3c1774;
+  --primary-form-color: #4c1d95;
+
+  --placeholder-color: rgb(180, 180, 180);
 }
 body {
   background-color: #f3eefb;

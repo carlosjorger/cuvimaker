@@ -44,12 +44,14 @@ export default {
   transition: all 0.3s ease-in;
   color: white;
   border-bottom: rgba(255, 255, 255, 0) solid 0.1rem;
+  box-shadow: 0;
 }
 
 .subsection-form-control.edit {
   border-bottom: white solid 0.1rem;
   transition: all 0.3s ease-out;
   pointer-events: auto;
+  box-shadow: 0px 10px 6px -6px #220b44e7;
   font-size: 1em;
 }
 .subsection-form-control::placeholder {
@@ -58,7 +60,7 @@ export default {
 }
 .subsection-form-control.edit::placeholder {
   transition: all 0.3s ease-out;
-  color: rgba(166, 166, 166);
+  color: var(--placeholder-color);
 }
 .subsection-form-control:focus {
   outline: none;

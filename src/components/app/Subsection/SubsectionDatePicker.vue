@@ -49,18 +49,22 @@ export default {
   position: relative;
   background-color: inherit;
   color: white;
-  border: rgba(255, 255, 255, 0) solid 0.1rem;
+  border: none;
+  border-radius: 0;
+  border-bottom: rgba(255, 255, 255, 0) solid 0.1rem;
   pointer-events: none;
   margin: 0;
   width: 88%;
   transition: all 0.3s ease-in;
-  border-radius: 0.6rem;
   padding: 0.2rem;
 }
 .subsection-form-control-datepicker.edit {
-  border: white solid 0.1rem;
+  border-bottom: white solid 0.1rem;
   pointer-events: auto;
   transition: all 0.3s ease-out;
+}
+.subsection-form-control-datepicker:focus {
+  outline: none;
 }
 .v3dp__datepicker {
   width: 4.8em;

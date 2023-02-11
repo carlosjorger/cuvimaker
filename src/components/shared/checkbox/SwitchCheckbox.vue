@@ -5,7 +5,7 @@
       <div class="skin one"></div>
       <div class="skin two"></div>
     </div>
-    <h4>{{ title }}</h4>
+    <h5>{{ title }}</h5>
   </div>
 </template>
 
@@ -45,9 +45,9 @@ export default {
 }
 .switch-checkbox {
   display: grid;
-  width: 6rem;
+  width: 5rem;
   height: 2rem;
-  border-radius: 45px;
+  border-radius: 1rem;
   padding-right: 0.5rem;
 }
 .switch-checkbox > * {
@@ -80,6 +80,7 @@ export default {
   -webkit-mask-position: 0rem 0rem;
   mask-position: 0rem 0rem;
   transition: all 0.3s ease-out;
+  box-shadow: inset 0px 0px 7px 2px #8b77a8e7;
 }
 
 .input-checkbox:checked ~ .two.skin {
@@ -93,8 +94,9 @@ export default {
 
   mask-image: var(--mask);
   -webkit-mask-image: var(--mask);
-  -webkit-mask-position: 4rem 0rem;
-  mask-position: 4rem 0rem;
+  -webkit-mask-position: 3rem 0rem;
+  mask-position: 3rem 0rem;
   transition: all 0.3s ease-out;
+  box-shadow: inset 0px 0px 7px 2px #cfb1fbe7;
 }
 </style>

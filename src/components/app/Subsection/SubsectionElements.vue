@@ -81,7 +81,7 @@ export default {
 <style>
 .subsection-addelement {
   display: flex;
-  background-color: inherit;
+  background-color: var(--primary-form-color);
   border-radius: 1.5rem;
   justify-content: space-between;
   padding: 0.3rem;

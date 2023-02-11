@@ -138,7 +138,7 @@ export default {
   border-radius: 1.5rem;
   padding: 0.3rem;
   border: rgba(255, 255, 255, 0) solid 0.3rem;
-  background-color: #4c1d95;
+  background-color: var(--primary-form-color);
   transition: all 0.5s ease;
   width: 93%;
   box-shadow: 0px 5px 10px 7px #381868e7;

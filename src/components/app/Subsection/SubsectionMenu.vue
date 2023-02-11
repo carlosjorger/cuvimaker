@@ -5,9 +5,6 @@
     :class="{
       'add-button': subsection.last,
       shake: shake,
-    }"
-    :style="{
-      backgroundColor: `rgb(76, 29, 149,${Number(!subsection.last) * 255})`,
     }">
     <div>
       <div class="subsection-form-header">
@@ -63,7 +60,7 @@
               hidden: !subsection.dateFrom && !subsection.dateTo && !editing,
             }"
             class="subsection-form-control-datepicker-span"
-            >|</span
+            >//</span
           >
           <subsection-date-picker
             v-model="subsection.dateTo"
@@ -262,6 +259,7 @@ export default {
   padding: 0.5rem;
   border-radius: 0.5rem;
   transition: all 0.5s ease-in;
+  background-color: var(--primary-color);
 }
 .subsection-leave-active {
   position: absolute;
