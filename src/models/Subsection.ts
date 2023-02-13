@@ -1,4 +1,5 @@
 import {SubsectionElement} from "./SubsectionElement";
+import type {TimeInterval} from "./SubsectionTimeInterval";
 
 export class Subsection {
   id: number;
@@ -8,6 +9,7 @@ export class Subsection {
   editing: boolean;
   dateFrom: Date | undefined;
   dateTo: Date | undefined;
+  subsectionTimeInterval: TimeInterval | undefined;
   elements: SubsectionElement[];
   count: number;
   constructor(id?: number, title?: string, text?: string) {

@@ -40,34 +40,10 @@
           :editing="editing"
           v-model="subsection.text"
           placeholder="Subsection subtitle" />
-        <SwitchCheckbox
-          v-if="editing"
-          v-model="hasPeriodOfTime"
-          :title="'Add a time interval'" />
-        <div
-          class="subsection-form-control-datepicker-group"
-          v-if="
-            (editing || (subsection.dateFrom && subsection.dateTo)) &&
-            hasPeriodOfTime
-          ">
-          <subsection-date-picker
-            v-model="subsection.dateFrom"
-            :editing="editing"
-            :upperLimit="subsection.dateTo"
-            :lowerLimit="from" />
-          <span
-            :class="{
-              hidden: !subsection.dateFrom && !subsection.dateTo && !editing,
-            }"
-            class="subsection-form-control-datepicker-span"
-            >//</span
-          >
-          <subsection-date-picker
-            v-model="subsection.dateTo"
-            :editing="editing"
-            :upperLimit="to"
-            :lowerLimit="subsection.dateFrom" />
-        </div>
+        <SubsectionTimeInterval
+          :editing="editing"
+          :subsectionTimeIntervalProp="subsection.subsectionTimeInterval"
+          @setTimeInterval="setTimeInterval" />
         <SwitchCheckbox
           v-if="editing"
           v-model="hasElementList"
@@ -110,6 +86,8 @@ import {scrollSmoothToElement} from "../../../utils/scrollServices";
 import {useVuelidate} from "@vuelidate/core";
 import {required} from "@vuelidate/validators";
 import SwitchCheckbox from "../../shared/checkbox/SwitchCheckbox.vue";
+import SubsectionTimeInterval from "./SubsectionTimeInterval.vue";
+import type {TimeInterval} from "../../../models/SubsectionTimeInterval";
 const emitter = mitt();
 export default {
   name: "SubsectionMenu",
@@ -138,6 +116,7 @@ export default {
     SubsectionForm,
     SubsectionElements,
     SwitchCheckbox,
+    SubsectionTimeInterval,
   },
   setup() {
     return {v$: useVuelidate({$scope: false})};
@@ -200,6 +179,10 @@ export default {
       setTimeout(() => {
         this.shake = false;
       }, 1500);
+    },
+    setTimeInterval(timeInterval?: TimeInterval) {
+      console.log(timeInterval);
+      this.subsection.subsectionTimeInterval = timeInterval;
     },
   },
   mounted() {
@@ -298,18 +281,5 @@ export default {
 
 .subsection-form-control-property {
   font-size: 1.2em;
-}
-
-.subsection-form-control-datepicker-group {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.subsection-form-control-datepicker-span {
-  transition: all 0.5s ease;
-}
-.subsection-form-control-datepicker-span.hidden {
-  color: rgba(255, 255, 255, 0);
-  transition: all 0.5s ease;
 }
 </style>
