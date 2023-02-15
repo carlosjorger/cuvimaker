@@ -168,7 +168,6 @@ export default {
       }
     },
     changeElement(v: string, index: number) {
-      console.log(v, index);
       this.subsection.elements[index].name = v;
     },
     emmitSendEditing() {
@@ -181,7 +180,6 @@ export default {
       }, 1500);
     },
     setTimeInterval(timeInterval?: TimeInterval) {
-      console.log(timeInterval);
       this.subsection.subsectionTimeInterval = timeInterval;
     },
   },

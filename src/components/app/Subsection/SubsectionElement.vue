@@ -56,7 +56,7 @@ import {ref} from "vue";
 
 export default {
   name: "SubsectionElement",
-  emits: ["removeElement", "selectElement"],
+  emits: ["removeElement", "selectElement", "changeElement"],
 
   props: {
     selecting: {
@@ -98,7 +98,7 @@ export default {
       this.fileInput?.focus();
     },
     saveElement() {
-      this.$emit("removeElement", this.currentElement, this.index);
+      this.$emit("changeElement", this.currentElement, this.index);
       this.editingElement = false;
     },
     selectElement() {
