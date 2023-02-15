@@ -24,6 +24,8 @@
       @selectElement="
         selectedElement = selectedElement != index ? index : undefined
       "
+      @changeElement="(v: string, index: number)=>{$emit('changeElement',v,index)}"
+      @removeElement="(index:number)=>{$emit('removeElement',index)}"
       :index="index"
       v-bind="$attrs"
       :selecting="selectedElement == index"
@@ -39,6 +41,7 @@ import {required} from "@vuelidate/validators";
 import {useVuelidate} from "@vuelidate/core";
 export default {
   name: "SubsectionElements",
+  emits: ["addElement", "changeElement", "removeElement"],
   components: {
     CloseAddButton,
     SubsectionElement,

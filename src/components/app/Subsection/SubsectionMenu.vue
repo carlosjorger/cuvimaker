@@ -52,11 +52,7 @@
           v-if="hasElementList"
           @addElement="addElement"
           @removeElement="(index:number)=>{subsection.elements.splice(index, 1)}"
-          @changeElement="
-          (v:string,index:number) => {
-            subsection.elements[index].name = v;
-          }
-        "
+          @changeElement="changeElement"
           :subsection="subsection"
           :editing="editing" />
         <button
@@ -170,6 +166,10 @@ export default {
       } else {
         this.$emit("setEditingIndex", this.index);
       }
+    },
+    changeElement(v: string, index: number) {
+      console.log(v, index);
+      this.subsection.elements[index].name = v;
     },
     emmitSendEditing() {
       emitter?.emit("editing", this.section.editingIndex);

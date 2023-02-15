@@ -37,6 +37,7 @@ import {emit} from "process";
 
 export default {
   name: "SubsectionTimeInterval",
+  emits: ["setTimeInterval"],
   props: {
     editing: {
       type: Boolean,
