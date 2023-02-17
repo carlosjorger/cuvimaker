@@ -52,12 +52,11 @@
 <script lang="ts">
 import CircleButton from "../../shared/Button/CircleButton.vue";
 import {Icon} from "@iconify/vue";
-import {ref} from "vue";
+import {inject, ref} from "vue";
+import {Subsection} from "../../../models/Subsection";
 
 export default {
   name: "SubsectionElement",
-  emits: ["removeElement", "selectElement", "changeElement"],
-
   props: {
     selecting: {
       type: Boolean,
@@ -76,9 +75,11 @@ export default {
       required: true,
     },
   },
+  emits: ["selectElement"],
   components: {CircleButton, Icon},
   data() {
     return {
+      subsection: inject("subsection", new Subsection()),
       currentElement: "",
       editingElement: false,
     };
@@ -91,14 +92,14 @@ export default {
   },
   methods: {
     deleteElement() {
-      this.$emit("removeElement", this.index);
+      this.subsection.elements.splice(this.index, 1);
     },
     editElement() {
       this.editingElement = true;
       this.fileInput?.focus();
     },
     saveElement() {
-      this.$emit("changeElement", this.currentElement, this.index);
+      this.subsection.elements[this.index].name = this.currentElement;
       this.editingElement = false;
     },
     selectElement() {

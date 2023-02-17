@@ -42,19 +42,12 @@
           placeholder="Subsection subtitle" />
         <SubsectionTimeInterval
           :editing="editing"
-          :subsectionTimeIntervalProp="subsection.subsectionTimeInterval"
-          @setTimeInterval="setTimeInterval" />
+          :subsectionTimeIntervalProp="subsection.subsectionTimeInterval" />
         <SwitchCheckbox
           v-if="editing"
           v-model="hasElementList"
           :title="'Add a list'" />
-        <subsection-elements
-          v-if="hasElementList"
-          @addElement="addElement"
-          @removeElement="(index:number)=>{subsection.elements.splice(index, 1)}"
-          @changeElement="changeElement"
-          :subsection="subsection"
-          :editing="editing" />
+        <subsection-elements v-if="hasElementList" :editing="editing" />
         <button
           type="submit"
           class="save-button"
@@ -135,10 +128,12 @@ export default {
       shake: false,
     };
   },
+  provide() {
+    return {
+      subsection: this.subsection,
+    };
+  },
   methods: {
-    addElement(newElement: string) {
-      this.subsection.addElement(newElement);
-    },
     addRemoveSubSection() {
       if (this.section.lastSubsectionIndex == this.index) {
         this.addSubSection();
@@ -167,9 +162,7 @@ export default {
         this.$emit("setEditingIndex", this.index);
       }
     },
-    changeElement(v: string, index: number) {
-      this.subsection.elements[index].name = v;
-    },
+
     emmitSendEditing() {
       emitter?.emit("editing", this.section.editingIndex);
     },
@@ -178,9 +171,6 @@ export default {
       setTimeout(() => {
         this.shake = false;
       }, 1500);
-    },
-    setTimeInterval(timeInterval?: TimeInterval) {
-      this.subsection.subsectionTimeInterval = timeInterval;
     },
   },
   mounted() {

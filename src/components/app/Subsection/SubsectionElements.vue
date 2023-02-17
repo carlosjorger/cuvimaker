@@ -39,27 +39,26 @@ import CloseAddButton from "../../shared/Button/CloseAddButton.vue";
 import SubsectionElement from "./SubsectionElement.vue";
 import {required} from "@vuelidate/validators";
 import {useVuelidate} from "@vuelidate/core";
+import {inject} from "vue";
 export default {
   name: "SubsectionElements",
-  emits: ["addElement", "changeElement", "removeElement"],
+  emits: ["changeElement", "removeElement"],
   components: {
     CloseAddButton,
     SubsectionElement,
   },
+
   setup() {
     return {v$: useVuelidate({$scope: false})};
   },
   data() {
     return {
+      subsection: inject("subsection", new Subsection()),
       newElement: "",
       selectedElement: true ? undefined : 0,
     };
   },
   props: {
-    subsection: {
-      type: Subsection,
-      required: true,
-    },
     editing: {
       type: Boolean,
     },
@@ -74,8 +73,11 @@ export default {
       this.v$.$touch();
       if (!this.v$.$error) {
         this.v$.$reset();
-        this.$emit("addElement", this.newElement);
+        this.addElementIntoSubsection(this.newElement);
       }
+    },
+    addElementIntoSubsection(newElement: string) {
+      this.subsection.addElement(newElement);
     },
   },
 };

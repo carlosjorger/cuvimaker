@@ -33,11 +33,11 @@
 import {TimeInterval} from "../../../models/SubsectionTimeInterval";
 import SubsectionDatePicker from "./SubsectionDatePicker.vue";
 import SwitchCheckbox from "../../shared/checkbox/SwitchCheckbox.vue";
-import {emit} from "process";
+import {inject} from "vue";
+import {Subsection} from "../../../models/Subsection";
 
 export default {
   name: "SubsectionTimeInterval",
-  emits: ["setTimeInterval"],
   props: {
     editing: {
       type: Boolean,
@@ -49,6 +49,7 @@ export default {
   components: {SubsectionDatePicker, SwitchCheckbox},
   data() {
     return {
+      subsection: inject("subsection", new Subsection()),
       hasPeriodOfTime: false,
       from: new Date(1999, 1, 1),
       to: new Date(),
@@ -61,11 +62,9 @@ export default {
   },
   watch: {
     hasPeriodOfTime(newValue: boolean) {
-      if (newValue) {
-        this.$emit("setTimeInterval", this.timeInterval);
-      } else {
-        this.$emit("setTimeInterval", undefined);
-      }
+      this.subsection.subsectionTimeInterval = newValue
+        ? this.timeInterval
+        : undefined;
     },
   },
 };
