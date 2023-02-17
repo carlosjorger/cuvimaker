@@ -5,4 +5,7 @@ export class SubsectionElement {
     this.id = id;
     this.name = name ?? "";
   }
+  copy() {
+    return new SubsectionElement(this.id, this.name);
+  }
 }

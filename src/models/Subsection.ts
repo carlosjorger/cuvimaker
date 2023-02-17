@@ -7,8 +7,6 @@ export class Subsection {
   text: string;
   last: boolean;
   editing: boolean;
-  dateFrom: Date | undefined;
-  dateTo: Date | undefined;
   subsectionTimeInterval: TimeInterval | undefined;
   elements: SubsectionElement[];
   count: number;
@@ -18,8 +16,25 @@ export class Subsection {
     this.text = text ?? "";
     this.last = true;
     this.editing = true;
-    this.elements = [];
     this.count = 0;
+    this.elements = [];
+  }
+  get ifEmpty(): boolean {
+    return (
+      this.title == "" ||
+      this.title == undefined ||
+      this.text == "" ||
+      this.text == undefined
+    );
+  }
+  copy() {
+    let result = new Subsection(this.id, this.title, this.text);
+    result.last = this.last;
+    result.editing = this.editing;
+    result.count = this.count;
+    result.subsectionTimeInterval = this.subsectionTimeInterval?.copy();
+    result.elements = this.elements.map((element) => element.copy());
+    return result;
   }
   addElement(elementName: string) {
     this.elements.push(new SubsectionElement(this.count++, elementName));

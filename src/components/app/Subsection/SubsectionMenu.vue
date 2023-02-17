@@ -22,7 +22,7 @@
         ></transition>
       </div>
       <form
-        v-on:submit.prevent="cancelSubSection()"
+        v-on:submit.prevent
         v-if="!subsection.last"
         class="subsection-form-group">
         <subsection-form
@@ -48,14 +48,26 @@
           v-model="hasElementList"
           :title="'Add a list'" />
         <subsection-elements v-if="hasElementList" :editing="editing" />
-        <button
-          type="submit"
-          class="save-button"
-          :class="{
-            hidden: subsection.last || !editing,
-          }">
-          Save
-        </button>
+        <div class="submit-section">
+          <button
+            type="submit"
+            class="submit-button"
+            :class="{
+              hidden: subsection.last || !editing,
+            }"
+            v-on:click="saveSubSection">
+            Save
+          </button>
+          <button
+            type="submit"
+            class="submit-button"
+            :class="{
+              hidden: subsection.last || !editing,
+            }"
+            v-on:click="cancelSubSection">
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   </div>
@@ -86,11 +98,11 @@ export default {
       required: true,
     },
 
-    subsection: {
+    prevSubsection: {
       type: Subsection,
       required: true,
     },
-    index: {
+    subsectionIndex: {
       type: Number,
       required: true,
     },
@@ -119,11 +131,8 @@ export default {
   },
   data() {
     return {
-      hasPeriodOfTime: false,
+      subsection: new Subsection(),
       hasElementList: false,
-      newElement: "",
-      from: new Date(1999, 1, 1),
-      to: new Date(),
       editing: false,
       shake: false,
     };
@@ -135,11 +144,14 @@ export default {
   },
   methods: {
     addRemoveSubSection() {
-      if (this.section.lastSubsectionIndex == this.index) {
+      if (this.section.lastSubsectionIndex == this.subsectionIndex) {
         this.addSubSection();
       } else {
-        this.$emit("removeSubsection", this.index);
+        this.removeSubsection();
       }
+    },
+    removeSubsection() {
+      this.$emit("removeSubsection", this.subsectionIndex);
     },
     addSubSection() {
       if (this.section.subsectionEditing) {
@@ -148,18 +160,23 @@ export default {
         this.$emit("addNewSubsection");
       }
     },
-    cancelSubSection() {
+    saveSubSection() {
       this.v$.$validate();
       if (this.v$.$error) {
         return;
       }
+      this.section.subsections[this.subsectionIndex] = this.subsection.copy();
+      this.$emit("disabledEditing");
+    },
+    cancelSubSection() {
+      this.subsection = this.prevSubsection.copy();
       this.$emit("disabledEditing");
     },
     editSubSection() {
       if (this.section.subsectionEditing) {
         this.emmitSendEditing();
       } else {
-        this.$emit("setEditingIndex", this.index);
+        this.$emit("setEditingIndex", this.subsectionIndex);
       }
     },
 
@@ -175,7 +192,7 @@ export default {
   },
   mounted() {
     emitter.on("editing", (index) => {
-      if (index == this.index) {
+      if (index == this.subsectionIndex) {
         scrollSmoothToElement(this.$el);
         this.shakeSubsection();
       }
@@ -190,7 +207,10 @@ export default {
   },
   watch: {
     "section.editingIndex"(newValue: number) {
-      this.editing = newValue == this.index;
+      this.editing = newValue == this.subsectionIndex;
+    },
+    "prevSubsection.last"(newValue: boolean) {
+      this.subsection.last = newValue;
     },
   },
 };
@@ -235,18 +255,23 @@ export default {
 .subsection-leave-active {
   position: absolute;
 }
-.save-button {
+.submit-button {
   background-color: white;
   color: var(--primary-color);
   padding: 0.1rem;
-  width: 100%;
+  width: 40%;
   margin-top: 0.5rem;
   font-weight: bold;
+  border-radius: 0.5rem;
   transition: all 0.5s ease;
 }
-.save-button.hidden {
+.submit-button.hidden {
   background-color: rgba(255, 255, 255, 0);
   transition: all 0.5s ease;
+}
+.submit-section {
+  display: flex;
+  justify-content: space-between;
 }
 .editButton-leave-active {
   transition: all 0.5s ease;

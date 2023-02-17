@@ -21,9 +21,9 @@
           <subsection-menu
             v-for="(subsection, index) in section.subsections"
             :key="subsection.id"
-            :index="index"
+            :subsectionIndex="index"
             :section="section"
-            :subsection="subsection"
+            :prevSubsection="subsection"
             @removeSubsection="(index:number)=>{
               section.removeSubsection(index)
             }"
