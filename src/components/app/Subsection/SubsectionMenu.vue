@@ -152,13 +152,13 @@ export default {
       }
     },
     removeSubsection() {
-      this.$emit("removeSubsection", this.subsectionIndex);
+      this.section.removeSubsection(this.subsectionIndex);
     },
     addSubSection() {
       if (this.section.subsectionEditing) {
         this.emmitSendEditing();
       } else {
-        this.$emit("addNewSubsection");
+        this.section.addNewSubsection();
       }
     },
     saveSubSection() {
@@ -166,25 +166,33 @@ export default {
       if (this.v$.$error) {
         return;
       }
-      this.section.subsections[this.subsectionIndex] = this.subsection.copy();
-      this.$emit("disabledEditing");
+      this.prevSubsection.setSubsection(this.subsection);
+      this.disabledEditing();
     },
     cancelSubSection() {
-      if (this.subsection.ifEmpty && this.prevSubsection.ifEmpty) {
+      if (this.isANewSubsection() && this.subsection.isEmpty) {
         this.v$.$validate();
       } else {
-        this.subsection = this.prevSubsection.copy();
-        this.$emit("disabledEditing");
+        this.subsection.setSubsection(this.prevSubsection);
+        this.disabledEditing();
       }
+    },
+    isANewSubsection() {
+      return this.prevSubsection.isEmpty;
+    },
+    disabledEditing() {
+      this.section.disabledEditing();
     },
     editSubSection() {
       if (this.section.subsectionEditing) {
         this.emmitSendEditing();
       } else {
-        this.$emit("setEditingIndex", this.subsectionIndex);
+        this.setEditingIndex();
       }
     },
-
+    setEditingIndex() {
+      this.section.editingIndex = this.subsectionIndex;
+    },
     emmitSendEditing() {
       emitter?.emit("editing", this.section.editingIndex);
     },

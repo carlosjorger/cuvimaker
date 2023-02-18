@@ -19,11 +19,20 @@ export class Subsection {
     this.count = 0;
     this.elements = [];
   }
-  get ifEmpty(): boolean {
+  get isEmpty(): boolean {
     return (
       (this.title == "" || this.title == undefined) &&
       (this.text == "" || this.text == undefined)
     );
+  }
+  setSubsection(subsection: Subsection) {
+    this.title = subsection.title;
+    this.text = subsection.text;
+    this.last = subsection.last;
+    this.editing = subsection.editing;
+    this.count = subsection.count;
+    this.subsectionTimeInterval = subsection.subsectionTimeInterval?.copy();
+    this.elements = subsection.elements.map((element) => element.copy());
   }
   copy() {
     let result = new Subsection(this.id, this.title, this.text);
