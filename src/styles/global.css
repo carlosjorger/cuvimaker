@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 :root {
   --vdp-elem-font-size: 0.6em;
   --primary-color: #3c1774;
@@ -44,11 +47,7 @@ button {
 button:active {
   background-color: #6c5392;
 }
-input {
-  padding: 0.5rem;
-  border-radius: 1rem;
-  border: rgb(126, 126, 126) solid 0.08rem;
-}
+
 .section-card {
   width: 40%;
   padding: 1rem;
