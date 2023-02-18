@@ -7,7 +7,7 @@
       shake: shake,
     }">
     <div>
-      <div class="subsection-form-header">
+      <div class="flex justify-between items-center">
         <close-add-button
           v-on:click="addRemoveSubSection()"
           :closeButton="!subsection.last" />
@@ -21,13 +21,10 @@
               color="var(--primary-color)" /> </circle-button
         ></transition>
       </div>
-      <form
-        v-on:submit.prevent
-        v-if="!subsection.last"
-        class="subsection-form-group">
+      <form v-on:submit.prevent v-if="!subsection.last" class="p-2">
         <subsection-form
           :editing="editing"
-          class="subsection-form-control-property"
+          class="text-lg"
           v-model="subsection.title"
           placeholder="Subsection title" />
         <div
@@ -48,7 +45,7 @@
           v-model="hasElementList"
           :title="'Add a list'" />
         <subsection-elements v-if="hasElementList" :editing="editing" />
-        <div class="submit-section">
+        <div class="flex justify-between">
           <button
             type="submit"
             class="submit-button"
@@ -265,9 +262,7 @@ export default {
   transition: all 0.5s ease-in;
   background-color: var(--primary-color);
 }
-.subsection-leave-active {
-  position: absolute;
-}
+
 .submit-button {
   background-color: white;
   color: var(--primary-color);
@@ -282,10 +277,7 @@ export default {
   background-color: rgba(255, 255, 255, 0);
   transition: all 0.5s ease;
 }
-.submit-section {
-  display: flex;
-  justify-content: space-between;
-}
+
 .editButton-leave-active {
   transition: all 0.5s ease;
 }
@@ -295,17 +287,5 @@ export default {
 .editButton-leave-to,
 .editButton-enter-from {
   opacity: 0;
-}
-.subsection-form-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.subsection-form-group {
-  padding: 0.5rem;
-}
-
-.subsection-form-control-property {
-  font-size: 1.2em;
 }
 </style>
