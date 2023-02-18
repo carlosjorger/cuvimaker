@@ -7,10 +7,7 @@
     <close-add-button :size="2.5" v-on:click="addElement()" />
   </div>
   <!-- TODO close this error -->
-  <div
-    class="input-errors"
-    v-for="error of v$.newElement.$errors"
-    :key="error.$uid">
+  <div v-for="error of v$.newElement.$errors" :key="error.$uid">
     <div class="error-msg">{{ error.$message }}</div>
   </div>
   <transition-group

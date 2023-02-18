@@ -27,10 +27,7 @@
           class="text-lg"
           v-model="subsection.title"
           placeholder="Subsection title" />
-        <div
-          class="input-errors"
-          v-for="error of v$.subsection.title.$errors"
-          :key="error.$uid">
+        <div v-for="error of v$.subsection.title.$errors" :key="error.$uid">
           <div class="error-msg">{{ error.$message }}</div>
         </div>
         <subsection-form
@@ -46,24 +43,14 @@
           :title="'Add a list'" />
         <subsection-elements v-if="hasElementList" :editing="editing" />
         <div class="flex justify-between">
-          <button
-            type="submit"
-            class="submit-button"
-            :class="{
-              hidden: subsection.last || !editing,
-            }"
-            v-on:click="saveSubSection">
-            Save
-          </button>
-          <button
-            type="submit"
-            class="submit-button"
-            :class="{
-              hidden: subsection.last || !editing,
-            }"
-            v-on:click="cancelSubSection">
-            Cancel
-          </button>
+          <ModalButton
+            :invisible="!editing"
+            :name="'Save'"
+            v-on:click="saveSubSection" />
+          <ModalButton
+            :invisible="!editing"
+            :name="'Cancel'"
+            v-on:click="cancelSubSection" />
         </div>
       </form>
     </div>
@@ -85,7 +72,7 @@ import {useVuelidate} from "@vuelidate/core";
 import {required} from "@vuelidate/validators";
 import SwitchCheckbox from "../../shared/checkbox/SwitchCheckbox.vue";
 import SubsectionTimeInterval from "./SubsectionTimeInterval.vue";
-import type {TimeInterval} from "../../../models/SubsectionTimeInterval";
+import ModalButton from "../../shared/Button/ModalButton.vue";
 import {computed} from "vue";
 const emitter = mitt();
 export default {
@@ -116,6 +103,7 @@ export default {
     SubsectionElements,
     SwitchCheckbox,
     SubsectionTimeInterval,
+    ModalButton,
   },
   setup() {
     return {v$: useVuelidate({$scope: false})};
@@ -261,21 +249,6 @@ export default {
   border-radius: 0.5rem;
   transition: all 0.5s ease-in;
   background-color: var(--primary-color);
-}
-
-.submit-button {
-  background-color: white;
-  color: var(--primary-color);
-  padding: 0.1rem;
-  width: 40%;
-  margin-top: 0.5rem;
-  font-weight: bold;
-  border-radius: 0.5rem;
-  transition: all 0.5s ease;
-}
-.submit-button.hidden {
-  background-color: rgba(255, 255, 255, 0);
-  transition: all 0.5s ease;
 }
 
 .editButton-leave-active {
