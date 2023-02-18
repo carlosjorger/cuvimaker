@@ -21,10 +21,8 @@ export class Subsection {
   }
   get ifEmpty(): boolean {
     return (
-      this.title == "" ||
-      this.title == undefined ||
-      this.text == "" ||
-      this.text == undefined
+      (this.title == "" || this.title == undefined) &&
+      (this.text == "" || this.text == undefined)
     );
   }
   copy() {

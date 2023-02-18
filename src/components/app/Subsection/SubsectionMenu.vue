@@ -89,6 +89,7 @@ import {required} from "@vuelidate/validators";
 import SwitchCheckbox from "../../shared/checkbox/SwitchCheckbox.vue";
 import SubsectionTimeInterval from "./SubsectionTimeInterval.vue";
 import type {TimeInterval} from "../../../models/SubsectionTimeInterval";
+import {computed} from "vue";
 const emitter = mitt();
 export default {
   name: "SubsectionMenu",
@@ -139,7 +140,7 @@ export default {
   },
   provide() {
     return {
-      subsection: this.subsection,
+      subsection: computed(() => this.subsection),
     };
   },
   methods: {
@@ -169,8 +170,12 @@ export default {
       this.$emit("disabledEditing");
     },
     cancelSubSection() {
-      this.subsection = this.prevSubsection.copy();
-      this.$emit("disabledEditing");
+      if (this.subsection.ifEmpty && this.prevSubsection.ifEmpty) {
+        this.v$.$validate();
+      } else {
+        this.subsection = this.prevSubsection.copy();
+        this.$emit("disabledEditing");
+      }
     },
     editSubSection() {
       if (this.section.subsectionEditing) {
