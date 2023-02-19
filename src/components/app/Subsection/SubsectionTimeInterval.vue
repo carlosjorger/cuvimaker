@@ -4,7 +4,7 @@
     v-model="hasPeriodOfTime"
     :title="'Add a time interval'" />
   <div
-    class="subsection-form-control-datepicker-group"
+    class="flex justify-start items-center"
     v-if="
       (editing || (timeInterval.dateFrom && timeInterval.dateTo)) &&
       hasPeriodOfTime
@@ -14,13 +14,7 @@
       :editing="editing"
       :upperLimit="timeInterval.dateTo"
       :lowerLimit="from" />
-    <span
-      :class="{
-        hidden: !timeInterval.dateFrom && !timeInterval.dateTo && !editing,
-      }"
-      class="subsection-form-control-datepicker-span"
-      >//</span
-    >
+    <span>//</span>
     <subsection-date-picker
       v-model="timeInterval.dateTo"
       :editing="editing"
@@ -69,18 +63,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.subsection-form-control-datepicker-group {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.subsection-form-control-datepicker-span {
-  transition: all 0.5s ease;
-}
-.subsection-form-control-datepicker-span.hidden {
-  color: rgba(255, 255, 255, 0);
-  transition: all 0.5s ease;
-}
-</style>
