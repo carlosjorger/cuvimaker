@@ -1,7 +1,7 @@
 <template>
   <div
     v-scroll-if="subsection"
-    class="subsection-item"
+    class="text-white w-full mt-3 p-3 rounded-lg transition-all duration-500 bg-[var(--primary-color)]"
     :class="{
       'add-button': subsection.last,
       shake: shake,
@@ -241,16 +241,6 @@ export default {
     transform: translate3d(4px, 0, 0);
   }
 }
-.subsection-item {
-  color: white;
-  width: 95%;
-  margin-top: 0.8rem;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  transition: all 0.5s ease-in;
-  background-color: var(--primary-color);
-}
-
 .editButton-leave-active {
   transition: all 0.5s ease;
 }
