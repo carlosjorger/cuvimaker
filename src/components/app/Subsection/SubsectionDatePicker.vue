@@ -1,7 +1,10 @@
 <template>
   <Datepicker
-    class="subsection-form-control-datepicker"
-    :class="{edit: editing}"
+    class="pointer-events-none relative w-11/12 p-1 border-b-white border-b-0 bg-inherit text-white transition-all duration-300 ease-out focus:outline-none"
+    :class="{
+      ['pointer-events-auto  border-b-4  transition-all duration-300 ease-out ']:
+        editing,
+    }"
     v-model="value"
     :upper-limit="upperLimit"
     :lower-limit="lowerLimit"
@@ -45,28 +48,7 @@ export default {
 </script>
 
 <style>
-.subsection-form-control-datepicker {
-  position: relative;
-  background-color: inherit;
-  color: white;
-  border: none;
-  border-radius: 0;
-  border-bottom: rgba(255, 255, 255, 0) solid 0.1rem;
-  pointer-events: none;
-  margin: 0;
-  width: 88%;
-  transition: all 0.3s ease-in;
-  padding: 0.2rem;
-}
-.subsection-form-control-datepicker.edit {
-  border-bottom: white solid 0.1rem;
-  pointer-events: auto;
-  transition: all 0.3s ease-out;
-}
-.subsection-form-control-datepicker:focus {
-  outline: none;
-}
 .v3dp__datepicker {
-  width: 4.8em;
+  width: 6.7em;
 }
 </style>
