@@ -1,7 +1,9 @@
 <template>
-  <div class="subsection-addelement" v-if="editing">
+  <div
+    class="flex bg-[var(--primary-form-color)] rounded-3xl justify-between p-2 border-solid border-white border-2 shadow-xl"
+    v-if="editing">
     <input
-      class="subsection-addelement-input"
+      class="bg-inherit text-white w-4/5 outline-none"
       v-model="newElement"
       placeholder="New element" />
     <close-add-button :size="2.5" v-on:click="addElement()" />
@@ -81,24 +83,6 @@ export default {
 </script>
 
 <style>
-.subsection-addelement {
-  display: flex;
-  background-color: var(--primary-form-color);
-  border-radius: 1.5rem;
-  justify-content: space-between;
-  padding: 0.3rem;
-  border: solid 0.1rem white;
-  box-shadow: 0px 5px 10px 7px #381868e7;
-}
-.subsection-addelement-input {
-  color: white;
-  background-color: inherit;
-  font-size: 1.1em;
-  width: 80%;
-  border: none;
-  outline: none;
-}
-
 .subsection-elements-move {
   transition: all 0.5s ease;
 }

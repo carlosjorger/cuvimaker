@@ -7,7 +7,7 @@
       padding: `${(size ?? 0) / 12}rem`,
     }"
     type="button"
-    class="rounded-full bg-white flex relative w-12 h-12 p-1 cursor-pointer transition-all duration-300 ease-in justify-evenly items-center">
+    class="rounded-full bg-white flex relative w-12 h-12 p-1 m-0.5 cursor-pointer transition-all duration-300 ease-in justify-evenly items-center">
     <slot></slot>
   </button>
 </template>

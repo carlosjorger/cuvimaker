@@ -1,31 +1,31 @@
 <template>
   <div
-    class="subsection-element"
+    class="flex justify-end items-center m-2 rounded-2xl p-1 border-solid border-white bg-[var(--primary-form-color)] w-11/12 transition-all duration-300 ease-linear shadow-xl"
     :class="{
-      edit: editingElement && selecting && editing,
-      selected: selecting && editing,
+      ['border-4']: editingElement && selecting && editing,
+      ['bg-[#664596]']: selecting && editing,
     }"
     @click="selectElement">
     <input
       ref="fileInput"
       v-model="currentElement"
-      class="element-input"
+      class="pointer-events-none bg-inherit w-full p-2 text-white focus:outline-none"
       :class="{
-        edit: editingElement && selecting && editing,
+        ['pointer-events-auto']: editingElement && selecting && editing,
       }"
       type="text" />
 
     <Transition>
       <div
         v-if="selecting && editingElement"
-        class="subsection-element-action-buttons">
+        class="absolute flex items-center">
         <circle-button :size="2.2" @click="saveElement" v-if="editing">
-          <Icon icon="el:ok" width="25" color="var(--primary-color)" />
+          <Icon icon="el:ok" width="23" color="var(--primary-color)" />
         </circle-button>
         <circle-button :size="2.2" @click="cancelElement" v-if="editing">
           <Icon
             icon="mdi:cancel-bold"
-            width="25"
+            width="23"
             color="var(--primary-color)" />
         </circle-button>
       </div>
@@ -33,17 +33,17 @@
     <Transition>
       <div
         v-if="selecting && !editingElement"
-        class="subsection-element-action-buttons">
+        class="absolute flex items-center">
         <circle-button :size="2.2" @click="editElement" v-if="editing">
           <Icon
             icon="ic:baseline-edit"
-            width="25"
+            width="22"
             color="var(--primary-color)" />
         </circle-button>
         <circle-button :size="2.2" @click="deleteElement" v-if="editing">
           <Icon
             icon="ic:baseline-delete"
-            width="25"
+            width="22"
             color="var(--primary-color)" />
         </circle-button></div
     ></Transition>
@@ -134,45 +134,6 @@ export default {
 </script>
 
 <style>
-.subsection-element {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0.5rem;
-  border-radius: 1.5rem;
-  padding: 0.3rem;
-  border: rgba(255, 255, 255, 0) solid 0.3rem;
-  background-color: var(--primary-form-color);
-  transition: all 0.5s ease;
-  width: 93%;
-  box-shadow: 0px 5px 10px 7px #381868e7;
-}
-.subsection-element.selected {
-  transition: all 0.5s ease;
-  background-color: #664596;
-}
-.subsection-element.edit {
-  transition: all 0.5s ease;
-  border: rgba(255, 255, 255) solid 0.3rem;
-}
-.subsection-element-action-buttons {
-  position: absolute;
-  display: flex;
-  align-items: center;
-}
-.element-input {
-  color: white;
-  pointer-events: none;
-  background-color: inherit;
-  border: 0;
-  border-radius: 0;
-  width: 100%;
-}
-.element-input.edit {
-  pointer-events: auto;
-}
-.element-input:focus {
-  outline: none;
-}
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
