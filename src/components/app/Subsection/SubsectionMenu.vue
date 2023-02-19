@@ -3,7 +3,6 @@
     v-scroll-if="subsection"
     class="text-white w-full mt-3 p-3 rounded-lg transition-all duration-500 bg-[var(--primary-color)]"
     :class="{
-      'add-button': subsection.last,
       shake: shake,
     }">
     <div>
@@ -28,7 +27,7 @@
           v-model="subsection.title"
           placeholder="Subsection title" />
         <div v-for="error of v$.subsection.title.$errors" :key="error.$uid">
-          <div class="error-msg">{{ error.$message }}</div>
+          <div>{{ error.$message }}</div>
         </div>
         <subsection-form
           :editing="editing"
@@ -130,12 +129,13 @@ export default {
   },
   methods: {
     addRemoveSubSection() {
-      if (this.section.lastSubsectionIndex == this.subsectionIndex) {
+      if (this.subsection.last) {
         this.addSubSection();
       } else {
         this.removeSubsection();
       }
     },
+
     removeSubsection() {
       this.section.removeSubsection(this.subsectionIndex);
     },
@@ -146,6 +146,7 @@ export default {
         this.section.addNewSubsection();
       }
     },
+
     saveSubSection() {
       this.v$.$validate();
       if (this.v$.$error) {
@@ -154,20 +155,22 @@ export default {
       this.prevSubsection.setSubsection(this.subsection);
       this.disabledEditing();
     },
+
     cancelSubSection() {
-      if (this.isANewSubsection() && this.subsection.isEmpty) {
+      if (this.isANewEmptySubsection()) {
         this.v$.$validate();
       } else {
         this.subsection.setSubsection(this.prevSubsection);
         this.disabledEditing();
       }
     },
-    isANewSubsection() {
-      return this.prevSubsection.isEmpty;
+    isANewEmptySubsection() {
+      return this.prevSubsection.isEmpty && this.subsection.isEmpty;
     },
     disabledEditing() {
       this.section.disabledEditing();
     },
+
     editSubSection() {
       if (this.section.subsectionEditing) {
         this.emmitSendEditing();
@@ -181,6 +184,7 @@ export default {
     emmitSendEditing() {
       emitter?.emit("editing", this.section.editingIndex);
     },
+
     shakeSubsection() {
       this.shake = true;
       setTimeout(() => {
