@@ -50,10 +50,10 @@
   </div>
 </template>
 <script lang="ts">
-import CircleButton from "../../shared/Button/CircleButton.vue";
+import CircleButton from "../../../shared/Button/CircleButton.vue";
 import {Icon} from "@iconify/vue";
 import {inject, ref} from "vue";
-import {Subsection} from "../../../models/Subsection";
+import {Subsection} from "../../../../models/Subsection";
 
 export default {
   name: "SubsectionElement",

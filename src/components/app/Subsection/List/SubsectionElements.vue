@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex bg-[var(--primary-form-color)] rounded-3xl justify-between p-2 border-solid border-white border-2 shadow-xl"
+    class="flex bg-[var(--primary-form-color)] rounded-3xl justify-between m-1 p-2 border-solid border-white border-2 shadow-xl"
     v-if="editing">
     <input
       class="bg-inherit text-white w-4/5 outline-none"
@@ -33,8 +33,8 @@
 </template>
 
 <script lang="ts">
-import {Subsection} from "../../../models/Subsection";
-import CloseAddButton from "../../shared/Button/CloseAddButton.vue";
+import {Subsection} from "../../../../models/Subsection";
+import CloseAddButton from "../../../shared/Button/CloseAddButton.vue";
 import SubsectionElement from "./SubsectionElement.vue";
 import {required} from "@vuelidate/validators";
 import {useVuelidate} from "@vuelidate/core";

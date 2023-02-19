@@ -36,11 +36,7 @@
         <SubsectionTimeInterval
           :editing="editing"
           :subsectionTimeIntervalProp="subsection.subsectionTimeInterval" />
-        <SwitchCheckbox
-          v-if="editing"
-          v-model="hasElementList"
-          :title="'Add a list'" />
-        <subsection-elements v-if="hasElementList" :editing="editing" />
+        <SubsectionListSection :editing="editing" />
         <div class="flex justify-between">
           <ModalButton
             :invisible="!editing"
@@ -62,17 +58,18 @@ import {Icon} from "@iconify/vue";
 import Datepicker from "vue3-datepicker";
 import {Subsection} from "../../../models/Subsection";
 import {Section} from "../../../models/Section";
-import SubsectionDatePicker from "./SubsectionDatePicker.vue";
+import SubsectionDatePicker from "./TimeInterval/SubsectionDatePicker.vue";
 import mitt from "mitt";
 import SubsectionForm from "./SubsectionForm.vue";
-import SubsectionElements from "./SubsectionElements.vue";
+import SubsectionElements from "./List/SubsectionElements.vue";
 import {scrollSmoothToElement} from "../../../utils/scrollServices";
 import {useVuelidate} from "@vuelidate/core";
 import {required} from "@vuelidate/validators";
 import SwitchCheckbox from "../../shared/checkbox/SwitchCheckbox.vue";
-import SubsectionTimeInterval from "./SubsectionTimeInterval.vue";
+import SubsectionTimeInterval from "./TimeInterval/SubsectionTimeInterval.vue";
 import ModalButton from "../../shared/Button/ModalButton.vue";
 import {computed} from "vue";
+import SubsectionListSection from "./List/SubsectionListSection.vue";
 const emitter = mitt();
 export default {
   name: "SubsectionMenu",
@@ -103,6 +100,7 @@ export default {
     SwitchCheckbox,
     SubsectionTimeInterval,
     ModalButton,
+    SubsectionListSection,
   },
   setup() {
     return {v$: useVuelidate({$scope: false})};
