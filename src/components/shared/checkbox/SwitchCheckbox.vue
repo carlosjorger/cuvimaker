@@ -94,8 +94,8 @@ export default {
 
   mask-image: var(--mask);
   -webkit-mask-image: var(--mask);
-  -webkit-mask-position: 3rem 0rem;
-  mask-position: 3rem 0rem;
+  -webkit-mask-position: 2.5rem 0rem;
+  mask-position: 2.5rem 0rem;
   transition: all 0.3s ease-out;
   box-shadow: inset 0px 0px 7px 2px #cfb1fbe7;
 }
