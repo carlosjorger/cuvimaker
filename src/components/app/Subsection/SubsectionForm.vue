@@ -1,13 +1,11 @@
 <template>
   <input
     v-model="value"
-    class="block p-1 w-10/10 mt-2 bg-inherit border-white text-white placeholder-gray-500 focus:outline-none"
+    class="block p-1 w-10/10 mt-2 bg-inherit border-white text-white placeholder-gray-500 focus:outline-none transition-all duration-300"
     v-if="editing || value"
     :class="{
-      ['border-solid border-b-4  pointer-events-auto shadow-xl transition-all duration-300']:
-        editing,
-      ['border-solid border-b-0  pointer-events-none shadow-none transition-all duration-300']:
-        !editing,
+      ['border-solid border-b-4  pointer-events-auto shadow-xl ']: editing,
+      ['border-solid border-b-0  pointer-events-none shadow-none ']: !editing,
     }"
     type="text" />
 </template>

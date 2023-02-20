@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex bg-[var(--primary-form-color)] rounded-3xl justify-between m-1 p-2 border-solid border-white border-2 shadow-xl"
+    class="flex bg-[var(--primary-form-color)] rounded-3xl justify-between m-1 p-1.5 border-solid border-white border-2 shadow-xl"
     v-if="editing">
     <input
       class="bg-inherit text-white w-4/5 outline-none"

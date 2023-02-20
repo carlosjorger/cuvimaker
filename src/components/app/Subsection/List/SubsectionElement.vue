@@ -1,9 +1,10 @@
 <template>
   <div
-    class="flex justify-end items-center m-2 rounded-2xl p-1 border-solid border-white bg-[var(--primary-form-color)] w-11/12 transition-all duration-300 ease-linear shadow-xl"
+    class="flex justify-end items-center m-2 rounded-2xl p-1 border-solid border-white w-11/12 transition-all duration-300 ease-linear shadow-xl"
     :class="{
       ['border-4']: editingElement && selecting && editing,
       ['bg-[#664596]']: selecting && editing,
+      ['bg-[var(--primary-form-color)] ']: !selecting || !editing,
     }"
     @click="selectElement">
     <input

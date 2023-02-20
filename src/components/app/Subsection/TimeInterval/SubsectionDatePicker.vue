@@ -2,8 +2,7 @@
   <Datepicker
     class="pointer-events-none relative w-full p-1 border-b-white border-b-0 bg-inherit text-white transition-all duration-300 ease-out focus:outline-none"
     :class="{
-      ['pointer-events-auto  border-b-4  transition-all duration-300 ease-out ']:
-        editing,
+      ['pointer-events-auto  border-b-4  ease-out ']: editing,
     }"
     v-model="value"
     :upper-limit="upperLimit"
