@@ -5,23 +5,20 @@
       v-model="hasPeriodOfTime"
       :title="'Add a time interval'" />
     <div
-      class="flex justify-start items-center"
+      class="mt-2"
       v-if="
         (editing || (timeInterval.dateFrom && timeInterval.dateTo)) &&
         hasPeriodOfTime
       ">
-      <subsection-date-picker
-        v-model="timeInterval.dateFrom"
-        :editing="editing"
-        :upperLimit="timeInterval.dateTo"
-        :lowerLimit="from" />
-
-      <span class="h-12">//</span>
-      <subsection-date-picker
-        v-model="timeInterval.dateTo"
-        :editing="editing"
-        :upperLimit="to"
-        :lowerLimit="timeInterval.dateFrom" />
+      <VueDatePicker
+        :range="true"
+        v-model="interval"
+        :min-date="from"
+        :max-date="to"
+        :disabled="!editing"
+        v-on:update:model-value="handleTimeInterval"
+        teleport-center
+        required />
     </div>
   </div>
 </template>
@@ -32,7 +29,8 @@ import SubsectionDatePicker from "./SubsectionDatePicker.vue";
 import SwitchCheckbox from "../../../shared/checkbox/SwitchCheckbox.vue";
 import {inject} from "vue";
 import {Subsection} from "../../../../models/Subsection";
-
+import VueDatePicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
 export default {
   name: "SubsectionTimeInterval",
   props: {
@@ -47,7 +45,7 @@ export default {
       type: Boolean,
     },
   },
-  components: {SubsectionDatePicker, SwitchCheckbox},
+  components: {SubsectionDatePicker, SwitchCheckbox, VueDatePicker},
 
   data() {
     return {
@@ -56,12 +54,28 @@ export default {
       from: new Date(1999, 1, 1),
       to: new Date(),
       timeInterval: new TimeInterval(),
+      interval: <Date[]>[],
     };
   },
+  methods: {
+    handleTimeInterval(modelData: Date[]) {
+      if (modelData.length > 0) {
+        this.timeInterval.dateFrom = modelData[0];
+        this.timeInterval.dateTo = modelData[1];
+      }
 
+      // do something else with the data
+    },
+  },
   mounted() {
     this.timeInterval =
       this.subsectionTimeIntervalProp?.copy() ?? new TimeInterval();
+    if (
+      this.timeInterval.dateFrom != undefined &&
+      this.timeInterval.dateTo != undefined
+    ) {
+      this.interval = [this.timeInterval.dateFrom!, this.timeInterval.dateTo!];
+    }
   },
 
   watch: {
