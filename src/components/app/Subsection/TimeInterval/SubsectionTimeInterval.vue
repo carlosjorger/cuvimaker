@@ -8,7 +8,8 @@
       :disabled="!editing"
       v-on:update:model-value="handleTimeInterval"
       teleport-center
-      required />
+      required
+      @cleared="cleanTimeInterval" />
     <div v-for="error of v$.timeInterval.dateFrom.$errors" :key="error.$uid">
       <div class="error-msg">{{ error.$message }}</div>
     </div>
@@ -22,7 +23,7 @@
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 import {TimeInterval} from "../../../../models/SubsectionTimeInterval";
-import {required} from "@vuelidate/validators";
+import {helpers, required} from "@vuelidate/validators";
 import {useVuelidate} from "@vuelidate/core";
 export default {
   name: "SubsectionTimeInterval",
@@ -61,20 +62,24 @@ export default {
     }
   },
   methods: {
-    handleTimeInterval(dateRange: Date[]) {
-      if (dateRange.length > 0) {
-        this.timeInterval.dateFrom = dateRange[0];
-        this.timeInterval.dateTo = dateRange[1];
+    handleTimeInterval(dateRange: Date[] | null) {
+      if (dateRange?.length ?? 0 > 0) {
+        this.timeInterval.dateFrom = dateRange ? dateRange[0] : undefined;
+        this.timeInterval.dateTo = dateRange ? dateRange[1] : undefined;
       }
+    },
+    cleanTimeInterval() {
+      this.timeInterval.dateFrom = undefined;
+      this.timeInterval.dateTo = undefined;
     },
   },
   validations: {
     timeInterval: {
       dateFrom: {
-        required,
+        required: helpers.withMessage("Date From is required", required),
       },
       dateTo: {
-        required,
+        required: helpers.withMessage("Date To is required", required),
       },
     },
   },
