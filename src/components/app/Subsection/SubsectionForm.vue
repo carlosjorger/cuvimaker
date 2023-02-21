@@ -11,17 +11,21 @@
 </template>
 
 <script lang="ts">
+import {inject} from "vue";
+
 export default {
   name: "SubsectionForm",
   props: {
-    editing: {
-      type: Boolean,
-    },
     modelValue: {
       type: String,
     },
   },
   emits: ["update:modelValue"],
+  data() {
+    return {
+      editing: inject("editing", false),
+    };
+  },
   computed: {
     value: {
       get() {

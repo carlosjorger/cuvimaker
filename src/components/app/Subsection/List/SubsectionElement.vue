@@ -63,10 +63,7 @@ export default {
       type: Boolean,
       required: true,
     },
-    editing: {
-      type: Boolean,
-      required: true,
-    },
+
     element: {
       type: String,
       required: true,
@@ -80,6 +77,7 @@ export default {
   components: {CircleButton, Icon},
   data() {
     return {
+      editing: inject("editing", false),
       subsection: inject("subsection", new Subsection()),
       currentElement: "",
       editingElement: false,

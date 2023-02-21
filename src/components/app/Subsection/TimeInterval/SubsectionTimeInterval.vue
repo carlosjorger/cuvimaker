@@ -25,15 +25,12 @@ import "@vuepic/vue-datepicker/dist/main.css";
 import {TimeInterval} from "../../../../models/SubsectionTimeInterval";
 import {helpers, required} from "@vuelidate/validators";
 import {useVuelidate} from "@vuelidate/core";
+import {inject} from "vue";
 export default {
   name: "SubsectionTimeInterval",
 
   components: {VueDatePicker},
   props: {
-    editing: {
-      type: Boolean,
-      required: true,
-    },
     timeInterval: {
       type: TimeInterval,
       required: true,
@@ -48,6 +45,7 @@ export default {
   },
   data() {
     return {
+      editing: inject("editing", false),
       from: new Date(1999, 1, 1),
       to: new Date(),
       interval: <Date[]>[],

@@ -19,7 +19,6 @@
     <SubsectionElement
       v-for="(element, index) in subsection.elements"
       :key="element.id"
-      :editing="editing"
       @selectElement="
         selectedElement = selectedElement != index ? index : undefined
       "
@@ -52,16 +51,13 @@ export default {
   },
   data() {
     return {
+      editing: inject("editing", false),
       subsection: inject("subsection", new Subsection()),
       newElement: "",
       selectedElement: true ? undefined : 0,
     };
   },
-  props: {
-    editing: {
-      type: Boolean,
-    },
-  },
+
   validations: {
     newElement: {
       required,

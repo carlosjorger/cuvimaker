@@ -22,7 +22,6 @@
       </div>
       <form v-on:submit.prevent v-if="!subsection.last" class="p-2">
         <subsection-form
-          :editing="editing"
           class="text-lg"
           v-model="subsection.title"
           placeholder="Subsection title" />
@@ -30,13 +29,11 @@
           <div>{{ error.$message }}</div>
         </div>
         <subsection-form
-          :editing="editing"
           v-model="subsection.text"
           placeholder="Subsection subtitle" />
         <SubsectionTimeIntervalSection
-          :editing="editing"
           :subsectionTimeIntervalProp="subsection.subsectionTimeInterval" />
-        <SubsectionListSection :editing="editing" />
+        <SubsectionListSection />
         <div class="flex justify-between">
           <ModalButton
             :invisible="!editing"
@@ -125,6 +122,7 @@ export default {
   provide() {
     return {
       subsection: computed(() => this.subsection),
+      editing: computed(() => this.editing),
     };
   },
   methods: {

@@ -9,7 +9,6 @@
         (editing || (timeInterval.dateFrom && timeInterval.dateTo)) &&
         hasPeriodOfTime
       "
-      :editing="editing"
       :timeInterval="timeInterval"
       :hasPeriodOfTime="hasPeriodOfTime" />
   </div>
@@ -26,10 +25,6 @@ import SubsectionTimeInterval from "./SubsectionTimeInterval.vue";
 export default {
   name: "SubsectionTimeIntervalSection",
   props: {
-    editing: {
-      type: Boolean,
-      required: true,
-    },
     subsectionTimeIntervalProp: {
       type: TimeInterval,
     },
@@ -41,6 +36,7 @@ export default {
 
   data() {
     return {
+      editing: inject("editing", false),
       subsection: inject("subsection", new Subsection()),
       hasPeriodOfTime: false,
 
