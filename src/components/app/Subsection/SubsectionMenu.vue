@@ -103,7 +103,9 @@ export default {
     SubsectionListSection,
   },
   setup() {
-    return {v$: useVuelidate({$scope: false})};
+    return {
+      v$: useVuelidate({$scope: true}),
+    };
   },
   directives: {
     scrollIf(el: Element, {value}) {
@@ -146,7 +148,7 @@ export default {
     },
 
     saveSubSection() {
-      this.v$.$validate();
+      this.validate();
       if (this.v$.$error) {
         return;
       }
@@ -156,11 +158,14 @@ export default {
 
     cancelSubSection() {
       if (this.isANewEmptySubsection()) {
-        this.v$.$validate();
+        this.validate();
       } else {
         this.subsection.setSubsection(this.prevSubsection);
         this.disabledEditing();
       }
+    },
+    validate() {
+      this.v$.$validate();
     },
     isANewEmptySubsection() {
       return this.prevSubsection.isEmpty && this.subsection.isEmpty;

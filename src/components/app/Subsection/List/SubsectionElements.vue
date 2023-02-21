@@ -48,7 +48,7 @@ export default {
   },
 
   setup() {
-    return {v$: useVuelidate({$scope: false})};
+    return {v$: useVuelidate({$scope: true})};
   },
   data() {
     return {

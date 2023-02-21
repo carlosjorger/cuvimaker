@@ -71,32 +71,30 @@ export default {
   background-color: rgb(185, 185, 185);
 
   --mask: radial-gradient(
-    circle at 1rem 1rem,
-    rgba(0, 0, 0, 0) 0.8rem,
-    rgba(0, 0, 0, 1) 0.8rem
+    circle at 22% 50%,
+    rgba(0, 0, 0, 0) 22%,
+    rgba(0, 0, 0, 1) 22%
   );
   mask-image: var(--mask);
   -webkit-mask-image: var(--mask);
-  -webkit-mask-position: 0rem 0rem;
-  mask-position: 0rem 0rem;
+  -webkit-mask-position: 0% 0%;
+  mask-position: 0% 0%;
   transition: all 0.3s ease-out;
-  box-shadow: inset 0px 0px 7px 2px #8b77a8e7;
 }
 
 .input-checkbox:checked ~ .two.skin {
   background-color: white;
 
   --mask: radial-gradient(
-    circle at 1rem 1rem,
-    rgba(0, 0, 0, 0) 0.8rem,
-    rgba(0, 0, 0, 1) 0.8rem
+    circle at 22% 50%,
+    rgba(0, 0, 0, 0) 22%,
+    rgba(0, 0, 0, 1) 22%
   );
 
   mask-image: var(--mask);
   -webkit-mask-image: var(--mask);
-  -webkit-mask-position: 2.5rem 0rem;
-  mask-position: 2.5rem 0rem;
+  -webkit-mask-position: 2.5rem 0%;
+  mask-position: 2.5rem 0%;
   transition: all 0.3s ease-out;
-  box-shadow: inset 0px 0px 7px 2px #cfb1fbe7;
 }
 </style>

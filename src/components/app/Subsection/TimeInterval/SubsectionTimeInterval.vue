@@ -15,7 +15,8 @@
         :editing="editing"
         :upperLimit="timeInterval.dateTo"
         :lowerLimit="from" />
-      <span>//</span>
+
+      <span class="h-12">//</span>
       <subsection-date-picker
         v-model="timeInterval.dateTo"
         :editing="editing"
@@ -37,12 +38,17 @@ export default {
   props: {
     editing: {
       type: Boolean,
+      required: true,
     },
     subsectionTimeIntervalProp: {
       type: TimeInterval,
     },
+    validating: {
+      type: Boolean,
+    },
   },
   components: {SubsectionDatePicker, SwitchCheckbox},
+
   data() {
     return {
       subsection: inject("subsection", new Subsection()),
@@ -52,10 +58,12 @@ export default {
       timeInterval: new TimeInterval(),
     };
   },
+
   mounted() {
     this.timeInterval =
       this.subsectionTimeIntervalProp?.copy() ?? new TimeInterval();
   },
+
   watch: {
     hasPeriodOfTime(newValue: boolean) {
       this.subsection.subsectionTimeInterval = newValue
