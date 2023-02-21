@@ -1,75 +1,58 @@
 <template>
   <div class="mt-2">
-    <SwitchCheckbox
-      v-if="editing"
-      v-model="hasPeriodOfTime"
-      :title="'Add a time interval'" />
-    <div
-      class="mt-2"
-      v-if="
-        (editing || (timeInterval.dateFrom && timeInterval.dateTo)) &&
-        hasPeriodOfTime
-      ">
-      <VueDatePicker
-        :range="true"
-        v-model="interval"
-        :min-date="from"
-        :max-date="to"
-        :disabled="!editing"
-        v-on:update:model-value="handleTimeInterval"
-        teleport-center
-        required />
+    <VueDatePicker
+      :range="true"
+      v-model="interval"
+      :min-date="from"
+      :max-date="to"
+      :disabled="!editing"
+      v-on:update:model-value="handleTimeInterval"
+      teleport-center
+      required />
+    <div v-for="error of v$.timeInterval.dateFrom.$errors" :key="error.$uid">
+      <div class="error-msg">{{ error.$message }}</div>
+    </div>
+    <div v-for="error of v$.timeInterval.dateTo.$errors" :key="error.$uid">
+      <div class="error-msg">{{ error.$message }}</div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {TimeInterval} from "../../../../models/SubsectionTimeInterval";
-import SubsectionDatePicker from "./SubsectionDatePicker.vue";
-import SwitchCheckbox from "../../../shared/checkbox/SwitchCheckbox.vue";
-import {inject} from "vue";
-import {Subsection} from "../../../../models/Subsection";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
+import {TimeInterval} from "../../../../models/SubsectionTimeInterval";
+import {required} from "@vuelidate/validators";
+import {useVuelidate} from "@vuelidate/core";
 export default {
   name: "SubsectionTimeInterval",
+
+  components: {VueDatePicker},
   props: {
     editing: {
       type: Boolean,
       required: true,
     },
-    subsectionTimeIntervalProp: {
+    timeInterval: {
       type: TimeInterval,
+      required: true,
     },
-    validating: {
+    hasPeriodOfTime: {
       type: Boolean,
+      required: true,
     },
   },
-  components: {SubsectionDatePicker, SwitchCheckbox, VueDatePicker},
-
+  setup() {
+    return {v$: useVuelidate({$scope: true})};
+  },
   data() {
     return {
-      subsection: inject("subsection", new Subsection()),
-      hasPeriodOfTime: false,
       from: new Date(1999, 1, 1),
       to: new Date(),
-      timeInterval: new TimeInterval(),
       interval: <Date[]>[],
     };
   },
-  methods: {
-    handleTimeInterval(modelData: Date[]) {
-      if (modelData.length > 0) {
-        this.timeInterval.dateFrom = modelData[0];
-        this.timeInterval.dateTo = modelData[1];
-      }
-
-      // do something else with the data
-    },
-  },
   mounted() {
-    this.timeInterval =
-      this.subsectionTimeIntervalProp?.copy() ?? new TimeInterval();
     if (
       this.timeInterval.dateFrom != undefined &&
       this.timeInterval.dateTo != undefined
@@ -77,13 +60,25 @@ export default {
       this.interval = [this.timeInterval.dateFrom!, this.timeInterval.dateTo!];
     }
   },
-
-  watch: {
-    hasPeriodOfTime(newValue: boolean) {
-      this.subsection.subsectionTimeInterval = newValue
-        ? this.timeInterval
-        : undefined;
+  methods: {
+    handleTimeInterval(dateRange: Date[]) {
+      if (dateRange.length > 0) {
+        this.timeInterval.dateFrom = dateRange[0];
+        this.timeInterval.dateTo = dateRange[1];
+      }
+    },
+  },
+  validations: {
+    timeInterval: {
+      dateFrom: {
+        required,
+      },
+      dateTo: {
+        required,
+      },
     },
   },
 };
 </script>
+
+<style scoped></style>

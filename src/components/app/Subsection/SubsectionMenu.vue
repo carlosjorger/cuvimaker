@@ -33,7 +33,7 @@
           :editing="editing"
           v-model="subsection.text"
           placeholder="Subsection subtitle" />
-        <SubsectionTimeInterval
+        <SubsectionTimeIntervalSection
           :editing="editing"
           :subsectionTimeIntervalProp="subsection.subsectionTimeInterval" />
         <SubsectionListSection :editing="editing" />
@@ -58,7 +58,7 @@ import {Icon} from "@iconify/vue";
 import Datepicker from "vue3-datepicker";
 import {Subsection} from "../../../models/Subsection";
 import {Section} from "../../../models/Section";
-import SubsectionDatePicker from "./TimeInterval/SubsectionDatePicker.vue";
+import SubsectionDatePicker from "./TimeInterval/SubsectionTimeIntervalSection.vue";
 import mitt from "mitt";
 import SubsectionForm from "./SubsectionForm.vue";
 import SubsectionElements from "./List/SubsectionElements.vue";
@@ -66,7 +66,7 @@ import {scrollSmoothToElement} from "../../../utils/scrollServices";
 import {useVuelidate} from "@vuelidate/core";
 import {required} from "@vuelidate/validators";
 import SwitchCheckbox from "../../shared/checkbox/SwitchCheckbox.vue";
-import SubsectionTimeInterval from "./TimeInterval/SubsectionTimeInterval.vue";
+import SubsectionTimeIntervalSection from "./TimeInterval/SubsectionTimeIntervalSection.vue";
 import ModalButton from "../../shared/Button/ModalButton.vue";
 import {computed} from "vue";
 import SubsectionListSection from "./List/SubsectionListSection.vue";
@@ -98,7 +98,7 @@ export default {
     SubsectionForm,
     SubsectionElements,
     SwitchCheckbox,
-    SubsectionTimeInterval,
+    SubsectionTimeIntervalSection,
     ModalButton,
     SubsectionListSection,
   },
