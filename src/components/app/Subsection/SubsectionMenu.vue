@@ -1,7 +1,7 @@
 <template>
   <div
     v-scroll-if="subsection"
-    class="text-white w-full mt-3 p-3 rounded-lg transition-all duration-500 bg-[var(--primary-color)]"
+    class="text-white w-full mt-3 p-4 rounded-lg transition-all duration-500 bg-[var(--primary-color)]"
     :class="{
       shake: shake,
     }">
@@ -20,7 +20,7 @@
               color="var(--primary-color)" /> </circle-button
         ></transition>
       </div>
-      <form v-on:submit.prevent v-if="!subsection.last" class="p-2">
+      <form v-on:submit.prevent v-if="!subsection.last" class="p-5">
         <subsection-form
           class="text-lg"
           v-model="subsection.title"
@@ -52,7 +52,6 @@
 import CloseAddButton from "../../shared/Button/CloseAddButton.vue";
 import CircleButton from "../../shared/Button/CircleButton.vue";
 import {Icon} from "@iconify/vue";
-import Datepicker from "vue3-datepicker";
 import {Subsection} from "../../../models/Subsection";
 import {Section} from "../../../models/Section";
 import SubsectionDatePicker from "./TimeInterval/SubsectionTimeIntervalSection.vue";
@@ -90,7 +89,6 @@ export default {
     CloseAddButton,
     CircleButton,
     Icon,
-    Datepicker,
     SubsectionDatePicker,
     SubsectionForm,
     SubsectionElements,
