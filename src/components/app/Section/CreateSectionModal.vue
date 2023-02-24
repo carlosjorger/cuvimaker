@@ -17,7 +17,7 @@
           placeholder="Section Name" />
       </div>
       <div class="form-group">
-        <transition-group name="subsection" class="subsection" tag="div">
+        <transition-group name="subsection" class="subsection p-5" tag="div">
           <subsection-menu
             v-for="(subsection, index) in section.subsections"
             :key="subsection.id"

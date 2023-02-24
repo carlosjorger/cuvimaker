@@ -40,7 +40,7 @@
             :name="'Save'"
             v-on:click="saveSubSection" />
           <ModalButton
-            :invisible="!editing"
+            :invisible="!editing || prevSubsection.isEmpty"
             :name="'Cancel'"
             v-on:click="cancelSubSection" />
         </div>
@@ -153,18 +153,11 @@ export default {
     },
 
     cancelSubSection() {
-      if (this.isANewEmptySubsection()) {
-        this.validate();
-      } else {
-        this.subsection.setSubsection(this.prevSubsection);
-        this.disabledEditing();
-      }
+      this.subsection.setSubsection(this.prevSubsection);
+      this.disabledEditing();
     },
     validate() {
       this.v$.$validate();
-    },
-    isANewEmptySubsection() {
-      return this.prevSubsection.isEmpty && this.subsection.isEmpty;
     },
     disabledEditing() {
       this.section.disabledEditing();

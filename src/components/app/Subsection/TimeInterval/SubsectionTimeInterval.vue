@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-2 w-5/6">
+  <div class="mt-2 w-11/12">
     <VueDatePicker
       :range="true"
       v-model="interval"
@@ -9,7 +9,8 @@
       v-on:update:model-value="handleTimeInterval"
       teleport-center
       required
-      @cleared="cleanTimeInterval" />
+      @cleared="cleanTimeInterval"
+      input-class-name="shadow-xl" />
     <div v-for="error of v$.timeInterval.dateFrom.$errors" :key="error.$uid">
       <div class="error-msg">{{ error.$message }}</div>
     </div>
