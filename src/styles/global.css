@@ -30,38 +30,6 @@
   background: var(--primary-form-color);
 }
 
-.dark .nav-links a {
-  color: #fff;
-}
-.dark a {
-  color: rgb(2, 137, 255);
-}
-.dark a.social {
-  color: #fff;
-}
-.dark .nav-links a:hover,
-a:focus {
-  color: white;
-  background-color: #12123b;
-}
-a {
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-button {
-  padding: 1rem;
-  border-radius: 1.5rem;
-  background-color: var(--primary-color);
-  border-color: transparent;
-  color: #fff;
-  font-size: 1rem;
-}
-button:active {
-  background-color: #6c5392;
-}
-
 .section-card {
   width: 40%;
   padding: 1rem;

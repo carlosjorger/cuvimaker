@@ -1,13 +1,15 @@
 ---
 import Navigation from "./Navigation.astro";
 import ThemeIcon from "./ThemeIcon.astro";
+
 ---
 
 <header>
-  <nav>
-    <ThemeIcon />
-    <Navigation />
-  </nav>
+<nav class="flex justify-between p-2 bg-[#f5f0ff] dark:bg-[#190f35] shadow-md">
+  <Navigation />
+  <ThemeIcon />
+
+</nav>
 </header>
 
 <script>
