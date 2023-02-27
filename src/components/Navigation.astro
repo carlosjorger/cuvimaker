@@ -1,57 +1,13 @@
 ---
+import NavigationLink from "./NavigationLink.astro";
+
 ---
 
-<nav>
-  <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/editor/">Editor</a>
 
+  <div class="inline-block p-2">
+    <NavigationLink href="/" text="Home"/>
+    <NavigationLink href="/about" text="About"/>
+    <NavigationLink href="/editor" text="Editor"/>
   </div>
-</nav>
-
-<style>
-  .nav-links {
-    width: 100%;
-    top: 5rem;
-    left: 48px;
-    background-color: gray;
-    display: none;
-    margin: 0;
-  }
-  .nav-links a {
-    color: black;
-  display: block;
-  text-align: center;
-  padding: 10px 0;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-    }
-
-.nav-links a:hover, a:focus {
-  color: white;
-  background-color: var(--primary-color);
-}
 
 
-.expanded {
-  display: unset;
-}
-
-@media screen and (min-width: 636px) {
-  .nav-links {
-    margin-left: 2em;
-    display: block;
-    position: static;
-    width: auto;
-    background: none;
-  }
-
-  .nav-links a {
-    display: inline-block;
-    padding: 15px 20px;
-  }
-}
-</style>
