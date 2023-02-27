@@ -1,11 +1,7 @@
 <template>
   <button
     type="submit"
-    class="text-[var(--primary-color)] p-2 w-5/12 mt-2 rounded-lg transition-colors duration-500"
-    :class="{
-      [' bg-transparent']: invisible,
-      [' bg-white']: !invisible,
-    }"
+    class="text-[var(--primary-color)] bg-white p-2 w-5/12 mt-2 rounded-lg transition-colors duration-500"
     v-on:click="saveSubSection">
     {{ name }}
   </button>
@@ -15,9 +11,6 @@
 export default {
   name: "ModalButton",
   props: {
-    invisible: {
-      type: Boolean,
-    },
     name: {
       type: String,
     },

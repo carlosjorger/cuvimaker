@@ -29,14 +29,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-form-color);
 }
-body {
-  background-color: #f3eefb;
-  font-family: Montserrat, sans-serif;
-}
-.dark body {
-  background-color: #04041a;
-  color: #fff;
-}
+
 .dark .nav-links a {
   color: #fff;
 }

@@ -22,7 +22,7 @@
 <script lang="ts">
 import type {Section} from "../models/Section";
 import CreateSectionModal from "./app/Section/CreateSectionModal.vue";
-import SectionComponent from "./app/Section/SectionComponent.vue";
+import SectionComponent from "./app/SectionView/SectionComponent.vue";
 export default {
   components: {CreateSectionModal, SectionComponent},
   data() {

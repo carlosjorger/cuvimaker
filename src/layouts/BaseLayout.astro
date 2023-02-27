@@ -19,18 +19,13 @@ const { pageTitle } = Astro.props;
     <title>{pageTitle}</title>
     <meta name="description" content="An online editor of cv, SEO-friendly made in Astro">
   </head>
-  <body>
+  <body class="font-[Montserrat] dark:bg-[#04041a] bg-white dark:text-white">
     <Header />
-    <main>
+    <main class="m-8">
       <h1>{pageTitle}</h1>
       <slot />
       <Footer />
     </main>
   </body>
 </html>
-<style>
- main{
-  margin: 2rem;
-  font-family: "Montserrat";
- }
-</style>
+

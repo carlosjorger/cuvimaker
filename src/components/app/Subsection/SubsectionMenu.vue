@@ -36,11 +36,11 @@
         <SubsectionListSection />
         <div class="flex justify-between">
           <ModalButton
-            :invisible="!editing"
+            v-if="editing"
             :name="'Save'"
             v-on:click="saveSubSection" />
           <ModalButton
-            :invisible="!editing || prevSubsection.isEmpty"
+            v-if="editing && !prevSubsection.isEmpty"
             :name="'Cancel'"
             v-on:click="cancelSubSection" />
         </div>
