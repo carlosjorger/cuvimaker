@@ -3,7 +3,9 @@
     class="flex fixed top-0 left-0 right-0 bottom-0 justify-self-center bg-[#000000da] items-center justify-around h-full">
     <div class="flex flex-col m-0 bg-white section-card">
       <header class="flex mb-2 justify-between items-center">
-        <h3 class="text-[var(--primary-color)] text-2xl">Add a Section</h3>
+        <h3 class="text-[var(--primary-color)] text-2xl font-semibold">
+          Add a Section
+        </h3>
         <close-add-button
           v-on:click="$emit('close-modal')"
           :closeButton="true"
@@ -13,7 +15,7 @@
       <div class="mb-2 box-border">
         <input
           v-model="section.name"
-          class="mt-2 p-2 placeholder:text-[var(--primary-color)] placeholder:text-lg border-solid border-[var(--primary-color)] border-4 w-full rounded-lg"
+          class="mt-2 p-2 text-[var(--primary-color)] font-semibold focus:border-4 placeholder:text-[var(--primary-color)] placeholder:text-lg border-solid border-[var(--primary-color)] border-2 w-full rounded-3xl shadow-xl transition-all duration-300"
           placeholder="Section Name"
           type="text" />
       </div>
