@@ -1,23 +1,27 @@
 <template>
-  <div class="modal-overlay">
-    <div class="form section-card">
-      <header class="form-header">
-        <h3>Add a Section</h3>
+  <div
+    class="flex fixed top-0 left-0 right-0 bottom-0 justify-self-center bg-[#000000da] items-center justify-around h-full">
+    <div class="flex flex-col m-0 bg-white section-card">
+      <header class="flex mb-2 justify-between items-center">
+        <h3 class="text-[var(--primary-color)] text-2xl">Add a Section</h3>
         <close-add-button
           v-on:click="$emit('close-modal')"
           :closeButton="true"
           :lineColor="'#FFFFFF'"
           :buttonColor="'var(--primary-color)'" />
       </header>
-      <div class="form-group">
+      <div class="mb-2 box-border">
         <input
-          type="text"
-          class="form-control"
           v-model="section.name"
-          placeholder="Section Name" />
+          class="mt-2 p-2 placeholder:text-[var(--primary-color)] placeholder:text-lg border-solid border-[var(--primary-color)] border-4 w-full rounded-lg"
+          placeholder="Section Name"
+          type="text" />
       </div>
-      <div class="form-group">
-        <transition-group name="subsection" class="subsection p-5" tag="div">
+      <div class="mb-2 box-border">
+        <transition-group
+          name="subsection"
+          class="block h-96 overflow-scroll overflow-x-hidden relative p-5"
+          tag="div">
           <subsection-menu
             v-for="(subsection, index) in section.subsections"
             :key="subsection.id"
@@ -28,7 +32,7 @@
       </div>
       <button
         v-on:click="$emit('addSection', section)"
-        class="form-button"
+        class="p-2 mx-auto w-full"
         @click="$emit('close-modal')">
         Add Section
       </button>
@@ -74,36 +78,6 @@ export default {
 };
 </script>
 <style>
-.save-button {
-  background-color: white;
-  color: var(--primary-color);
-  padding: 0.1rem;
-  width: 100%;
-  margin-top: 0.5rem;
-  font-weight: bold;
-}
-.modal-overlay {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  justify-self: center;
-  background-color: #000000da;
-  align-items: center;
-  justify-content: space-around;
-  height: calc(100% + 20px);
-}
-
-.subsection {
-  display: block;
-  height: 65vh;
-  overflow: scroll;
-  overflow-x: hidden;
-  position: relative;
-}
-
 .subsection-move {
   transition: opacity 0.5s ease;
   transition: transform 0.5s ease;
@@ -122,43 +96,5 @@ export default {
 
 .subsection-leave-active {
   position: absolute;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  border: 0.2rem solid white;
-
-  font-size: 1rem;
-  background-color: white;
-}
-.dark .form {
-  color: black;
-}
-.form-header {
-  display: flex;
-  margin-bottom: 0.5rem;
-  justify-content: space-between;
-  align-items: center;
-}
-.form-header > h3 {
-  color: var(--primary-color);
-  font-size: 1.8em;
-}
-.form-group {
-  margin-bottom: 0.5rem;
-  box-sizing: border-box;
-}
-.form-control {
-  margin-top: 0.5rem;
-  width: 100%;
-  box-sizing: inherit;
-}
-.form-button {
-  height: 5vh;
-  padding: 0.2vw;
-  width: 100%;
-  margin: 0 auto;
 }
 </style>
