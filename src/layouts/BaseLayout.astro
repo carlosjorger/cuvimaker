@@ -16,13 +16,13 @@ const { pageTitle } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/cuvimaker.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    <title>Online CV Maker {pageTitle}</title>
     <meta name="description" content="An online editor of cv, SEO-friendly made in Astro">
   </head>
   <body class="font-[Montserrat] dark:bg-[#130624] bg-[#f5f0ff] dark:text-white">
     <Header />
     <main class="m-8">
-      <h1>{pageTitle}</h1>
+      <h1 class=" text-4xl mt-2 mb-2 font-bold">{pageTitle}</h1>
       <slot />
       <Footer />
     </main>
