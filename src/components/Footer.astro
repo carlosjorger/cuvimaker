@@ -1,17 +1,27 @@
 ---
 const platform = "github";
 const username = "carlosjorger";
+const proyect="astro-vue-online-cv-maker"
 import Social from "./Social.astro";
 ---
 
 <footer>
-  <p>
-    Learn more about my projects on <a
-      href={`https://www.${platform}.com/${username}`}>{platform}</a
-    >!
-  </p>
-  <Social platform="twitter" username="carlosjorgerc" />
-  <Social platform="linkedin" username="carlosjorger" extraPath="/in" />
+<div class=" flex flex-col">
+  <div>
+    <p>
+      Learn more about this project on 
+      <a
+        class=" text-[var(--anchor-color)] bg-anchor bg-[0%_100%] bg-[length:100%_0%] bg-no-repeat hover:bg-[length:100%_15%] transition-all duration-300"
+        href={`https://www.${platform}.com/${username}/${proyect}`}>
+        {platform}</a>!
+    </p>
+  </div>
+  <div class=" flex flex-row mt-2">
+    <Social platform="github" username="carlosjorger" icon="mdi:github" extraPath="/in" />
+    <Social platform="twitter" username="carlosjorgerc" icon="mdi:twitter" />
+    <Social platform="linkedin" username="carlosjorger" icon="mdi:linkedin" extraPath="/in" />
+  </div>
+</div>
 </footer>
 <style>
   footer {
