@@ -70,95 +70,95 @@
     </div>
 </template>
 <script lang="ts">
-import CircleButton from '../../../shared/Button/CircleButton.vue';
-import { Icon } from '@iconify/vue';
-import { inject, ref } from 'vue';
-import { Subsection } from '../../../../models/Subsection';
+    import CircleButton from '../../../shared/Button/CircleButton.vue';
+    import { Icon } from '@iconify/vue';
+    import { inject, ref } from 'vue';
+    import { Subsection } from '../../../../models/Subsection';
 
-export default {
-    name: 'SubsectionElement',
-    props: {
-        selecting: {
-            type: Boolean,
-            required: true,
-        },
+    export default {
+        name: 'SubsectionElement',
+        props: {
+            selecting: {
+                type: Boolean,
+                required: true,
+            },
 
-        element: {
-            type: String,
-            required: true,
+            element: {
+                type: String,
+                required: true,
+            },
+            index: {
+                type: Number,
+                required: true,
+            },
         },
-        index: {
-            type: Number,
-            required: true,
+        emits: ['selectElement'],
+        components: { CircleButton, Icon },
+        data() {
+            return {
+                editing: inject('editing', false),
+                subsection: inject('subsection', new Subsection()),
+                currentElement: '',
+                editingElement: false,
+            };
         },
-    },
-    emits: ['selectElement'],
-    components: { CircleButton, Icon },
-    data() {
-        return {
-            editing: inject('editing', false),
-            subsection: inject('subsection', new Subsection()),
-            currentElement: '',
-            editingElement: false,
-        };
-    },
-    setup() {
-        const fileInput = ref<HTMLInputElement | null>(null);
-        return {
-            fileInput,
-        };
-    },
-    methods: {
-        deleteElement() {
-            this.subsection.elements.splice(this.index, 1);
+        setup() {
+            const fileInput = ref<HTMLInputElement | null>(null);
+            return {
+                fileInput,
+            };
         },
-        editElement() {
-            this.editingElement = true;
-            this.fileInput?.focus();
+        methods: {
+            deleteElement() {
+                this.subsection.elements.splice(this.index, 1);
+            },
+            editElement() {
+                this.editingElement = true;
+                this.fileInput?.focus();
+            },
+            saveElement() {
+                this.subsection.elements[this.index].name = this.currentElement;
+                this.editingElement = false;
+            },
+            selectElement() {
+                if (!this.editingElement && this.editing) {
+                    this.$emit('selectElement');
+                }
+            },
+            cancelElement() {
+                this.resetElementValue();
+            },
+            resetElementValue() {
+                this.currentElement = this.element;
+                this.editingElement = false;
+            },
         },
-        saveElement() {
-            this.subsection.elements[this.index].name = this.currentElement;
-            this.editingElement = false;
-        },
-        selectElement() {
-            if (!this.editingElement && this.editing) {
-                this.$emit('selectElement');
-            }
-        },
-        cancelElement() {
+        mounted() {
             this.resetElementValue();
         },
-        resetElementValue() {
-            this.currentElement = this.element;
-            this.editingElement = false;
+        watch: {
+            selecting(newValue: boolean) {
+                if (!newValue) {
+                    this.cancelElement();
+                }
+            },
+            editing(newValue: boolean) {
+                if (!newValue) {
+                    this.resetElementValue();
+                }
+            },
         },
-    },
-    mounted() {
-        this.resetElementValue();
-    },
-    watch: {
-        selecting(newValue: boolean) {
-            if (!newValue) {
-                this.cancelElement();
-            }
-        },
-        editing(newValue: boolean) {
-            if (!newValue) {
-                this.resetElementValue();
-            }
-        },
-    },
-};
+    };
 </script>
 
 <style>
-.v-enter-active,
-.v-leave-active {
-    transition: opacity 0.5s ease;
-}
+    .v-enter-active,
+    .v-leave-active {
+        transition: opacity 0.5s ease;
+    }
 
-.v-enter-from,
-.v-leave-to {
-    opacity: 0;
-}
+    .v-enter-from,
+    .v-leave-to {
+        opacity: 0;
+    }
 </style>

@@ -10,20 +10,20 @@
 </template>
 
 <script lang="ts">
-import { inject } from 'vue';
-import SwitchCheckbox from '../../../shared/checkbox/SwitchCheckbox.vue';
-import SubsectionElements from './SubsectionElements.vue';
-export default {
-    name: 'SubsectionListSection',
-    components: { SwitchCheckbox, SubsectionElements },
+    import { inject } from 'vue';
+    import SwitchCheckbox from '../../../shared/checkbox/SwitchCheckbox.vue';
+    import SubsectionElements from './SubsectionElements.vue';
+    export default {
+        name: 'SubsectionListSection',
+        components: { SwitchCheckbox, SubsectionElements },
 
-    data() {
-        return {
-            editing: inject('editing', false),
-            hasElementList: false,
-        };
-    },
-};
+        data() {
+            return {
+                editing: inject('editing', false),
+                hasElementList: false,
+            };
+        },
+    };
 </script>
 
 <style scoped></style>

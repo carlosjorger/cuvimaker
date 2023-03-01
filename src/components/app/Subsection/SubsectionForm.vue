@@ -14,30 +14,30 @@
 </template>
 
 <script lang="ts">
-import { inject } from 'vue';
+    import { inject } from 'vue';
 
-export default {
-    name: 'SubsectionForm',
-    props: {
-        modelValue: {
-            type: String,
-        },
-    },
-    emits: ['update:modelValue'],
-    data() {
-        return {
-            editing: inject('editing', false),
-        };
-    },
-    computed: {
-        value: {
-            get() {
-                return this.modelValue;
-            },
-            set(value: String) {
-                this.$emit('update:modelValue', value);
+    export default {
+        name: 'SubsectionForm',
+        props: {
+            modelValue: {
+                type: String,
             },
         },
-    },
-};
+        emits: ['update:modelValue'],
+        data() {
+            return {
+                editing: inject('editing', false),
+            };
+        },
+        computed: {
+            value: {
+                get() {
+                    return this.modelValue;
+                },
+                set(value: String) {
+                    this.$emit('update:modelValue', value);
+                },
+            },
+        },
+    };
 </script>

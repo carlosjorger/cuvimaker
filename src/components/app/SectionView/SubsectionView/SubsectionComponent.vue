@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-export default {
-    name: 'SubsectionComponent',
-};
+    export default {
+        name: 'SubsectionComponent',
+    };
 </script>

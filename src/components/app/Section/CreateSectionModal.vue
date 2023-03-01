@@ -48,61 +48,61 @@
     </div>
 </template>
 <script lang="ts">
-import CloseAddButton from '../../shared/Button/CloseAddButton.vue';
-import SubsectionMenu from '../Subsection/SubsectionMenu.vue';
-import { Section } from '../../../models/Section';
-import type { PropType } from 'vue';
-export default {
-    name: 'CreateSectionModal',
-    props: {
-        showModal: {
-            type: Boolean,
-            required: true,
+    import CloseAddButton from '../../shared/Button/CloseAddButton.vue';
+    import SubsectionMenu from '../Subsection/SubsectionMenu.vue';
+    import { Section } from '../../../models/Section';
+    import type { PropType } from 'vue';
+    export default {
+        name: 'CreateSectionModal',
+        props: {
+            showModal: {
+                type: Boolean,
+                required: true,
+            },
         },
-    },
-    components: { SubsectionMenu, CloseAddButton },
+        components: { SubsectionMenu, CloseAddButton },
 
-    data(): { section: Section } {
-        return this.initialState();
-    },
-    methods: {
-        initialState(): { section: Section } {
-            return {
-                section: new Section(),
-            };
+        data(): { section: Section } {
+            return this.initialState();
         },
-        resetWindow: function () {
-            Object.assign(this.$data, this.initialState());
+        methods: {
+            initialState(): { section: Section } {
+                return {
+                    section: new Section(),
+                };
+            },
+            resetWindow: function () {
+                Object.assign(this.$data, this.initialState());
+            },
         },
-    },
 
-    watch: {
-        showModal(newValue) {
-            if (newValue) {
-                this.resetWindow();
-            }
+        watch: {
+            showModal(newValue) {
+                if (newValue) {
+                    this.resetWindow();
+                }
+            },
         },
-    },
-};
+    };
 </script>
 <style>
-.subsection-move {
-    transition: opacity 0.5s ease;
-    transition: transform 0.5s ease;
-}
-.subsection-leave-active {
-    transition: all 0.5s ease;
-}
-.subsection-enter-active {
-    transition: all 0.5s ease;
-}
-.subsection-enter-from,
-.subsection-leave-to {
-    opacity: 0;
-    transform: translateX(-1rem);
-}
+    .subsection-move {
+        transition: opacity 0.5s ease;
+        transition: transform 0.5s ease;
+    }
+    .subsection-leave-active {
+        transition: all 0.5s ease;
+    }
+    .subsection-enter-active {
+        transition: all 0.5s ease;
+    }
+    .subsection-enter-from,
+    .subsection-leave-to {
+        opacity: 0;
+        transform: translateX(-1rem);
+    }
 
-.subsection-leave-active {
-    position: absolute;
-}
+    .subsection-leave-active {
+        position: absolute;
+    }
 </style>
