@@ -1,8 +1,8 @@
 ---
-const { href, text = "" } = Astro.props;
-
+const { href, text = '' } = Astro.props;
 ---
 
-<a class=" text-[var(--primary-color)] dark:text-white p-2 inline-block text-center font-medium uppercase transition-all duration-200 ease-in 
-hover:text-[var(--primary-color)] hover:font-bold hover:no-underline  dark:hover:text-gray-500
-focus:text-[var(--primary-color)] dark:focus:text-gray-500"  href={href}>{text}</a>
+<a
+    class="text-[var(--primary-color)] dark:text-white p-2 inline-block text-center font-medium uppercase transition-all duration-200 ease-in hover:text-[var(--primary-color)] hover:font-bold hover:no-underline dark:hover:text-gray-500 focus:text-[var(--primary-color)] dark:focus:text-gray-500"
+    href={href}>{text}</a
+>

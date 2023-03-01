@@ -1,9 +1,9 @@
 <template>
-  <div></div>
+    <div></div>
 </template>
 
 <script lang="ts">
 export default {
-  name: "SubsectionComponent",
+    name: 'SubsectionComponent',
 };
 </script>
