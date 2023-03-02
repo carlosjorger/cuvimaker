@@ -1,9 +1,9 @@
 ---
-import '../styles/global.css'
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
-import '@fontsource/montserrat'
-const { pageTitle } = Astro.props
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '@fontsource/montserrat';
+const { pageTitle } = Astro.props;
 ---
 
 <html lang="en">
@@ -23,11 +23,13 @@ const { pageTitle } = Astro.props
         />
     </head>
     <body
-        class="font-[Montserrat] text-[var(--primary-color)] bg-[#f5f0ff] dark:text-white dark:bg-[#130624]"
+        class="font-[Montserrat] text-[var(--primary-color)] bg-[#f5f0ff] dark:text-gray-300 dark:bg-[#130624] transition-colors duration-500 dark:transition-colors dark:duration-500"
     >
         <Header />
-        <main class="m-8">
-            <h1 class="text-4xl mt-2 mb-2 font-bold">{pageTitle}</h1>
+        <main class="m-10">
+            <h1 class="text-4xl mt-10 mb-10 font-bold dark:text-white">
+                {pageTitle}
+            </h1>
             <slot />
             <Footer />
         </main>
