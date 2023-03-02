@@ -1,13 +1,13 @@
 <template>
     <div
         v-scroll-if="subsection"
-        class="text-white w-full mt-3 p-4 rounded-lg transition-all duration-500 bg-[var(--primary-color)]"
+        class="mt-3 w-full rounded-lg bg-[var(--primary-color)] p-4 text-white transition-all duration-500"
         :class="{
             shake: shake,
         }"
     >
         <div>
-            <div class="flex justify-between items-center">
+            <div class="flex items-center justify-between">
                 <close-add-button
                     v-on:click="addRemoveSubSection()"
                     :closeButton="!subsection.last"

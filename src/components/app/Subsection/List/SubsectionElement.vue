@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex justify-end items-center m-2 rounded-lg p-1 border-solid border-white w-11/12 transition-all duration-300 ease-linear shadow-xl"
+        class="m-2 flex w-11/12 items-center justify-end rounded-lg border-solid border-white p-1 shadow-xl transition-all duration-300 ease-linear"
         :class="{
             ['border-4']: editingElement && selecting && editing,
             ['bg-[#664596]']: selecting && editing,
@@ -11,7 +11,7 @@
         <input
             ref="fileInput"
             v-model="currentElement"
-            class="pointer-events-none bg-inherit w-full p-2 text-white focus:outline-none"
+            class="pointer-events-none w-full bg-inherit p-2 text-white focus:outline-none"
             :class="{
                 ['pointer-events-auto']: editingElement && selecting && editing,
             }"

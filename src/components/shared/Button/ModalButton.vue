@@ -1,7 +1,7 @@
 <template>
     <button
         type="submit"
-        class="text-[var(--primary-color)] bg-white p-2 w-5/12 mt-2 rounded-lg transition-colors duration-500"
+        class="mt-2 w-5/12 rounded-lg bg-white p-2 text-[var(--primary-color)] transition-colors duration-500"
         v-on:click="saveSubSection"
     >
         {{ name }}

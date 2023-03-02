@@ -1,10 +1,10 @@
 <template>
     <div
-        class="flex fixed top-0 left-0 right-0 bottom-0 justify-self-center bg-[#000000da] items-center justify-around h-full"
+        class="fixed top-0 left-0 right-0 bottom-0 flex h-full items-center justify-around justify-self-center bg-[#000000da]"
     >
-        <div class="flex flex-col m-0 bg-white section-card">
-            <header class="flex mb-2 justify-between items-center">
-                <h3 class="text-[var(--primary-color)] text-2xl font-semibold">
+        <div class="section-card m-0 flex flex-col bg-white">
+            <header class="mb-2 flex items-center justify-between">
+                <h3 class="text-2xl font-semibold text-[var(--primary-color)]">
                     Add a Section
                 </h3>
                 <close-add-button
@@ -17,7 +17,7 @@
             <div class="mb-2 box-border">
                 <input
                     v-model="section.name"
-                    class="mt-2 p-2 text-[var(--primary-color)] font-semibold focus:border-4 placeholder:text-[var(--primary-color)] placeholder:text-lg border-solid border-[var(--primary-color)] border-2 w-full rounded-3xl shadow-xl transition-all duration-300"
+                    class="mt-2 w-full rounded-3xl border-2 border-solid border-[var(--primary-color)] p-2 font-semibold text-[var(--primary-color)] shadow-xl transition-all duration-300 placeholder:text-lg placeholder:text-[var(--primary-color)] focus:border-4"
                     placeholder="Section Name"
                     type="text"
                 />
@@ -25,7 +25,7 @@
             <div class="mb-2 box-border">
                 <transition-group
                     name="subsection"
-                    class="block h-96 overflow-scroll overflow-x-hidden relative p-5"
+                    class="relative block h-96 overflow-scroll overflow-x-hidden p-5"
                     tag="div"
                 >
                     <subsection-menu
@@ -39,7 +39,7 @@
             </div>
             <button
                 v-on:click="$emit('addSection', section)"
-                class="p-2 mx-auto w-full"
+                class="mx-auto w-full p-2"
                 @click="$emit('close-modal')"
             >
                 Add Section

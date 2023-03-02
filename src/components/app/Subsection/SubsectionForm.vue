@@ -1,12 +1,12 @@
 <template>
     <input
         v-model="value"
-        class="block w-full mt-2 bg-inherit border-white text-white placeholder-gray-500 focus:outline-none transition-all duration-300"
+        class="mt-2 block w-full border-white bg-inherit text-white placeholder-gray-500 transition-all duration-300 focus:outline-none"
         v-if="editing || value"
         :class="{
-            ['border-solid border-b-4  pointer-events-auto shadow-xl ']:
+            ['pointer-events-auto border-b-4  border-solid shadow-xl ']:
                 editing,
-            ['border-solid border-b-0  pointer-events-none shadow-none ']:
+            ['pointer-events-none border-b-0  border-solid shadow-none ']:
                 !editing,
         }"
         type="text"

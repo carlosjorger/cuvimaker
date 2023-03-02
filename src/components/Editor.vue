@@ -21,32 +21,32 @@
     </section>
 </template>
 <script lang="ts">
-import type { Section } from '../models/Section'
-import CreateSectionModal from './app/Section/CreateSectionModal.vue'
-import SectionComponent from './app/SectionView/SectionComponent.vue'
-export default {
-    components: { CreateSectionModal, SectionComponent },
-    data() {
-        return {
-            showModal: false,
-            sections: [] as Section[],
-        }
-    },
-}
+    import type { Section } from '../models/Section';
+    import CreateSectionModal from './app/Section/CreateSectionModal.vue';
+    import SectionComponent from './app/SectionView/SectionComponent.vue';
+    export default {
+        components: { CreateSectionModal, SectionComponent },
+        data() {
+            return {
+                showModal: false,
+                sections: [] as Section[],
+            };
+        },
+    };
 </script>
 <style>
-article {
-    width: 40%;
-}
-.createSectionModal-leave-active {
-    transition: all 0.5s ease;
-}
-.createSectionModal-enter-active {
-    transition: all 0.5s ease;
-}
-.createSectionModal-leave-to,
-.createSectionModal-enter-from {
-    transform: translateY(-1rem);
-    opacity: 0;
-}
+    article {
+        width: 40%;
+    }
+    .createSectionModal-leave-active {
+        transition: all 0.5s ease;
+    }
+    .createSectionModal-enter-active {
+        transition: all 0.5s ease;
+    }
+    .createSectionModal-leave-to,
+    .createSectionModal-enter-from {
+        transform: translateY(-1rem);
+        opacity: 0;
+    }
 </style>

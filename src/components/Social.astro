@@ -4,7 +4,7 @@ const { platform, username, icon, extraPath = '' } = Astro.props;
 ---
 
 <a
-    class="text-[var(--primary-color)] w-16 hover:text-[var(--anchor-color)] dark:text-zinc-400 dark:hover:text-[var(--anchor-color)] transition-all duration-500"
+    class="text-[var(--primary-color)] w-16 hover:text-[var(--anchor-color)] dark:text-zinc-400 dark:hover:text-[var(--anchor-color)] transition-colors duration-500 dark:transition-colors dark:duration-500"
     href={`https://www.${platform}.com${extraPath}/${username}`}
 >
     <Icon name={icon} />

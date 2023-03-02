@@ -7,7 +7,7 @@
             padding: `${(size ?? 0) / 12}rem`,
         }"
         type="button"
-        class="rounded-full bg-white flex relative w-12 h-12 p-1 m-0.5 cursor-pointer transition-all duration-300 ease-in justify-evenly items-center"
+        class="relative m-0.5 flex h-12 w-12 cursor-pointer items-center justify-evenly rounded-full bg-white p-1 transition-all duration-300 ease-in"
     >
         <slot></slot>
     </button>

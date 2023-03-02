@@ -1,10 +1,10 @@
 <template>
     <div
-        class="flex bg-[var(--primary-form-color)] rounded-3xl justify-between mt-2 p-1.5 border-solid border-white border-2 shadow-xl"
+        class="mt-2 flex justify-between rounded-3xl border-2 border-solid border-white bg-[var(--primary-form-color)] p-1.5 shadow-xl"
         v-if="editing"
     >
         <input
-            class="bg-inherit text-white p-1 w-4/5 outline-none"
+            class="w-4/5 bg-inherit p-1 text-white outline-none"
             v-model="newElement"
             placeholder="New element"
         />
