@@ -37,13 +37,12 @@
                     />
                 </transition-group>
             </div>
-            <button
-                v-on:click="$emit('addSection', section)"
+            <BasicButton
                 class="mx-auto w-full p-2"
+                :name="'Add Section'"
+                v-on:click="$emit('addSection', section)"
                 @click="$emit('close-modal')"
-            >
-                Add Section
-            </button>
+            />
         </div>
     </div>
 </template>
@@ -51,7 +50,8 @@
     import CloseAddButton from '../../shared/Button/CloseAddButton.vue';
     import SubsectionMenu from '../Subsection/SubsectionMenu.vue';
     import { Section } from '../../../models/Section';
-    import type { PropType } from 'vue';
+    import BasicButton from '../../shared/Button/BasicButton.vue';
+
     export default {
         name: 'CreateSectionModal',
         props: {
@@ -60,7 +60,7 @@
                 required: true,
             },
         },
-        components: { SubsectionMenu, CloseAddButton },
+        components: { SubsectionMenu, CloseAddButton, BasicButton },
 
         data(): { section: Section } {
             return this.initialState();

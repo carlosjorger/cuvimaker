@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="save-btn">
-            <button @click="showModal = true">Add Section</button>
+            <BasicButton :name="'Add Section'" @click="showModal = true" />
         </div>
         <transition name="createSectionModal">
             <create-section-modal
@@ -24,8 +24,9 @@
     import type { Section } from '../models/Section';
     import CreateSectionModal from './app/Section/CreateSectionModal.vue';
     import SectionComponent from './app/SectionView/SectionComponent.vue';
+    import BasicButton from './shared/Button/BasicButton.vue';
     export default {
-        components: { CreateSectionModal, SectionComponent },
+        components: { CreateSectionModal, SectionComponent, BasicButton },
         data() {
             return {
                 showModal: false,
