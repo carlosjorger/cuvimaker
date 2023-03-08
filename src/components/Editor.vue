@@ -1,8 +1,7 @@
 <template>
     <section>
-        <div class="save-btn">
-            <BasicButton :name="'Add Section'" @click="showModal = true" />
-        </div>
+        <BasicButton :name="'Add Section'" @click="showModal = true" />
+
         <transition name="createSectionModal">
             <create-section-modal
                 @addSection="(section:Section)=>{

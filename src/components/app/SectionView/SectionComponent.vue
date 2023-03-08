@@ -1,6 +1,6 @@
 <template>
     <article
-        class="mt-4 rounded-md border-4 border-solid border-[var(--primary-color)] bg-[#f6f4fb] p-4 dark:border-zinc-300 dark:bg-[#190f35]"
+        class="mt-4 rounded-md border-4 border-solid border-[var(--primary-color)] bg-[#f6f4fb] p-4 shadow-xl dark:border-zinc-300 dark:bg-[#190f35]"
     >
         <header>
             <h3

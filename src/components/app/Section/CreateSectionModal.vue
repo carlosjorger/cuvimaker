@@ -21,6 +21,9 @@
                     placeholder="Section Name"
                     type="text"
                 />
+                <div v-for="error of v$.section.name.$errors" :key="error.$uid">
+                    <div>{{ error.$message }}</div>
+                </div>
             </div>
             <div class="mb-2 box-border">
                 <transition-group
@@ -40,8 +43,8 @@
             <BasicButton
                 class="mx-auto w-full p-2"
                 :name="'Add Section'"
-                v-on:click="$emit('addSection', section)"
-                @click="$emit('close-modal')"
+                v-on:click="addSection(section)"
+                @click="closeModal()"
             />
         </div>
     </div>
@@ -51,6 +54,9 @@
     import SubsectionMenu from '../Subsection/SubsectionMenu.vue';
     import { Section } from '../../../models/Section';
     import BasicButton from '../../shared/Button/BasicButton.vue';
+    import { useVuelidate } from '@vuelidate/core';
+    import { required } from '@vuelidate/validators';
+    import console from 'console';
 
     export default {
         name: 'CreateSectionModal',
@@ -61,7 +67,11 @@
             },
         },
         components: { SubsectionMenu, CloseAddButton, BasicButton },
-
+        setup() {
+            return {
+                v$: useVuelidate({ $scope: false }),
+            };
+        },
         data(): { section: Section } {
             return this.initialState();
         },
@@ -74,8 +84,28 @@
             resetWindow: function () {
                 Object.assign(this.$data, this.initialState());
             },
+            addSection: function (section: Section) {
+                this.v$.$validate();
+                if (this.v$.$error) {
+                    return;
+                }
+                this.$emit('addSection', section);
+            },
+            closeModal: function () {
+                this.v$.$validate();
+                if (this.v$.$error) {
+                    return;
+                }
+                this.$emit('close-modal');
+            },
         },
-
+        validations: {
+            section: {
+                name: {
+                    required,
+                },
+            },
+        },
         watch: {
             showModal(newValue) {
                 if (newValue) {
