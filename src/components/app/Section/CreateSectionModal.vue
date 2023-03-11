@@ -44,7 +44,6 @@
                 class="mx-auto w-full p-2"
                 :name="'Add Section'"
                 v-on:click="addSection(section)"
-                @click="closeModal()"
             />
         </div>
     </div>
@@ -55,8 +54,8 @@
     import { Section } from '../../../models/Section';
     import BasicButton from '../../shared/Button/BasicButton.vue';
     import { useVuelidate } from '@vuelidate/core';
-    import { required } from '@vuelidate/validators';
-    import console from 'console';
+    import { helpers, required } from '@vuelidate/validators';
+    import { inject } from 'vue';
 
     export default {
         name: 'CreateSectionModal',
@@ -72,10 +71,16 @@
                 v$: useVuelidate({ $scope: false }),
             };
         },
-        data(): { section: Section } {
-            return this.initialState();
+        data(): { section: Section; sections: Section[] } {
+            return {
+                ...this.initialState(),
+                sections: inject('sections', [] as Section[]),
+            };
         },
         methods: {
+            anySectionWithThisName() {
+                return !this.sections.some((s) => s.name == this.section.name);
+            },
             initialState(): { section: Section } {
                 return {
                     section: new Section(),
@@ -89,6 +94,7 @@
                 if (this.v$.$error) {
                     return;
                 }
+                this.closeModal();
                 this.$emit('addSection', section);
             },
             closeModal: function () {
@@ -99,12 +105,18 @@
                 this.$emit('close-modal');
             },
         },
-        validations: {
-            section: {
-                name: {
-                    required,
+        validations() {
+            return {
+                section: {
+                    name: {
+                        required,
+                        anySectionWithThisName: helpers.withMessage(
+                            'Cannot have a Section with the same name',
+                            this.anySectionWithThisName
+                        ),
+                    },
                 },
-            },
+            };
         },
         watch: {
             showModal(newValue) {

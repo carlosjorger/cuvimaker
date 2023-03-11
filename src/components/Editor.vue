@@ -13,10 +13,14 @@
                 @close-modal="showModal = false"
             />
         </transition>
-
-        <div v-for="section in sections">
-            <section-component :section="section" />
-        </div>
+        <transition-group name="sectionComponent" class="block" tag="div">
+            <section-component
+                v-for="(section, index) in sections"
+                :section="section"
+                :key="section.name"
+                @delete-section="deleteSection(index)"
+            />
+        </transition-group>
     </section>
 </template>
 <script lang="ts">
@@ -24,6 +28,8 @@
     import CreateSectionModal from './app/Section/CreateSectionModal.vue';
     import SectionComponent from './app/SectionView/SectionComponent.vue';
     import BasicButton from './shared/Button/BasicButton.vue';
+    import { computed } from 'vue';
+
     export default {
         components: { CreateSectionModal, SectionComponent, BasicButton },
         data() {
@@ -31,6 +37,16 @@
                 showModal: false,
                 sections: [] as Section[],
             };
+        },
+        provide() {
+            return {
+                sections: computed(() => this.sections),
+            };
+        },
+        methods: {
+            deleteSection(index: number) {
+                this.sections.splice(index, 1);
+            },
         },
     };
 </script>
@@ -48,5 +64,23 @@
     .createSectionModal-enter-from {
         transform: translateY(-1rem);
         opacity: 0;
+    }
+
+    .sectionComponent-move {
+        transition: all 0.5s ease;
+    }
+    .sectionComponent-leave-active {
+        transition: all 0.5s ease;
+    }
+    .sectionComponent-enter-active {
+        transition: all 0.5s ease;
+    }
+    .sectionComponent-enter-from,
+    .sectionComponent-leave-to {
+        opacity: 0;
+        transform: translateX(-1rem);
+    }
+    .sectionComponent-leave-active {
+        position: absolute;
     }
 </style>
