@@ -95,7 +95,8 @@
                     return;
                 }
                 this.closeModal();
-                this.$emit('addSection', section);
+                this.sections.push(section);
+                this.v$.$reset();
             },
             closeModal: function () {
                 this.v$.$validate();

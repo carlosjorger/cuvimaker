@@ -5,14 +5,14 @@ import ThemeIcon from './ThemeIcon.astro';
 
 <header>
     <nav
-        class="flex justify-between p-2 bg-[#f5f0ff] dark:bg-[#190f35] shadow-md transition-colors duration-500 dark:transition-colors dark:duration-500"
+        class="flex justify-between p-2 bg-[#f5f0ff] dark:bg-[#190f35] shadow-md transition-colors dark:transition-colors dark:duration-500"
     >
         <Navigation />
         <ThemeIcon />
     </nav>
 </header>
 
-<script>
+<script is:inline>
     const theme = (() => {
         if (
             typeof localStorage !== 'undefined' &&
