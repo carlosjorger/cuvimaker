@@ -1,6 +1,14 @@
 <template>
     <section>
-        <BasicButton :name="'Add Section'" @click="showModal = true" />
+        <BasicButton
+            :name="'Add Section'"
+            @click="
+                () => {
+                    showModal = true;
+                    editIndex = undefined;
+                }
+            "
+        />
 
         <transition name="createSectionModal">
             <create-section-modal
@@ -8,6 +16,7 @@
                 :sections="sections"
                 :showModal="showModal"
                 @close-modal="showModal = false"
+                :editIndex="editIndex"
             />
         </transition>
         <transition-group name="sectionComponent" class="block" tag="div">
@@ -16,6 +25,12 @@
                 :section="section"
                 :key="section.name"
                 @delete-section="deleteSection(index)"
+                @edit-section="
+                    () => {
+                        showModal = true;
+                        editIndex = index;
+                    }
+                "
             />
         </transition-group>
     </section>
@@ -33,6 +48,7 @@
             return {
                 showModal: false,
                 sections: [] as Section[],
+                editIndex: undefined as number | undefined,
             };
         },
         provide() {

@@ -41,9 +41,16 @@
                 </transition-group>
             </div>
             <BasicButton
+                v-if="!isEditing"
                 class="mx-auto w-full p-2"
                 :name="'Add Section'"
                 v-on:click="addSection(section)"
+            />
+            <BasicButton
+                v-if="isEditing"
+                class="mx-auto w-full p-2"
+                :name="'Edit Section'"
+                v-on:click="updateSection"
             />
         </div>
     </div>
@@ -64,6 +71,9 @@
                 type: Boolean,
                 required: true,
             },
+            editIndex: {
+                type: Number,
+            },
         },
         components: { SubsectionMenu, CloseAddButton, BasicButton },
         setup() {
@@ -83,7 +93,9 @@
             },
             initialState(): { section: Section } {
                 return {
-                    section: new Section(),
+                    section: !this.isEditing
+                        ? new Section()
+                        : this.sections[this.editIndex!].copy(),
                 };
             },
             resetWindow: function () {
@@ -105,6 +117,17 @@
                 }
                 this.$emit('close-modal');
             },
+            updateSection: function () {
+                if (this.isEditing) {
+                    this.v$.$validate();
+                    if (this.v$.$error) {
+                        return;
+                    }
+                    this.closeModal();
+                    this.sections[this.editIndex!] = this.section;
+                    this.v$.$reset();
+                }
+            },
         },
         validations() {
             return {
@@ -124,6 +147,14 @@
                 if (newValue) {
                     this.resetWindow();
                 }
+            },
+        },
+        computed: {
+            isEditing: {
+                get() {
+                    return this.editIndex != undefined;
+                },
+                set() {},
             },
         },
     };

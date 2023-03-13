@@ -41,7 +41,11 @@
                     <a
                         class="w-16 text-white transition-colors duration-500 hover:text-[var(--anchor-color)] dark:text-[#190f35] dark:hover:text-[var(--anchor-color)]"
                     >
-                        <Icon icon="material-symbols:edit" width="22" />
+                        <Icon
+                            icon="material-symbols:edit"
+                            width="22"
+                            @click="$emit('edit-section')"
+                        />
                     </a>
                 </div>
             </footer>
