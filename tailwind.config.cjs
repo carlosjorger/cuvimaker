@@ -5,7 +5,15 @@ module.exports = {
     theme: {
         extend: {
             backgroundImage: {
-                anchor: 'linear-gradient(var(--anchor-color),var(--anchor-color))',
+                anchorImage:
+                    'linear-gradient(var(--anchor-color),var(--anchor-color))',
+            },
+            colors: {
+                primary: 'var(--primary-color)',
+                anchor: 'var(--anchor-color)',
+                ['dark-primary']: '#190f35',
+                ['dark-primary-200']: '#130624',
+                ['dark-primary-300']: '#0c071a',
             },
             translate: ['dark'],
         },

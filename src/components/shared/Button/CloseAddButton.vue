@@ -10,13 +10,13 @@
             :style="{
                 backgroundColor: lineColor,
             }"
-            class="absolute h-1 w-1/2 rotate-90 rounded-sm bg-[var(--primary-color)] transition-all duration-300"
+            class="absolute h-1 w-1/2 rotate-90 rounded-sm bg-primary transition-all duration-300"
         ></div>
         <div
             :style="{
                 backgroundColor: lineColor,
             }"
-            class="absolute h-1 w-1/2 rotate-180 rounded-sm bg-[var(--primary-color)] transition-all duration-300"
+            class="absolute h-1 w-1/2 rotate-180 rounded-sm bg-primary transition-all duration-300"
         ></div>
     </circle-button>
 </template>

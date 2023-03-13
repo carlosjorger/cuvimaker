@@ -1,18 +1,16 @@
 <template>
     <article
-        class="mt-4 w-5/12 rounded-md border-4 border-solid border-[var(--primary-color)] bg-[#f6f4fb] shadow-xl dark:border-zinc-300 dark:bg-[#190f35]"
+        class="mt-4 w-5/12 rounded-md border-4 border-solid border-primary bg-[#f6f4fb] shadow-xl dark:border-zinc-300 dark:bg-dark-primary"
     >
         <div class="p-4" @click="changeSetting">
             <header>
                 <h3
-                    class="text-3xl font-extrabold text-[var(--primary-color)] dark:text-white"
+                    class="text-3xl font-extrabold text-primary dark:text-white"
                 >
                     {{ section?.name }}
                 </h3>
             </header>
-            <hr
-                class="mt-1 h-1 rounded-md bg-[var(--primary-color)] dark:bg-zinc-300"
-            />
+            <hr class="mt-1 h-1 rounded-md bg-primary dark:bg-zinc-300" />
 
             <SubsectionComponent
                 v-for="(subsection, index) in section?.subsections"
@@ -21,7 +19,7 @@
             />
         </div>
         <div
-            class="w-full overflow-hidden bg-[var(--primary-color)] transition-all duration-500 dark:bg-zinc-300"
+            class="w-full overflow-hidden bg-primary transition-all duration-500 dark:bg-zinc-300"
             :class="{
                 ['h-10']: showSetting,
                 ['h-0']: !showSetting,
@@ -30,7 +28,7 @@
             <footer class="flex justify-end">
                 <div class="flex w-20 justify-between p-2">
                     <a
-                        class="w-16 text-white transition-colors duration-500 hover:text-[var(--anchor-color)] dark:text-[#190f35] dark:hover:text-[var(--anchor-color)]"
+                        class="w-16 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
                     >
                         <Icon
                             @click="$emit('delete-section')"
@@ -39,7 +37,7 @@
                         />
                     </a>
                     <a
-                        class="w-16 text-white transition-colors duration-500 hover:text-[var(--anchor-color)] dark:text-[#190f35] dark:hover:text-[var(--anchor-color)]"
+                        class="w-16 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
                     >
                         <Icon
                             icon="material-symbols:edit"

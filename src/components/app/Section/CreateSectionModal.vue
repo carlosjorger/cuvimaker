@@ -2,9 +2,13 @@
     <div
         class="fixed top-0 left-0 right-0 bottom-0 flex h-full items-center justify-around justify-self-center bg-[#000000da]"
     >
-        <div class="section-card m-0 flex flex-col bg-white">
+        <div
+            class="section-card m-0 flex flex-col bg-white dark:bg-dark-primary-200"
+        >
             <header class="mb-2 flex items-center justify-between">
-                <h3 class="text-2xl font-semibold text-[var(--primary-color)]">
+                <h3
+                    class="text-2xl font-semibold text-primary dark:text-zinc-300"
+                >
                     Add a Section
                 </h3>
                 <close-add-button
@@ -17,7 +21,7 @@
             <div class="mb-2 box-border">
                 <input
                     v-model="section.name"
-                    class="mt-2 w-full rounded-3xl border-2 border-solid border-[var(--primary-color)] p-2 font-semibold text-[var(--primary-color)] shadow-xl transition-all duration-300 placeholder:text-lg placeholder:text-[var(--primary-color)] focus:border-4"
+                    class="mt-2 w-full rounded-3xl border-2 border-solid border-primary p-2 font-semibold text-primary shadow-xl transition-all duration-300 placeholder:text-lg placeholder:text-primary focus:border-4 dark:border-zinc-300 dark:bg-dark-primary-200 dark:text-zinc-300 dark:placeholder:text-zinc-300"
                     placeholder="Section Name"
                     type="text"
                 />
