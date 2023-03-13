@@ -1,7 +1,7 @@
 <template>
     <button
         type="submit"
-        class="mt-2 w-5/12 rounded-3xl bg-white p-2 text-lg font-extrabold text-primary transition-colors duration-500"
+        class="mt-2 w-5/12 rounded-3xl bg-white p-2 text-lg font-extrabold text-primary transition-colors duration-500 dark:border-4 dark:bg-dark-primary dark:text-zinc-300"
     >
         {{ name }}
     </button>

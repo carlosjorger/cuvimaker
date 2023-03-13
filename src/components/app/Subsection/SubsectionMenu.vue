@@ -1,7 +1,7 @@
 <template>
     <div
         v-scroll-if="subsection"
-        class="mt-3 w-full rounded-lg bg-primary p-4 text-white shadow-xl shadow-gray-600 transition-all duration-500 dark:shadow-lg dark:shadow-zinc-500"
+        class="mt-3 w-full rounded-lg bg-primary p-4 text-white shadow-xl shadow-gray-600 transition-all duration-500 dark:bg-dark-primary dark:shadow-lg dark:shadow-zinc-500"
         :class="{
             shake: shake,
         }"

@@ -1,6 +1,6 @@
 <template>
     <article
-        class="mt-4 w-5/12 rounded-md border-4 border-solid border-primary bg-[#f6f4fb] shadow-xl dark:border-zinc-300 dark:bg-dark-primary"
+        class="mt-4 w-5/12 rounded-md border-4 border-solid border-primary bg-[#f6f4fb] shadow-xl dark:border-zinc-300 dark:bg-dark-primary-300"
     >
         <div class="p-4" @click="changeSetting">
             <header>

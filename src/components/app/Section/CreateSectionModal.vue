@@ -15,7 +15,7 @@
                     v-on:click="$emit('close-modal')"
                     :closeButton="true"
                     :lineColor="'#FFFFFF'"
-                    :buttonColor="'var(--primary-color)'"
+                    :buttonColor="'bg-[var(--primary-color)] dark:bg-dark-primary'"
                 />
             </header>
             <div class="mb-2 box-border">

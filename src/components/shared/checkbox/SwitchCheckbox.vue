@@ -66,7 +66,9 @@
     .one.skin {
         background-color: var(--primary-color);
     }
-
+    .dark .one.skin {
+        background-color: #190f35;
+    }
     .two.skin {
         background-color: rgb(185, 185, 185);
 
