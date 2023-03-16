@@ -5,7 +5,9 @@
         class="flex flex-row items-center"
         v-if="subsection?.subsectionTimeInterval != null"
     >
-        <Icon icon="material-symbols:date-range" width="25" color="white" />
+        <i class="text-primary dark:text-white">
+            <Icon icon="material-symbols:date-range" width="25" />
+        </i>
         &nbsp;
         <div>
             {{

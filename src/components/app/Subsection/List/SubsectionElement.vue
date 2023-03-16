@@ -3,8 +3,9 @@
         class="m-2 flex w-11/12 items-center justify-end rounded-lg border-solid border-white p-1 shadow-xl transition-all duration-300 ease-linear"
         :class="{
             ['border-4']: editingElement && selecting && editing,
-            ['bg-[#664596]']: selecting && editing,
-            ['bg-[var(--primary-form-color)] ']: !selecting || !editing,
+            ['bg-[#664596] dark:bg-[#49387a]']: selecting && editing,
+            ['bg-[var(--primary-form-color)] dark:bg-dark-primary-light']:
+                !selecting || !editing,
         }"
         @click="selectElement"
     >
