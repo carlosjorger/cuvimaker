@@ -9,7 +9,7 @@
                 <h3
                     class="text-2xl font-semibold text-primary dark:text-zinc-300"
                 >
-                    Add a Section
+                    {{ isEditing ? 'Edit Section' : 'Add a Section' }}
                 </h3>
                 <close-add-button
                     v-on:click="$emit('close-modal')"
@@ -93,7 +93,9 @@
         },
         methods: {
             anySectionWithThisName() {
-                return !this.sections.some((s) => s.name == this.section.name);
+                return !this.sections.some(
+                    (s, i) => i != this.editIndex && s.name == this.section.name
+                );
             },
             initialState(): { section: Section } {
                 return {
