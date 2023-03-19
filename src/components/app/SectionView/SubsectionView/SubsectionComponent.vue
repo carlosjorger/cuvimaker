@@ -1,8 +1,8 @@
 <template>
-    <h4 class="mt-2 text-xl font-semibold">{{ subsection?.title }}</h4>
-    <h5 class="mt-2 text-xl font-extrabold">{{ subsection?.text }}</h5>
+    <h4 class="mt-1 text-xl font-semibold">{{ subsection?.title }}</h4>
+    <h5 class="mt-1 text-xl font-extrabold">{{ subsection?.text }}</h5>
     <div
-        class="flex flex-row items-center"
+        class="mt-1 flex flex-row items-center p-1"
         v-if="subsection?.subsectionTimeInterval != null"
     >
         <i class="text-primary dark:text-white">
@@ -28,6 +28,17 @@
             }}
             {{ subsection?.subsectionTimeInterval?.dateTo?.getDate() }}
         </div>
+    </div>
+    <div>
+        <ul class="ml-6 list-disc">
+            <li
+                class="p-1"
+                v-for="(element, index) in subsection?.elements"
+                :key="index"
+            >
+                {{ element.name }}
+            </li>
+        </ul>
     </div>
 </template>
 
