@@ -21,27 +21,27 @@
         <div
             class="w-full overflow-hidden bg-primary transition-all duration-500 dark:bg-zinc-300"
             :class="{
-                ['h-10']: showSetting,
+                ['h-16']: showSetting,
                 ['h-0']: !showSetting,
             }"
         >
             <footer class="flex justify-end">
-                <div class="flex w-20 justify-between p-2">
+                <div class="flex w-36 justify-between p-2">
                     <a
-                        class="w-16 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
+                        class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
                     >
                         <Icon
                             @click="$emit('delete-section')"
                             icon="mdi:trash"
-                            width="22"
+                            width="36"
                         />
                     </a>
                     <a
-                        class="w-16 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
+                        class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
                     >
                         <Icon
                             icon="material-symbols:edit"
-                            width="22"
+                            width="36"
                             @click="$emit('edit-section')"
                         />
                     </a>
