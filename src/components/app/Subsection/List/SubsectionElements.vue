@@ -4,6 +4,7 @@
         v-if="editing"
     >
         <input
+            id="newElement"
             class="w-4/5 bg-inherit p-1 text-white outline-none"
             v-model="newElement"
             placeholder="New element"
@@ -68,6 +69,15 @@
             },
         },
         methods: {
+            changeTextArea() {
+                var input = document.getElementById(
+                    'newElement'
+                ) as HTMLInputElement | null;
+                if (input) {
+                    input!.style.height = '0px';
+                    input!.style.height = input?.scrollHeight + 'px';
+                }
+            },
             addElement() {
                 this.v$.$touch();
                 if (!this.v$.$error) {

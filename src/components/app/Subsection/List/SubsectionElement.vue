@@ -9,7 +9,7 @@
         }"
         @click="selectElement"
     >
-        <input
+        <!-- <input
             ref="fileInput"
             v-model="currentElement"
             class="pointer-events-none w-full bg-inherit p-2 text-white focus:outline-none"
@@ -17,8 +17,19 @@
                 ['pointer-events-auto']: editingElement && selecting && editing,
             }"
             type="text"
-        />
-
+        /> -->
+        <textarea
+            ref="fileInput"
+            :id="index.toString()"
+            v-model="currentElement"
+            class="pointer-events-none w-9/12 resize-none overflow-hidden border-0 bg-inherit p-2 text-white focus:outline-none"
+            :class="{
+                ['pointer-events-auto']: editingElement && selecting && editing,
+            }"
+            rows="1"
+            @input="changeTextArea"
+        ></textarea>
+        <div class="w-1/4"></div>
         <Transition>
             <div
                 v-if="selecting && editingElement"
@@ -110,6 +121,15 @@
             };
         },
         methods: {
+            changeTextArea() {
+                var textArea = document.getElementById(
+                    this.index.toString()
+                ) as HTMLInputElement | null;
+                if (textArea) {
+                    textArea!.style.height = '0px';
+                    textArea!.style.height = textArea?.scrollHeight + 'px';
+                }
+            },
             deleteElement() {
                 this.subsection.elements.splice(this.index, 1);
             },
