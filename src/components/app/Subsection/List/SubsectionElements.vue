@@ -3,13 +3,15 @@
         class="mt-2 flex justify-between rounded-3xl border-2 border-solid border-white bg-[var(--primary-form-color)] p-1.5 shadow-xl dark:bg-dark-primary-light"
         v-if="editing"
     >
-        <input
+        <textarea
             id="newElement"
-            class="w-4/5 bg-inherit p-1 text-white outline-none"
             v-model="newElement"
+            class="w-4/5 resize-none overflow-hidden bg-inherit p-2 text-white outline-none"
             placeholder="New element"
-        />
-        <close-add-button :size="2.5" v-on:click="addElement()" />
+            rows="1"
+            @input="changeTextArea"
+        ></textarea>
+        <close-add-button :size="2.2" v-on:click="addElement()" />
     </div>
     <!-- TODO close this error -->
     <div v-for="error of v$.newElement.$errors" :key="error.$uid">
@@ -67,6 +69,9 @@
             newElement: {
                 required,
             },
+        },
+        mounted() {
+            this.changeTextArea();
         },
         methods: {
             changeTextArea() {

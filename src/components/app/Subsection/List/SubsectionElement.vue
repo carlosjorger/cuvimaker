@@ -9,15 +9,6 @@
         }"
         @click="selectElement"
     >
-        <!-- <input
-            ref="fileInput"
-            v-model="currentElement"
-            class="pointer-events-none w-full bg-inherit p-2 text-white focus:outline-none"
-            :class="{
-                ['pointer-events-auto']: editingElement && selecting && editing,
-            }"
-            type="text"
-        /> -->
         <textarea
             ref="fileInput"
             :id="index.toString()"
@@ -119,6 +110,10 @@
             return {
                 fileInput,
             };
+        },
+        mounted() {
+            console.log('a');
+            this.changeTextArea();
         },
         methods: {
             changeTextArea() {
