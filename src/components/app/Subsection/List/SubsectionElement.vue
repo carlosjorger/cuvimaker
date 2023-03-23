@@ -10,7 +10,7 @@
         @click="selectElement"
     >
         <textarea
-            ref="fileInput"
+            ref="element"
             :id="index.toString()"
             v-model="currentElement"
             class="pointer-events-none w-9/12 resize-none overflow-hidden border-0 bg-inherit p-2 text-white focus:outline-none"
@@ -111,15 +111,11 @@
                 fileInput,
             };
         },
-        mounted() {
-            console.log('a');
-            this.changeTextArea();
-        },
+
         methods: {
             changeTextArea() {
-                var textArea = document.getElementById(
-                    this.index.toString()
-                ) as HTMLInputElement | null;
+                var textArea = this.$refs.element as HTMLInputElement | null;
+
                 if (textArea) {
                     textArea!.style.height = '0px';
                     textArea!.style.height = textArea?.scrollHeight + 'px';
@@ -150,6 +146,7 @@
             },
         },
         mounted() {
+            this.changeTextArea();
             this.resetElementValue();
         },
         watch: {
@@ -162,6 +159,11 @@
                 if (!newValue) {
                     this.resetElementValue();
                 }
+            },
+            currentElement() {
+                this.$nextTick(() => {
+                    this.changeTextArea();
+                });
             },
         },
     };
