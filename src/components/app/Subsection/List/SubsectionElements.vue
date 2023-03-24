@@ -42,7 +42,7 @@
     import { Subsection } from '../../../../models/Subsection';
     import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
     import SubsectionElement from './SubsectionElement.vue';
-    import { required } from '@vuelidate/validators';
+    import { required, helpers } from '@vuelidate/validators';
     import { useVuelidate } from '@vuelidate/core';
     import { inject } from 'vue';
     export default {
@@ -65,15 +65,16 @@
             };
         },
 
-        validations: {
-            newElement: {
-                required,
-            },
-        },
         mounted() {
             this.changeTextArea();
         },
         methods: {
+            hasAtLeastOneElement() {
+                return (
+                    this.subsection.elements.length > 0 ||
+                    this.newElement.length > 0
+                );
+            },
             changeTextArea() {
                 var input = document.getElementById(
                     'newElement'
@@ -88,11 +89,23 @@
                 if (!this.v$.$error) {
                     this.v$.$reset();
                     this.addElementIntoSubsection(this.newElement);
+                    this.newElement = '';
                 }
             },
             addElementIntoSubsection(newElement: string) {
                 this.subsection.addElement(newElement);
             },
+        },
+
+        validations() {
+            return {
+                newElement: {
+                    hasAtLeastOneElement: helpers.withMessage(
+                        "Doesn't has a least one element",
+                        this.hasAtLeastOneElement
+                    ),
+                },
+            };
         },
     };
 </script>

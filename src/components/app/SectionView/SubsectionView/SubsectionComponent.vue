@@ -1,5 +1,5 @@
 <template>
-    <h4 class="mt-1 text-xl font-semibold">{{ subsection?.title }}</h4>
+    <h4 class="mt-2 text-2xl font-semibold">{{ subsection?.title }}</h4>
     <h5 class="mt-1 text-xl font-extrabold">{{ subsection?.text }}</h5>
     <div
         class="mt-1 flex flex-row items-center p-1"
