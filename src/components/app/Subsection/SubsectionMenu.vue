@@ -78,7 +78,7 @@
     import SwitchCheckbox from '../../shared/checkbox/SwitchCheckbox.vue';
     import SubsectionTimeIntervalSection from './TimeInterval/SubsectionTimeIntervalSection.vue';
     import ModalButton from '../../shared/Button/ModalButton.vue';
-    import { computed } from 'vue';
+    import { computed, inject } from 'vue';
     import SubsectionListSection from './List/SubsectionListSection.vue';
     const emitter = mitt();
     export default {
@@ -125,12 +125,11 @@
         },
         data() {
             return {
-                subsection: new Subsection(),
-                hasElementList: false,
-                editing: false,
-                shake: false,
+                ...this.initialState(),
+                showModal: inject('showModal', false),
             };
         },
+
         provide() {
             return {
                 subsection: computed(() => this.subsection),
@@ -138,8 +137,28 @@
             };
         },
         methods: {
+            initialState(): {
+                subsection: Subsection;
+                hasElementList: boolean;
+                editing: boolean;
+                shake: boolean;
+            } {
+                return {
+                    subsection: this.prevSubsection.isEmpty
+                        ? new Subsection()
+                        : this.prevSubsection.copy(),
+                    hasElementList: false,
+                    editing: false,
+                    shake: false,
+                };
+            },
+            resetWindow: function () {
+                this.v$.$reset();
+                Object.assign(this.$data, this.initialState());
+            },
             addRemoveSubSection() {
                 if (this.subsection.last) {
+                    this.resetWindow();
                     this.addSubSection();
                 } else {
                     this.removeSubsection();
@@ -219,6 +238,9 @@
             },
             'prevSubsection.last'(newValue: boolean) {
                 this.subsection.last = newValue;
+            },
+            section(newValue) {
+                this.resetWindow();
             },
         },
     };

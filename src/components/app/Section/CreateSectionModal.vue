@@ -66,7 +66,7 @@
     import BasicButton from '../../shared/Button/BasicButton.vue';
     import { useVuelidate } from '@vuelidate/core';
     import { helpers, required } from '@vuelidate/validators';
-    import { inject } from 'vue';
+    import { inject, computed } from 'vue';
 
     export default {
         name: 'CreateSectionModal',
@@ -89,6 +89,11 @@
             return {
                 ...this.initialState(),
                 sections: inject('sections', [] as Section[]),
+            };
+        },
+        provide() {
+            return {
+                showModal: computed(() => this.showModal),
             };
         },
         methods: {

@@ -58,10 +58,9 @@
         },
         data() {
             return {
+                ...this.initialState(),
                 editing: inject('editing', false),
                 subsection: inject('subsection', new Subsection()),
-                newElement: '',
-                selectedElement: true ? undefined : 0,
             };
         },
 
@@ -69,6 +68,15 @@
             this.changeTextArea();
         },
         methods: {
+            initialState(): {
+                newElement: String;
+                selectedElement: number | undefined;
+            } {
+                return {
+                    newElement: '',
+                    selectedElement: true ? undefined : 0,
+                };
+            },
             hasAtLeastOneElement() {
                 return (
                     this.subsection.elements.length > 0 ||
