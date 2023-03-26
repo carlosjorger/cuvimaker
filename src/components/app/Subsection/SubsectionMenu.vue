@@ -178,6 +178,7 @@
                 if (this.v$.$error) {
                     return;
                 }
+                this.v$.$reset();
                 this.prevSubsection.setSubsection(this.subsection);
                 this.disabledEditing();
             },

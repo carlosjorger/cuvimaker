@@ -165,6 +165,9 @@
                     this.changeTextArea();
                 });
             },
+            element(element: string) {
+                this.currentElement = element;
+            },
         },
     };
 </script>

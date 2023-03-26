@@ -54,7 +54,7 @@
         },
 
         setup() {
-            return { v$: useVuelidate({ $scope: true }) };
+            return { v$: useVuelidate({ $scope: false }) };
         },
         data() {
             return {
@@ -95,25 +95,32 @@
             addElement() {
                 this.v$.$touch();
                 if (!this.v$.$error) {
-                    this.v$.$reset();
                     this.addElementIntoSubsection(this.newElement);
                     this.newElement = '';
+                    this.v$.$reset();
                 }
             },
             addElementIntoSubsection(newElement: string) {
                 this.subsection.addElement(newElement);
             },
         },
-
         validations() {
             return {
                 newElement: {
+                    required,
                     hasAtLeastOneElement: helpers.withMessage(
                         "Doesn't has a least one element",
                         this.hasAtLeastOneElement
                     ),
                 },
             };
+        },
+        watch: {
+            editing(newValue: boolean) {
+                if (!newValue) {
+                    this.v$.$reset();
+                }
+            },
         },
     };
 </script>
