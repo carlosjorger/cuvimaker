@@ -5,7 +5,7 @@
         v-bind:class="{
             'rotate-45': closeButton,
         }"
-        class="border-2"
+        class="border-4"
         :class="[
             lineColor
                 ? `border-[${lineColor}]`

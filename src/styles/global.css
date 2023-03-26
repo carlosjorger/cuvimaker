@@ -7,6 +7,10 @@
     --primary-form-color: #5726a1;
     --anchor-color: #42bbc2;
     --placeholder-color: rgb(180, 180, 180);
+    --dark-primary-light: #51437a;
+    --dark-primary: #3f3268;
+    --dark-primary-200: #261c46;
+    --dark-primary-300: #120a25;
 }
 /* width */
 ::-webkit-scrollbar {
@@ -35,27 +39,4 @@
 .dark ::-webkit-scrollbar-thumb:hover {
     background: rgb(210, 210, 210);
     border-radius: 10px;
-}
-.section-card {
-    width: 40%;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    border: 0.1rem solid black;
-    margin: 0.5rem;
-}
-
-@media (max-width: 1250px) {
-    .section-card {
-        width: 50%;
-    }
-}
-@media (max-width: 1000px) {
-    .section-card {
-        width: 60%;
-    }
-}
-@media (max-width: 450px) {
-    .section-card {
-        width: 75%;
-    }
 }

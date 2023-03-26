@@ -3,7 +3,7 @@
         class="fixed top-0 left-0 right-0 bottom-0 flex h-full items-center justify-around justify-self-center bg-[#000000da]"
     >
         <div
-            class="section-card m-0 flex flex-col bg-white dark:bg-dark-primary-200"
+            class="m-0 flex w-2/5 flex-col rounded-lg border-4 border-primary bg-white p-4 dark:border-zinc-100 dark:bg-dark-primary-300 max-xl:w-1/2 max-lg:w-4/5 max-md:w-5/6 max-sm:w-11/12"
         >
             <header class="mb-2 flex items-center justify-between">
                 <h3

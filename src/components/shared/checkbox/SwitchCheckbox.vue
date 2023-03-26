@@ -5,7 +5,7 @@
             <div class="skin one"></div>
             <div class="skin two"></div>
         </div>
-        <h5>{{ title }}</h5>
+        <h5 class="w-2/3">{{ title }}</h5>
     </div>
 </template>
 

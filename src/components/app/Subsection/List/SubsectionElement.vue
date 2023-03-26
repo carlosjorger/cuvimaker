@@ -4,7 +4,7 @@
         :class="{
             ['border-4']: editingElement && selecting && editing,
             ['bg-[#664596] dark:bg-[#49387a]']: selecting && editing,
-            ['bg-[var(--primary-form-color)] dark:bg-dark-primary-light']:
+            ['bg-[var(--primary-form-color)] dark:bg-dark-primary']:
                 !selecting || !editing,
         }"
         @click="selectElement"
