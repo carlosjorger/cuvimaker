@@ -11,6 +11,7 @@
 
 <script lang="ts">
     import { inject } from 'vue';
+    import { Subsection } from '../../../../models/Subsection';
     import SwitchCheckbox from '../../../shared/checkbox/SwitchCheckbox.vue';
     import SubsectionElements from './SubsectionElements.vue';
     export default {
@@ -21,7 +22,14 @@
             return {
                 editing: inject('editing', false),
                 hasElementList: false,
+                subsection: inject('subsection', new Subsection()),
+                showModal: inject('showModal', false),
             };
+        },
+        watch: {
+            subsection(subsection: Subsection) {
+                this.hasElementList = subsection.elements.length > 0;
+            },
         },
     };
 </script>

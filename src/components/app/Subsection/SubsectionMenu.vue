@@ -126,7 +126,6 @@
         data() {
             return {
                 ...this.initialState(),
-                showModal: inject('showModal', false),
             };
         },
 
@@ -139,7 +138,6 @@
         methods: {
             initialState(): {
                 subsection: Subsection;
-                hasElementList: boolean;
                 editing: boolean;
                 shake: boolean;
             } {
@@ -147,7 +145,6 @@
                     subsection: this.prevSubsection.isEmpty
                         ? new Subsection()
                         : this.prevSubsection.copy(),
-                    hasElementList: false,
                     editing: false,
                     shake: false,
                 };
