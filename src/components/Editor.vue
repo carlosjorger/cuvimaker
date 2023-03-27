@@ -13,7 +13,7 @@
         <transition name="createSectionModal">
             <create-section-modal
                 v-show="showModal"
-                :sections="sections"
+                :sections="resume.sections"
                 :showModal="showModal"
                 @close-modal="showModal = false"
                 :editIndex="editIndex"
@@ -21,7 +21,7 @@
         </transition>
         <transition-group name="sectionComponent" class="block" tag="div">
             <section-component
-                v-for="(section, index) in sections"
+                v-for="(section, index) in resume.sections"
                 :section="section"
                 :key="section.name"
                 @delete-section="deleteSection(index)"
@@ -37,6 +37,8 @@
 </template>
 <script lang="ts">
     import type { Section } from '../models/Section';
+    import { Resume } from '../models/Resume';
+
     import CreateSectionModal from './app/Section/CreateSectionModal.vue';
     import SectionComponent from './app/SectionView/SectionComponent.vue';
     import BasicButton from './shared/Button/BasicButton.vue';
@@ -47,18 +49,18 @@
         data() {
             return {
                 showModal: false,
-                sections: [] as Section[],
                 editIndex: undefined as number | undefined,
+                resume: new Resume(),
             };
         },
         provide() {
             return {
-                sections: computed(() => this.sections),
+                sections: computed(() => this.resume.sections),
             };
         },
         methods: {
             deleteSection(index: number) {
-                this.sections.splice(index, 1);
+                this.resume.sections.splice(index, 1);
             },
         },
     };
