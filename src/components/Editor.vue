@@ -36,7 +36,6 @@
     </section>
 </template>
 <script lang="ts">
-    import type { Section } from '../models/Section';
     import { Resume } from '../models/Resume';
 
     import CreateSectionModal from './app/Section/CreateSectionModal.vue';
