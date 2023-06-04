@@ -1,14 +1,14 @@
 <template>
     <input
         v-model="value"
-        class="mt-2 block w-full border-white bg-inherit text-white placeholder-gray-500 transition-all duration-300 focus:outline-none"
+        class="mt-2 block w-full border-solid bg-inherit placeholder-gray-500 transition-all duration-300 focus:outline-none"
         v-if="editing || value"
-        :class="{
-            ['pointer-events-auto border-b-4  border-solid shadow-xl ']:
-                editing,
-            ['pointer-events-none border-b-0  border-solid shadow-none ']:
-                !editing,
-        }"
+        :class="[
+                   `border-${lightColor} dark:border-${darkColor} text-${lightColor} dark:text-${darkColor}`,
+                    editing?
+                        'pointer-events-auto border-b-4 shadow-xl'
+                        :'pointer-events-none border-b-0 shadow-none'
+                ]"
         type="text"
     />
 </template>
@@ -22,6 +22,14 @@
             modelValue: {
                 type: String,
             },
+            lightColor:{
+                type: String,
+                default: 'white',
+            },
+            darkColor:{
+                type: String,
+                default: 'white',
+            }
         },
         emits: ['update:modelValue'],
         data() {

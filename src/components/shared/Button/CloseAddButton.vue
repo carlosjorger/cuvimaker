@@ -2,14 +2,13 @@
     <circle-button
         :buttonColor="buttonColor"
         :size="size"
-        v-bind:class="{
-            'rotate-45': closeButton,
-        }"
         class="border-4"
         :class="[
             lineColor
                 ? `border-[${lineColor}]`
                 : 'border-primary dark:border-dark-primary',
+                closeButton?'rotate-45':'',
+                'border-4'
         ]"
     >
         <div

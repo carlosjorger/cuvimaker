@@ -1,5 +1,6 @@
 <template>
     <section>
+        <IntroductionSection :introduction="resume.introduction"/>
         <BasicButton
             :name="'Add Section'"
             @click="
@@ -42,9 +43,11 @@
     import SectionComponent from './app/SectionView/SectionComponent.vue';
     import BasicButton from './shared/Button/BasicButton.vue';
     import { computed } from 'vue';
-
+    import { Introduction } from '../models/Introduction';
+    import IntroductionSection from './app/Introduction/IntroductionSection.vue';
     export default {
-        components: { CreateSectionModal, SectionComponent, BasicButton },
+        name: 'CVEditor',
+        components: { CreateSectionModal, SectionComponent, BasicButton, IntroductionSection },
         data() {
             return {
                 showModal: false,
