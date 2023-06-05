@@ -1,5 +1,5 @@
 <template>
-    <div class="block">
+    <SubsectionCard class="p-8">
         <SubsectionForm
                     class="text-lg"
                     v-model="introduction.name"
@@ -31,18 +31,18 @@
                 }
             "
         />
-    </div>
+    </SubsectionCard>
 </template>
 
 <script lang="ts">
     
-    import { Introduction } from '../../../models/Introduction';
-    import BasicButton from '../../shared/Button/BasicButton.vue';
-    import SubsectionForm from '../Subsection/SubsectionForm.vue';
+    import { Introduction } from '../../../../models/Introduction';
+    import BasicButton from '../../../shared/Button/BasicButton.vue';
+    import SubsectionForm from '../../Subsection/SubsectionForm.vue';
     import { computed } from 'vue';
-
+    import SubsectionCard from '../../../shared/Subsection/SubsectionCard.vue';
     export default {
-        components: { BasicButton,SubsectionForm },
+        components: { BasicButton,SubsectionForm, SubsectionCard },
         name: 'IntroductionSection',
         props: {
             introduction: {

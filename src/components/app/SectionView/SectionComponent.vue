@@ -1,8 +1,6 @@
 <template>
-    <article
-        class="mt-4 w-2/5 rounded-md border-4 border-solid border-primary bg-[#f6f4fb] shadow-xl transition-colors duration-700 hover:bg-[#e1d7fd] dark:border-zinc-300 dark:bg-dark-primary-300 dark:hover:bg-dark-primary max-xl:w-1/2 max-lg:w-4/5 max-md:w-5/6 max-sm:w-11/12"
-    >
-        <div class="p-4" @click="changeSetting">
+    <SubsectionCard>
+         <div class="p-4" @click="changeSetting">
             <header>
                 <h3
                     class="text-3xl font-extrabold text-primary dark:text-white"
@@ -18,14 +16,13 @@
                 :subsection="subsection"
             />
         </div>
-        <div
-            class="w-full overflow-hidden bg-primary transition-all duration-500 dark:bg-zinc-300"
+        <footer
+            class="w-full overflow-hidden bg-primary transition-all duration-500 dark:bg-zinc-300 flex justify-end"
             :class="{
                 ['h-16']: showSetting,
                 ['h-0']: !showSetting,
             }"
         >
-            <footer class="flex justify-end">
                 <div class="flex w-36 justify-between p-2">
                     <a
                         class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
@@ -46,18 +43,18 @@
                         />
                     </a>
                 </div>
-            </footer>
-        </div>
-    </article>
+        </footer>
+    </SubsectionCard>
 </template>
 <script lang="ts">
     import { Section } from '../../../models/Section';
-    import SubsectionComponent from './SubsectionView/SubsectionComponent.vue';
+    import SubsectionComponent from './Subsection/SubsectionComponent.vue';
     import { Icon } from '@iconify/vue';
-
+    import SubsectionCard from '../../shared/Subsection/SubsectionCard.vue';
+    
     export default {
         name: 'SectionComponent',
-        components: { SubsectionComponent, Icon },
+        components: { SubsectionComponent, Icon, SubsectionCard },
         props: {
             section: {
                 type: Section,

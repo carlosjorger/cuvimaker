@@ -16,6 +16,9 @@ module.exports = {
                 ['dark-primary-200']: '#261c46',
                 ['dark-primary-300']: '#120a25',
             },
+            transitionProperty:{
+                form: 'border-bottom, box-shadow'
+            },
             translate: ['dark'],
         },
     },
