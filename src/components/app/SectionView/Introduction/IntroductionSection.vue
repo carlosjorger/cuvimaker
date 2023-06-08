@@ -17,23 +17,42 @@
                     />
         </template>
         <template #footer>
-            <BasicButton
-                :name="'Edit'"
-                @click="
-                    () => {
-                        editing = true;
-                    }
-                "
-            />
-            <BasicButton
-                :name="'Save'"
-                @click="
-                    () => {
-                        editing = false;
-                        // introduction?.setIntroduction(currentIntroduction);
-                    }
-                "
-            />
+            <Transition>
+                <div
+                    v-if="editing"
+                    class="absolute flex"
+                >
+                    <a
+                        class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
+                        @click="() => {
+                            editing = false;
+                        }"  
+                    >
+                        <Icon
+                            icon="el:ok"
+                            width="36"
+                        />
+                    </a>
+                </div>
+            </Transition>
+            <Transition>
+                <div
+                    v-if="!editing"
+                    class="absolute flex"
+                >
+                    <a
+                        class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
+                        @click="() => {
+                            editing = true;
+                        }" 
+                    >
+                        <Icon
+                            icon="ic:baseline-edit"
+                            width="36"
+                        />
+                    </a>
+                </div>
+            </Transition>
         </template>
     </SubsectionCard>
 </template>
@@ -45,8 +64,9 @@
     import SubsectionForm from '../../Subsection/SubsectionForm.vue';
     import { computed } from 'vue';
     import SubsectionCard from '../../../shared/Subsection/SubsectionCard.vue';
+    import { Icon } from '@iconify/vue';
     export default {
-        components: { BasicButton,SubsectionForm, SubsectionCard },
+        components: { BasicButton,SubsectionForm, SubsectionCard, Icon },
         name: 'IntroductionSection',
         props: {
             introduction: {

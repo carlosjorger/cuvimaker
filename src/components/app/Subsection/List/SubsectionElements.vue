@@ -28,8 +28,8 @@
             @selectElement="
                 selectedElement = selectedElement != index ? index : undefined
             "
-            @changeElement="(v: string, index: number)=>{$emit('changeElement',v,index)}"
-            @removeElement="(index:number)=>{$emit('removeElement',index)}"
+            @changeElement="changeElement"
+            @removeElement="removeElement"
             :index="index"
             v-bind="$attrs"
             :selecting="selectedElement == index"
@@ -82,6 +82,12 @@
                     this.subsection.elements.length > 0 ||
                     this.newElement.length > 0
                 );
+            },
+            changeElement(v: string, index: number){
+                this.$emit('changeElement',v,index);
+            },
+            removeElement(index:number){
+                this.$emit('removeElement',index);
             },
             changeTextArea() {
                 var input = document.getElementById(
