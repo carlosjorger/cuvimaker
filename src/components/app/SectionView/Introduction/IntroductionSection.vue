@@ -1,36 +1,40 @@
 <template>
-    <SubsectionCard class="p-8">
-        <SubsectionForm
+    <SubsectionCard >
+        <template #body>
+            <SubsectionForm
                     class="text-lg"
                     v-model="introduction.name"
                     placeholder="Name"
                     :lightColor="'primary'"
                     :darkColor="'zinc-300'"
                 />
-        <SubsectionForm
-                    class="text-lg"
-                    v-model="introduction.profetion"
-                    placeholder="Profetion"
-                    :lightColor="'primary'"
-                    :darkColor="'zinc-300'"
-                />
-        <BasicButton
-            :name="'Edit'"
-            @click="
-                () => {
-                    editing = true;
-                }
-            "
-        />
-        <BasicButton
-            :name="'Save'"
-            @click="
-                () => {
-                    editing = false;
-                    // introduction?.setIntroduction(currentIntroduction);
-                }
-            "
-        />
+            <SubsectionForm
+                        class="text-lg"
+                        v-model="introduction.profetion"
+                        placeholder="Profetion"
+                        :lightColor="'primary'"
+                        :darkColor="'zinc-300'"
+                    />
+        </template>
+        <template #footer>
+            <BasicButton
+                :name="'Edit'"
+                @click="
+                    () => {
+                        editing = true;
+                    }
+                "
+            />
+            <BasicButton
+                :name="'Save'"
+                @click="
+                    () => {
+                        editing = false;
+                        // introduction?.setIntroduction(currentIntroduction);
+                    }
+                "
+            />
+        </template>
     </SubsectionCard>
 </template>
 
