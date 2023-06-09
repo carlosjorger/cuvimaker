@@ -1,15 +1,15 @@
 <template>
-    <SubsectionCard>
+    <SubsectionCard :disableEditSetting="editing">
         <template #body>
             <SubsectionForm
-                class="text-lg"
+                class="text-4xl"
                 v-model="introduction.name"
                 placeholder="Name"
                 :lightColor="'primary'"
                 :darkColor="'zinc-300'"
             />
             <SubsectionForm
-                class="text-lg"
+                class="text-2xl"
                 v-model="introduction.profetion"
                 placeholder="Profetion"
                 :lightColor="'primary'"
@@ -18,7 +18,7 @@
         </template>
         <template #footer>
             <Transition>
-                <div v-if="editing" class="absolute flex items-center">
+                <div v-if="editing" class="absolute flex h-full items-center">
                     <a
                         class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
                         @click="
@@ -32,7 +32,7 @@
                 </div>
             </Transition>
             <Transition>
-                <div v-if="!editing" class="absolute flex items-center">
+                <div v-if="!editing" class="absolute flex h-full items-center">
                     <a
                         class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
                         @click="

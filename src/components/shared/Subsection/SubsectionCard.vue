@@ -1,6 +1,6 @@
 <template>
     <article
-        class="mb-4 mt-4 w-2/5 rounded-md border-4 border-solid border-primary bg-[#f6f4fb] shadow-xl transition-colors duration-700 hover:bg-[#e1d7fd] dark:border-zinc-300 dark:bg-dark-primary-300 dark:hover:bg-dark-primary max-xl:w-1/2 max-lg:w-4/5 max-md:w-5/6 max-sm:w-11/12"
+        class="mb-4 mt-4 w-1/2 rounded-md border-4 border-solid border-primary bg-[#f6f4fb] shadow-xl transition-colors duration-700 hover:bg-[#e1d7fd] dark:border-zinc-300 dark:bg-dark-primary-300 dark:hover:bg-dark-primary max-xl:w-1/2 max-lg:w-4/5 max-md:w-5/6 max-sm:w-11/12"
     >
         <body class="p-8" @click="changeSetting">
             <slot name="body"></slot>
@@ -20,7 +20,12 @@
 <script lang="ts">
     export default {
         name: 'SubsectionCard',
-
+        props: {
+            disableEditSetting: {
+                type: Boolean,
+                default: false,
+            },
+        },
         data() {
             return {
                 showSetting: false,
@@ -28,7 +33,9 @@
         },
         methods: {
             changeSetting() {
-                this.showSetting = !this.showSetting;
+                if (!this.disableEditSetting) {
+                    this.showSetting = !this.showSetting;
+                }
             },
         },
     };
