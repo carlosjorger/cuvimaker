@@ -20,7 +20,7 @@
             <Transition>
                 <div
                     v-if="editing"
-                    class="absolute flex"
+                    class="absolute flex items-center"
                 >
                     <a
                         class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
@@ -38,7 +38,7 @@
             <Transition>
                 <div
                     v-if="!editing"
-                    class="absolute flex"
+                    class="absolute flex items-center"
                 >
                     <a
                         class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
