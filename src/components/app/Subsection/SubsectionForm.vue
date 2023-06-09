@@ -4,11 +4,11 @@
         class="mt-2 block w-full border-solid bg-inherit placeholder-gray-500 transition-form duration-300 focus:outline-none"
         v-if="editing || value"
         :class="[
-                   `border-${lightColor} dark:border-${darkColor} text-${lightColor} dark:text-${darkColor}`,
-                    editing?
-                        'pointer-events-auto border-b-4 shadow-xl'
-                        :'pointer-events-none border-b-0 shadow-none'
-                ]"
+            `border-${lightColor} dark:border-${darkColor} text-${lightColor} dark:text-${darkColor}`,
+            editing
+                ? 'pointer-events-auto border-b-4 shadow-xl'
+                : 'pointer-events-none border-b-0 shadow-none',
+        ]"
         type="text"
     />
 </template>
@@ -22,14 +22,14 @@
             modelValue: {
                 type: String,
             },
-            lightColor:{
+            lightColor: {
                 type: String,
                 default: 'white',
             },
-            darkColor:{
+            darkColor: {
                 type: String,
                 default: 'white',
-            }
+            },
         },
         emits: ['update:modelValue'],
         data() {

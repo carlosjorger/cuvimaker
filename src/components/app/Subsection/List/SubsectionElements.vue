@@ -83,11 +83,11 @@
                     this.newElement.length > 0
                 );
             },
-            changeElement(v: string, index: number){
-                this.$emit('changeElement',v,index);
+            changeElement(v: string, index: number) {
+                this.$emit('changeElement', v, index);
             },
-            removeElement(index:number){
-                this.$emit('removeElement',index);
+            removeElement(index: number) {
+                this.$emit('removeElement', index);
             },
             changeTextArea() {
                 var input = document.getElementById(

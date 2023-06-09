@@ -18,29 +18,28 @@
                 />
             </div>
         </template>
-         <template #footer>
+        <template #footer>
             <div class="flex w-36 justify-between p-2">
-                    <a
-                        class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
-                    >
-                        <Icon
-                            @click="$emit('delete-section')"
-                            icon="mdi:trash"
-                            width="36"
-                        />
-                    </a>
-                    <a
-                        class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
-                    >
-                        <Icon
-                            icon="material-symbols:edit"
-                            width="36"
-                            @click="$emit('edit-section')"
-                        />
-                    </a>
-                </div>
-         </template>
-        
+                <a
+                    class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
+                >
+                    <Icon
+                        @click="$emit('delete-section')"
+                        icon="mdi:trash"
+                        width="36"
+                    />
+                </a>
+                <a
+                    class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
+                >
+                    <Icon
+                        icon="material-symbols:edit"
+                        width="36"
+                        @click="$emit('edit-section')"
+                    />
+                </a>
+            </div>
+        </template>
     </SubsectionCard>
 </template>
 <script lang="ts">
@@ -48,7 +47,7 @@
     import SubsectionComponent from './Subsection/SubsectionComponent.vue';
     import { Icon } from '@iconify/vue';
     import SubsectionCard from '../../shared/Subsection/SubsectionCard.vue';
-    
+
     export default {
         name: 'SectionComponent',
         components: { SubsectionComponent, Icon, SubsectionCard },
