@@ -7,11 +7,19 @@
             id="newElement"
             v-model="newElement"
             class="w-4/5 resize-none overflow-hidden bg-inherit p-2 text-white outline-none"
-            placeholder="New element"
+            placeholder="New element..."
             rows="1"
             @input="changeTextArea"
         ></textarea>
-        <close-add-button :size="2.2" v-on:click="addElement()" />
+        <transition name="addElementButton">
+            <close-add-button
+                v-if="newElement.trim()"
+                :size="2.2"
+                v-on:click="addElement()"
+                :buttonColor="'bg-inherit'"
+                :lineColor="'white'"
+            />
+        </transition>
     </div>
     <!-- TODO close this error -->
     <div v-for="error of v$.newElement.$errors" :key="error.$uid">
@@ -132,6 +140,17 @@
 </script>
 
 <style>
+    .addElementButton-leave-active {
+        transition: all 0.5s ease;
+    }
+    .addElementButton-enter-active {
+        transition: all 0.5s ease;
+    }
+    .addElementButton-leave-to,
+    .addElementButton-enter-from {
+        opacity: 0;
+    }
+
     .subsection-elements-move {
         transition: all 0.5s ease;
     }

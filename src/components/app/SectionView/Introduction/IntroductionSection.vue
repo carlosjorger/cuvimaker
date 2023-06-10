@@ -4,7 +4,7 @@
             <SubsectionForm
                 class="text-3xl font-extrabold"
                 v-model="introduction.name"
-                placeholder="Name"
+                placeholder="Your name"
                 :lightColor="'primary'"
                 :darkColor="'zinc-300'"
             />
