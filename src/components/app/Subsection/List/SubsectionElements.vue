@@ -10,11 +10,12 @@
             placeholder="New element..."
             rows="1"
             @input="changeTextArea"
+            @change="changeTextArea"
         ></textarea>
         <transition name="addElementButton">
             <close-add-button
                 v-if="newElement.trim()"
-                :size="2.2"
+                :size="2.3"
                 v-on:click="addElement()"
                 :buttonColor="'bg-inherit'"
                 :lineColor="'white'"
@@ -97,13 +98,23 @@
             removeElement(index: number) {
                 this.$emit('removeElement', index);
             },
+            initTextArea() {
+                var input = document.getElementById(
+                    'newElement'
+                ) as HTMLInputElement | null;
+                if (input) {
+                    input!.style.height = '';
+                }
+            },
             changeTextArea() {
                 var input = document.getElementById(
                     'newElement'
                 ) as HTMLInputElement | null;
                 if (input) {
-                    input!.style.height = '0px';
-                    input!.style.height = input?.scrollHeight + 'px';
+                    input!.style.height = '';
+                }
+                if (input?.value) {
+                    input!.style.height = `${input?.scrollHeight}px`;
                 }
             },
             addElement() {
@@ -111,6 +122,7 @@
                 if (!this.v$.$error) {
                     this.addElementIntoSubsection(this.newElement);
                     this.newElement = '';
+                    this.initTextArea();
                     this.v$.$reset();
                 }
             },
