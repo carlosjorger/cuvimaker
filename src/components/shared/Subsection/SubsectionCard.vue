@@ -18,6 +18,7 @@
 </template>
 
 <script lang="ts">
+    import { scrollSmoothToElement } from '../../../utils/scrollServices';
     export default {
         name: 'SubsectionCard',
         props: {
@@ -34,6 +35,7 @@
         methods: {
             changeSetting() {
                 if (!this.disableEditSetting) {
+                    scrollSmoothToElement(this.$el);
                     this.showSetting = !this.showSetting;
                 }
             },

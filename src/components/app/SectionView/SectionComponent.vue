@@ -47,7 +47,7 @@
     import SubsectionComponent from './Subsection/SubsectionComponent.vue';
     import { Icon } from '@iconify/vue';
     import SubsectionCard from '../../shared/Subsection/SubsectionCard.vue';
-
+    import { scrollSmoothToElement } from '../../../utils/scrollServices';
     export default {
         name: 'SectionComponent',
         components: { SubsectionComponent, Icon, SubsectionCard },
@@ -56,6 +56,9 @@
                 type: Section,
                 require: true,
             },
+        },
+        mounted() {
+            scrollSmoothToElement(this.$el);
         },
         data() {
             return {
