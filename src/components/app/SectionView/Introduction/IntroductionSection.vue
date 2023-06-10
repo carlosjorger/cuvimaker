@@ -2,14 +2,14 @@
     <SubsectionCard :disableEditSetting="editing">
         <template #body>
             <SubsectionForm
-                class="text-4xl"
+                class="text-3xl font-extrabold"
                 v-model="introduction.name"
                 placeholder="Name"
                 :lightColor="'primary'"
                 :darkColor="'zinc-300'"
             />
             <SubsectionForm
-                class="text-2xl"
+                class="text-xl font-extrabold"
                 v-model="introduction.profetion"
                 placeholder="Profetion"
                 :lightColor="'primary'"

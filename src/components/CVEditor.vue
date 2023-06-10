@@ -20,7 +20,7 @@
                 :editIndex="editIndex"
             />
         </transition>
-        <transition-group name="sectionComponent" class="block" tag="div">
+        <transition-group name="sectionComponent" class="z-0 block" tag="div">
             <section-component
                 v-for="(section, index) in resume.sections"
                 :section="section"
