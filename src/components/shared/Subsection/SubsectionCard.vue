@@ -16,9 +16,11 @@
         </footer>
     </article>
 </template>
-
 <script lang="ts">
     import { scrollSmoothToElement } from '../../../utils/scrollServices';
+    import mitt from 'mitt';
+
+    const emitter = mitt();
     export default {
         name: 'SubsectionCard',
         props: {
@@ -32,11 +34,17 @@
                 showSetting: false,
             };
         },
+        mounted() {
+            emitter.on('changeSetting', () => {
+                this.showSetting = false;
+            });
+        },
         methods: {
             changeSetting() {
                 if (!this.disableEditSetting) {
                     scrollSmoothToElement(this.$el);
-                    this.showSetting = !this.showSetting;
+                    emitter?.emit('changeSetting');
+                    this.showSetting = true;
                 }
             },
         },
