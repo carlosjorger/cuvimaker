@@ -157,6 +157,8 @@
                 if (this.subsection.last) {
                     this.resetWindow();
                     this.addSubSection();
+                } else if (this.section.subsectionEditing) {
+                    this.emmitSendEditing();
                 } else {
                     this.removeSubsection();
                 }
