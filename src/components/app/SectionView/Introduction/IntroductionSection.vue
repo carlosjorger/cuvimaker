@@ -51,13 +51,12 @@
 
 <script lang="ts">
     import { Introduction } from '../../../../models/Introduction';
-    import BasicButton from '../../../shared/Button/BasicButton.vue';
     import SubsectionForm from '../../Subsection/SubsectionForm.vue';
     import { computed } from 'vue';
     import SubsectionCard from '../../../shared/Subsection/SubsectionCard.vue';
     import { Icon } from '@iconify/vue';
     export default {
-        components: { BasicButton, SubsectionForm, SubsectionCard, Icon },
+        components: { SubsectionForm, SubsectionCard, Icon },
         name: 'IntroductionSection',
         props: {
             introduction: {

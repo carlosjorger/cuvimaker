@@ -200,7 +200,7 @@
                 }
             },
             setEditingIndex() {
-                this.section.editingIndex = this.subsectionIndex;
+                this.section.setEditingIndex(this.subsectionIndex);
             },
             emmitSendEditing() {
                 emitter?.emit('editing', this.section.editingIndex);

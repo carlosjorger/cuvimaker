@@ -62,25 +62,22 @@
                 this.timeInterval.dateTo != undefined
             ) {
                 this.interval = [
-                    this.timeInterval.dateFrom!,
-                    this.timeInterval.dateTo!,
+                    this.timeInterval.dateFrom,
+                    this.timeInterval.dateTo,
                 ];
             }
         },
         methods: {
             handleTimeInterval(dateRange: Date[] | null) {
                 if (dateRange?.length ?? 0 > 0) {
-                    this.timeInterval.dateFrom = dateRange
-                        ? dateRange[0]
-                        : undefined;
-                    this.timeInterval.dateTo = dateRange
-                        ? dateRange[1]
-                        : undefined;
+                    this.timeInterval.setRange(
+                        dateRange ? dateRange[0] : undefined,
+                        dateRange ? dateRange[1] : undefined
+                    );
                 }
             },
             cleanTimeInterval() {
-                this.timeInterval.dateFrom = undefined;
-                this.timeInterval.dateTo = undefined;
+                this.timeInterval.setRange(undefined, undefined);
             },
         },
         validations: {

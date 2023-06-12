@@ -78,12 +78,12 @@
         },
         methods: {
             initialState(): {
-                newElement: String;
+                newElement: string;
                 selectedElement: number | undefined;
             } {
                 return {
                     newElement: '',
-                    selectedElement: true ? undefined : 0,
+                    selectedElement: undefined,
                 };
             },
             hasAtLeastOneElement() {
@@ -103,7 +103,7 @@
                     'newElement'
                 ) as HTMLInputElement | null;
                 if (input) {
-                    input!.style.height = '';
+                    input.style.height = '';
                 }
             },
             changeTextArea() {

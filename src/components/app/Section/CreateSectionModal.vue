@@ -104,9 +104,10 @@
             },
             initialState(): { section: Section } {
                 return {
-                    section: !this.isEditing
-                        ? new Section()
-                        : this.sections[this.editIndex!].copy(),
+                    section:
+                        !this.isEditing || !this.editIndex
+                            ? new Section()
+                            : this.sections[this.editIndex].copy(),
                 };
             },
             resetWindow: function () {
@@ -135,7 +136,9 @@
                         return;
                     }
                     this.closeModal();
-                    this.sections[this.editIndex!] = this.section;
+                    if (this.editIndex) {
+                        this.sections[this.editIndex] = this.section;
+                    }
                     this.v$.$reset();
                 }
             },
@@ -161,11 +164,8 @@
             },
         },
         computed: {
-            isEditing: {
-                get() {
-                    return this.editIndex != undefined;
-                },
-                set() {},
+            isEditing: function () {
+                return this.editIndex != undefined;
             },
         },
     };

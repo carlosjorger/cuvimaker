@@ -21,7 +21,6 @@
     import SwitchCheckbox from '../../../shared/checkbox/SwitchCheckbox.vue';
     import { inject } from 'vue';
     import { Subsection } from '../../../../models/Subsection';
-    import VueDatePicker from '@vuepic/vue-datepicker';
     import '@vuepic/vue-datepicker/dist/main.css';
     import SubsectionTimeInterval from './SubsectionTimeInterval.vue';
     export default {
@@ -34,7 +33,7 @@
                 type: Boolean,
             },
         },
-        components: { SwitchCheckbox, VueDatePicker, SubsectionTimeInterval },
+        components: { SwitchCheckbox, SubsectionTimeInterval },
 
         data() {
             return {

@@ -34,6 +34,9 @@ export class Section {
         }
         this.subsections.splice(index, 1);
     }
+    setEditingIndex(index: number) {
+        this.editingIndex = index;
+    }
     disabledEditing() {
         this.editingIndex = -1;
     }

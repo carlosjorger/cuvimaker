@@ -117,8 +117,8 @@
                 var textArea = this.$refs.element as HTMLInputElement | null;
 
                 if (textArea) {
-                    textArea!.style.height = '0px';
-                    textArea!.style.height = textArea?.scrollHeight + 'px';
+                    textArea.style.height = '0px';
+                    textArea.style.height = textArea?.scrollHeight + 'px';
                 }
             },
             deleteElement() {
