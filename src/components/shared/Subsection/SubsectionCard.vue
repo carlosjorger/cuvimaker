@@ -41,6 +41,7 @@
         },
         methods: {
             changeSetting() {
+                // TODO: avoid hidden the Setting if another section is selected
                 if (!this.disableEditSetting) {
                     scrollSmoothToElement(this.$el);
                     emitter?.emit('changeSetting');

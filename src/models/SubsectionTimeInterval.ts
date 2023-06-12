@@ -8,6 +8,7 @@ export class TimeInterval {
     copy(): TimeInterval {
         return new TimeInterval(this.dateFrom, this.dateTo);
     }
+    // TODO: remove setRange
     setRange(dateFrom: Date | undefined, dateTo: Date | undefined) {
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
