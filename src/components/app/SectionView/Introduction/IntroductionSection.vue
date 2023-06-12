@@ -3,14 +3,14 @@
         <template #body>
             <SubsectionForm
                 class="text-3xl font-extrabold"
-                v-model="introduction.name"
+                v-model="currentIntroduction.name"
                 placeholder="Your name"
                 :lightColor="'primary'"
                 :darkColor="'zinc-300'"
             />
             <SubsectionForm
                 class="text-xl font-extrabold"
-                v-model="introduction.profetion"
+                v-model="currentIntroduction.profetion"
                 placeholder="Profetion"
                 :lightColor="'primary'"
                 :darkColor="'zinc-300'"
@@ -80,8 +80,7 @@
                 currentIntroduction: Introduction;
             } {
                 return {
-                    currentIntroduction:
-                        this.introduction?.copy() ?? new Introduction(),
+                    currentIntroduction: { ...this.introduction },
                 };
             },
         },
