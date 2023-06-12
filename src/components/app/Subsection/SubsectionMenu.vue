@@ -8,11 +8,14 @@
     >
         <div>
             <div class="flex items-center justify-between">
-                <!-- TODO: hidden the remove button when the subsection is being edited -->
-                <close-add-button
-                    v-on:click="addRemoveSubSection()"
-                    :closeButton="!subsection.last"
-                />
+                <transition name="editButton">
+                    <close-add-button
+                        v-on:click="addRemoveSubSection()"
+                        :closeButton="!subsection.last"
+                        v-if="!editing"
+                    />
+                </transition>
+
                 <transition name="editButton">
                     <circle-button
                         v-on:click="editSubSection()"
