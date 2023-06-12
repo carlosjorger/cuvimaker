@@ -8,6 +8,7 @@
     >
         <div>
             <div class="flex items-center justify-between">
+                <!-- TODO: hidden the remove button when the subsection is being edited -->
                 <close-add-button
                     v-on:click="addRemoveSubSection()"
                     :closeButton="!subsection.last"
@@ -68,18 +69,16 @@
     import { Icon } from '@iconify/vue';
     import { Subsection } from '../../../models/Subsection';
     import { Section } from '../../../models/Section';
-    import SubsectionDatePicker from './TimeInterval/SubsectionTimeIntervalSection.vue';
     import mitt from 'mitt';
     import SubsectionForm from './SubsectionForm.vue';
-    import SubsectionElements from './List/SubsectionElements.vue';
     import { scrollSmoothToElement } from '../../../utils/scrollServices';
     import { useVuelidate } from '@vuelidate/core';
     import { required } from '@vuelidate/validators';
-    import SwitchCheckbox from '../../shared/checkbox/SwitchCheckbox.vue';
     import SubsectionTimeIntervalSection from './TimeInterval/SubsectionTimeIntervalSection.vue';
     import ModalButton from '../../shared/Button/ModalButton.vue';
-    import { computed, inject } from 'vue';
     import SubsectionListSection from './List/SubsectionListSection.vue';
+    import { computed } from 'vue';
+
     const emitter = mitt();
     export default {
         name: 'SubsectionMenu',
@@ -103,10 +102,7 @@
             CloseAddButton,
             CircleButton,
             Icon,
-            SubsectionDatePicker,
             SubsectionForm,
-            SubsectionElements,
-            SwitchCheckbox,
             SubsectionTimeIntervalSection,
             ModalButton,
             SubsectionListSection,
@@ -239,7 +235,7 @@
             'prevSubsection.last'(newValue: boolean) {
                 this.subsection.last = newValue;
             },
-            section(newValue) {
+            section() {
                 this.resetWindow();
             },
         },
