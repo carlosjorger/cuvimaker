@@ -111,10 +111,10 @@
                     'newElement'
                 ) as HTMLInputElement | null;
                 if (input) {
-                    input!.style.height = '';
+                    input.style.height = '';
                 }
                 if (input?.value) {
-                    input!.style.height = `${input?.scrollHeight}px`;
+                    input.style.height = `${input?.scrollHeight}px`;
                 }
             },
             addElement() {
