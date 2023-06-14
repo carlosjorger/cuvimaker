@@ -1,4 +1,3 @@
-<!-- TODO give solution to the problem of the TimeInterval -->
 <template>
     <div class="mt-2">
         <SwitchCheckbox
@@ -8,10 +7,10 @@
         />
         <SubsectionTimeInterval
             v-if="
-                (editing || (timeInterval.dateFrom && timeInterval.dateTo)) &&
+                (editing || (value && value.dateFrom && value.dateTo)) &&
                 hasPeriodOfTime
             "
-            v-model="timeInterval"
+            v-model="value"
             :hasPeriodOfTime="hasPeriodOfTime"
         />
     </div>
@@ -27,35 +26,30 @@
     export default {
         name: 'SubsectionTimeIntervalSection',
         props: {
-            subsectionTimeIntervalProp: {
+            modelValue: {
                 type: TimeInterval,
             },
             validating: {
                 type: Boolean,
             },
         },
+        emits: ['update:modelValue'],
         components: { SwitchCheckbox, SubsectionTimeInterval },
-
         data() {
             return {
                 editing: inject('editing', false),
                 subsection: inject('subsection', new Subsection()),
                 hasPeriodOfTime: false,
-
-                timeInterval: new TimeInterval(),
             };
         },
-
-        mounted() {
-            this.timeInterval =
-                this.subsectionTimeIntervalProp?.copy() ?? new TimeInterval();
-        },
-
-        watch: {
-            hasPeriodOfTime(newValue: boolean) {
-                this.subsection.subsectionTimeInterval = newValue
-                    ? this.timeInterval
-                    : undefined;
+        computed: {
+            value: {
+                get() {
+                    return this.modelValue;
+                },
+                set(value: TimeInterval) {
+                    this.$emit('update:modelValue', value);
+                },
             },
         },
     };

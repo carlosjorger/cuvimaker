@@ -45,9 +45,7 @@
                     placeholder="Subsection subtitle"
                 />
                 <SubsectionTimeIntervalSection
-                    :subsectionTimeIntervalProp="
-                        subsection.subsectionTimeInterval
-                    "
+                    v-model="subsection.subsectionTimeInterval"
                 />
                 <SubsectionListSection />
                 <div class="flex justify-between">

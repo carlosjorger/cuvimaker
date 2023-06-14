@@ -55,14 +55,14 @@
             };
         },
         mounted() {
-            if (this.value.dateFrom && this.value.dateTo) {
+            if (this.value && this.value.dateFrom && this.value.dateTo) {
                 this.interval = [this.value.dateFrom, this.value.dateTo];
             }
         },
         methods: {
             handleTimeInterval(dateRange: Date[] | null) {
                 if (dateRange && dateRange.length > 1) {
-                    this.value = new TimeInterval(dateRange[0], dateRange[0]);
+                    this.value = new TimeInterval(dateRange[0], dateRange[1]);
                 }
             },
             cleanTimeInterval() {
@@ -75,7 +75,6 @@
                     return this.modelValue;
                 },
                 set(value: TimeInterval) {
-                    console.log(value);
                     this.$emit('update:modelValue', value);
                 },
             },
