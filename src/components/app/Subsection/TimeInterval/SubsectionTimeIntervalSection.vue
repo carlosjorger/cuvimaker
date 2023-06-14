@@ -1,3 +1,4 @@
+<!-- TODO give solution to the problem of the TimeInterval -->
 <template>
     <div class="mt-2">
         <SwitchCheckbox
@@ -10,7 +11,7 @@
                 (editing || (timeInterval.dateFrom && timeInterval.dateTo)) &&
                 hasPeriodOfTime
             "
-            :timeInterval="timeInterval"
+            v-model="timeInterval"
             :hasPeriodOfTime="hasPeriodOfTime"
         />
     </div>

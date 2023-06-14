@@ -12,13 +12,10 @@
             @cleared="cleanTimeInterval"
             input-class-name="shadow-xl"
         />
-        <div
-            v-for="error of v$.timeInterval.dateFrom.$errors"
-            :key="error.$uid"
-        >
+        <div v-for="error of v$.value.dateFrom.$errors" :key="error.$uid">
             <div class="error-msg">{{ error.$message }}</div>
         </div>
-        <div v-for="error of v$.timeInterval.dateTo.$errors" :key="error.$uid">
+        <div v-for="error of v$.value.dateTo.$errors" :key="error.$uid">
             <div class="error-msg">{{ error.$message }}</div>
         </div>
     </div>
@@ -36,7 +33,7 @@
 
         components: { VueDatePicker },
         props: {
-            timeInterval: {
+            modelValue: {
                 type: TimeInterval,
                 required: true,
             },
@@ -45,6 +42,7 @@
                 required: true,
             },
         },
+        emits: ['update:modelValue'],
         setup() {
             return { v$: useVuelidate({ $scope: true }) };
         },
@@ -57,31 +55,33 @@
             };
         },
         mounted() {
-            if (
-                this.timeInterval.dateFrom != undefined &&
-                this.timeInterval.dateTo != undefined
-            ) {
-                this.interval = [
-                    this.timeInterval.dateFrom,
-                    this.timeInterval.dateTo,
-                ];
+            if (this.value.dateFrom && this.value.dateTo) {
+                this.interval = [this.value.dateFrom, this.value.dateTo];
             }
         },
         methods: {
             handleTimeInterval(dateRange: Date[] | null) {
-                if (dateRange?.length ?? 0 > 0) {
-                    this.timeInterval.setRange(
-                        dateRange ? dateRange[0] : undefined,
-                        dateRange ? dateRange[1] : undefined
-                    );
+                if (dateRange && dateRange.length > 1) {
+                    this.value = new TimeInterval(dateRange[0], dateRange[0]);
                 }
             },
             cleanTimeInterval() {
-                this.timeInterval.setRange(undefined, undefined);
+                this.value = new TimeInterval();
+            },
+        },
+        computed: {
+            value: {
+                get() {
+                    return this.modelValue;
+                },
+                set(value: TimeInterval) {
+                    console.log(value);
+                    this.$emit('update:modelValue', value);
+                },
             },
         },
         validations: {
-            timeInterval: {
+            value: {
                 dateFrom: {
                     required: helpers.withMessage(
                         'Date From is required',
