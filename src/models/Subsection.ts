@@ -38,7 +38,7 @@ export class Subsection {
         this.elements = subsection.elements.map((element) => element.copy());
     }
     copy() {
-        let result = new Subsection(this.id, this.title, this.text);
+        const result = new Subsection(this.id, this.title, this.text);
         result.last = this.last;
         result.editing = this.editing;
         result.count = this.count;

@@ -105,7 +105,7 @@
             initialState(): { section: Section } {
                 return {
                     section:
-                        !this.isEditing || !this.editIndex
+                        !this.isEditing || this.editIndex == undefined
                             ? new Section()
                             : this.sections[this.editIndex].copy(),
                 };

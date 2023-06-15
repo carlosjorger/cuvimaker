@@ -33,10 +33,7 @@
 
         components: { VueDatePicker },
         props: {
-            modelValue: {
-                type: TimeInterval,
-                required: true,
-            },
+            modelValue: TimeInterval,
             hasPeriodOfTime: {
                 type: Boolean,
                 required: true,
