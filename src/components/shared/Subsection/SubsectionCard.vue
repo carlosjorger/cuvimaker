@@ -28,6 +28,10 @@
                 type: Boolean,
                 default: false,
             },
+            ifEditing: {
+                type: Boolean,
+                default: false,
+            },
         },
         data() {
             return {
@@ -37,18 +41,16 @@
         mounted() {
             emitter.on('changeSetting', () => {
                 this.isBeingShowedSetting = false;
-                //TODO: pass isBeingEditingIntroduction to disableEditSetting
-                // and tryToShowSetting
+                this.tryToShowSetting(this.ifEditing);
             });
         },
         methods: {
             changeSetting() {
-                // TODO: avoid hidden the Setting if another section is selected
                 emitter?.emit('changeSetting');
-                this.tryToShowSetting();
+                this.tryToShowSetting(!this.disableEditSetting);
             },
-            tryToShowSetting() {
-                if (!this.disableEditSetting) {
+            tryToShowSetting(canShowSetting: boolean) {
+                if (canShowSetting) {
                     scrollSmoothToElement(this.$el);
                     this.isBeingShowedSetting = true;
                 }

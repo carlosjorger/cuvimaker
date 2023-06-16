@@ -1,5 +1,8 @@
 <template>
-    <SubsectionCard :disableEditSetting="editing">
+    <SubsectionCard
+        :disableEditSetting="isBeingEditingIntroduction"
+        :ifEditing="isBeingEditingIntroduction"
+    >
         <template #body>
             <SubsectionForm
                 class="text-3xl font-extrabold"
@@ -18,12 +21,15 @@
         </template>
         <template #footer>
             <Transition>
-                <div v-if="editing" class="absolute flex h-full items-center">
+                <div
+                    v-if="isBeingEditingIntroduction"
+                    class="absolute flex h-full items-center"
+                >
                     <a
                         class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
                         @click="
                             () => {
-                                editing = false;
+                                setEditingIntroduction(false);
                             }
                         "
                     >
@@ -32,12 +38,15 @@
                 </div>
             </Transition>
             <Transition>
-                <div v-if="!editing" class="absolute flex h-full items-center">
+                <div
+                    v-if="!isBeingEditingIntroduction"
+                    class="absolute flex h-full items-center"
+                >
                     <a
                         class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
                         @click="
                             () => {
-                                editing = true;
+                                setEditingIntroduction(true);
                             }
                         "
                     >
@@ -63,16 +72,16 @@
                 type: Introduction,
                 required: true,
             },
+            isBeingEditingIntroduction: Boolean,
         },
         data() {
             return {
                 ...this.initialState(),
-                editing: false,
             };
         },
         provide() {
             return {
-                editing: computed(() => this.editing),
+                editing: computed(() => this.isBeingEditingIntroduction),
             };
         },
         methods: {
@@ -82,6 +91,9 @@
                 return {
                     currentIntroduction: { ...this.introduction },
                 };
+            },
+            setEditingIntroduction(value: boolean) {
+                this.$emit('set-editing-introduction', value);
             },
         },
     };

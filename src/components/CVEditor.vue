@@ -1,6 +1,10 @@
 <template>
     <section>
-        <IntroductionSection :introduction="resume.introduction" />
+        <IntroductionSection
+            :introduction="resume.introduction"
+            :isBeingEditingIntroduction="resume.isBeingEditingIntroduction"
+            @set-editing-introduction="setEditingIntroduction"
+        />
         <BasicButton
             :name="'Add Section'"
             @click="
@@ -26,6 +30,7 @@
                 :section="section"
                 :key="section.name"
                 @delete-section="deleteSection(index)"
+                :isBeingEditingIntroduction="resume.isBeingEditingIntroduction"
                 @edit-section="
                     () => {
                         showModal = true;
@@ -67,6 +72,9 @@
         methods: {
             deleteSection(index: number) {
                 this.resume.sections.splice(index, 1);
+            },
+            setEditingIntroduction(value: boolean) {
+                this.resume.isBeingEditingIntroduction = value;
             },
         },
     };

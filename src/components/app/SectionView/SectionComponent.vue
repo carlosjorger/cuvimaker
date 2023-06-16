@@ -1,5 +1,8 @@
 <template>
-    <SubsectionCard>
+    <SubsectionCard
+        :disableEditSetting="isBeingEditingIntroduction"
+        :ifEditing="false"
+    >
         <template #body>
             <div class="p-4" @click="changeSetting">
                 <header>
@@ -56,6 +59,7 @@
                 type: Section,
                 require: true,
             },
+            isBeingEditingIntroduction: Boolean,
         },
         mounted() {
             scrollSmoothToElement(this.$el);
