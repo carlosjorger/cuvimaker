@@ -37,15 +37,17 @@
         mounted() {
             emitter.on('changeSetting', () => {
                 this.isBeingShowedSetting = false;
+                //TODO: pass isBeingEditingIntroduction to disableEditSetting
+                // and tryToShowSetting
             });
         },
         methods: {
             changeSetting() {
                 // TODO: avoid hidden the Setting if another section is selected
                 emitter?.emit('changeSetting');
-                this.showSetting();
+                this.tryToShowSetting();
             },
-            showSetting() {
+            tryToShowSetting() {
                 if (!this.disableEditSetting) {
                     scrollSmoothToElement(this.$el);
                     this.isBeingShowedSetting = true;
