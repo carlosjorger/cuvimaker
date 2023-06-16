@@ -8,8 +8,8 @@
         <footer
             class="relative flex w-full justify-end overflow-hidden bg-primary transition-all duration-500 dark:bg-zinc-300"
             :class="{
-                ['h-16']: showSetting,
-                ['h-0']: !showSetting,
+                ['h-16']: isBeingShowedSetting,
+                ['h-0']: !isBeingShowedSetting,
             }"
         >
             <slot name="footer"> </slot>
@@ -31,21 +31,24 @@
         },
         data() {
             return {
-                showSetting: false,
+                isBeingShowedSetting: false,
             };
         },
         mounted() {
             emitter.on('changeSetting', () => {
-                this.showSetting = false;
+                this.isBeingShowedSetting = false;
             });
         },
         methods: {
             changeSetting() {
                 // TODO: avoid hidden the Setting if another section is selected
+                emitter?.emit('changeSetting');
+                this.showSetting();
+            },
+            showSetting() {
                 if (!this.disableEditSetting) {
                     scrollSmoothToElement(this.$el);
-                    emitter?.emit('changeSetting');
-                    this.showSetting = true;
+                    this.isBeingShowedSetting = true;
                 }
             },
         },

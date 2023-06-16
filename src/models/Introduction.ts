@@ -1,6 +1,6 @@
 export class Introduction {
-    name: string = '';
-    profetion: string = '';
+    name = '';
+    profetion = '';
     email: string | undefined;
     phone: string | undefined;
     location: string | undefined;

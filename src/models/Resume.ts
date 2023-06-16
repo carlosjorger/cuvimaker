@@ -1,5 +1,5 @@
 import { Introduction } from './Introduction';
-import { Section } from './Section';
+import type { Section } from './Section';
 
 export class Resume {
     introduction: Introduction;
