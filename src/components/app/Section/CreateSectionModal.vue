@@ -21,13 +21,17 @@
             <div class="mb-2 box-border">
                 <input
                     v-model="section.name"
-                    class="mt-2 w-full rounded-3xl border-2 border-solid border-primary p-2 font-semibold text-primary shadow-xl transition-all duration-300 placeholder:text-lg placeholder:text-primary focus:border-4 dark:border-zinc-300 dark:bg-dark-primary-200 dark:text-zinc-300 dark:placeholder:text-zinc-300"
+                    class="mt-2 w-full rounded-3xl border-2 border-solid p-2 font-semibold text-primary shadow-xl transition-all duration-300 placeholder:text-lg focus:border-4 dark:bg-dark-primary-200 dark:text-zinc-300"
+                    :class="{
+                        'border-red-600 placeholder:text-red-600 dark:border-rose-500 dark:placeholder:text-rose-500 ':
+                            v$.section.name.$errors.length > 0,
+                        'border-primary placeholder:text-primary dark:border-zinc-300  dark:placeholder:text-zinc-300':
+                            v$.section.name.$errors.length <= 0,
+                    }"
                     placeholder="Section Name"
                     type="text"
                 />
-                <div v-for="error of v$.section.name.$errors" :key="error.$uid">
-                    <div>{{ error.$message }}</div>
-                </div>
+                <ErrorsSection :errors="v$.section.name.$errors" />
             </div>
             <div class="mb-2 box-border">
                 <transition-group
@@ -67,6 +71,7 @@
     import { useVuelidate } from '@vuelidate/core';
     import { helpers, required } from '@vuelidate/validators';
     import { inject, computed } from 'vue';
+    import ErrorsSection from '../../shared/Error/ErrorsSection.vue';
 
     export default {
         name: 'CreateSectionModal',
@@ -79,12 +84,13 @@
                 type: Number,
             },
         },
-        components: { SubsectionMenu, CloseAddButton, BasicButton },
-        setup() {
-            return {
-                v$: useVuelidate({ $scope: false }),
-            };
+        components: {
+            SubsectionMenu,
+            CloseAddButton,
+            BasicButton,
+            ErrorsSection,
         },
+
         data(): { section: Section; sections: Section[] } {
             return {
                 ...this.initialState(),
@@ -154,6 +160,11 @@
                         ),
                     },
                 },
+            };
+        },
+        setup() {
+            return {
+                v$: useVuelidate({ $scope: false }),
             };
         },
         watch: {

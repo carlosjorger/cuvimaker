@@ -12,6 +12,7 @@
             @cleared="cleanTimeInterval"
             input-class-name="shadow-xl"
         />
+        <!-- TODO: why isnt not showed the errors -->
         <div v-for="error of v$.value.dateFrom.$errors" :key="error.$uid">
             <div class="error-msg">{{ error.$message }}</div>
         </div>

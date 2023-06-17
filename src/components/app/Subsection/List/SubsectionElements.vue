@@ -22,10 +22,6 @@
             />
         </transition>
     </div>
-    <!-- TODO close this error -->
-    <div v-for="error of v$.newElement.$errors" :key="error.$uid">
-        <div class="error-msg">{{ error.$message }}</div>
-    </div>
     <transition-group
         name="subsection-elements"
         class="subsection-elements-list"
@@ -51,9 +47,8 @@
     import { Subsection } from '../../../../models/Subsection';
     import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
     import SubsectionElement from './SubsectionElement.vue';
-    import { required, helpers } from '@vuelidate/validators';
-    import { useVuelidate } from '@vuelidate/core';
     import { inject } from 'vue';
+
     export default {
         name: 'SubsectionElements',
         emits: ['changeElement', 'removeElement'],
@@ -62,9 +57,6 @@
             SubsectionElement,
         },
 
-        setup() {
-            return { v$: useVuelidate({ $scope: false }) };
-        },
         data() {
             return {
                 ...this.initialState(),
@@ -118,34 +110,12 @@
                 }
             },
             addElement() {
-                this.v$.$touch();
-                if (!this.v$.$error) {
-                    this.addElementIntoSubsection(this.newElement);
-                    this.newElement = '';
-                    this.initTextArea();
-                    this.v$.$reset();
-                }
+                this.addElementIntoSubsection(this.newElement);
+                this.newElement = '';
+                this.initTextArea();
             },
             addElementIntoSubsection(newElement: string) {
                 this.subsection.addElement(newElement);
-            },
-        },
-        validations() {
-            return {
-                newElement: {
-                    required,
-                    hasAtLeastOneElement: helpers.withMessage(
-                        "Doesn't has a least one element",
-                        this.hasAtLeastOneElement
-                    ),
-                },
-            };
-        },
-        watch: {
-            editing(newValue: boolean) {
-                if (!newValue) {
-                    this.v$.$reset();
-                }
             },
         },
     };

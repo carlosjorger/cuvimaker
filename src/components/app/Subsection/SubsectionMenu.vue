@@ -34,12 +34,7 @@
                     v-model="subsection.title"
                     placeholder="Subsection title"
                 />
-                <div
-                    v-for="error of v$.subsection.title.$errors"
-                    :key="error.$uid"
-                >
-                    <div>{{ error.$message }}</div>
-                </div>
+                <ErrorsSection :errors="v$.subsection.title.$errors" />
                 <subsection-form
                     v-model="subsection.text"
                     placeholder="Subsection subtitle"
@@ -79,7 +74,7 @@
     import ModalButton from '../../shared/Button/ModalButton.vue';
     import SubsectionListSection from './List/SubsectionListSection.vue';
     import { computed } from 'vue';
-
+    import ErrorsSection from '../../shared/Error/ErrorsSection.vue';
     const emitter = mitt();
     export default {
         name: 'SubsectionMenu',
@@ -107,6 +102,7 @@
             SubsectionTimeIntervalSection,
             ModalButton,
             SubsectionListSection,
+            ErrorsSection,
         },
         setup() {
             return {
