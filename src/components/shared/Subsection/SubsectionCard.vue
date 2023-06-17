@@ -39,6 +39,7 @@
             };
         },
         mounted() {
+            this.isBeingShowedSetting = this.ifEditing;
             emitter.on('changeSetting', () => {
                 this.isBeingShowedSetting = false;
                 this.tryToShowSetting(this.ifEditing);

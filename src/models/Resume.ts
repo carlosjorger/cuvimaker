@@ -8,6 +8,6 @@ export class Resume {
     constructor() {
         this.introduction = new Introduction();
         this.sections = [];
-        this.isBeingEditingIntroduction = false;
+        this.isBeingEditingIntroduction = true;
     }
 }

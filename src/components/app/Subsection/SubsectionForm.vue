@@ -1,7 +1,7 @@
 <template>
     <input
         v-model="value"
-        class="mt-2 block w-full border-solid bg-inherit placeholder-gray-500 transition-form duration-300 focus:outline-none"
+        class="mt-2 block w-full border-solid bg-inherit transition-form duration-300 focus:outline-none dark:placeholder-zinc-400"
         v-if="editing || value"
         :class="[
             `border-${lightColor} dark:border-${darkColor} text-${lightColor} dark:text-${darkColor}`,
