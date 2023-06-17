@@ -34,6 +34,7 @@
                     v-model="subsection.title"
                     placeholder="Subsection title"
                 />
+                <!-- TODO: integrate ErrorSection on Subsection Form -->
                 <ErrorsSection :errors="v$.subsection.title.$errors" />
                 <subsection-form
                     v-model="subsection.text"
