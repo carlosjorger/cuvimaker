@@ -29,16 +29,15 @@
                 ></transition>
             </div>
             <form v-on:submit.prevent v-if="!subsection.last" class="p-5">
-                <subsection-form
+                <SubsectionForm
                     class="text-lg"
                     v-model="subsection.title"
-                    placeholder="Subsection title"
+                    :placeholder="'Subsection title'"
+                    :errors="v$.subsection.title.$errors"
                 />
-                <!-- TODO: integrate ErrorSection on Subsection Form -->
-                <ErrorsSection :errors="v$.subsection.title.$errors" />
-                <subsection-form
+                <SubsectionForm
                     v-model="subsection.text"
-                    placeholder="Subsection subtitle"
+                    :placeholder="'Subsection subtitle'"
                 />
                 <SubsectionTimeIntervalSection
                     v-model="subsection.subsectionTimeInterval"
@@ -75,7 +74,6 @@
     import ModalButton from '../../shared/Button/ModalButton.vue';
     import SubsectionListSection from './List/SubsectionListSection.vue';
     import { computed } from 'vue';
-    import ErrorsSection from '../../shared/Error/ErrorsSection.vue';
     const emitter = mitt();
     export default {
         name: 'SubsectionMenu',
@@ -103,7 +101,6 @@
             SubsectionTimeIntervalSection,
             ModalButton,
             SubsectionListSection,
-            ErrorsSection,
         },
         setup() {
             return {
