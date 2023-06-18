@@ -4,20 +4,22 @@
         :ifEditing="isBeingEditingIntroduction"
     >
         <template #body>
-            <SubsectionForm
-                class="text-3xl font-extrabold"
-                v-model="currentIntroduction.name"
-                placeholder="Your name"
-                :lightColor="'primary'"
-                :darkColor="'zinc-300'"
-            />
-            <SubsectionForm
-                class="text-xl font-extrabold"
-                v-model="currentIntroduction.profetion"
-                placeholder="Profetion"
-                :lightColor="'primary'"
-                :darkColor="'zinc-300'"
-            />
+            <form v-on:submit.prevent class="font-extrabold">
+                <SubsectionForm
+                    class="text-3xl"
+                    v-model="currentIntroduction.name"
+                    placeholder="Your name"
+                    :lightColor="'primary'"
+                    :darkColor="'zinc-300'"
+                />
+                <SubsectionForm
+                    class="text-xl"
+                    v-model="currentIntroduction.profetion"
+                    placeholder="Profetion"
+                    :lightColor="'primary'"
+                    :darkColor="'zinc-300'"
+                />
+            </form>
         </template>
         <template #footer>
             <Transition>
