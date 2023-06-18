@@ -38,10 +38,7 @@ export class Subsection {
         this.elements = subsection.elements.map((element) => element.copy());
     }
     copy() {
-        const result = new Subsection(this.id, this.title, this.text);
-        result.last = this.last;
-        result.editing = this.editing;
-        result.count = this.count;
+        const result = { ...this };
         result.subsectionTimeInterval = this.subsectionTimeInterval?.copy();
         result.elements = this.elements.map((element) => element.copy());
         return result;
