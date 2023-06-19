@@ -11,7 +11,7 @@
                     : 'pointer-events-none border-b-0 shadow-none',
                 errors != undefined && errors.length > 0
                     ? 'border-red-600 placeholder:text-red-600 dark:border-rose-500 dark:placeholder:text-rose-500'
-                    : `border-${lightColor} dark:border-${darkColor} placeholder:text-primary dark:placeholder:text-zinc-300`,
+                    : `border-${lightColor} dark:border-${darkColor} placeholder:text-zinc-400 dark:placeholder:text-zinc-300`,
             ]"
             type="text"
             :placeholder="placeholder"

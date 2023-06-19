@@ -58,6 +58,16 @@ export class Introduction {
     }
 
     copy(): Introduction {
-        return { ...this };
+        return new Introduction(
+            this.name,
+            this.profetion,
+            this.email,
+            this.phone,
+            this.location,
+            this.linkedin,
+            this.github,
+            this.twitter,
+            this.website
+        );
     }
 }

@@ -12,13 +12,8 @@
             @cleared="cleanTimeInterval"
             input-class-name="shadow-xl"
         />
-        <!-- TODO: why isnt not showed the errors -->
-        <div v-for="error of v$.value.dateFrom.$errors" :key="error.$uid">
-            <div class="error-msg">{{ error.$message }}</div>
-        </div>
-        <div v-for="error of v$.value.dateTo.$errors" :key="error.$uid">
-            <div class="error-msg">{{ error.$message }}</div>
-        </div>
+        <ErrorsSection :errors="v$.value.dateFrom.$errors" />
+        <ErrorsSection :errors="v$.value.dateTo.$errors" />
     </div>
 </template>
 
@@ -29,10 +24,12 @@
     import { helpers, required } from '@vuelidate/validators';
     import { useVuelidate } from '@vuelidate/core';
     import { inject } from 'vue';
+    import ErrorsSection from '../../../shared/Error/ErrorsSection.vue';
+
     export default {
         name: 'SubsectionTimeInterval',
 
-        components: { VueDatePicker },
+        components: { VueDatePicker, ErrorsSection },
         props: {
             modelValue: TimeInterval,
             hasPeriodOfTime: {
