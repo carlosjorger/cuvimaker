@@ -5,6 +5,7 @@
     >
         <template #body>
             <form v-on:submit.prevent class="font-extrabold">
+                <!-- TODO: Add require validation to Name -->
                 <SubsectionForm
                     class="text-3xl"
                     v-model="currentIntroduction.name"
@@ -12,6 +13,7 @@
                     :lightColor="'primary'"
                     :darkColor="'zinc-300'"
                 />
+                <!-- TODO: Add require validation to Name -->
                 <SubsectionForm
                     class="text-xl"
                     v-model="currentIntroduction.profetion"
