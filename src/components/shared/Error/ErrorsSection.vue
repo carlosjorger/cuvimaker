@@ -1,6 +1,6 @@
 <template>
     <div
-        class="p-1 text-red-600 dark:text-rose-500"
+        class="p-1 text-base text-red-600 dark:text-rose-500"
         v-for="error of errors"
         :key="error.$uid"
     >

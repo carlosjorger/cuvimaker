@@ -5,22 +5,42 @@
     >
         <template #body>
             <form v-on:submit.prevent class="font-extrabold">
-                <!-- TODO: Add require validation to Name -->
                 <SubsectionForm
                     class="text-3xl"
                     v-model="currentIntroduction.name"
                     placeholder="Your name"
                     :lightColor="'primary'"
                     :darkColor="'zinc-300'"
+                    :errors="v$.currentIntroduction.name.$errors"
                 />
-                <!-- TODO: Add require validation to Name -->
                 <SubsectionForm
-                    class="text-xl"
+                    class="text-2xl"
                     v-model="currentIntroduction.profetion"
                     placeholder="Profetion"
                     :lightColor="'primary'"
                     :darkColor="'zinc-300'"
+                    :errors="v$.currentIntroduction.profetion.$errors"
                 />
+                <div class="flex items-end">
+                    <div
+                        v-if="
+                            currentIntroduction.location ||
+                            isBeingEditingIntroduction
+                        "
+                        class="p-1 text-primary transition-colors duration-500 dark:text-white"
+                    >
+                        <Icon icon="mdi:location" width="20" />
+                    </div>
+
+                    <SubsectionForm
+                        class="text-lg"
+                        v-model="currentIntroduction.location"
+                        placeholder="Location"
+                        :lightColor="'primary'"
+                        :darkColor="'zinc-300'"
+                        :errors="v$.currentIntroduction.profetion.$errors"
+                    />
+                </div>
             </form>
         </template>
         <template #footer>
@@ -68,8 +88,16 @@
     import { computed } from 'vue';
     import SubsectionCard from '../../../shared/Subsection/SubsectionCard.vue';
     import { Icon } from '@iconify/vue';
+    import { useVuelidate } from '@vuelidate/core';
+    import { required } from '@vuelidate/validators';
+
     export default {
         components: { SubsectionForm, SubsectionCard, Icon },
+        setup() {
+            return {
+                v$: useVuelidate({ $scope: true }),
+            };
+        },
         name: 'IntroductionSection',
         props: {
             introduction: {
@@ -78,10 +106,10 @@
             },
             isBeingEditingIntroduction: Boolean,
         },
-        data() {
-            return {
-                ...this.initialState(),
-            };
+        data(): {
+            currentIntroduction: Introduction;
+        } {
+            return this.initialState();
         },
         provide() {
             return {
@@ -93,11 +121,29 @@
                 currentIntroduction: Introduction;
             } {
                 return {
-                    currentIntroduction: { ...this.introduction },
+                    currentIntroduction: this.introduction.copy(),
                 };
             },
             setEditingIntroduction(value: boolean) {
+                if (this.isBeingEditingIntroduction) {
+                    this.v$.$validate();
+                    if (this.v$.$error) {
+                        return;
+                    } else {
+                        this.v$.$reset();
+                    }
+                }
                 this.$emit('set-editing-introduction', value);
+            },
+        },
+        validations: {
+            currentIntroduction: {
+                name: {
+                    required,
+                },
+                profetion: {
+                    required,
+                },
             },
         },
     };
