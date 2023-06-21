@@ -38,7 +38,6 @@
                         placeholder="Location"
                         :lightColor="'primary'"
                         :darkColor="'zinc-300'"
-                        :errors="v$.currentIntroduction.profetion.$errors"
                     />
                 </div>
                 <div class="flex items-end">
@@ -54,7 +53,7 @@
                         placeholder="Add a Social Account"
                         :lightColor="'primary'"
                         :darkColor="'zinc-300'"
-                        :errors="v$.currentIntroduction.profetion.$errors"
+                        :errors="v$.currentSocialAccount.$errors"
                     />
                     <AppearFadeTransition>
                         <CloseAddButton
@@ -135,7 +134,7 @@
     import SubsectionCard from '../../../shared/Subsection/SubsectionCard.vue';
     import { Icon } from '@iconify/vue';
     import { useVuelidate } from '@vuelidate/core';
-    import { required } from '@vuelidate/validators';
+    import { required, url } from '@vuelidate/validators';
     import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
     import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
     export default {
@@ -192,6 +191,11 @@
                 this.$emit('set-editing-introduction', value);
             },
             addSocialAccount() {
+                this.v$.$validate();
+                if (this.v$.$error) {
+                    console.log('error');
+                    return;
+                }
                 this.currentIntroduction.socialAccounts.push(
                     this.currentSocialAccount
                 );
@@ -207,6 +211,7 @@
                     required,
                 },
             },
+            currentSocialAccount: { url },
         },
     };
 </script>
