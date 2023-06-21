@@ -8,6 +8,7 @@ export class Introduction {
     github: string | undefined;
     twitter: string | undefined;
     website: string | undefined;
+    socialAccounts: string[];
     /**
      *
      */
@@ -31,6 +32,7 @@ export class Introduction {
         this.github = github;
         this.twitter = twitter;
         this.website = website;
+        this.socialAccounts = [];
     }
     ifEmpty(): boolean {
         return (

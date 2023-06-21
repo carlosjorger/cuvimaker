@@ -33,7 +33,7 @@
                     </div>
 
                     <SubsectionForm
-                        class="text-lg"
+                        class="min-w-[80%] text-lg"
                         v-model="currentIntroduction.location"
                         placeholder="Location"
                         :lightColor="'primary'"
@@ -41,6 +41,50 @@
                         :errors="v$.currentIntroduction.profetion.$errors"
                     />
                 </div>
+                <div class="flex items-end">
+                    <div
+                        class="p-1 text-primary transition-colors duration-500 dark:text-white"
+                    >
+                        <Icon icon="mdi:account" width="20" />
+                    </div>
+
+                    <SubsectionForm
+                        class="min-w-[80%] text-lg"
+                        v-model="currentSocialAccount"
+                        placeholder="Add a Social Account"
+                        :lightColor="'primary'"
+                        :darkColor="'zinc-300'"
+                        :errors="v$.currentIntroduction.profetion.$errors"
+                    />
+                    <CloseAddButton
+                        v-if="currentSocialAccount.trim()"
+                        :size="2.3"
+                        v-on:click="addSocialAccount()"
+                        :buttonColor="'bg-inherit'"
+                        :lineColor="'white'"
+                    />
+                </div>
+                <ul>
+                    <li
+                        v-for="(
+                            socialAccount, index
+                        ) in currentIntroduction.socialAccounts"
+                        :key="index"
+                    >
+                        <div class="flex items-end">
+                            <div
+                                class="p-1 text-primary transition-colors duration-500 dark:text-white"
+                            >
+                                <Icon
+                                    icon="material-symbols:account-box"
+                                    width="20"
+                                />
+                            </div>
+
+                            <h3>{{ socialAccount }}</h3>
+                        </div>
+                    </li>
+                </ul>
             </form>
         </template>
         <template #footer>
@@ -90,9 +134,10 @@
     import { Icon } from '@iconify/vue';
     import { useVuelidate } from '@vuelidate/core';
     import { required } from '@vuelidate/validators';
+    import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
 
     export default {
-        components: { SubsectionForm, SubsectionCard, Icon },
+        components: { SubsectionForm, SubsectionCard, Icon, CloseAddButton },
         setup() {
             return {
                 v$: useVuelidate({ $scope: true }),
@@ -108,6 +153,7 @@
         },
         data(): {
             currentIntroduction: Introduction;
+            currentSocialAccount: string;
         } {
             return this.initialState();
         },
@@ -119,9 +165,11 @@
         methods: {
             initialState(): {
                 currentIntroduction: Introduction;
+                currentSocialAccount: string;
             } {
                 return {
                     currentIntroduction: this.introduction.copy(),
+                    currentSocialAccount: '',
                 };
             },
             setEditingIntroduction(value: boolean) {
@@ -134,6 +182,12 @@
                     }
                 }
                 this.$emit('set-editing-introduction', value);
+            },
+            addSocialAccount() {
+                this.currentIntroduction.socialAccounts.push(
+                    this.currentSocialAccount
+                );
+                this.currentSocialAccount = '';
             },
         },
         validations: {
