@@ -40,7 +40,7 @@
                         :darkColor="'zinc-300'"
                     />
                 </div>
-                <div class="flex items-end">
+                <div class="flex items-end" v-if="isBeingEditingIntroduction">
                     <div
                         class="p-1 text-primary transition-colors duration-500 dark:text-white"
                     >
@@ -81,8 +81,7 @@
                                     width="20"
                                 />
                             </div>
-
-                            <h3>{{ socialAccount }}</h3>
+                            <a :href="socialAccount">{{ socialAccount }}</a>
                         </div>
                     </li>
                 </ul>
