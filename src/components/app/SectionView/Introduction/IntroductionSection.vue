@@ -56,13 +56,15 @@
                         :darkColor="'zinc-300'"
                         :errors="v$.currentIntroduction.profetion.$errors"
                     />
-                    <CloseAddButton
-                        v-if="currentSocialAccount.trim()"
-                        :size="2.3"
-                        v-on:click="addSocialAccount()"
-                        :buttonColor="'bg-inherit'"
-                        :lineColor="'white'"
-                    />
+                    <AppearFadeTransition>
+                        <CloseAddButton
+                            v-if="currentSocialAccount.trim()"
+                            :size="2.3"
+                            v-on:click="addSocialAccount()"
+                            :buttonColor="'bg-inherit'"
+                            :lineColor="'white'"
+                        />
+                    </AppearFadeTransition>
                 </div>
                 <ul>
                     <li
@@ -135,9 +137,15 @@
     import { useVuelidate } from '@vuelidate/core';
     import { required } from '@vuelidate/validators';
     import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
-
+    import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
     export default {
-        components: { SubsectionForm, SubsectionCard, Icon, CloseAddButton },
+        components: {
+            SubsectionForm,
+            SubsectionCard,
+            Icon,
+            CloseAddButton,
+            AppearFadeTransition,
+        },
         setup() {
             return {
                 v$: useVuelidate({ $scope: true }),

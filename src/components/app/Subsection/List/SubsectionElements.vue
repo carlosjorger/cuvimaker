@@ -12,7 +12,7 @@
             @input="changeTextArea"
             @change="changeTextArea"
         ></textarea>
-        <transition name="addElementButton">
+        <AppearFadeTransition>
             <close-add-button
                 v-if="newElement.trim()"
                 :size="2.3"
@@ -20,7 +20,7 @@
                 :buttonColor="'bg-inherit'"
                 :lineColor="'white'"
             />
-        </transition>
+        </AppearFadeTransition>
     </div>
     <transition-group
         name="subsection-elements"
@@ -48,6 +48,7 @@
     import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
     import SubsectionElement from './SubsectionElement.vue';
     import { inject } from 'vue';
+    import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
 
     export default {
         name: 'SubsectionElements',
@@ -55,6 +56,7 @@
         components: {
             CloseAddButton,
             SubsectionElement,
+            AppearFadeTransition,
         },
 
         data() {
@@ -122,17 +124,6 @@
 </script>
 
 <style>
-    .addElementButton-leave-active {
-        transition: all 0.5s ease;
-    }
-    .addElementButton-enter-active {
-        transition: all 0.5s ease;
-    }
-    .addElementButton-leave-to,
-    .addElementButton-enter-from {
-        opacity: 0;
-    }
-
     .subsection-elements-move {
         transition: all 0.5s ease;
     }

@@ -8,15 +8,14 @@
     >
         <div>
             <div class="flex items-center justify-between">
-                <transition name="editButton">
+                <AppearFadeTransition>
                     <close-add-button
                         v-on:click="addRemoveSubSection()"
                         :closeButton="!subsection.last"
                         v-if="!editing"
                     />
-                </transition>
-
-                <transition name="editButton">
+                </AppearFadeTransition>
+                <AppearFadeTransition>
                     <circle-button
                         v-on:click="editSubSection()"
                         v-if="!subsection.last && !editing"
@@ -25,8 +24,9 @@
                             icon="ic:baseline-mode-edit"
                             width="25"
                             color="var(--primary-color)"
-                        /> </circle-button
-                ></transition>
+                        />
+                    </circle-button>
+                </AppearFadeTransition>
             </div>
             <form v-on:submit.prevent v-if="!subsection.last" class="p-5">
                 <SubsectionForm
@@ -74,6 +74,8 @@
     import ModalButton from '../../shared/Button/ModalButton.vue';
     import SubsectionListSection from './List/SubsectionListSection.vue';
     import { computed } from 'vue';
+    import AppearFadeTransition from '../../shared/Transition/AppearFadeTransition.vue';
+
     const emitter = mitt();
     export default {
         name: 'SubsectionMenu',
@@ -101,6 +103,7 @@
             SubsectionTimeIntervalSection,
             ModalButton,
             SubsectionListSection,
+            AppearFadeTransition,
         },
         setup() {
             return {
@@ -263,15 +266,5 @@
         60% {
             transform: translate3d(4px, 0, 0);
         }
-    }
-    .editButton-leave-active {
-        transition: all 0.5s ease;
-    }
-    .editButton-enter-active {
-        transition: all 0.5s ease;
-    }
-    .editButton-leave-to,
-    .editButton-enter-from {
-        opacity: 0;
     }
 </style>
