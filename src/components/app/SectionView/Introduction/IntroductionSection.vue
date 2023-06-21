@@ -46,7 +46,7 @@
                     >
                         <Icon icon="mdi:account" width="20" />
                     </div>
-
+                    <!--TODO: Align input with the addButton if there are errors-->
                     <SubsectionForm
                         class="min-w-[80%] text-lg"
                         v-model="currentSocialAccount"
@@ -76,11 +76,13 @@
                             <div
                                 class="p-1 text-primary transition-colors duration-500 dark:text-white"
                             >
+                                <!-- TODO: show icon according to the social media -->
                                 <Icon
                                     icon="material-symbols:account-box"
                                     width="20"
                                 />
                             </div>
+                            <!-- TODO: Add styles to links -->
                             <a :href="socialAccount">{{ socialAccount }}</a>
                         </div>
                     </li>
