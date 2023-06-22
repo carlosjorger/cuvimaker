@@ -33,22 +33,21 @@
                     </div>
 
                     <SubsectionForm
-                        class="min-w-[80%] text-lg"
+                        class="min-w-[82%] text-lg"
                         v-model="currentIntroduction.location"
                         placeholder="Location"
                         :lightColor="'primary'"
                         :darkColor="'zinc-300'"
                     />
                 </div>
-                <div class="flex items-end" v-if="isBeingEditingIntroduction">
+                <div class="flex items-start" v-if="isBeingEditingIntroduction">
                     <div
-                        class="p-1 text-primary transition-colors duration-500 dark:text-white"
+                        class="mt-2 p-1 text-primary transition-colors duration-500 dark:text-white"
                     >
                         <Icon icon="mdi:account" width="20" />
                     </div>
-                    <!--TODO: Align input with the addButton if there are errors-->
                     <SubsectionForm
-                        class="min-w-[80%] text-lg"
+                        class="min-w-[82%] text-lg"
                         v-model="currentSocialAccount"
                         placeholder="Add a Social Account"
                         :lightColor="'primary'"
@@ -72,7 +71,7 @@
                         ) in currentIntroduction.socialAccounts"
                         :key="index"
                     >
-                        <div class="flex items-end">
+                        <div class="flex items-center">
                             <div
                                 class="p-1 text-primary transition-colors duration-500 dark:text-white"
                             >
