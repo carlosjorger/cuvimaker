@@ -81,8 +81,7 @@
                                     width="20"
                                 />
                             </div>
-                            <!-- TODO: Add styles to links -->
-                            <a :href="socialAccount">{{ socialAccount }}</a>
+                            <BasicLink :link="socialAccount" />
                         </div>
                     </li>
                 </ul>
@@ -137,6 +136,7 @@
     import { required, url } from '@vuelidate/validators';
     import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
     import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
+    import BasicLink from '../../../shared/Anchor/BasicLink.vue';
     export default {
         components: {
             SubsectionForm,
@@ -144,6 +144,7 @@
             Icon,
             CloseAddButton,
             AppearFadeTransition,
+            BasicLink,
         },
         setup() {
             return {
@@ -191,10 +192,11 @@
                 this.$emit('set-editing-introduction', value);
             },
             addSocialAccount() {
-                this.v$.$validate();
-                if (this.v$.$error) {
-                    console.log('error');
+                this.v$.currentSocialAccount.$touch();
+                if (this.v$.currentSocialAccount.$invalid) {
                     return;
+                } else {
+                    this.v$.$reset();
                 }
                 this.currentIntroduction.socialAccounts.push(
                     this.currentSocialAccount
