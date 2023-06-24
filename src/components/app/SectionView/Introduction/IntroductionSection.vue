@@ -60,7 +60,8 @@
                             :size="2.3"
                             v-on:click="addSocialAccount()"
                             :buttonColor="'bg-inherit'"
-                            :lineColor="'white'"
+                            :lineColor="'primary'"
+                            :darkline-color="'zinc-300'"
                         />
                     </AppearFadeTransition>
                 </div>

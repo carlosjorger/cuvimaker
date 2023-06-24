@@ -2,26 +2,19 @@
     <circle-button
         :buttonColor="buttonColor"
         :size="size"
-        class="border-4"
+        class="border-4 border-solid"
         :class="[
-            lineColor
-                ? `border-[${lineColor}]`
-                : 'border-primary dark:border-dark-primary',
-                closeButton?'rotate-45':'',
-                'border-4'
+            `border-${lineColor} dark:border-${darklineColor}`,
+            closeButton ? 'rotate-45' : '',
         ]"
     >
         <div
-            :style="{
-                backgroundColor: lineColor,
-            }"
-            class="absolute h-1 w-1/2 rotate-90 rounded-sm bg-primary transition-all duration-300 dark:bg-dark-primary"
+            :class="[`bg-${lineColor} dark:bg-${darklineColor}`]"
+            class="absolute h-1 w-1/2 rotate-90 rounded-sm transition-all duration-300"
         ></div>
         <div
-            :style="{
-                backgroundColor: lineColor,
-            }"
-            class="absolute h-1 w-1/2 rotate-180 rounded-sm bg-primary transition-all duration-300 dark:bg-dark-primary"
+            :class="[`bg-${lineColor} dark:bg-${darklineColor}`]"
+            class="absolute h-1 w-1/2 rotate-180 rounded-sm transition-all duration-300"
         ></div>
     </circle-button>
 </template>
@@ -35,9 +28,11 @@
             },
             lineColor: {
                 type: String,
+                default: 'primary',
             },
             darklineColor: {
                 type: String,
+                default: 'dark-primary',
             },
             buttonColor: {
                 type: String,

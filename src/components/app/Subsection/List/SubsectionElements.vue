@@ -13,12 +13,13 @@
             @change="changeTextArea"
         ></textarea>
         <AppearFadeTransition>
-            <close-add-button
+            <CloseAddButton
                 v-if="newElement.trim()"
                 :size="2.3"
                 v-on:click="addElement()"
                 :buttonColor="'bg-inherit'"
                 :lineColor="'white'"
+                :darklineColor="'zinc-300'"
             />
         </AppearFadeTransition>
     </div>

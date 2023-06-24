@@ -11,10 +11,11 @@
                 >
                     {{ isEditing ? 'Edit Section' : 'Add a Section' }}
                 </h3>
-                <close-add-button
+                <CloseAddButton
                     v-on:click="$emit('close-modal')"
                     :closeButton="true"
-                    :lineColor="'#FFFFFF'"
+                    :lineColor="'white'"
+                    :darklineColor="'zinc-300'"
                     :buttonColor="'bg-[var(--primary-color)] dark:bg-dark-primary'"
                 />
             </header>

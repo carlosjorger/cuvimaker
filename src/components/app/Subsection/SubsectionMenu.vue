@@ -9,7 +9,7 @@
         <div>
             <div class="flex items-center justify-between">
                 <AppearFadeTransition>
-                    <close-add-button
+                    <CloseAddButton
                         v-on:click="addRemoveSubSection()"
                         :closeButton="!subsection.last"
                         v-if="!editing"
