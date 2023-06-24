@@ -24,7 +24,7 @@
                 :editIndex="editIndex"
             />
         </transition>
-        <transition-group name="sectionComponent" class="z-0 block" tag="div">
+        <ListTransition class="z-0 block">
             <section-component
                 v-for="(section, index) in resume.sections"
                 :section="section"
@@ -38,7 +38,7 @@
                     }
                 "
             />
-        </transition-group>
+        </ListTransition>
     </section>
 </template>
 <script lang="ts">
@@ -49,6 +49,8 @@
     import BasicButton from './shared/Button/BasicButton.vue';
     import { computed } from 'vue';
     import IntroductionSection from './app/SectionView/Introduction/IntroductionSection.vue';
+    import ListTransition from './shared/Transition/ListTransition.vue';
+
     export default {
         name: 'CVEditor',
         components: {
@@ -56,6 +58,7 @@
             SectionComponent,
             BasicButton,
             IntroductionSection,
+            ListTransition,
         },
         data() {
             return {
@@ -93,23 +96,5 @@
     .createSectionModal-enter-from {
         transform: translateY(-1rem);
         opacity: 0;
-    }
-
-    .sectionComponent-move {
-        transition: all 0.5s ease;
-    }
-    .sectionComponent-leave-active {
-        transition: all 0.5s ease;
-    }
-    .sectionComponent-enter-active {
-        transition: all 0.5s ease;
-    }
-    .sectionComponent-enter-from,
-    .sectionComponent-leave-to {
-        opacity: 0;
-        transform: translateX(-1rem);
-    }
-    .sectionComponent-leave-active {
-        position: absolute;
     }
 </style>

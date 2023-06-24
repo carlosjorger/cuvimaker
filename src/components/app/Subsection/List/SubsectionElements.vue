@@ -23,11 +23,7 @@
             />
         </AppearFadeTransition>
     </div>
-    <transition-group
-        name="subsection-elements"
-        class="subsection-elements-list"
-        tag="div"
-    >
+    <ListTransition class="relative block">
         <SubsectionElement
             v-for="(element, index) in subsection.elements"
             :key="element.id"
@@ -41,7 +37,7 @@
             :selecting="selectedElement == index"
             :element="element.name"
         />
-    </transition-group>
+    </ListTransition>
 </template>
 
 <script lang="ts">
@@ -50,7 +46,7 @@
     import SubsectionElement from './SubsectionElement.vue';
     import { inject } from 'vue';
     import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
-
+    import ListTransition from '../../../shared/Transition/ListTransition.vue';
     export default {
         name: 'SubsectionElements',
         emits: ['changeElement', 'removeElement'],
@@ -58,6 +54,7 @@
             CloseAddButton,
             SubsectionElement,
             AppearFadeTransition,
+            ListTransition,
         },
 
         data() {
@@ -123,27 +120,3 @@
         },
     };
 </script>
-
-<style>
-    .subsection-elements-move {
-        transition: all 0.5s ease;
-    }
-    .subsection-elements-leave-active {
-        transition: all 0.5s ease;
-    }
-    .subsection-elements-enter-active {
-        transition: all 0.5s ease;
-    }
-    .subsection-elements-enter-from,
-    .subsection-elements-leave-to {
-        opacity: 0;
-        transform: translateX(-1rem);
-    }
-    .subsection-elements-leave-active {
-        position: absolute;
-    }
-    .subsection-elements-list {
-        position: relative;
-        display: block;
-    }
-</style>
