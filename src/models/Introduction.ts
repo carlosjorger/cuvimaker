@@ -1,3 +1,5 @@
+import { SocialAccount } from './SocialAccount';
+
 export class Introduction {
     name = '';
     profetion = '';
@@ -8,10 +10,8 @@ export class Introduction {
     github: string | undefined;
     twitter: string | undefined;
     website: string | undefined;
-    socialAccounts: string[];
-    /**
-     *
-     */
+    socialAccounts: SocialAccount[];
+    socialAccountsCount = 0;
     constructor(
         name?: string,
         profetion?: string,
@@ -58,7 +58,17 @@ export class Introduction {
         this.twitter = introduction.twitter;
         this.website = introduction.website;
     }
-
+    addSocialAccount(link: string) {
+        this.socialAccounts.push(
+            new SocialAccount(this.socialAccountsCount++, link)
+        );
+    }
+    removeSocialAccount(index: number) {
+        this.socialAccounts.splice(index, 1);
+    }
+    saveSocialAccount(index: number, link: string) {
+        this.socialAccounts[index].link = link;
+    }
     copy(): Introduction {
         return new Introduction(
             this.name,

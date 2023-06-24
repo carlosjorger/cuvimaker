@@ -73,17 +73,7 @@
                         ) in currentIntroduction.socialAccounts"
                         :key="index"
                     >
-                        <div class="flex items-center">
-                            <div
-                                class="p-1 text-primary transition-colors duration-500 dark:text-white"
-                            >
-                                <Icon
-                                    :icon="getIconByUrl(socialAccount)"
-                                    width="20"
-                                />
-                            </div>
-                            <BasicLink :link="socialAccount" />
-                        </div>
+                        <SocialAccount :socialAccount="socialAccount" />
                     </li>
                 </ul>
             </form>
@@ -137,7 +127,7 @@
     import { required, url } from '@vuelidate/validators';
     import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
     import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
-    import BasicLink from '../../../shared/Anchor/BasicLink.vue';
+    import SocialAccount from './SocialAccount.vue';
     export default {
         components: {
             SubsectionForm,
@@ -145,7 +135,7 @@
             Icon,
             CloseAddButton,
             AppearFadeTransition,
-            BasicLink,
+            SocialAccount,
         },
         setup() {
             return {
@@ -199,46 +189,10 @@
                 } else {
                     this.v$.$reset();
                 }
-                this.currentIntroduction.socialAccounts.push(
+                this.currentIntroduction.addSocialAccount(
                     this.currentSocialAccount
                 );
                 this.currentSocialAccount = '';
-            },
-            getIconByUrl(url: string) {
-                if (url.includes('github.com/')) {
-                    return 'mdi:github';
-                }
-                if (url.includes('twitter.com/')) {
-                    return 'mdi:twitter';
-                }
-                if (url.includes('linkedin.com/in/')) {
-                    return 'mdi:linkedin';
-                }
-                if (url.includes('reddit.com')) {
-                    return 'ic:baseline-reddit';
-                }
-                if (url.includes('t.me')) {
-                    return 'ic:baseline-telegram';
-                }
-                if (url.includes('instagram.com')) {
-                    return 'mdi:instagram';
-                }
-                if (url.includes('facebook.com')) {
-                    return 'ic:baseline-facebook';
-                }
-                if (url.includes('tiktok.com')) {
-                    return 'ic:baseline-tiktok';
-                }
-                if (url.includes('tiktok.com')) {
-                    return 'ic:baseline-tiktok';
-                }
-                if (url.includes('youtube.com')) {
-                    return 'mdi:youtube';
-                }
-                if (url.includes('twitch.tv')) {
-                    return 'mdi:twitch';
-                }
-                return 'material-symbols:account-box';
             },
         },
         validations: {
