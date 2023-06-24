@@ -75,9 +75,8 @@
                             <div
                                 class="p-1 text-primary transition-colors duration-500 dark:text-white"
                             >
-                                <!-- TODO: show icon according to the social media -->
                                 <Icon
-                                    icon="material-symbols:account-box"
+                                    :icon="getIconByUrl(socialAccount)"
                                     width="20"
                                 />
                             </div>
@@ -202,6 +201,42 @@
                     this.currentSocialAccount
                 );
                 this.currentSocialAccount = '';
+            },
+            getIconByUrl(url: string) {
+                if (url.includes('github.com/')) {
+                    return 'mdi:github';
+                }
+                if (url.includes('twitter.com/')) {
+                    return 'mdi:twitter';
+                }
+                if (url.includes('linkedin.com/in/')) {
+                    return 'mdi:linkedin';
+                }
+                if (url.includes('reddit.com')) {
+                    return 'ic:baseline-reddit';
+                }
+                if (url.includes('t.me')) {
+                    return 'ic:baseline-telegram';
+                }
+                if (url.includes('instagram.com')) {
+                    return 'mdi:instagram';
+                }
+                if (url.includes('facebook.com')) {
+                    return 'ic:baseline-facebook';
+                }
+                if (url.includes('tiktok.com')) {
+                    return 'ic:baseline-tiktok';
+                }
+                if (url.includes('tiktok.com')) {
+                    return 'ic:baseline-tiktok';
+                }
+                if (url.includes('youtube.com')) {
+                    return 'mdi:youtube';
+                }
+                if (url.includes('twitch.tv')) {
+                    return 'mdi:twitch';
+                }
+                return 'material-symbols:account-box';
             },
         },
         validations: {
