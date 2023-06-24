@@ -65,6 +65,7 @@
                         />
                     </AppearFadeTransition>
                 </div>
+                <!-- TODO:Add option to delete and update the social accounts -->
                 <ul>
                     <li
                         v-for="(
