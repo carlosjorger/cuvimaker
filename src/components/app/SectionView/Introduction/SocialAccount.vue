@@ -1,3 +1,5 @@
+<!-- TODO:Add option to delete and update the social accounts -->
+
 <template>
     <div class="flex items-center">
         <div
@@ -69,7 +71,6 @@
             },
             selecting: {
                 type: Boolean,
-                required: true,
             },
         },
         components: { BasicLink, Icon, AppearFadeTransition },
