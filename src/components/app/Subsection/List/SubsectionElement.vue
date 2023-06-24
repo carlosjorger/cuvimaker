@@ -21,7 +21,7 @@
             @input="changeTextArea"
         ></textarea>
         <div class="w-1/4"></div>
-        <Transition>
+        <AppearFadeTransition>
             <div
                 v-if="selecting && editingElement"
                 class="absolute flex items-center"
@@ -45,8 +45,8 @@
                     />
                 </circle-button>
             </div>
-        </Transition>
-        <Transition>
+        </AppearFadeTransition>
+        <AppearFadeTransition>
             <div
                 v-if="selecting && !editingElement"
                 class="absolute flex items-center"
@@ -68,8 +68,9 @@
                         width="22"
                         color="var(--primary-color)"
                     />
-                </circle-button></div
-        ></Transition>
+                </circle-button>
+            </div>
+        </AppearFadeTransition>
     </div>
 </template>
 <script lang="ts">
@@ -77,6 +78,7 @@
     import { Icon } from '@iconify/vue';
     import { inject, ref } from 'vue';
     import { Subsection } from '../../../../models/Subsection';
+    import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
 
     export default {
         name: 'SubsectionElement',
@@ -96,7 +98,7 @@
             },
         },
         emits: ['selectElement'],
-        components: { CircleButton, Icon },
+        components: { CircleButton, Icon, AppearFadeTransition },
         data() {
             return {
                 editing: inject('editing', false),
@@ -171,15 +173,3 @@
         },
     };
 </script>
-
-<style>
-    .v-enter-active,
-    .v-leave-active {
-        transition: opacity 0.5s ease;
-    }
-
-    .v-enter-from,
-    .v-leave-to {
-        opacity: 0;
-    }
-</style>

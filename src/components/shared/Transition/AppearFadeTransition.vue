@@ -9,9 +9,7 @@
 </script>
 
 <style>
-    .appear-fade-leave-active {
-        transition: all 0.5s ease;
-    }
+    .appear-fade-leave-active,
     .appear-fade-enter-active {
         transition: all 0.5s ease;
     }
