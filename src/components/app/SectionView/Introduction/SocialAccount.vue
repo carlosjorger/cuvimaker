@@ -1,27 +1,36 @@
 <!-- TODO:Add option to delete and update the social accounts -->
 
 <template>
-    <div class="flex items-center">
-        <div
-            class="p-1 text-primary transition-colors duration-500 dark:text-white"
-        >
-            <Icon :icon="getIconByUrl(socialAccount.link)" width="20" />
+    <div
+        class="m-1 flex w-11/12 items-center justify-end rounded-lg p-1.5 transition-all duration-300 ease-linear"
+        @mouseover="mouseover"
+        @mouseleave="mouseleave"
+        :class="{
+            ['bg-[#9c74da]']: editing,
+        }"
+    >
+        <div class="flex w-9/12 resize-none">
+            <div
+                class="p-1 text-primary transition-colors duration-500 dark:text-white"
+            >
+                <Icon :icon="getIconByUrl(socialAccount.link)" width="20" />
+            </div>
+            <BasicLink :link="socialAccount.link" />
         </div>
-        <BasicLink :link="socialAccount.link" />
+        <div class="w-1/4"></div>
         <AppearFadeTransition>
-            <div v-if="selecting && editing" class="absolute flex items-center">
-                <circle-button :size="2.2" @click="saveElement" v-if="editing">
+            <div
+                v-if="selecting && editing && isBeingEditingIntroduction"
+                class="absolute flex items-center"
+            >
+                <circle-button :size="2.2" @click="saveElement">
                     <Icon
                         icon="el:ok"
                         width="23"
                         color="var(--primary-color)"
                     />
                 </circle-button>
-                <circle-button
-                    :size="2.2"
-                    @click="cancelElement"
-                    v-if="editing"
-                >
+                <circle-button :size="2.2" @click="cancelElement">
                     <Icon
                         icon="mdi:cancel-bold"
                         width="23"
@@ -32,21 +41,17 @@
         </AppearFadeTransition>
         <AppearFadeTransition>
             <div
-                v-if="selecting && !editing"
+                v-if="selecting && !editing && isBeingEditingIntroduction"
                 class="absolute flex items-center"
             >
-                <circle-button :size="2.2" @click="editElement" v-if="editing">
+                <circle-button :size="2.2" @click="editElement">
                     <Icon
                         icon="ic:baseline-edit"
                         width="22"
                         color="var(--primary-color)"
                     />
                 </circle-button>
-                <circle-button
-                    :size="2.2"
-                    @click="deleteElement"
-                    v-if="editing"
-                >
+                <circle-button :size="2.2" @click="deleteElement">
                     <Icon
                         icon="ic:baseline-delete"
                         width="22"
@@ -62,6 +67,10 @@
     import BasicLink from '../../../shared/Anchor/BasicLink.vue';
     import { Icon } from '@iconify/vue';
     import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
+    import CircleButton from '../../../shared/Button/CircleButton.vue';
+    import { useIntroductionStore } from '../../../../stores/IntroductionStore';
+    import { appStore } from '../../../../store';
+    import { storeToRefs } from 'pinia';
 
     export default {
         props: {
@@ -69,17 +78,38 @@
                 type: SocialAccount,
                 required: true,
             },
-            selecting: {
+            isBeingEditingIntroduction: {
                 type: Boolean,
+                required: true,
             },
         },
-        components: { BasicLink, Icon, AppearFadeTransition },
-        data() {
+        components: { BasicLink, Icon, AppearFadeTransition, CircleButton },
+        setup() {
+            const introductionStore = useIntroductionStore(appStore);
             return {
-                editing: false,
+                introductionStore,
             };
         },
+        data() {
+            return this.initialState();
+        },
+
         methods: {
+            initialState() {
+                const { isSelected } = storeToRefs(this.introductionStore);
+                return {
+                    editing: false,
+                    isSelected,
+                };
+            },
+            mouseover() {
+                this.introductionStore.selectASocialAccount(
+                    this.socialAccount.Id
+                );
+            },
+            mouseleave() {
+                this.introductionStore.selectASocialAccount(-1);
+            },
             getIconByUrl(url: string) {
                 if (url.includes('github.com/')) {
                     return 'mdi:github';
@@ -134,6 +164,11 @@
             },
             cancelElement() {
                 // this.resetElementValue();
+            },
+        },
+        computed: {
+            selecting() {
+                return this.isSelected(this.socialAccount.Id);
             },
         },
     };

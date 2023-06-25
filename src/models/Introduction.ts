@@ -47,22 +47,6 @@ export class Introduction {
             this.website == undefined
         );
     }
-    setIntroduction(introduction: Introduction) {
-        this.name = introduction.name;
-        this.profetion = introduction.profetion;
-        this.email = introduction.email;
-        this.phone = introduction.phone;
-        this.location = introduction.location;
-        this.linkedin = introduction.linkedin;
-        this.github = introduction.github;
-        this.twitter = introduction.twitter;
-        this.website = introduction.website;
-    }
-    addSocialAccount(link: string) {
-        this.socialAccounts.push(
-            new SocialAccount(this.socialAccountsCount++, link)
-        );
-    }
     removeSocialAccount(index: number) {
         this.socialAccounts.splice(index, 1);
     }

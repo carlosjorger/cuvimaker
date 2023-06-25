@@ -72,7 +72,12 @@
                         ) in currentIntroduction.socialAccounts"
                         :key="index"
                     >
-                        <SocialAccount :socialAccount="socialAccount" />
+                        <SocialAccount
+                            :socialAccount="socialAccount"
+                            :isBeingEditingIntroduction="
+                                isBeingEditingIntroduction
+                            "
+                        />
                     </li>
                 </ul>
             </form>
@@ -127,6 +132,8 @@
     import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
     import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
     import SocialAccount from './SocialAccount.vue';
+    import { useIntroductionStore } from '../../../../stores/IntroductionStore';
+    import { appStore } from '../../../../store';
     export default {
         components: {
             SubsectionForm,
@@ -137,8 +144,10 @@
             SocialAccount,
         },
         setup() {
+            const introductionStore = useIntroductionStore(appStore);
             return {
                 v$: useVuelidate({ $scope: true }),
+                introductionStore,
             };
         },
         name: 'IntroductionSection',
@@ -148,6 +157,9 @@
                 required: true,
             },
             isBeingEditingIntroduction: Boolean,
+        },
+        mounted() {
+            this.introductionStore.introduction = this.currentIntroduction;
         },
         data(): {
             currentIntroduction: Introduction;
@@ -165,8 +177,10 @@
                 currentIntroduction: Introduction;
                 currentSocialAccount: string;
             } {
+                const { introduction } = this.introductionStore;
+
                 return {
-                    currentIntroduction: this.introduction.copy(),
+                    currentIntroduction: introduction,
                     currentSocialAccount: '',
                 };
             },
@@ -188,9 +202,10 @@
                 } else {
                     this.v$.$reset();
                 }
-                this.currentIntroduction.addSocialAccount(
+                this.introductionStore.addSocialAccount(
                     this.currentSocialAccount
                 );
+
                 this.currentSocialAccount = '';
             },
         },
