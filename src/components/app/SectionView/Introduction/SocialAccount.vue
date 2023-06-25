@@ -1,4 +1,3 @@
-<!-- TODO:Add option to delete and update the social accounts -->
 <!--TODO: Add feedback to circular buttons-->
 <template>
     <div
@@ -16,6 +15,7 @@
                 <Icon :icon="getIconByUrl(link)" width="20" />
             </div>
             <BasicLink v-if="!editing" :link="link" />
+            <!-- Remove Add styles to this input -->
             <input
                 class="mb-1 w-full bg-inherit"
                 v-if="editing"
