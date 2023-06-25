@@ -34,31 +34,4 @@ export class Introduction {
         this.website = website;
         this.socialAccounts = [];
     }
-    ifEmpty(): boolean {
-        return (
-            this.name == '' &&
-            this.profetion == '' &&
-            this.email == undefined &&
-            this.phone == undefined &&
-            this.location == undefined &&
-            this.linkedin == undefined &&
-            this.github == undefined &&
-            this.twitter == undefined &&
-            this.website == undefined
-        );
-    }
-
-    copy(): Introduction {
-        return new Introduction(
-            this.name,
-            this.profetion,
-            this.email,
-            this.phone,
-            this.location,
-            this.linkedin,
-            this.github,
-            this.twitter,
-            this.website
-        );
-    }
 }

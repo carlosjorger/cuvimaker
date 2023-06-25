@@ -40,7 +40,6 @@ export const useIntroductionStore = defineStore('introduction', {
             this.introduction.socialAccounts.splice(index, 1);
         },
         saveSocialAccount(index: number, link: string) {
-            console.log(this.introduction.socialAccounts);
             this.introduction.socialAccounts[index].link = link;
         },
     },
