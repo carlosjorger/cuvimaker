@@ -1,9 +1,14 @@
 import { defineStore } from 'pinia';
 import { Introduction } from '../models/Introduction';
 import { SocialAccount } from '../models/SocialAccount';
-
+type State = {
+    introduction: Introduction;
+    editing: boolean;
+    socialAccountsCount: number;
+    selected: number;
+};
 export const useIntroductionStore = defineStore('introduction', {
-    state: () => ({
+    state: (): State => ({
         introduction: new Introduction(),
         editing: false,
         socialAccountsCount: 0,
@@ -14,18 +19,28 @@ export const useIntroductionStore = defineStore('introduction', {
             return (SocialAccountId: number): boolean =>
                 selected == SocialAccountId;
         },
-        totalDiscount(): number | undefined {
-            return this.SocialAccountId;
-        },
     },
     actions: {
         addSocialAccount(link: string) {
             this.introduction.socialAccounts.push(
-                new SocialAccount(this.socialAccountsCount++, link)
+                new SocialAccount(++this.socialAccountsCount, link)
             );
         },
         selectASocialAccount(Id: number) {
-            this.selected = Id;
+            if (this.selected == -1 || Id == -1) {
+                this.selected = Id;
+            }
+        },
+        unSelectASocialAccount(Id: number) {
+            if (this.selected == Id) {
+                this.selected = -1;
+            }
+        },
+        removeSocialAccount(index: number) {
+            this.introduction.socialAccounts.splice(index, 1);
+        },
+        saveSocialAccount(index: number, link: string) {
+            this.introduction.socialAccounts[index].link = link;
         },
     },
 });

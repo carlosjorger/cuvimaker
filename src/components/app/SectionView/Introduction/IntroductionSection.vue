@@ -77,6 +77,7 @@
                             :isBeingEditingIntroduction="
                                 isBeingEditingIntroduction
                             "
+                            :index="index"
                         />
                     </li>
                 </ul>
@@ -157,9 +158,6 @@
                 required: true,
             },
             isBeingEditingIntroduction: Boolean,
-        },
-        mounted() {
-            this.introductionStore.introduction = this.currentIntroduction;
         },
         data(): {
             currentIntroduction: Introduction;

@@ -47,12 +47,7 @@ export class Introduction {
             this.website == undefined
         );
     }
-    removeSocialAccount(index: number) {
-        this.socialAccounts.splice(index, 1);
-    }
-    saveSocialAccount(index: number, link: string) {
-        this.socialAccounts[index].link = link;
-    }
+
     copy(): Introduction {
         return new Introduction(
             this.name,
