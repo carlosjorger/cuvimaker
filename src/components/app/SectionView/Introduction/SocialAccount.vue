@@ -9,13 +9,19 @@
             ['bg-[#9c74da]']: selecting && isBeingEditingIntroduction,
         }"
     >
-        <div class="flex w-9/12 resize-none">
+        <div class="flex w-3/4 resize-none">
             <div
                 class="p-1 text-primary transition-colors duration-500 dark:text-white"
             >
-                <Icon :icon="getIconByUrl(socialAccount.link)" width="20" />
+                <Icon :icon="getIconByUrl(link)" width="20" />
             </div>
-            <BasicLink :link="socialAccount.link" />
+            <BasicLink v-if="!editing" :link="link" />
+            <input
+                class="mb-1 w-full bg-inherit"
+                v-if="editing"
+                type="text"
+                v-model="link"
+            />
         </div>
         <div class="w-1/4"></div>
         <AppearFadeTransition>
@@ -161,10 +167,7 @@
             },
             saveElement() {
                 this.editing = false;
-                this.introductionStore.saveSocialAccount(
-                    this.socialAccount.id,
-                    this.link
-                );
+                this.introductionStore.saveSocialAccount(this.index, this.link);
             },
             cancelElement() {
                 this.editing = false;
