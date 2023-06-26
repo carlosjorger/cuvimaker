@@ -26,24 +26,18 @@
                 v-if="selecting && editingElement"
                 class="absolute flex items-center"
             >
-                <circle-button :size="2.2" @click="saveElement" v-if="editing">
-                    <Icon
-                        icon="el:ok"
-                        width="23"
-                        color="var(--primary-color)"
-                    />
-                </circle-button>
-                <circle-button
-                    :size="2.2"
-                    @click="cancelElement"
+                <CircleButtonWithIcon
                     v-if="editing"
-                >
-                    <Icon
-                        icon="mdi:cancel-bold"
-                        width="23"
-                        color="var(--primary-color)"
-                    />
-                </circle-button>
+                    @click="saveElement"
+                    color="var(--primary-color)"
+                    icon="el:ok"
+                />
+                <CircleButtonWithIcon
+                    v-if="editing"
+                    @click="cancelElement"
+                    color="var(--primary-color)"
+                    icon="mdi:cancel-bold"
+                />
             </div>
         </AppearFadeTransition>
         <AppearFadeTransition>
@@ -51,34 +45,27 @@
                 v-if="selecting && !editingElement"
                 class="absolute flex items-center"
             >
-                <circle-button :size="2.2" @click="editElement" v-if="editing">
-                    <Icon
-                        icon="ic:baseline-edit"
-                        width="22"
-                        color="var(--primary-color)"
-                    />
-                </circle-button>
-                <circle-button
-                    :size="2.2"
-                    @click="deleteElement"
+                <CircleButtonWithIcon
                     v-if="editing"
-                >
-                    <Icon
-                        icon="ic:baseline-delete"
-                        width="22"
-                        color="var(--primary-color)"
-                    />
-                </circle-button>
+                    @click="editElement"
+                    color="var(--primary-color)"
+                    icon="ic:baseline-edit"
+                />
+                <CircleButtonWithIcon
+                    v-if="editing"
+                    @click="deleteElement"
+                    color="var(--primary-color)"
+                    icon="ic:baseline-delete"
+                />
             </div>
         </AppearFadeTransition>
     </div>
 </template>
 <script lang="ts">
-    import CircleButton from '../../../shared/Button/CircleButton.vue';
-    import { Icon } from '@iconify/vue';
     import { inject, ref } from 'vue';
     import { Subsection } from '../../../../models/Subsection';
     import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
+    import CircleButtonWithIcon from '../../../shared/Button/CircleButtonWithIcon.vue';
 
     export default {
         name: 'SubsectionElement',
@@ -98,7 +85,10 @@
             },
         },
         emits: ['selectElement'],
-        components: { CircleButton, Icon, AppearFadeTransition },
+        components: {
+            AppearFadeTransition,
+            CircleButtonWithIcon,
+        },
         data() {
             return {
                 editing: inject('editing', false),

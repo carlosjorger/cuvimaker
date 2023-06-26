@@ -1,7 +1,6 @@
-<!--TODO: Add feedback to circular buttons-->
 <template>
     <li
-        class="m-1 flex w-11/12 items-center justify-end rounded-lg p-1.5 transition-all duration-300 ease-linear"
+        class="m-1 flex w-11/12 items-center justify-end rounded-lg p-2 transition-all duration-300 ease-linear"
         @mouseover="mouseover"
         @mouseleave="mouseleave"
         :class="{
@@ -29,20 +28,16 @@
                 v-if="selecting && editing && isBeingEditingIntroduction"
                 class="absolute flex items-center"
             >
-                <circle-button :size="2.2" @click="saveElement">
-                    <Icon
-                        icon="el:ok"
-                        width="23"
-                        color="var(--primary-color)"
-                    />
-                </circle-button>
-                <circle-button :size="2.2" @click="cancelElement">
-                    <Icon
-                        icon="mdi:cancel-bold"
-                        width="23"
-                        color="var(--primary-color)"
-                    />
-                </circle-button>
+                <CircleButtonWithIcon
+                    @click="saveElement"
+                    color="var(--primary-color)"
+                    icon="el:ok"
+                />
+                <CircleButtonWithIcon
+                    @click="cancelElement"
+                    color="var(--primary-color)"
+                    icon="mdi:cancel-bold"
+                />
             </div>
         </AppearFadeTransition>
         <AppearFadeTransition>
@@ -50,20 +45,16 @@
                 v-if="selecting && !editing && isBeingEditingIntroduction"
                 class="absolute flex items-center"
             >
-                <circle-button :size="2.2" @click="editElement">
-                    <Icon
-                        icon="ic:baseline-edit"
-                        width="22"
-                        color="var(--primary-color)"
-                    />
-                </circle-button>
-                <circle-button :size="2.2" @click="deleteElement">
-                    <Icon
-                        icon="ic:baseline-delete"
-                        width="22"
-                        color="var(--primary-color)"
-                    />
-                </circle-button>
+                <CircleButtonWithIcon
+                    @click="editElement"
+                    color="var(--primary-color)"
+                    icon="ic:baseline-edit"
+                />
+                <CircleButtonWithIcon
+                    @click="deleteElement"
+                    color="var(--primary-color)"
+                    icon="ic:baseline-delete"
+                />
             </div>
         </AppearFadeTransition>
     </li>
@@ -74,20 +65,19 @@
     import BasicLink from '../../../shared/Anchor/BasicLink.vue';
     import { Icon } from '@iconify/vue';
     import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
-    import CircleButton from '../../../shared/Button/CircleButton.vue';
     import { storeToRefs } from 'pinia';
     import { useIntroductionStore } from '../../../../stores/IntroductionStore';
     import { appStore } from '../../../../store';
     import type { ComputedRef } from 'vue';
     import SubsectionForm from '../../Subsection/SubsectionForm.vue';
-
+    import CircleButtonWithIcon from '../../../shared/Button/CircleButtonWithIcon.vue';
     export default {
         components: {
             BasicLink,
             Icon,
             AppearFadeTransition,
-            CircleButton,
             SubsectionForm,
+            CircleButtonWithIcon,
         },
         setup() {
             const introductionStore = useIntroductionStore(appStore);

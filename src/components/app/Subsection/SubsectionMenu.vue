@@ -16,16 +16,13 @@
                     />
                 </AppearFadeTransition>
                 <AppearFadeTransition>
-                    <circle-button
-                        v-on:click="editSubSection()"
+                    <CircleButtonWithIcon
                         v-if="!subsection.last && !editing"
-                    >
-                        <Icon
-                            icon="ic:baseline-mode-edit"
-                            width="25"
-                            color="var(--primary-color)"
-                        />
-                    </circle-button>
+                        @click="editSubSection"
+                        :width="2.5"
+                        color="var(--primary-color)"
+                        icon="ic:baseline-mode-edit"
+                    />
                 </AppearFadeTransition>
             </div>
             <form v-on:submit.prevent v-if="!subsection.last" class="p-5">
@@ -61,8 +58,6 @@
 </template>
 <script lang="ts">
     import CloseAddButton from '../../shared/Button/CloseAddButton.vue';
-    import CircleButton from '../../shared/Button/CircleButton.vue';
-    import { Icon } from '@iconify/vue';
     import { Subsection } from '../../../models/Subsection';
     import { Section } from '../../../models/Section';
     import mitt from 'mitt';
@@ -75,7 +70,7 @@
     import SubsectionListSection from './List/SubsectionListSection.vue';
     import { computed } from 'vue';
     import AppearFadeTransition from '../../shared/Transition/AppearFadeTransition.vue';
-
+    import CircleButtonWithIcon from '../../shared/Button/CircleButtonWithIcon.vue';
     const emitter = mitt();
     export default {
         name: 'SubsectionMenu',
@@ -97,13 +92,12 @@
 
         components: {
             CloseAddButton,
-            CircleButton,
-            Icon,
             SubsectionForm,
             SubsectionTimeIntervalSection,
             ModalButton,
             SubsectionListSection,
             AppearFadeTransition,
+            CircleButtonWithIcon,
         },
         setup() {
             return {
