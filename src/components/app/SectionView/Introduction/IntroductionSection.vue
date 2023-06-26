@@ -6,7 +6,7 @@
         <template #body>
             <form v-on:submit.prevent class="font-extrabold">
                 <SubsectionForm
-                    class="text-3xl"
+                    class="mt-2 text-3xl"
                     v-model="currentIntroduction.name"
                     placeholder="Your name"
                     :lightColor="'primary'"
@@ -14,7 +14,7 @@
                     :errors="v$.currentIntroduction.name.$errors"
                 />
                 <SubsectionForm
-                    class="text-2xl"
+                    class="mt-2 text-2xl"
                     v-model="currentIntroduction.profetion"
                     placeholder="Profetion"
                     :lightColor="'primary'"
@@ -33,7 +33,7 @@
                     </div>
 
                     <SubsectionForm
-                        class="min-w-[82%] text-lg"
+                        class="mt-2 min-w-[82%] text-lg"
                         v-model="currentIntroduction.location"
                         placeholder="Location"
                         :lightColor="'primary'"
@@ -47,7 +47,7 @@
                         <Icon icon="mdi:account" width="20" />
                     </div>
                     <SubsectionForm
-                        class="min-w-[82%] text-lg"
+                        class="mt-2 min-w-[82%] text-lg"
                         v-model="currentSocialAccount"
                         placeholder="Add a Social Account"
                         :lightColor="'primary'"
@@ -65,21 +65,20 @@
                         />
                     </AppearFadeTransition>
                 </div>
-                <ul>
-                    <li
-                        v-for="(
-                            socialAccount, index
-                        ) in currentIntroduction.socialAccounts"
-                        :key="index"
-                    >
+                <ul class="mt-2">
+                    <ListTransition class="relative block">
                         <SocialAccount
+                            v-for="(
+                                socialAccount, index
+                            ) in currentIntroduction.socialAccounts"
+                            :key="socialAccount.id"
                             :socialAccount="socialAccount"
                             :isBeingEditingIntroduction="
                                 isBeingEditingIntroduction
                             "
                             :index="index"
                         />
-                    </li>
+                    </ListTransition>
                 </ul>
             </form>
         </template>
@@ -135,6 +134,7 @@
     import SocialAccount from './SocialAccount.vue';
     import { useIntroductionStore } from '../../../../stores/IntroductionStore';
     import { appStore } from '../../../../store';
+    import ListTransition from '../../../shared/Transition/ListTransition.vue';
     export default {
         components: {
             SubsectionForm,
@@ -143,6 +143,7 @@
             CloseAddButton,
             AppearFadeTransition,
             SocialAccount,
+            ListTransition,
         },
         setup() {
             const introductionStore = useIntroductionStore(appStore);

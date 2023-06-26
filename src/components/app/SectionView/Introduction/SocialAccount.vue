@@ -1,6 +1,6 @@
 <!--TODO: Add feedback to circular buttons-->
 <template>
-    <div
+    <li
         class="m-1 flex w-11/12 items-center justify-end rounded-lg p-1.5 transition-all duration-300 ease-linear"
         @mouseover="mouseover"
         @mouseleave="mouseleave"
@@ -15,12 +15,12 @@
                 <Icon :icon="getIconByUrl(link)" width="20" />
             </div>
             <BasicLink v-if="!editing" :link="link" />
-            <!-- Remove Add styles to this input -->
-            <input
-                class="mb-1 w-full bg-inherit"
+            <SubsectionForm
                 v-if="editing"
-                type="text"
+                :lightColor="'primary'"
+                :darkColor="'zinc-300'"
                 v-model="link"
+                class="w-full"
             />
         </div>
         <div class="w-1/4"></div>
@@ -66,7 +66,7 @@
                 </circle-button>
             </div>
         </AppearFadeTransition>
-    </div>
+    </li>
 </template>
 
 <script lang="ts">
@@ -79,8 +79,16 @@
     import { useIntroductionStore } from '../../../../stores/IntroductionStore';
     import { appStore } from '../../../../store';
     import type { ComputedRef } from 'vue';
+    import SubsectionForm from '../../Subsection/SubsectionForm.vue';
+
     export default {
-        components: { BasicLink, Icon, AppearFadeTransition, CircleButton },
+        components: {
+            BasicLink,
+            Icon,
+            AppearFadeTransition,
+            CircleButton,
+            SubsectionForm,
+        },
         setup() {
             const introductionStore = useIntroductionStore(appStore);
             return {
