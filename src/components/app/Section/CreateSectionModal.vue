@@ -143,7 +143,7 @@
                         return;
                     }
                     this.closeModal();
-                    if (this.editIndex) {
+                    if (this.editIndex != undefined) {
                         this.sections[this.editIndex] = this.section;
                     }
                     this.v$.$reset();

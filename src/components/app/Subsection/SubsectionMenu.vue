@@ -112,9 +112,7 @@
             },
         },
         data() {
-            return {
-                ...this.initialState(),
-            };
+            return this.initialState();
         },
 
         provide() {
