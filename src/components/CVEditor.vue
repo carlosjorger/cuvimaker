@@ -1,3 +1,5 @@
+<!-- TODO: show confirmation messages when you delete a entity -->
+<!-- TODO: Save the pdf -->
 <template>
     <section>
         <IntroductionSection
