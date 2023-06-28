@@ -1,10 +1,8 @@
 <template>
-    <div
+    <ShakeTemplate
+        :shake="shake"
         v-scroll-if="subsection"
         class="mt-3 w-full rounded-lg bg-primary p-4 text-white shadow-2xl shadow-zinc-200 transition-all duration-500 dark:bg-dark-primary-200 dark:shadow-lg dark:shadow-zinc-500"
-        :class="{
-            shake: shake,
-        }"
     >
         <div>
             <div class="flex items-center justify-between">
@@ -54,7 +52,7 @@
                 </div>
             </form>
         </div>
-    </div>
+    </ShakeTemplate>
 </template>
 <script lang="ts">
     import CloseAddButton from '../../shared/Button/CloseAddButton.vue';
@@ -73,7 +71,7 @@
     import CircleButtonWithIcon from '../../shared/Button/CircleButtonWithIcon.vue';
     import { appStore } from '../../../store';
     import { useSubsectionStore } from '../../../stores/SubsectionStore';
-
+    import ShakeTemplate from '../../shared/others/ShakeTemplate.vue';
     const emitter = mitt();
     export default {
         name: 'SubsectionMenu',
@@ -82,7 +80,6 @@
                 type: Section,
                 required: true,
             },
-
             prevSubsection: {
                 type: Subsection,
                 required: true,
@@ -92,7 +89,6 @@
                 required: true,
             },
         },
-
         components: {
             CloseAddButton,
             SubsectionForm,
@@ -101,6 +97,7 @@
             SubsectionListSection,
             AppearFadeTransition,
             CircleButtonWithIcon,
+            ShakeTemplate,
         },
         setup() {
             const subsectionStore = useSubsectionStore(appStore);
@@ -120,12 +117,19 @@
         data() {
             return this.initialState();
         },
-
         provide() {
             return {
                 subsection: computed(() => this.subsection),
                 editing: computed(() => this.editing),
             };
+        },
+        mounted() {
+            emitter.on('editing', (index) => {
+                if (index == this.subsectionIndex) {
+                    scrollSmoothToElement(this.$el);
+                    this.shakeSubsection();
+                }
+            });
         },
         methods: {
             initialState(): {
@@ -155,7 +159,6 @@
                     this.removeSubsection();
                 }
             },
-
             removeSubsection() {
                 this.section.removeSubsection(this.subsectionIndex);
             },
@@ -166,7 +169,6 @@
                     this.section.addNewSubsection();
                 }
             },
-
             saveSubSection() {
                 this.validate();
                 if (this.v$.$error) {
@@ -176,7 +178,6 @@
                 this.prevSubsection.setSubsection(this.subsection);
                 this.disabledEditing();
             },
-
             cancelSubSection() {
                 this.subsection.setSubsection(this.prevSubsection);
                 this.disabledEditing();
@@ -209,14 +210,7 @@
                 }, 1500);
             },
         },
-        mounted() {
-            emitter.on('editing', (index) => {
-                if (index == this.subsectionIndex) {
-                    scrollSmoothToElement(this.$el);
-                    this.shakeSubsection();
-                }
-            });
-        },
+
         validations: {
             subsection: {
                 title: {
@@ -237,32 +231,3 @@
         },
     };
 </script>
-<style>
-    .shake {
-        animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-        transform: translate3d(0, 0, 0);
-    }
-
-    @keyframes shake {
-        10%,
-        90% {
-            transform: translate3d(-1px, 0, 0);
-        }
-
-        20%,
-        80% {
-            transform: translate3d(2px, 0, 0);
-        }
-
-        30%,
-        50%,
-        70% {
-            transform: translate3d(-4px, 0, 0);
-        }
-
-        40%,
-        60% {
-            transform: translate3d(4px, 0, 0);
-        }
-    }
-</style>
