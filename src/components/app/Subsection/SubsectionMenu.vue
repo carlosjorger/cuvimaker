@@ -71,6 +71,9 @@
     import { computed } from 'vue';
     import AppearFadeTransition from '../../shared/Transition/AppearFadeTransition.vue';
     import CircleButtonWithIcon from '../../shared/Button/CircleButtonWithIcon.vue';
+    import { appStore } from '../../../store';
+    import { useSubsectionStore } from '../../../stores/SubsectionStore';
+
     const emitter = mitt();
     export default {
         name: 'SubsectionMenu',
@@ -100,8 +103,11 @@
             CircleButtonWithIcon,
         },
         setup() {
+            const subsectionStore = useSubsectionStore(appStore);
+
             return {
                 v$: useVuelidate({ $scope: true }),
+                subsectionStore,
             };
         },
         directives: {

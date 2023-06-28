@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia';
 import { Introduction } from '../models/Introduction';
 import { SocialAccount } from '../models/SocialAccount';
-type State = {
+type IntroductionStoreState = {
     introduction: Introduction;
     editing: boolean;
     socialAccountsCount: number;
     selected: number;
 };
 export const useIntroductionStore = defineStore('introduction', {
-    state: (): State => ({
+    state: (): IntroductionStoreState => ({
         introduction: new Introduction(),
         editing: false,
         socialAccountsCount: 0,
