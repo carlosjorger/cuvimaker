@@ -1,5 +1,4 @@
 import { Subsection } from './Subsection';
-//TODO: Create a Section pinia store
 export class Section {
     count: number;
     name: string;

@@ -1,7 +1,5 @@
 <template>
-    <div
-        class="fixed bottom-0 left-0 right-0 top-0 z-10 flex h-full items-center justify-around justify-self-center bg-[#000000da]"
-    >
+    <ModalTemplate>
         <div
             class="m-0 flex w-2/5 flex-col rounded-lg border-4 border-primary bg-white p-4 dark:border-zinc-100 dark:bg-dark-primary-300 max-xl:w-1/2 max-lg:w-4/5 max-md:w-5/6 max-sm:w-11/12"
         >
@@ -62,7 +60,7 @@
                 v-on:click="updateSection"
             />
         </div>
-    </div>
+    </ModalTemplate>
 </template>
 <script lang="ts">
     import CloseAddButton from '../../shared/Button/CloseAddButton.vue';
@@ -73,7 +71,7 @@
     import { helpers, required } from '@vuelidate/validators';
     import { inject, computed } from 'vue';
     import ErrorsSection from '../../shared/Error/ErrorsSection.vue';
-
+    import ModalTemplate from '../../shared/others/ModalTemplate.vue';
     export default {
         name: 'CreateSectionModal',
         props: {
@@ -90,6 +88,7 @@
             CloseAddButton,
             BasicButton,
             ErrorsSection,
+            ModalTemplate,
         },
 
         data(): { section: Section; sections: Section[] } {

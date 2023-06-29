@@ -1,4 +1,3 @@
-//TODO: Create a Subsection pinia store
 import { SubsectionElement } from './SubsectionElement';
 import type { TimeInterval } from './SubsectionTimeInterval';
 
