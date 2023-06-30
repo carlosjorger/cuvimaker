@@ -143,7 +143,6 @@
                     }
                     this.closeModal();
                     if (this.editIndex != undefined) {
-                        // TODO: Set the Subsectionstore
                         this.sections[this.editIndex] = this.section;
                     }
                     this.v$.$reset();
