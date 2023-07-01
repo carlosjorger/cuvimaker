@@ -5,6 +5,7 @@
             v-scroll-if="subsection"
             class="mt-3 w-full rounded-lg bg-primary p-4 text-white shadow-2xl shadow-zinc-200 transition-all duration-500 dark:bg-dark-primary-200 dark:shadow-lg dark:shadow-zinc-500"
         >
+            <!--TODO: in some cases I cannot edit the title and the subtitle -->
             <div>
                 <div class="flex items-center justify-between">
                     <AppearFadeTransition>
@@ -54,13 +55,6 @@
                 </form>
             </div>
         </ShakeTemplate>
-        <!-- TODO: Avoid the subsection animation when is removed -->
-        <ConfirmationModal
-            v-show="confirmationDeleteModal"
-            :entityToDelete="'Subsection'"
-            @cancel="confirmationDeleteModal = false"
-            @delete="removeSubsection()"
-        />
     </div>
 </template>
 <script lang="ts">
@@ -79,7 +73,6 @@
     import AppearFadeTransition from '../../shared/Transition/AppearFadeTransition.vue';
     import CircleButtonWithIcon from '../../shared/Button/CircleButtonWithIcon.vue';
     import ShakeTemplate from '../../shared/others/ShakeTemplate.vue';
-    import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
     const emitter = mitt();
     export default {
         name: 'SubsectionMenu',
@@ -106,7 +99,6 @@
             AppearFadeTransition,
             CircleButtonWithIcon,
             ShakeTemplate,
-            ConfirmationModal,
         },
         setup() {
             return {
@@ -142,7 +134,6 @@
                 subsection: Subsection;
                 editing: boolean;
                 shake: boolean;
-                confirmationDeleteModal: boolean;
             } {
                 return {
                     subsection: this.prevSubsection.isEmpty
@@ -150,7 +141,6 @@
                         : this.prevSubsection.copy(),
                     editing: false,
                     shake: false,
-                    confirmationDeleteModal: false,
                 };
             },
             resetWindow: function () {
@@ -164,11 +154,8 @@
                 } else if (this.section.subsectionEditing) {
                     this.emmitSendEditing();
                 } else {
-                    this.confirmationDeleteModal = true;
+                    this.$emit('show-confirmation-to-delete');
                 }
-            },
-            removeSubsection() {
-                this.section.removeSubsection(this.subsectionIndex);
             },
             addSubSection() {
                 if (this.section.subsectionEditing) {

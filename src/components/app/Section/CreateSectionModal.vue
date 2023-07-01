@@ -44,6 +44,9 @@
                         :subsectionIndex="index"
                         :section="section"
                         :prevSubsection="subsection"
+                        @show-confirmation-to-delete="
+                            confirmationDeleteModal = true
+                        "
                     />
                 </transition-group>
             </div>
@@ -59,6 +62,12 @@
                 :name="'Edit Section'"
                 v-on:click="updateSection"
             />
+            <ConfirmationModal
+                v-show="confirmationDeleteModal"
+                :entityToDelete="'Subsection'"
+                @cancel="confirmationDeleteModal = false"
+                @delete="removeSubsection"
+            />
         </div>
     </ModalTemplate>
 </template>
@@ -72,6 +81,8 @@
     import { inject, computed } from 'vue';
     import ErrorsSection from '../../shared/Error/ErrorsSection.vue';
     import ModalTemplate from '../../shared/others/ModalTemplate.vue';
+    import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
+
     export default {
         name: 'CreateSectionModal',
         props: {
@@ -89,9 +100,14 @@
             BasicButton,
             ErrorsSection,
             ModalTemplate,
+            ConfirmationModal,
         },
 
-        data(): { section: Section; sections: Section[] } {
+        data(): {
+            section: Section;
+            sections: Section[];
+            confirmationDeleteModal: boolean;
+        } {
             return {
                 ...this.initialState(),
                 sections: inject('sections', [] as Section[]),
@@ -108,12 +124,16 @@
                     (s, i) => i != this.editIndex && s.name == this.section.name
                 );
             },
-            initialState(): { section: Section } {
+            initialState(): {
+                section: Section;
+                confirmationDeleteModal: boolean;
+            } {
                 return {
                     section:
                         !this.isEditing || this.editIndex == undefined
                             ? new Section()
                             : this.sections[this.editIndex].copy(),
+                    confirmationDeleteModal: false,
                 };
             },
             resetWindow: function () {
@@ -147,6 +167,10 @@
                     }
                     this.v$.$reset();
                 }
+            },
+            removeSubsection(subsectionIndex: number) {
+                this.confirmationDeleteModal = false;
+                this.section.removeSubsection(subsectionIndex);
             },
         },
         validations() {
