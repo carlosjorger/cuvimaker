@@ -1,4 +1,6 @@
 <!-- TODO: Save the pdf -->
+<!-- TODO: Make a better positioning for the contacts -->
+<!-- TODO: Save the cv in the sotarage -->
 <template>
     <section>
         <IntroductionSection
