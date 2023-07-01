@@ -52,8 +52,10 @@
                         />
                     </div>
                 </form>
-            </div> </ShakeTemplate
-        ><ConfirmationModal
+            </div>
+        </ShakeTemplate>
+        <!-- TODO: Avoid the subsection animation when is removed -->
+        <ConfirmationModal
             v-show="confirmationDeleteModal"
             :entityToDelete="'Subsection'"
             @cancel="confirmationDeleteModal = false"
