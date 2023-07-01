@@ -16,23 +16,18 @@
                 }
             "
         />
-
-        <transition name="createSectionModal">
-            <create-section-modal
-                v-show="showModal"
-                :sections="resume.sections"
-                :showModal="showModal"
-                @close-modal="showModal = false"
-                :editIndex="editIndex"
-            />
-        </transition>
-        <transition name="createSectionModal">
-            <ConfirmationModal
-                v-show="confirmationDeleteModal"
-                @delete="deleteSection(sectionIndexToDelete)"
-                @cancel="confirmationDeleteModal = false"
-            />
-        </transition>
+        <create-section-modal
+            v-show="showModal"
+            :sections="resume.sections"
+            :showModal="showModal"
+            @close-modal="showModal = false"
+            :editIndex="editIndex"
+        />
+        <ConfirmationModal
+            v-show="confirmationDeleteModal"
+            @delete="deleteSection(sectionIndexToDelete)"
+            @cancel="confirmationDeleteModal = false"
+        />
         <ListTransition class="z-0 block">
             <section-component
                 v-for="(section, index) in resume.sections"
@@ -103,16 +98,5 @@
 <style>
     article {
         width: 40%;
-    }
-    .createSectionModal-leave-active {
-        transition: all 0.5s ease;
-    }
-    .createSectionModal-enter-active {
-        transition: all 0.5s ease;
-    }
-    .createSectionModal-leave-to,
-    .createSectionModal-enter-from {
-        transform: translateY(-1rem);
-        opacity: 0;
     }
 </style>
