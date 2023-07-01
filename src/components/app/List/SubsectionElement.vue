@@ -63,9 +63,9 @@
 </template>
 <script lang="ts">
     import { inject, ref } from 'vue';
-    import { Subsection } from '../../../../models/Subsection';
-    import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
-    import CircleButtonWithIcon from '../../../shared/Button/CircleButtonWithIcon.vue';
+    import { Subsection } from '../../../models/Subsection';
+    import AppearFadeTransition from '../../shared/Transition/AppearFadeTransition.vue';
+    import CircleButtonWithIcon from '../../shared/Button/CircleButtonWithIcon.vue';
 
     export default {
         name: 'SubsectionElement',

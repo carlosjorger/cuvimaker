@@ -11,8 +11,8 @@
 
 <script lang="ts">
     import { inject } from 'vue';
-    import { Subsection } from '../../../../models/Subsection';
-    import SwitchCheckbox from '../../../shared/checkbox/SwitchCheckbox.vue';
+    import { Subsection } from '../../../models/Subsection';
+    import SwitchCheckbox from '../../shared/checkbox/SwitchCheckbox.vue';
     import SubsectionElements from './SubsectionElements.vue';
     export default {
         name: 'SubsectionListSection',

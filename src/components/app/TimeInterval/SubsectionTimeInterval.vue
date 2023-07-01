@@ -20,11 +20,11 @@
 <script lang="ts">
     import VueDatePicker from '@vuepic/vue-datepicker';
     import '@vuepic/vue-datepicker/dist/main.css';
-    import { TimeInterval } from '../../../../models/SubsectionTimeInterval';
+    import { TimeInterval } from '../../../models/SubsectionTimeInterval';
     import { helpers, required } from '@vuelidate/validators';
     import { useVuelidate } from '@vuelidate/core';
     import { inject } from 'vue';
-    import ErrorsSection from '../../../shared/Error/ErrorsSection.vue';
+    import ErrorsSection from '../../shared/Error/ErrorsSection.vue';
 
     export default {
         name: 'SubsectionTimeInterval',

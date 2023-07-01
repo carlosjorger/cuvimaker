@@ -43,12 +43,12 @@
 </template>
 
 <script lang="ts">
-    import { Subsection } from '../../../../models/Subsection';
-    import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
+    import { Subsection } from '../../../models/Subsection';
+    import CloseAddButton from '../../shared/Button/CloseAddButton.vue';
     import SubsectionElement from './SubsectionElement.vue';
     import { inject } from 'vue';
-    import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
-    import ListTransition from '../../../shared/Transition/ListTransition.vue';
+    import AppearFadeTransition from '../../shared/Transition/AppearFadeTransition.vue';
+    import ListTransition from '../../shared/Transition/ListTransition.vue';
     export default {
         name: 'SubsectionElements',
         emits: ['changeElement', 'removeElement'],

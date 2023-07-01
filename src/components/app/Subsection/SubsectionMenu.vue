@@ -66,9 +66,9 @@
     import { scrollSmoothToElement } from '../../../utils/scrollServices';
     import { useVuelidate } from '@vuelidate/core';
     import { required } from '@vuelidate/validators';
-    import SubsectionTimeIntervalSection from './TimeInterval/SubsectionTimeIntervalSection.vue';
+    import SubsectionTimeIntervalSection from '../TimeInterval/SubsectionTimeIntervalSection.vue';
     import ModalButton from '../../shared/Button/ModalButton.vue';
-    import SubsectionListSection from './List/SubsectionListSection.vue';
+    import SubsectionListSection from '../List/SubsectionListSection.vue';
     import { computed } from 'vue';
     import AppearFadeTransition from '../../shared/Transition/AppearFadeTransition.vue';
     import CircleButtonWithIcon from '../../shared/Button/CircleButtonWithIcon.vue';
