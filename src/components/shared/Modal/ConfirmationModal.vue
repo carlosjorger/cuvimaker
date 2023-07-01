@@ -15,19 +15,11 @@
                 </div>
 
                 <div class="flex justify-between pt-5">
-                    <button
-                        class="rounded-2xl bg-primary px-6 py-2 font-bold text-zinc-300 dark:bg-white dark:text-primary"
-                        @click="$emit('cancel')"
-                    >
-                        No
-                    </button>
-
-                    <button
-                        class="rounded-2xl bg-primary px-6 py-2 font-bold text-zinc-300 dark:bg-white dark:text-primary"
+                    <ConfirmationButton :name="'No'" @click="$emit('cancel')" />
+                    <ConfirmationButton
+                        :name="'Yes'"
                         @click="$emit('delete')"
-                    >
-                        Yes
-                    </button>
+                    />
                 </div>
             </div>
         </div>
@@ -35,8 +27,9 @@
 </template>
 <script lang="ts">
     import ModalTemplate from '../others/ModalTemplate.vue';
+    import ConfirmationButton from '../Button/ConfirmationButton.vue';
     export default {
-        components: { ModalTemplate },
+        components: { ModalTemplate, ConfirmationButton },
         props: {
             entityToDelete: String,
         },
