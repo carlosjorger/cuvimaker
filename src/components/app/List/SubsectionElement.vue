@@ -84,7 +84,7 @@
                 required: true,
             },
         },
-        emits: ['selectElement'],
+        emits: ['selectElement', 'delete-element'],
         components: {
             AppearFadeTransition,
             CircleButtonWithIcon,
@@ -114,7 +114,7 @@
                 }
             },
             deleteElement() {
-                this.subsection.elements.splice(this.index, 1);
+                this.$emit('delete-element', this.index);
             },
             editElement() {
                 this.editingElement = true;

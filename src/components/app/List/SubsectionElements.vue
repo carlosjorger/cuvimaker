@@ -32,14 +32,19 @@
             @selectElement="
                 selectedElement = selectedElement != index ? index : undefined
             "
-            @changeElement="changeElement"
-            @removeElement="removeElement"
+            @delete-element="tryToDeleteElement"
             :index="index"
             v-bind="$attrs"
             :selecting="selectedElement == index"
             :element="element.name"
         />
     </ListTransition>
+    <ConfirmationModal
+        v-show="confirmationDeleteModal"
+        :entityToDelete="'Subsection'"
+        @cancel="confirmationDeleteModal = false"
+        @delete="deleteElement"
+    />
 </template>
 
 <script lang="ts">
@@ -49,14 +54,15 @@
     import { inject } from 'vue';
     import AppearFadeTransition from '../../shared/Transition/AppearFadeTransition.vue';
     import ListTransition from '../../shared/Transition/ListTransition.vue';
+    import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
     export default {
         name: 'SubsectionElements',
-        emits: ['changeElement', 'removeElement'],
         components: {
             CloseAddButton,
             SubsectionElement,
             AppearFadeTransition,
             ListTransition,
+            ConfirmationModal,
         },
 
         data() {
@@ -64,6 +70,8 @@
                 ...this.initialState(),
                 editing: inject('editing', false),
                 subsection: inject('subsection', new Subsection()),
+                confirmationDeleteModal: false,
+                indexOfElementToDelete: -1,
             };
         },
 
@@ -86,11 +94,14 @@
                     this.newElement.length > 0
                 );
             },
-            changeElement(v: string, index: number) {
-                this.$emit('changeElement', v, index);
+
+            tryToDeleteElement(index: number) {
+                this.confirmationDeleteModal = true;
+                this.indexOfElementToDelete = index;
             },
-            removeElement(index: number) {
-                this.$emit('removeElement', index);
+            deleteElement() {
+                this.subsection.elements.splice(this.index, 1);
+                this.confirmationDeleteModal = false;
             },
             initTextArea() {
                 var input = document.getElementById(
