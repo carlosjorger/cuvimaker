@@ -27,38 +27,11 @@
             />
         </transition>
         <transition name="createSectionModal">
-            <ModalTemplate v-show="confirmationDeleteModal">
-                <div
-                    class="overflow-hidden rounded bg-white font-bold text-primary dark:border-zinc-100 dark:bg-dark-primary-300 dark:text-zinc-300"
-                >
-                    <div
-                        class="bg-dark-primary-300 p-4 text-zinc-300 dark:bg-white dark:text-primary"
-                    >
-                        Confirmation
-                    </div>
-                    <div class="max-w-sm p-4">
-                        <div class="text-sm">
-                            A you sure that you whant to delete this Section?
-                        </div>
-
-                        <div class="flex justify-between pt-5">
-                            <button
-                                class="rounded-2xl bg-dark-primary-300 px-6 py-2 text-sm font-bold text-zinc-300 dark:bg-white dark:text-primary"
-                                @click="confirmationDeleteModal = false"
-                            >
-                                No
-                            </button>
-
-                            <button
-                                class="rounded-2xl bg-dark-primary-300 px-6 py-2 text-sm font-bold text-zinc-300 dark:bg-white dark:text-primary"
-                                @click="deleteSection(sectionIndexToDelete)"
-                            >
-                                Yes
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </ModalTemplate>
+            <ConfirmationModal
+                v-show="confirmationDeleteModal"
+                @delete="deleteSection(sectionIndexToDelete)"
+                @cancel="confirmationDeleteModal = false"
+            />
         </transition>
         <ListTransition class="z-0 block">
             <section-component
@@ -86,7 +59,8 @@
     import { computed } from 'vue';
     import IntroductionSection from './app/SectionView/Introduction/IntroductionSection.vue';
     import ListTransition from './shared/Transition/ListTransition.vue';
-    import ModalTemplate from './shared/others/ModalTemplate.vue';
+    import ConfirmationModal from './shared/Modal/ConfirmationModal.vue';
+
     export default {
         name: 'CVEditor',
         components: {
@@ -95,7 +69,7 @@
             BasicButton,
             IntroductionSection,
             ListTransition,
-            ModalTemplate,
+            ConfirmationModal,
         },
         data() {
             return {
