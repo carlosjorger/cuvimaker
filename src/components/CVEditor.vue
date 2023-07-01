@@ -1,5 +1,4 @@
 <!-- TODO: Save the pdf -->
-<!-- Make the website responsive more responsive -->
 <template>
     <section>
         <IntroductionSection

@@ -1,7 +1,7 @@
 <template>
     <ModalTemplate>
         <div
-            class="overflow-hidden rounded border-4 border-solid border-primary bg-white text-lg font-extrabold text-primary dark:border-zinc-100 dark:bg-dark-primary-300 dark:text-zinc-300"
+            class="overflow-hidden rounded border-4 border-solid border-primary bg-white text-lg font-extrabold text-primary dark:border-zinc-100 dark:bg-dark-primary-300 dark:text-zinc-300 max-xl:w-1/2 max-lg:w-4/5 max-md:w-5/6 max-sm:w-5/6"
         >
             <div
                 class="bg-primary p-4 text-2xl text-zinc-300 dark:bg-white dark:text-primary"

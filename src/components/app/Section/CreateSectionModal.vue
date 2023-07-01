@@ -1,7 +1,7 @@
 <template>
     <ModalTemplate>
         <div
-            class="m-0 flex w-2/5 flex-col rounded-lg border-4 border-primary bg-white p-4 dark:border-zinc-100 dark:bg-dark-primary-300 max-xl:w-1/2 max-lg:w-4/5 max-md:w-5/6 max-sm:w-11/12"
+            class="m-0 flex w-2/5 flex-col rounded-lg border-4 border-primary bg-white p-4 dark:border-zinc-100 dark:bg-dark-primary-300 max-xl:w-1/2 max-lg:w-4/5 max-md:w-5/6 max-sm:w-5/6"
         >
             <header class="mb-2 flex items-center justify-between">
                 <h3
@@ -20,7 +20,7 @@
             <div class="mb-2 box-border">
                 <input
                     v-model="section.name"
-                    class="mt-2 w-full rounded-3xl border-2 border-solid p-2 font-semibold text-primary shadow-xl transition-all duration-300 placeholder:text-lg focus:border-4 dark:bg-dark-primary-200 dark:text-zinc-300"
+                    class="mt-2 w-full rounded-3xl border-2 border-solid p-3 font-semibold text-primary shadow-xl transition-all duration-300 placeholder:text-lg focus:border-4 dark:bg-dark-primary-200 dark:text-zinc-300"
                     :class="{
                         'border-red-600 placeholder:text-red-600 dark:border-rose-500 dark:placeholder:text-rose-500 ':
                             v$.section.name.$errors.length > 0,
@@ -35,7 +35,7 @@
             <div class="mb-2 box-border">
                 <transition-group
                     name="subsection"
-                    class="relative block h-96 overflow-scroll overflow-x-hidden p-5"
+                    class="relative block h-96 overflow-scroll overflow-x-hidden p-5 max-md:p-2 max-sm:p-1"
                     tag="div"
                 >
                     <subsection-menu

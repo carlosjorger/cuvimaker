@@ -3,7 +3,7 @@
         <ShakeTemplate
             :shake="shake"
             v-scroll-if="subsection"
-            class="mt-3 w-full rounded-lg bg-primary p-4 text-white shadow-2xl shadow-zinc-200 transition-all duration-500 dark:bg-dark-primary-200 dark:shadow-lg dark:shadow-zinc-500"
+            class="max-ms:p-2 mt-3 w-full rounded-lg bg-primary p-4 text-white shadow-2xl shadow-zinc-200 transition-all duration-500 dark:bg-dark-primary-200 dark:shadow-lg dark:shadow-zinc-500 max-md:p-3"
         >
             <!--TODO: in some cases I cannot edit the title and the subtitle -->
             <!--TODO: Add autofocus to to Title when is edited -->
@@ -26,7 +26,11 @@
                         />
                     </AppearFadeTransition>
                 </div>
-                <form v-on:submit.prevent v-if="!subsection.last" class="p-5">
+                <form
+                    v-on:submit.prevent
+                    v-if="!subsection.last"
+                    class="max-ms:p-1 p-5 max-md:p-2"
+                >
                     <SubsectionForm
                         class="text-lg"
                         v-model="subsection.title"

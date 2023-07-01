@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-2">
+    <div class="mt-2 px-2">
         <SwitchCheckbox
             v-if="editing"
             v-model="hasPeriodOfTime"

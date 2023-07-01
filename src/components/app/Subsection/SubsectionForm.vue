@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="px-3">
         <input
             v-model="value"
-            class="block w-full border-solid bg-inherit transition-form duration-300 focus:outline-none dark:placeholder-zinc-400"
+            class="block w-full border-solid bg-inherit py-1 transition-form duration-300 focus:outline-none dark:placeholder-zinc-400"
             v-if="editing || value"
             :class="[
                 `text-${lightColor} dark:text-${darkColor}`,
