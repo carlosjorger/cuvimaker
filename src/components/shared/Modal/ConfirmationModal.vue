@@ -9,7 +9,10 @@
                 Confirmation
             </div>
             <div class="max-w-sm p-4">
-                <div>A you sure that you whant to delete this Section?</div>
+                <div>
+                    A you sure that you whant to delete this
+                    {{ entityToDelete }}?
+                </div>
 
                 <div class="flex justify-between pt-5">
                     <button
@@ -34,5 +37,8 @@
     import ModalTemplate from '../others/ModalTemplate.vue';
     export default {
         components: { ModalTemplate },
+        props: {
+            entityToDelete: String,
+        },
     };
 </script>

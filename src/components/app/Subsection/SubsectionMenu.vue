@@ -1,58 +1,65 @@
 <template>
-    <ShakeTemplate
-        :shake="shake"
-        v-scroll-if="subsection"
-        class="mt-3 w-full rounded-lg bg-primary p-4 text-white shadow-2xl shadow-zinc-200 transition-all duration-500 dark:bg-dark-primary-200 dark:shadow-lg dark:shadow-zinc-500"
-    >
-        <div>
-            <div class="flex items-center justify-between">
-                <AppearFadeTransition>
-                    <CloseAddButton
-                        v-on:click="addRemoveSubSection()"
-                        :closeButton="!subsection.last"
-                        v-if="!editing"
-                    />
-                </AppearFadeTransition>
-                <AppearFadeTransition>
-                    <CircleButtonWithIcon
-                        v-if="!subsection.last && !editing"
-                        @click="editSubSection"
-                        :width="2.5"
-                        color="var(--primary-color)"
-                        icon="ic:baseline-mode-edit"
-                    />
-                </AppearFadeTransition>
-            </div>
-            <form v-on:submit.prevent v-if="!subsection.last" class="p-5">
-                <SubsectionForm
-                    class="text-lg"
-                    v-model="subsection.title"
-                    :placeholder="'Subsection title'"
-                    :errors="v$.subsection.title.$errors"
-                />
-                <SubsectionForm
-                    v-model="subsection.text"
-                    :placeholder="'Subsection subtitle'"
-                />
-                <SubsectionTimeIntervalSection
-                    v-model="subsection.subsectionTimeInterval"
-                />
-                <SubsectionListSection />
-                <div class="flex justify-between">
-                    <ModalButton
-                        v-if="editing"
-                        :name="'Save'"
-                        v-on:click="saveSubSection"
-                    />
-                    <ModalButton
-                        v-if="editing && !prevSubsection.isEmpty"
-                        :name="'Cancel'"
-                        v-on:click="cancelSubSection"
-                    />
+    <div>
+        <ShakeTemplate
+            :shake="shake"
+            v-scroll-if="subsection"
+            class="mt-3 w-full rounded-lg bg-primary p-4 text-white shadow-2xl shadow-zinc-200 transition-all duration-500 dark:bg-dark-primary-200 dark:shadow-lg dark:shadow-zinc-500"
+        >
+            <div>
+                <div class="flex items-center justify-between">
+                    <AppearFadeTransition>
+                        <CloseAddButton
+                            v-on:click="addRemoveSubSection()"
+                            :closeButton="!subsection.last"
+                            v-if="!editing"
+                        />
+                    </AppearFadeTransition>
+                    <AppearFadeTransition>
+                        <CircleButtonWithIcon
+                            v-if="!subsection.last && !editing"
+                            @click="editSubSection"
+                            :width="2.5"
+                            color="var(--primary-color)"
+                            icon="ic:baseline-mode-edit"
+                        />
+                    </AppearFadeTransition>
                 </div>
-            </form>
-        </div>
-    </ShakeTemplate>
+                <form v-on:submit.prevent v-if="!subsection.last" class="p-5">
+                    <SubsectionForm
+                        class="text-lg"
+                        v-model="subsection.title"
+                        :placeholder="'Subsection title'"
+                        :errors="v$.subsection.title.$errors"
+                    />
+                    <SubsectionForm
+                        v-model="subsection.text"
+                        :placeholder="'Subsection subtitle'"
+                    />
+                    <SubsectionTimeIntervalSection
+                        v-model="subsection.subsectionTimeInterval"
+                    />
+                    <SubsectionListSection />
+                    <div class="flex justify-between">
+                        <ModalButton
+                            v-if="editing"
+                            :name="'Save'"
+                            v-on:click="saveSubSection"
+                        />
+                        <ModalButton
+                            v-if="editing && !prevSubsection.isEmpty"
+                            :name="'Cancel'"
+                            v-on:click="cancelSubSection"
+                        />
+                    </div>
+                </form>
+            </div> </ShakeTemplate
+        ><ConfirmationModal
+            v-show="confirmationDeleteModal"
+            :entityToDelete="'Subsection'"
+            @cancel="confirmationDeleteModal = false"
+            @delete="removeSubsection()"
+        />
+    </div>
 </template>
 <script lang="ts">
     import CloseAddButton from '../../shared/Button/CloseAddButton.vue';
@@ -70,6 +77,7 @@
     import AppearFadeTransition from '../../shared/Transition/AppearFadeTransition.vue';
     import CircleButtonWithIcon from '../../shared/Button/CircleButtonWithIcon.vue';
     import ShakeTemplate from '../../shared/others/ShakeTemplate.vue';
+    import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
     const emitter = mitt();
     export default {
         name: 'SubsectionMenu',
@@ -96,6 +104,7 @@
             AppearFadeTransition,
             CircleButtonWithIcon,
             ShakeTemplate,
+            ConfirmationModal,
         },
         setup() {
             return {
@@ -131,6 +140,7 @@
                 subsection: Subsection;
                 editing: boolean;
                 shake: boolean;
+                confirmationDeleteModal: boolean;
             } {
                 return {
                     subsection: this.prevSubsection.isEmpty
@@ -138,6 +148,7 @@
                         : this.prevSubsection.copy(),
                     editing: false,
                     shake: false,
+                    confirmationDeleteModal: false,
                 };
             },
             resetWindow: function () {
@@ -151,7 +162,7 @@
                 } else if (this.section.subsectionEditing) {
                     this.emmitSendEditing();
                 } else {
-                    this.removeSubsection();
+                    this.confirmationDeleteModal = true;
                 }
             },
             removeSubsection() {

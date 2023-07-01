@@ -1,4 +1,3 @@
-<!-- TODO: show confirmation messages when you delete a entity -->
 <!-- TODO: Save the pdf -->
 <template>
     <section>
@@ -24,6 +23,7 @@
             :editIndex="editIndex"
         />
         <ConfirmationModal
+            :entity-to-delete="'Section'"
             v-show="confirmationDeleteModal"
             @delete="deleteSection(sectionIndexToDelete)"
             @cancel="confirmationDeleteModal = false"
