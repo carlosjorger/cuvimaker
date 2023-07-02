@@ -1,25 +1,27 @@
 <template>
-    <article
-        class="mb-4 mt-4 w-1/2 rounded-md border-4 border-solid border-primary bg-[#f6f4fb] shadow-xl transition-colors duration-700 hover:bg-[#e1d7fd] dark:border-zinc-300 dark:bg-dark-primary-300 dark:hover:bg-dark-primary max-xl:w-7/12 max-lg:w-4/5 max-md:w-5/6 max-sm:w-11/12"
-    >
-        <body class="p-8 max-md:p-6 max-sm:p-4" @click="changeSetting">
-            <slot name="body"></slot>
-        </body>
-        <footer
-            class="relative flex w-full justify-end overflow-hidden bg-primary transition-all duration-500 dark:bg-zinc-300"
-            :class="{
-                ['h-16']: isBeingShowedSetting,
-                ['h-0']: !isBeingShowedSetting,
-            }"
+    <SubsectionAlign>
+        <article
+            class="w-full rounded-md border-4 border-solid border-primary bg-[#f6f4fb] shadow-xl transition-colors duration-700 hover:bg-[#e1d7fd] dark:border-zinc-300 dark:bg-dark-primary-300 dark:hover:bg-dark-primary"
         >
-            <slot name="footer"> </slot>
-        </footer>
-    </article>
+            <body class="p-8 max-md:p-6 max-sm:p-4" @click="changeSetting">
+                <slot name="body"></slot>
+            </body>
+            <footer
+                class="relative flex w-full justify-end overflow-hidden bg-primary transition-all duration-500 dark:bg-zinc-300"
+                :class="{
+                    ['h-16']: isBeingShowedSetting,
+                    ['h-0']: !isBeingShowedSetting,
+                }"
+            >
+                <slot name="footer"> </slot>
+            </footer>
+        </article>
+    </SubsectionAlign>
 </template>
 <script lang="ts">
     import { scrollSmoothToElement } from '../../../utils/scrollServices';
     import mitt from 'mitt';
-
+    import SubsectionAlign from './SubsectionAlign.vue';
     const emitter = mitt();
     export default {
         name: 'SubsectionCard',
@@ -33,6 +35,7 @@
                 default: false,
             },
         },
+        components: { SubsectionAlign },
         data() {
             return {
                 isBeingShowedSetting: false,

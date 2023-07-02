@@ -1,7 +1,6 @@
 <!-- TODO: Save the pdf -->
 <!-- TODO: Make a better positioning for the contacts -->
 <!-- TODO: Save the cv in the sotarage -->
-<!-- TODO: center sections in a smaller view -->
 <template>
     <section>
         <IntroductionSection
@@ -9,15 +8,18 @@
             :isBeingEditingIntroduction="resume.isBeingEditingIntroduction"
             @set-editing-introduction="setEditingIntroduction"
         />
-        <BasicButton
-            :name="'Add Section'"
-            @click="
-                () => {
-                    showModal = true;
-                    editIndex = undefined;
-                }
-            "
-        />
+        <SubsectionAlign>
+            <BasicButton
+                :name="'Add Section'"
+                @click="
+                    () => {
+                        showModal = true;
+                        editIndex = undefined;
+                    }
+                "
+            />
+        </SubsectionAlign>
+
         <create-section-modal
             v-show="showModal"
             :sections="resume.sections"
@@ -50,7 +52,6 @@
 </template>
 <script lang="ts">
     import { Resume } from '../models/Resume';
-
     import CreateSectionModal from './app/Section/CreateSectionModal.vue';
     import SectionComponent from './app/SectionView/SectionComponent.vue';
     import BasicButton from './shared/Button/BasicButton.vue';
@@ -58,7 +59,7 @@
     import IntroductionSection from './app/SectionView/Introduction/IntroductionSection.vue';
     import ListTransition from './shared/Transition/ListTransition.vue';
     import ConfirmationModal from './shared/Modal/ConfirmationModal.vue';
-
+    import SubsectionAlign from './shared/Subsection/SubsectionAlign.vue';
     export default {
         name: 'CVEditor',
         components: {
@@ -68,6 +69,7 @@
             IntroductionSection,
             ListTransition,
             ConfirmationModal,
+            SubsectionAlign,
         },
         data() {
             return {
