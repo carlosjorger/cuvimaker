@@ -1,7 +1,17 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BasicButton from '../components/shared/Button/BasicButton.vue';
 ---
 
 <BaseLayout pageTitle="Online CV Maker">
-  <h2>Create an elegant cv online.</h2>
+    <h2 class="mb-4 text-2xl font-bold">
+        Create an elegant and simple curriculum vitae online
+    </h2>
+    <p>
+        Complete your personal data, skills, experience, projects and more.
+        Download the cv in a pdf file
+    </p>
+    <a href="editor">
+        <BasicButton name={'Create CV'} />
+    </a>
 </BaseLayout>

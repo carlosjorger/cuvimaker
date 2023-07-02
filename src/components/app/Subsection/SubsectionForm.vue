@@ -29,6 +29,7 @@
         props: {
             modelValue: {
                 type: String,
+                default: '',
             },
             lightColor: {
                 type: String,

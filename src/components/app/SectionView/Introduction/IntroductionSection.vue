@@ -171,13 +171,13 @@
                 editing: computed(() => this.isBeingEditingIntroduction),
             };
         },
+
         methods: {
             initialState(): {
                 currentIntroduction: Introduction;
                 currentSocialAccount: string;
             } {
                 const { introduction } = this.introductionStore;
-
                 return {
                     currentIntroduction: introduction,
                     currentSocialAccount: '',

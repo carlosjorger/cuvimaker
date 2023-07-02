@@ -1,8 +1,8 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import CVEditor from "../components/CVEditor.vue";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CVEditor from '../components/CVEditor.vue';
 ---
 
 <BaseLayout pageTitle="Editor">
-  <CVEditor client:only />
+    <CVEditor client:only="vue" />
 </BaseLayout>
