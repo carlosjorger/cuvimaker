@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '@fontsource/montserrat';
+import Contacts from '../components/Contacts.astro';
 const { pageTitle } = Astro.props;
 ---
 
@@ -11,12 +12,12 @@ const { pageTitle } = Astro.props;
         <meta charset="utf-8" />
         <meta
             name="keywords"
-            content="cuvimaker,Astro,CV,Online,Editor,CV Maker,CSS,JavaScript,Github,Repository"
+            content="cuvimaker,Online Cv Maker,Astro,CV,Online,Editor,CV Maker,CSS,JavaScript,Github,Repository"
         />
         <link rel="icon" type="image/svg+xml" href="/cuvimaker.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>Online CV Maker {pageTitle}</title>
+        <title>{pageTitle}</title>
         <meta
             name="description"
             content="An online editor of cv, SEO-friendly made in Astro"
@@ -26,8 +27,8 @@ const { pageTitle } = Astro.props;
         class="font-[Montserrat] text-primary bg-[#f5f0ff] dark:text-gray-300 dark:bg-[#130624] transition-colors duration-500 dark:transition-colors dark:duration-500"
     >
         <Header />
-        <main class="m-10 max-md:m-7 max-sm:m-5">
-            <h1 class="text-4xl mt-8 mb-8 font-bold dark:text-white">
+        <main class="m-8 max-md:m-6 max-sm:m-4">
+            <h1 class="text-4xl mt-4 mb-4 font-bold dark:text-white">
                 {pageTitle}
             </h1>
             <slot />

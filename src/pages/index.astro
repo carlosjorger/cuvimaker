@@ -2,16 +2,30 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BasicButton from '../components/shared/Button/BasicButton.vue';
 ---
-
-<BaseLayout pageTitle="Online CV Maker">
-    <h2 class="mb-4 text-2xl font-bold">
-        Create an elegant and simple curriculum vitae online
-    </h2>
-    <p>
-        Complete your personal data, skills, experience, projects and more.
-        Download the cv in a pdf file
-    </p>
-    <a href="editor">
-        <BasicButton name={'Create CV'} />
-    </a>
+<!-- TODO: Add some styles to the images -->
+<!-- TODO: Makes this page responsive-->
+<BaseLayout pageTitle="Cuvimaker">
+    <div class="flex w-2/3 items-center">
+        <div class="p-2">
+            <h2 class="mb-4 text-3xl font-bold">
+                Create elegant and simple CVs
+            </h2>
+            <p class="mb-4">
+                Complete your personal data, skills, experience, projects and
+                more. Download the cv in a pdf file
+            </p>
+            <a href="editor">
+                <BasicButton name={'Create CV'} />
+            </a>
+        </div>
+        <picture class="p-2">
+            <img
+                class="logo changeable"
+                src="./cv.jpg"
+                alt="logo"
+                width="350"
+                height="350"
+            />
+        </picture>
+    </div>
 </BaseLayout>
