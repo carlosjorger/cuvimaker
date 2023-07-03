@@ -21,13 +21,13 @@
                     :darkColor="'zinc-300'"
                     :errors="v$.currentIntroduction.profetion.$errors"
                 />
-                <div class="flex items-end">
+                <div class="flex items-center">
                     <div
                         v-if="
                             currentIntroduction.location ||
                             isBeingEditingIntroduction
                         "
-                        class="p-1 text-primary transition-colors duration-500 dark:text-white"
+                        class="mt-2 p-1 text-primary transition-colors duration-500 dark:text-white"
                     >
                         <Icon icon="mdi:location" width="20" />
                     </div>
@@ -40,7 +40,10 @@
                         :darkColor="'zinc-300'"
                     />
                 </div>
-                <div class="flex items-start" v-if="isBeingEditingIntroduction">
+                <div
+                    class="flex items-center"
+                    v-if="isBeingEditingIntroduction"
+                >
                     <div
                         class="mt-2 p-1 text-primary transition-colors duration-500 dark:text-white"
                     >
