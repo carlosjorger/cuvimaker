@@ -1,8 +1,16 @@
 ---
 const { href, text = '' } = Astro.props;
+const currentPath = Astro.url.pathname;
+const active = href == currentPath;
 ---
 
 <a
-    class="text-primary dark:text-white p-2 inline-block text-center font-medium uppercase transition-all duration-200 ease-in hover:text-primary hover:font-bold hover:no-underline dark:hover:text-gray-500 focus:text-primary dark:focus:text-gray-500"
+    class="p-2 inline-block text-center uppercase transition-all duration-300 ease-in hover:text-primary hover:font-bold hover:no-underline dark:hover:text-gray-500 focus:text-primary dark:focus:text-gray-500"
+    class:list={[
+        {
+            'text-primary dark:text-gray-500 font-extrabold': active,
+            'text-primary dark:text-white font-medium': !active,
+        },
+    ]}
     href={href}>{text}</a
 >
