@@ -1,10 +1,22 @@
 ---
 import Contacts from '../components/Contacts.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+const platform = 'github';
+const username = 'carlosjorger';
+const proyect = 'astro-vue-online-cv-maker';
 ---
 
 <!-- TODO: Make a better positioning for the contacts --><!-- TODO: Add info of the proyect to about -->
 <BaseLayout pageTitle="About Me">
     <h2>I'm a software engineer!</h2>
+    <p class="mt-2">
+        Learn more about this project on
+        <a
+            class="text-anchor bg-anchorImage bg-[0%_100%] bg-[length:100%_0%] bg-no-repeat hover:bg-[length:100%_15%] transition-all duration-300"
+            href={`https://www.${platform}.com/${username}/${proyect}`}
+        >
+            {platform}</a
+        >!
+    </p>
     <Contacts />
 </BaseLayout>
