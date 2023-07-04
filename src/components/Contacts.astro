@@ -1,8 +1,11 @@
 ---
 import Social from './Social.astro';
+import Subtitle from './Subtitle.astro';
 ---
 
-<div class="mt-2 flex flex-row p-2">
+<Subtitle>Want to give me some feedback?</Subtitle>
+<p class="text-base">You can contact me in these social medias:</p>
+<div class="flex flex-row p-2">
     <Social platform="github" username="carlosjorger" icon="github" />
     <Social platform="twitter" username="carlosjorgerc" icon="twitter" />
     <Social
@@ -10,5 +13,10 @@ import Social from './Social.astro';
         username="carlosjorger"
         icon="linkedin"
         extraPath="/in"
+    />
+    <Social
+        platform="t.me"
+        username="carlosjorger"
+        icon="ic:baseline-telegram"
     />
 </div>

@@ -2,14 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BasicButton from '../components/shared/Button/BasicButton.vue';
 import CvExampleImages from '../components/CvExampleImages.astro';
+import Subtitle from '../components/Subtitle.astro';
 ---
 
 <BaseLayout pageTitle="Cuvimaker">
-    <div class="flex w-2/3 m-2 max-lg:w-3/4 max-md:w-full items-center">
+    <div class="flex w-2/3 max-lg:w-3/4 max-md:w-full items-center">
         <div class="p-5 max-md:p-2">
-            <h2 class="mb-4 text-3xl font-bold">
-                Create elegant and simple CVs
-            </h2>
+            <Subtitle>Create elegant and simple CVs</Subtitle>
             <p class="mb-4">
                 Complete your personal data, skills, experience, projects and
                 more. Download the cv in a pdf file
