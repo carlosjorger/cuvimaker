@@ -27,7 +27,7 @@ import ThemeIcon from './ThemeIcon.astro';
     })();
 
     const classList = document.documentElement.classList;
-    classList.replace('dark', theme);
+    classList.toggle('dark', theme == 'dark');
 
     window.localStorage.setItem('theme', theme);
 
