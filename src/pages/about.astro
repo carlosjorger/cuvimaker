@@ -2,6 +2,7 @@
 import Contacts from '../components/Contacts.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Subtitle from '../components/Subtitle.astro';
+import ExampleImage from '../components/ExampleImage.astro';
 const platform = 'github';
 const username = 'carlosjorger';
 const proyect = 'astro-vue-online-cv-maker';
@@ -9,20 +10,29 @@ const proyect = 'astro-vue-online-cv-maker';
 
 <!-- TODO: Add a image to about page -->
 <BaseLayout pageTitle="About Cuvimaker">
-    <div class="p-5 max-md:p-2">
-        <Subtitle>Are you interested in this app?</Subtitle>
-
-        <p class="mb-4 text-base">
-            Learn more about this project on
-            <a
-                class="text-anchor bg-anchorImage bg-[0%_100%] bg-[length:100%_0%] bg-no-repeat hover:bg-[length:100%_15%] transition-all duration-300"
-                href={`https://www.${platform}.com/${username}/${proyect}`}
-            >
-                {platform}</a
-            >
-            <br />
-            Contributions are welcome too!!
-        </p>
-        <Contacts />
-    </div>
+	<div
+		class="flex w-3/4 max-lg:w-4/5 max-md:w-full items-center max-md:text-base"
+	>
+		<div class="p-5 max-md:p-2">
+			<div class="hidden max-md:block">
+				<ExampleImage imageSrc="./project.png" />
+			</div>
+			<Subtitle>Are you interested in this app?</Subtitle>
+			<p class="mb-4 text-base">
+				Learn more about this project on
+				<a
+					class="text-anchor bg-anchorImage bg-[0%_100%] bg-[length:100%_0%] bg-no-repeat hover:bg-[length:100%_15%] transition-all duration-300"
+					href={`https://www.${platform}.com/${username}/${proyect}`}
+				>
+					{platform}</a
+				>
+				<br />
+				Contributions are welcome too!!
+			</p>
+			<Contacts />
+		</div>
+		<div class="block max-md:hidden">
+			<ExampleImage imageSrc="./project.png" />
+		</div>
+	</div>
 </BaseLayout>

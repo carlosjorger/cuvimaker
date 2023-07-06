@@ -1,0 +1,12 @@
+---
+const { imageSrc = '' } = Astro.props;
+---
+
+<picture>
+	<img
+		class="aspect-[900/1200] bg-transparent"
+		src={imageSrc}
+		alt="logo"
+		width="400"
+	/>
+</picture>

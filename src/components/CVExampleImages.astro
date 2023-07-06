@@ -1,9 +1,11 @@
-<picture class="p-5">
-    <img
-        class="shadow-[0_5px_40px_rgba(63,50,104)] dark:shadow-[0_5px_40px_#42bbc2]"
-        src="./cv.jpg"
-        alt="logo"
-        width="300"
-        height="300"
-    />
-</picture>
+---
+import ExampleImage from './ExampleImage.astro';
+---
+
+<div class="p-5">
+	<div
+		class="shadow-[0_5px_40px_rgba(63,50,104)] dark:shadow-[0_5px_40px_#42bbc2]"
+	>
+		<ExampleImage imageSrc="./cv.jpg" />
+	</div>
+</div>
