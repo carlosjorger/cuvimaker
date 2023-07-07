@@ -2,7 +2,9 @@
 <!-- TODO: Save the cv in the sotarage -->
 <!-- TODO: Add dark mode to the new bar -->
 <template>
-	<div class="rounded-lg border-4 border-primary bg-primary">
+	<div
+		class="rounded-lg border-4 border-primary bg-primary dark:border-zinc-300 dark:bg-dark-primary-200"
+	>
 		<SubsectionAlign>
 			<div class="justify-left flex items-center">
 				<BasicButton class="m-1 w-32" name="Edit" />
@@ -10,7 +12,9 @@
 			</div>
 		</SubsectionAlign>
 
-		<div class="border-t-4 border-primary bg-[#eee8ff] p-10 max-md:p-2">
+		<div
+			class="border-t-4 border-primary bg-[#eee8ff] p-10 dark:border-zinc-300 dark:bg-[#130624] max-md:p-2"
+		>
 			<section>
 				<IntroductionSection
 					:introduction="resume.introduction"
