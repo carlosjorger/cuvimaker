@@ -3,9 +3,9 @@
 		type="submit"
 		class="rounded-2xl border-4 border-primary p-1.5 text-xl font-extrabold text-primary shadow-xl transition-colors duration-200 ease-out dark:border-zinc-300 dark:text-zinc-300"
 		:class="{
-			'bg-[#f6f4fb] active:bg-[#9e97bf] dark:bg-dark-primary-200 dark:active:bg-[#0c071a]':
+			'bg-[#f6f4fb] active:bg-[#9e97bf] dark:bg-dark-primary-200 dark:active:bg-[#140c29]':
 				!active,
-			'bg-[#9e97bf]  dark:bg-[#0c071a]': active,
+			'bg-[#9e97bf]  dark:bg-[#140c29]': active,
 		}"
 	>
 		<div

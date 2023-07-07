@@ -5,30 +5,7 @@
 	<div
 		class="dark:border-3 overflow-hidden rounded-lg border-4 border-primary bg-primary dark:border-zinc-300 dark:bg-dark-primary"
 	>
-		<SubsectionAlign>
-			<div class="justify-left flex items-center">
-				<BasicButton
-					class="m-1 w-32"
-					name="Edit"
-					:active="isEditingResume"
-					@click="
-						() => {
-							isEditingResume = true;
-						}
-					"
-				/>
-				<BasicButton
-					class="m-1 w-32"
-					name="Preview"
-					:active="!isEditingResume"
-					@click="
-						() => {
-							isEditingResume = false;
-						}
-					"
-				/>
-			</div>
-		</SubsectionAlign>
+		<EditorBar v-model="isEditingResume" />
 		<AppearFadeTransition>
 			<div
 				v-if="isEditingResume"
@@ -100,6 +77,7 @@
 	import ConfirmationModal from './shared/Modal/ConfirmationModal.vue';
 	import SubsectionAlign from './shared/Subsection/SubsectionAlign.vue';
 	import AppearFadeTransition from './shared/Transition/AppearFadeTransition.vue';
+	import EditorBar from './app/Editor/EditorBar.vue';
 	export default {
 		name: 'CVEditor',
 		components: {
@@ -111,6 +89,7 @@
 			ConfirmationModal,
 			SubsectionAlign,
 			AppearFadeTransition,
+			EditorBar,
 		},
 		data() {
 			return {
