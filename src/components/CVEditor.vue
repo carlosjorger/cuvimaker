@@ -5,12 +5,12 @@
 		class="dark:border-3 overflow-hidden rounded-lg border-4 border-primary bg-primary dark:border-zinc-300 dark:bg-dark-primary"
 	>
 		<EditorBar v-model="isEditingResume" />
-		<AppearFadeTransition>
-			<div
-				v-if="isEditingResume"
-				class="dark:border-t-3 border-t-4 border-primary bg-[#eee8ff] p-10 dark:border-zinc-300 dark:bg-[#130624] max-md:p-2"
-			>
-				<section>
+
+		<div
+			class="dark:border-t-3 max-h-[calc(100vh-18rem)] min-h-[calc(100vh-18rem)] overflow-scroll overflow-x-hidden border-t-4 border-primary bg-[#eee8ff] p-6 dark:border-zinc-300 dark:bg-[#130624] max-md:p-2"
+		>
+			<AppearFadePanelTransition>
+				<section v-show="isEditingResume" class="relative">
 					<IntroductionSection
 						:introduction="resume.introduction"
 						:isBeingEditingIntroduction="
@@ -62,9 +62,13 @@
 						/>
 					</ListTransition>
 				</section>
-			</div>
-		</AppearFadeTransition>
-		<PreviewResume :resume="resume" />
+			</AppearFadePanelTransition>
+			<PreviewResume
+				class="relative"
+				:canShowPreviewResume="!isEditingResume"
+				:resume="resume"
+			/>
+		</div>
 	</div>
 </template>
 <script lang="ts">
@@ -77,10 +81,10 @@
 	import ListTransition from './shared/Transition/ListTransition.vue';
 	import ConfirmationModal from './shared/Modal/ConfirmationModal.vue';
 	import SubsectionAlign from './shared/Subsection/SubsectionAlign.vue';
-	import AppearFadeTransition from './shared/Transition/AppearFadeTransition.vue';
 	import EditorBar from './app/Editor/EditorBar.vue';
 	import PreviewResume from './app/Editor/PreviewResume.vue';
 	import type { Introduction } from '../models/Introduction';
+	import AppearFadePanelTransition from './shared/Transition/AppearFadePanelTransition.vue';
 
 	export default {
 		name: 'CVEditor',
@@ -92,7 +96,7 @@
 			ListTransition,
 			ConfirmationModal,
 			SubsectionAlign,
-			AppearFadeTransition,
+			AppearFadePanelTransition,
 			EditorBar,
 			PreviewResume,
 		},

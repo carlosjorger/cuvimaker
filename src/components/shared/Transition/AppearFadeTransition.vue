@@ -1,20 +1,20 @@
 <template>
-    <transition name="appear-fade">
-        <slot></slot>
-    </transition>
+	<transition name="appear-fade">
+		<slot></slot>
+	</transition>
 </template>
 
 <script>
-    export default {};
+	export default {};
 </script>
 
 <style>
-    .appear-fade-leave-active,
-    .appear-fade-enter-active {
-        transition: all 0.5s ease;
-    }
-    .appear-fade-leave-to,
-    .appear-fade-enter-from {
-        opacity: 0;
-    }
+	.appear-fade-leave-active,
+	.appear-fade-enter-active {
+		transition: all 0.5s ease;
+	}
+	.appear-fade-leave-to,
+	.appear-fade-enter-from {
+		opacity: 0;
+	}
 </style>

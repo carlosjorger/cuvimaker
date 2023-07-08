@@ -96,7 +96,10 @@
 						@click="
 							() => {
 								setEditingIntroduction(false);
-								$emit('set-introduction', currentIntroduction);
+								$emit(
+									'set-introduction',
+									introductionStore.copy
+								);
 							}
 						"
 					>
