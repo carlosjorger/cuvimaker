@@ -1,6 +1,5 @@
 <!-- TODO: Save the pdf -->
 <!-- TODO: Save the cv in the sotarage -->
-<!-- TODO: Add dark mode to the new bar -->
 <template>
 	<div
 		class="dark:border-3 overflow-hidden rounded-lg border-4 border-primary bg-primary dark:border-zinc-300 dark:bg-dark-primary"
@@ -18,6 +17,7 @@
 							resume.isBeingEditingIntroduction
 						"
 						@set-editing-introduction="setEditingIntroduction"
+						@set-introduction="setIntroduction"
 					/>
 					<SubsectionAlign>
 						<BasicButton
@@ -64,6 +64,7 @@
 				</section>
 			</div>
 		</AppearFadeTransition>
+		<PreviewResume :resume="resume" />
 	</div>
 </template>
 <script lang="ts">
@@ -78,6 +79,9 @@
 	import SubsectionAlign from './shared/Subsection/SubsectionAlign.vue';
 	import AppearFadeTransition from './shared/Transition/AppearFadeTransition.vue';
 	import EditorBar from './app/Editor/EditorBar.vue';
+	import PreviewResume from './app/Editor/PreviewResume.vue';
+	import type { Introduction } from '../models/Introduction';
+
 	export default {
 		name: 'CVEditor',
 		components: {
@@ -90,6 +94,7 @@
 			SubsectionAlign,
 			AppearFadeTransition,
 			EditorBar,
+			PreviewResume,
 		},
 		data() {
 			return {
@@ -117,6 +122,9 @@
 			},
 			setEditingIntroduction(value: boolean) {
 				this.resume.isBeingEditingIntroduction = value;
+			},
+			setIntroduction(introduction: Introduction) {
+				this.resume.introduction = introduction;
 			},
 		},
 	};

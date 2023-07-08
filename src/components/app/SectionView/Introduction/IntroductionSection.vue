@@ -96,6 +96,7 @@
 						@click="
 							() => {
 								setEditingIntroduction(false);
+								$emit('set-introduction', currentIntroduction);
 							}
 						"
 					>
