@@ -26,10 +26,8 @@ export const useIntroductionStore = defineStore('introduction', {
 				state.introduction.email,
 				state.introduction.phone,
 				state.introduction.location,
-				state.introduction.linkedin,
-				state.introduction.github,
-				state.introduction.twitter,
-				state.introduction.website
+				state.introduction.website,
+				state.introduction.socialAccounts
 			),
 	},
 	actions: {
