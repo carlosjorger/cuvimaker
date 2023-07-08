@@ -5,12 +5,12 @@ const active = href == currentPath;
 ---
 
 <a
-    class="p-2 inline-block text-center uppercase transition-all duration-300 ease-in hover:text-primary hover:font-bold hover:no-underline dark:hover:text-gray-500 focus:text-primary dark:focus:text-gray-500"
-    class:list={[
-        {
-            'text-primary dark:text-gray-500 font-extrabold': active,
-            'text-primary dark:text-white font-medium': !active,
-        },
-    ]}
-    href={href}>{text}</a
+	class="py-1 px-2 inline-block text-center transition-all duration-300 ease-in hover:text-primary hover:font-bold hover:no-underline dark:hover:text-gray-500 focus:text-primary dark:focus:text-gray-500"
+	class:list={[
+		{
+			'text-primary dark:text-gray-500 font-extrabold': active,
+			'text-primary dark:text-white font-medium': !active,
+		},
+	]}
+	href={href}>{text}</a
 >

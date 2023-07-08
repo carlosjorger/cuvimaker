@@ -6,7 +6,7 @@
 		<template #body>
 			<form v-on:submit.prevent class="font-extrabold">
 				<SubsectionForm
-					class="mt-2 text-3xl"
+					class="mt-1 text-xl"
 					v-model="currentIntroduction.name"
 					placeholder="Your name"
 					:lightColor="'primary'"
@@ -14,7 +14,7 @@
 					:errors="v$.currentIntroduction.name.$errors"
 				/>
 				<SubsectionForm
-					class="mt-2 text-2xl"
+					class="mt-1 text-lg"
 					v-model="currentIntroduction.profetion"
 					placeholder="Profetion"
 					:lightColor="'primary'"
@@ -27,13 +27,13 @@
 							currentIntroduction.location ||
 							isBeingEditingIntroduction
 						"
-						class="mt-2 p-1 text-primary transition-colors duration-500 dark:text-white"
+						class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
 					>
 						<Icon icon="mdi:location" width="20" />
 					</div>
 
 					<SubsectionForm
-						class="mt-2 min-w-[82%] text-lg"
+						class="mt-1 min-w-[82%] text-base"
 						v-model="currentIntroduction.location"
 						placeholder="Location"
 						:lightColor="'primary'"
@@ -45,12 +45,12 @@
 					v-if="isBeingEditingIntroduction"
 				>
 					<div
-						class="mt-2 p-1 text-primary transition-colors duration-500 dark:text-white"
+						class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
 					>
 						<Icon icon="mdi:account" width="20" />
 					</div>
 					<SubsectionForm
-						class="mt-2 min-w-[82%] text-lg"
+						class="mt-1 min-w-[82%] text-base"
 						v-model="currentSocialAccount"
 						placeholder="Add a Social Account"
 						:lightColor="'primary'"
@@ -68,7 +68,7 @@
 						/>
 					</AppearFadeTransition>
 				</div>
-				<ul class="mt-2">
+				<ul class="mt-1">
 					<ListTransition class="relative block">
 						<SocialAccount
 							v-for="(
@@ -92,7 +92,7 @@
 					class="absolute flex h-full items-center"
 				>
 					<a
-						class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
+						class="w-12 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
 						@click="
 							() => {
 								setEditingIntroduction(false);
@@ -103,7 +103,7 @@
 							}
 						"
 					>
-						<Icon icon="el:ok" width="36" />
+						<Icon icon="el:ok" width="30" />
 					</a>
 				</div>
 			</Transition>
@@ -113,14 +113,14 @@
 					class="absolute flex h-full items-center"
 				>
 					<a
-						class="w-16 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
+						class="w-12 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
 						@click="
 							() => {
 								setEditingIntroduction(true);
 							}
 						"
 					>
-						<Icon icon="ic:baseline-edit" width="36" />
+						<Icon icon="ic:baseline-edit" width="30" />
 					</a>
 				</div>
 			</Transition>

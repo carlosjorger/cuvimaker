@@ -9,7 +9,7 @@
 			<footer
 				class="relative flex w-full justify-end overflow-hidden bg-primary transition-all duration-500 dark:bg-zinc-300"
 				:class="{
-					['h-16']: isBeingShowedSetting,
+					['h-12']: isBeingShowedSetting,
 					['h-0']: !isBeingShowedSetting,
 				}"
 			>
