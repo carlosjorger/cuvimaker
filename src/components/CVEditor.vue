@@ -128,7 +128,6 @@
 				this.resume.isBeingEditingIntroduction = value;
 			},
 			setIntroduction(introduction: Introduction) {
-				console.log(introduction);
 				this.resume.introduction = introduction;
 			},
 		},

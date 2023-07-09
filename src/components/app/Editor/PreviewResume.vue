@@ -1,6 +1,6 @@
 <template>
 	<AppearFadePanelTransition>
-		<div v-show="canShowPreviewResume">
+		<div v-show="canShowPreviewResume" class="p-5 max-lg:p-3 max-md:p-2">
 			<PreviewIntroduction :introduction="resume.introduction" />
 		</div>
 	</AppearFadePanelTransition>

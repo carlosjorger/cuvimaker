@@ -1,5 +1,5 @@
 <template>
-	<div class="px-3">
+	<div>
 		<input
 			v-model="value"
 			class="block w-full border-solid bg-inherit py-0.5 transition-form duration-300 focus:outline-none dark:placeholder-zinc-400"
