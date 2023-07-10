@@ -29,7 +29,7 @@
 			{{ subsection?.subsectionTimeInterval?.dateTo?.getDate() }}
 		</div>
 	</div>
-	<div>
+	<div class="text-sm">
 		<ul class="ml-6 list-disc">
 			<li
 				class="p-1"

@@ -6,18 +6,26 @@
 			</h3>
 		</header>
 		<hr class="mt-1 h-1 rounded-md bg-primary dark:bg-zinc-300" />
+		<SubsectionComponent
+			v-for="(subsection, index) in section?.subsections"
+			:key="index"
+			:subsection="subsection"
+		/>
 	</section>
 </template>
 
 <script lang="ts">
 	import { Section } from '../../../models/Section';
-
+	import SubsectionComponent from '../SectionView/Subsection/SubsectionComponent.vue';
 	export default {
 		props: {
 			section: {
 				type: Section,
 				required: true,
 			},
+		},
+		components: {
+			SubsectionComponent,
 		},
 	};
 </script>
