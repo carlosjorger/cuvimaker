@@ -144,15 +144,11 @@
 				if (this.v$.$error) {
 					return;
 				}
-				this.closeModal();
 				this.sections.push(section);
+				this.closeModal();
 				this.v$.$reset();
 			},
 			closeModal: function () {
-				this.v$.$validate();
-				if (this.v$.$error) {
-					return;
-				}
 				this.$emit('close-modal');
 			},
 			updateSection: function () {

@@ -52,5 +52,16 @@ export const useIntroductionStore = defineStore('introduction', {
 		saveSocialAccount(index: number, link: string) {
 			this.introduction.socialAccounts[index].link = link;
 		},
+		setIntroduction(introduction: Introduction) {
+			this.introduction = new Introduction(
+				introduction.name,
+				introduction.profetion,
+				introduction.email,
+				introduction.phone,
+				introduction.location,
+				introduction.website,
+				introduction.socialAccounts
+			);
+		},
 	},
 });

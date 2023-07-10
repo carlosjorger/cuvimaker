@@ -180,6 +180,7 @@
 				currentIntroduction: Introduction;
 				currentSocialAccount: string;
 			} {
+				this.introductionStore.setIntroduction(this.introduction);
 				const { introduction } = this.introductionStore;
 				return {
 					currentIntroduction: introduction,

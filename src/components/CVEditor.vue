@@ -35,7 +35,7 @@
 						v-show="showModal"
 						:sections="resume.sections"
 						:showModal="showModal"
-						@close-modal="showModal = false"
+						@close-modal="closeSectionModal"
 						:editIndex="editIndex"
 					/>
 					<ConfirmationModal
@@ -104,7 +104,7 @@
 			return {
 				showModal: false,
 				editIndex: undefined as number | undefined,
-				resume: new Resume(),
+				resume: this.loadResume(),
 				confirmationDeleteModal: false,
 				sectionIndexToDelete: -1,
 				isEditingResume: true,
@@ -123,12 +123,34 @@
 			deleteSection(index: number) {
 				this.resume.sections.splice(index, 1);
 				this.confirmationDeleteModal = false;
+				this.saveResume();
 			},
 			setEditingIntroduction(value: boolean) {
 				this.resume.isBeingEditingIntroduction = value;
 			},
 			setIntroduction(introduction: Introduction) {
 				this.resume.introduction = introduction;
+				this.saveResume();
+			},
+			closeSectionModal() {
+				this.showModal = false;
+				this.saveResume();
+			},
+			saveResume() {
+				window.localStorage.setItem(
+					'resume',
+					JSON.stringify(this.resume)
+				);
+			},
+			loadResume() {
+				const resumeStringFormat =
+					window.localStorage.getItem('resume');
+
+				const resume = JSON.parse(resumeStringFormat ?? '{}');
+				if (resume !== '') {
+					return Object.assign(new Resume(), resume);
+				}
+				return new Resume();
 			},
 		},
 	};
