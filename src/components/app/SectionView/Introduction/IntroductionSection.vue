@@ -40,10 +40,7 @@
 						:darkColor="'zinc-300'"
 					/>
 				</div>
-				<div
-					class="flex items-center"
-					v-if="isBeingEditingIntroduction"
-				>
+				<div class="flex items-start" v-if="isBeingEditingIntroduction">
 					<div
 						class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
 					>
