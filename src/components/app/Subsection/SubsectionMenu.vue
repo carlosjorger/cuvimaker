@@ -1,5 +1,3 @@
-<!-- TODO: show elements when is edting a section -->
-
 <template>
 	<div>
 		<ShakeTemplate
