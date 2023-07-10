@@ -7,7 +7,7 @@
 			<div class="p-4" @click="changeSetting">
 				<header>
 					<h3
-						class="text-3xl font-extrabold text-primary dark:text-white"
+						class="text-xl font-extrabold text-primary dark:text-white"
 					>
 						{{ section?.name }}
 					</h3>

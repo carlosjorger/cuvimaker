@@ -5,6 +5,12 @@
 		<div
 			class="mt-3 grid grid-cols-3 gap-3 text-base max-lg:grid-cols-2 max-md:grid-cols-1"
 		>
+			<div class="flex items-center">
+				<Icon icon="mdi:location" width="20" />
+				<span class="p-1"></span>
+				{{ introduction.location }}
+			</div>
+
 			<div
 				v-for="socialAccount in introduction.socialAccounts"
 				:key="socialAccount.id"
@@ -26,6 +32,8 @@
 	import { getInfoFromUrl } from '../../../utils/urlService';
 	import BasicLink from '../../shared/Anchor/BasicLink.vue';
 	import IconByUrl from '../../shared/Icon/IconByUrl.vue';
+	import { Icon } from '@iconify/vue';
+
 	export default {
 		props: {
 			introduction: {
@@ -33,7 +41,7 @@
 				required: true,
 			},
 		},
-		components: { BasicLink, IconByUrl },
+		components: { BasicLink, IconByUrl, Icon },
 		methods: {
 			getInfoFromUrl(link: string | undefined) {
 				return getInfoFromUrl(link ?? '');
