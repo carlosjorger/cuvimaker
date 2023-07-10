@@ -1,5 +1,4 @@
 <!-- TODO: show elements when is edting a section -->
-<!-- TODO: show daterange when is edting a section -->
 
 <template>
 	<div>
