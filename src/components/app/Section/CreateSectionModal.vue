@@ -128,11 +128,17 @@
 				section: Section;
 				confirmationDeleteModal: boolean;
 			} {
+				let section = new Section();
+				if (this.editIndex != undefined && this.isEditing) {
+					const tempSection = this.sections[this.editIndex];
+					section = new Section(
+						tempSection.name,
+						tempSection.subsections,
+						tempSection.count
+					);
+				}
 				return {
-					section:
-						!this.isEditing || this.editIndex == undefined
-							? new Section()
-							: this.sections[this.editIndex].copy(),
+					section: section,
 					confirmationDeleteModal: false,
 				};
 			},

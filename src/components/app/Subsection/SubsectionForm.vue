@@ -1,7 +1,6 @@
 <template>
 	<div>
-		<!-- TODO: Align when a text is too big -->
-		<input
+		<AdaptableTextArea
 			v-model="value"
 			class="block w-full border-solid bg-inherit py-0.5 transition-form duration-300 focus:outline-none dark:placeholder-zinc-400"
 			v-if="editing || value"
@@ -25,6 +24,7 @@
 	import type { ErrorObject } from '@vuelidate/core';
 	import { inject } from 'vue';
 	import ErrorsSection from '../../shared/Error/ErrorsSection.vue';
+	import AdaptableTextArea from '../../shared/TextArea/AdaptableTextArea.vue';
 	export default {
 		name: 'SubsectionForm',
 		props: {
@@ -44,7 +44,7 @@
 			errors: Object as () => ErrorObject[],
 		},
 		emits: ['update:modelValue'],
-		components: { ErrorsSection },
+		components: { ErrorsSection, AdaptableTextArea },
 		data() {
 			return {
 				editing: inject('editing', false),
