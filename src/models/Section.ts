@@ -41,7 +41,4 @@ export class Section {
 	disabledEditing() {
 		this.editingIndex = -1;
 	}
-	copy(): Section {
-		return new Section(this.name, this.subsections, this.count);
-	}
 }

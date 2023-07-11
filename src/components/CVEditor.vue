@@ -71,7 +71,6 @@
 	</div>
 </template>
 <script lang="ts">
-	import { Resume } from '../models/Resume';
 	import CreateSectionModal from './app/Section/CreateSectionModal.vue';
 	import SectionComponent from './app/SectionView/SectionComponent.vue';
 	import BasicButton from './shared/Button/BasicButton.vue';
@@ -84,7 +83,8 @@
 	import PreviewResume from './app/Editor/PreviewResume.vue';
 	import type { Introduction } from '../models/Introduction';
 	import AppearFadePanelTransition from './shared/Transition/AppearFadePanelTransition.vue';
-
+	import '../utils/localStorage';
+	import { loadResume, saveResume } from '../utils/localStorage';
 	export default {
 		name: 'CVEditor',
 		components: {
@@ -136,20 +136,10 @@
 				this.saveResume();
 			},
 			saveResume() {
-				window.localStorage.setItem(
-					'resume',
-					JSON.stringify(this.resume)
-				);
+				saveResume(this.resume);
 			},
 			loadResume() {
-				const resumeStringFormat =
-					window.localStorage.getItem('resume');
-
-				const resume = JSON.parse(resumeStringFormat ?? '{}');
-				if (resume !== '') {
-					return Object.assign(new Resume(), resume);
-				}
-				return new Resume();
+				return loadResume();
 			},
 		},
 	};

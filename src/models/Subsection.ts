@@ -1,3 +1,4 @@
+import { copyElement, copyTimeInterval } from '../extensions/extensions';
 import { SubsectionElement } from './SubsectionElement';
 import type { TimeInterval } from './SubsectionTimeInterval';
 
@@ -34,8 +35,13 @@ export class Subsection {
 		this.last = subsection.last;
 		this.editing = subsection.editing;
 		this.count = subsection.count;
-		this.subsectionTimeInterval = subsection.subsectionTimeInterval?.copy();
-		this.elements = subsection.elements.map((element) => element.copy());
+
+		this.subsectionTimeInterval = copyTimeInterval(
+			subsection.subsectionTimeInterval
+		);
+		this.elements = subsection.elements.map((element) =>
+			copyElement(element)
+		);
 	}
 
 	addElement(elementName: string) {

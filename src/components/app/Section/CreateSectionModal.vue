@@ -163,11 +163,11 @@
 					if (this.v$.$error) {
 						return;
 					}
-					this.closeModal();
 					if (this.editIndex != undefined) {
 						this.sections[this.editIndex] = this.section;
 					}
 					this.v$.$reset();
+					this.closeModal();
 				}
 			},
 			removeSubsection(subsectionIndex: number) {

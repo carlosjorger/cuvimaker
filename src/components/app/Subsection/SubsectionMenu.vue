@@ -76,6 +76,10 @@
 	import AppearFadeTransition from '../../shared/Transition/AppearFadeTransition.vue';
 	import CircleButtonWithIcon from '../../shared/Button/CircleButtonWithIcon.vue';
 	import ShakeTemplate from '../../shared/others/ShakeTemplate.vue';
+	import {
+		copySubsection,
+		isEmptySubsection,
+	} from '../../../extensions/extensions';
 	const emitter = mitt();
 	export default {
 		name: 'SubsectionMenu',
@@ -139,9 +143,9 @@
 				shake: boolean;
 			} {
 				return {
-					subsection: this.prevSubsection.isEmpty
+					subsection: isEmptySubsection(this.prevSubsection)
 						? new Subsection()
-						: this.prevSubsection.copy(),
+						: copySubsection(this.prevSubsection),
 					editing: false,
 					shake: false,
 				};

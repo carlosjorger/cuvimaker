@@ -8,24 +8,22 @@ export function copySection(section?: Section) {
 		return new Section(section.name, section.subsections, section.count);
 	}
 }
-export function copySubsection(subsection?: Subsection) {
-	if (subsection) {
-		const result = new Subsection(
-			subsection.id,
-			subsection.title,
-			subsection.text
-		);
-		result.last = subsection.last;
-		result.editing = subsection.editing;
-		result.count = subsection.count;
-		result.subsectionTimeInterval = copyTimeInterval(
-			subsection.subsectionTimeInterval
-		);
-		result.elements = subsection.elements.map((element) =>
-			copyElement(element)
-		);
-		return result;
-	}
+export function copySubsection(subsection: Subsection) {
+	const result = new Subsection(
+		subsection.id,
+		subsection.title,
+		subsection.text
+	);
+	result.last = subsection.last;
+	result.editing = subsection.editing;
+	result.count = subsection.count;
+	result.subsectionTimeInterval = copyTimeInterval(
+		subsection.subsectionTimeInterval
+	);
+	result.elements = subsection.elements.map((element) =>
+		copyElement(element)
+	);
+	return result;
 }
 export function copyTimeInterval(subsectionTimeInterval?: TimeInterval) {
 	if (subsectionTimeInterval) {
@@ -37,4 +35,10 @@ export function copyTimeInterval(subsectionTimeInterval?: TimeInterval) {
 }
 export function copyElement(subsectionElement: SubsectionElement) {
 	return new SubsectionElement(subsectionElement.id, subsectionElement.name);
+}
+export function isEmptySubsection(subsection: Subsection) {
+	return (
+		(subsection.title == '' || subsection.title == undefined) &&
+		(subsection.text == '' || subsection.text == undefined)
+	);
 }

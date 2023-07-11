@@ -5,6 +5,7 @@
 		class="resize-none overflow-hidden focus:outline-none"
 		rows="1"
 		@input="changeTextArea"
+		@change="changeTextArea"
 	></textarea>
 </template>
 
@@ -25,7 +26,12 @@
 
 				if (textArea) {
 					textArea.style.height = '0px';
-					textArea.style.height = textArea?.scrollHeight + 'px';
+					const scrollHeight =
+						textArea?.scrollHeight == 0
+							? 30
+							: textArea?.scrollHeight;
+
+					textArea.style.height = scrollHeight + 'px';
 				}
 			},
 		},
