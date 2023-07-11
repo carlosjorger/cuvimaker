@@ -1,4 +1,6 @@
 <!-- TODO: Save the pdf -->
+<!-- TODO: Remove the warnings -->
+<!-- TODO: Add email and website to introduction -->
 <template>
 	<div
 		class="dark:border-3 overflow-hidden rounded-lg border-4 border-primary bg-primary dark:border-zinc-300 dark:bg-dark-primary"
