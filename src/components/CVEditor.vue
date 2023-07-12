@@ -11,7 +11,7 @@
 		>
 			<AppearFadePanelTransition>
 				<section v-show="isEditingResume" class="relative">
-					<IntroductionSection
+					<EditorIntroduction
 						:introduction="resume.introduction"
 						:isBeingEditingIntroduction="
 							resume.isBeingEditingIntroduction
@@ -76,12 +76,12 @@
 	import SectionComponent from './app/SectionView/SectionComponent.vue';
 	import BasicButton from './shared/Button/BasicButton.vue';
 	import { computed } from 'vue';
-	import IntroductionSection from './app/SectionView/Introduction/IntroductionSection.vue';
+	import EditorIntroduction from './app/SectionView/Introduction/EditorIntroduction.vue';
 	import ListTransition from './shared/Transition/ListTransition.vue';
 	import ConfirmationModal from './shared/Modal/ConfirmationModal.vue';
 	import SubsectionAlign from './shared/Subsection/SubsectionAlign.vue';
 	import EditorBar from './app/Editor/EditorBar.vue';
-	import PreviewResume from './app/Editor/PreviewResume.vue';
+	import PreviewResume from './app/Preview/PreviewResume.vue';
 	import type { Introduction } from '../models/Introduction';
 	import AppearFadePanelTransition from './shared/Transition/AppearFadePanelTransition.vue';
 	import '../utils/localStorage';
@@ -92,7 +92,7 @@
 			CreateSectionModal,
 			SectionComponent,
 			BasicButton,
-			IntroductionSection,
+			EditorIntroduction,
 			ListTransition,
 			ConfirmationModal,
 			SubsectionAlign,

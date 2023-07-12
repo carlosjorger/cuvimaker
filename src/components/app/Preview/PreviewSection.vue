@@ -17,7 +17,7 @@
 <script lang="ts">
 	import type { PropType } from 'vue';
 	import type { Section } from '../../../models/Section';
-	import SubsectionComponent from '../SectionView/Subsection/SubsectionComponent.vue';
+	import SubsectionComponent from '../Preview/PreviewSubsection.vue';
 	export default {
 		props: {
 			section: {

@@ -48,7 +48,7 @@
 	import { Icon } from '@iconify/vue';
 
 	export default {
-		name: 'SubsectionComponent',
+		name: 'PreviewSubsection',
 		components: { Icon },
 		props: {
 			subsection: {

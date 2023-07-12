@@ -156,7 +156,7 @@
 				introductionStore,
 			};
 		},
-		name: 'IntroductionSection',
+		name: 'EditorIntroduction',
 		props: {
 			introduction: {
 				type: Object as PropType<Introduction>,
