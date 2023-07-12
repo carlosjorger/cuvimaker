@@ -44,6 +44,68 @@
 					<div
 						class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
 					>
+						<Icon icon="mdi:email" width="20" />
+					</div>
+
+					<SubsectionForm
+						class="mt-1 min-w-[82%] text-base"
+						v-model="currentIntroduction.email"
+						placeholder="Email"
+						:lightColor="'primary'"
+						:darkColor="'zinc-300'"
+						:errors="v$.currentIntroduction.email.$errors"
+					/>
+				</div>
+				<div
+					class="flex items-center"
+					v-if="
+						currentIntroduction.email && !isBeingEditingIntroduction
+					"
+				>
+					<div
+						class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+					>
+						<Icon icon="mdi:email" width="20" />
+					</div>
+					<BasicEmail :email="currentIntroduction.email" />
+				</div>
+				<div class="flex items-start" v-if="isBeingEditingIntroduction">
+					<div
+						class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+					>
+						<Icon icon="el:website" width="20" />
+					</div>
+
+					<SubsectionForm
+						class="mt-1 min-w-[82%] text-base"
+						v-model="currentIntroduction.website"
+						placeholder="Website"
+						:lightColor="'primary'"
+						:darkColor="'zinc-300'"
+						:errors="v$.currentIntroduction.website.$errors"
+					/>
+				</div>
+				<div
+					class="flex items-center"
+					v-if="
+						currentIntroduction.website &&
+						!isBeingEditingIntroduction
+					"
+				>
+					<div
+						class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+					>
+						<Icon icon="el:website" width="20" />
+					</div>
+					<BasicLink
+						:href="currentIntroduction.website"
+						:link="currentIntroduction.website"
+					/>
+				</div>
+				<div class="flex items-start" v-if="isBeingEditingIntroduction">
+					<div
+						class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+					>
 						<Icon icon="mdi:account" width="20" />
 					</div>
 					<SubsectionForm
@@ -132,13 +194,16 @@
 	import SubsectionCard from '../../../shared/Subsection/SubsectionCard.vue';
 	import { Icon } from '@iconify/vue';
 	import { useVuelidate } from '@vuelidate/core';
-	import { required, url } from '@vuelidate/validators';
+	import { email, required, url } from '@vuelidate/validators';
 	import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
 	import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
 	import SocialAccount from './SocialAccount.vue';
 	import { useIntroductionStore } from '../../../../stores/IntroductionStore';
 	import { appStore } from '../../../../store';
 	import ListTransition from '../../../shared/Transition/ListTransition.vue';
+	import BasicLink from '../../../shared/Anchor/BasicLink.vue';
+	import BasicEmail from '../../../shared/Anchor/BasicEmail.vue';
+
 	export default {
 		components: {
 			SubsectionForm,
@@ -148,6 +213,8 @@
 			AppearFadeTransition,
 			SocialAccount,
 			ListTransition,
+			BasicLink,
+			BasicEmail,
 		},
 		setup() {
 			const introductionStore = useIntroductionStore(appStore);
@@ -219,6 +286,12 @@
 				},
 				profetion: {
 					required,
+				},
+				email: {
+					email,
+				},
+				website: {
+					url,
 				},
 			},
 			currentSocialAccount: { url },

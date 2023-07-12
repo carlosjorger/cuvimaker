@@ -2,7 +2,9 @@ export const getInfoFromUrl = (url: string) => {
 	const urlWithoutHttps = url.replace('https://', '');
 	const urlWithoutHttp = urlWithoutHttps.replace('http://', '');
 	const urlWithoutWWW = urlWithoutHttp.replace('www.', '');
-	return urlWithoutWWW;
+	const urlWithoutMailto = urlWithoutWWW.replace('mailto:', '');
+
+	return urlWithoutMailto;
 };
 
 export const getIconByUrl = (url: string) => {
@@ -25,5 +27,5 @@ export const getIconByUrl = (url: string) => {
 			return socialMediaDict.get(key) ?? '';
 		}
 	}
-	return 'material-symbols:account-box';
+	return 'el:website';
 };

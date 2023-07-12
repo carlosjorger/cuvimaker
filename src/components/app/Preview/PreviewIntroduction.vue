@@ -10,7 +10,19 @@
 				<span class="p-1"></span>
 				{{ introduction.location }}
 			</div>
-
+			<div class="flex items-center" v-if="introduction.email">
+				<Icon icon="mdi:email" width="20" />
+				<span class="p-1"></span>
+				<BasicEmail :email="introduction.email" />
+			</div>
+			<div class="flex items-center" v-if="introduction.website">
+				<Icon icon="el:website" width="20" />
+				<span class="p-1"></span>
+				<BasicLink
+					:href="introduction.website"
+					:link="introduction.website"
+				/>
+			</div>
 			<div
 				v-for="socialAccount in introduction.socialAccounts"
 				:key="socialAccount.id"
@@ -34,6 +46,7 @@
 	import BasicLink from '../../shared/Anchor/BasicLink.vue';
 	import IconByUrl from '../../shared/Icon/IconByUrl.vue';
 	import { Icon } from '@iconify/vue';
+	import BasicEmail from '../../shared/Anchor/BasicEmail.vue';
 
 	export default {
 		props: {
@@ -42,7 +55,7 @@
 				required: true,
 			},
 		},
-		components: { BasicLink, IconByUrl, Icon },
+		components: { BasicLink, BasicEmail, IconByUrl, Icon },
 		methods: {
 			getInfoFromUrl(link: string | undefined) {
 				return getInfoFromUrl(link ?? '');
