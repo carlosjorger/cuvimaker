@@ -69,7 +69,7 @@
 	import CircleButtonWithIcon from '../../shared/Button/CircleButtonWithIcon.vue';
 
 	export default {
-		name: 'SubsectionElement',
+		name: 'EditorElement',
 		props: {
 			selecting: {
 				type: Boolean,

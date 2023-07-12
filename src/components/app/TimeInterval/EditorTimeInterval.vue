@@ -27,7 +27,7 @@
 	import ErrorsSection from '../../shared/Error/ErrorsSection.vue';
 
 	export default {
-		name: 'SubsectionTimeInterval',
+		name: 'EditorTimeInterval',
 
 		components: { VueDatePicker, ErrorsSection },
 		props: {

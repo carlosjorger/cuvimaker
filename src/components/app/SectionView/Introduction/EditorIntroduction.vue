@@ -197,7 +197,7 @@
 	import { email, required, url } from '@vuelidate/validators';
 	import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
 	import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
-	import SocialAccount from './SocialAccount.vue';
+	import SocialAccount from './EditorSocialAccount.vue';
 	import { useIntroductionStore } from '../../../../stores/IntroductionStore';
 	import { appStore } from '../../../../store';
 	import ListTransition from '../../../shared/Transition/ListTransition.vue';

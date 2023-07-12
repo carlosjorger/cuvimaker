@@ -51,7 +51,7 @@
 	import { scrollSmoothToElement } from '../../../utils/scrollServices';
 	import type { PropType } from 'vue';
 	export default {
-		name: 'SectionComponent',
+		name: 'EditorSection',
 		components: { SubsectionComponent, Icon, SubsectionCard },
 		props: {
 			section: {

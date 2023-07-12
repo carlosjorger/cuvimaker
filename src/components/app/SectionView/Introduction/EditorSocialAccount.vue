@@ -85,7 +85,7 @@
 				introductionStore,
 			};
 		},
-		name: 'SocialAccount',
+		name: 'EditorSocialAccount',
 		props: {
 			socialAccount: {
 				type: Object as PropType<SocialAccount>,

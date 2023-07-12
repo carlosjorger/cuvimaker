@@ -13,9 +13,9 @@
 	import { inject } from 'vue';
 	import { Subsection } from '../../../models/Subsection';
 	import SwitchCheckbox from '../../shared/checkbox/SwitchCheckbox.vue';
-	import SubsectionElements from './SubsectionElements.vue';
+	import SubsectionElements from './EditorElements.vue';
 	export default {
-		name: 'SubsectionListSection',
+		name: 'EditorListSection',
 		components: { SwitchCheckbox, SubsectionElements },
 
 		data() {

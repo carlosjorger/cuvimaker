@@ -18,7 +18,7 @@
 	import { inject } from 'vue';
 	import { Subsection } from '../../../models/Subsection';
 	import '@vuepic/vue-datepicker/dist/main.css';
-	import SubsectionTimeInterval from './SubsectionTimeInterval.vue';
+	import SubsectionTimeInterval from './EditorTimeInterval.vue';
 	import { TimeInterval } from '../../../models/SubsectionTimeInterval';
 	export default {
 		name: 'SubsectionTimeIntervalSection',

@@ -73,7 +73,7 @@
 </template>
 <script lang="ts">
 	import CloseAddButton from '../../shared/Button/CloseAddButton.vue';
-	import SubsectionMenu from '../Subsection/SubsectionMenu.vue';
+	import SubsectionMenu from '../Subsection/EditorSubsection.vue';
 	import { Section } from '../../../models/Section';
 	import BasicButton from '../../shared/Button/BasicButton.vue';
 	import { useVuelidate } from '@vuelidate/core';
