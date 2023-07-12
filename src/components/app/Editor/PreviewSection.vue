@@ -15,12 +15,13 @@
 </template>
 
 <script lang="ts">
-	import { Section } from '../../../models/Section';
+	import type { PropType } from 'vue';
+	import type { Section } from '../../../models/Section';
 	import SubsectionComponent from '../SectionView/Subsection/SubsectionComponent.vue';
 	export default {
 		props: {
 			section: {
-				type: Section,
+				type: Object as PropType<Section>,
 				required: true,
 			},
 		},

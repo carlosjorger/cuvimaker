@@ -61,13 +61,13 @@
 </template>
 
 <script lang="ts">
-	import { SocialAccount } from '../../../../models/SocialAccount';
+	import type { SocialAccount } from '../../../../models/SocialAccount';
 	import BasicLink from '../../../shared/Anchor/BasicLink.vue';
 	import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
 	import { storeToRefs } from 'pinia';
 	import { useIntroductionStore } from '../../../../stores/IntroductionStore';
 	import { appStore } from '../../../../store';
-	import type { ComputedRef } from 'vue';
+	import type { ComputedRef, PropType } from 'vue';
 	import SubsectionForm from '../../Subsection/SubsectionForm.vue';
 	import CircleButtonWithIcon from '../../../shared/Button/CircleButtonWithIcon.vue';
 	import IconByUrl from '../../../shared/Icon/IconByUrl.vue';
@@ -88,7 +88,7 @@
 		name: 'SocialAccount',
 		props: {
 			socialAccount: {
-				type: SocialAccount,
+				type: Object as PropType<SocialAccount>,
 				required: true,
 			},
 			index: {

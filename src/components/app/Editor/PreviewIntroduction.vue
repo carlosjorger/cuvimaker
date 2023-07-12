@@ -28,7 +28,8 @@
 </template>
 
 <script lang="ts">
-	import { Introduction } from '../../../models/Introduction';
+	import type { PropType } from 'vue';
+	import type { Introduction } from '../../../models/Introduction';
 	import { getInfoFromUrl } from '../../../utils/urlService';
 	import BasicLink from '../../shared/Anchor/BasicLink.vue';
 	import IconByUrl from '../../shared/Icon/IconByUrl.vue';
@@ -37,7 +38,7 @@
 	export default {
 		props: {
 			introduction: {
-				type: Introduction,
+				type: Object as PropType<Introduction>,
 				required: true,
 			},
 		},

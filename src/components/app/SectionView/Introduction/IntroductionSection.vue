@@ -126,9 +126,9 @@
 </template>
 
 <script lang="ts">
-	import { Introduction } from '../../../../models/Introduction';
+	import type { Introduction } from '../../../../models/Introduction';
 	import SubsectionForm from '../../Subsection/SubsectionForm.vue';
-	import { computed } from 'vue';
+	import { PropType, computed } from 'vue';
 	import SubsectionCard from '../../../shared/Subsection/SubsectionCard.vue';
 	import { Icon } from '@iconify/vue';
 	import { useVuelidate } from '@vuelidate/core';
@@ -159,7 +159,7 @@
 		name: 'IntroductionSection',
 		props: {
 			introduction: {
-				type: Introduction,
+				type: Object as PropType<Introduction>,
 				required: true,
 			},
 			isBeingEditingIntroduction: Boolean,

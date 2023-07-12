@@ -1,5 +1,4 @@
 <!-- TODO: Save the pdf -->
-<!-- TODO: Remove the warnings -->
 <!-- TODO: Add email and website to introduction -->
 <template>
 	<div

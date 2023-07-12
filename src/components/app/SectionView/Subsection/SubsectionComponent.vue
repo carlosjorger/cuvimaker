@@ -43,7 +43,8 @@
 </template>
 
 <script lang="ts">
-	import { Subsection } from '../../../../models/Subsection';
+	import type { PropType } from 'vue';
+	import type { Subsection } from '../../../../models/Subsection';
 	import { Icon } from '@iconify/vue';
 
 	export default {
@@ -51,7 +52,7 @@
 		components: { Icon },
 		props: {
 			subsection: {
-				type: Subsection,
+				type: Object as PropType<Subsection>,
 				require: true,
 			},
 		},
