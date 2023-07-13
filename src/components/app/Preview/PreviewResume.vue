@@ -52,12 +52,17 @@
 			save() {
 				const pdfTable = document.getElementById('resume');
 				if (pdfTable) {
-					//html to pdf format
 					var html = htmlToPdfmake(pdfTable.innerHTML);
 					const documentDefinition = { content: html };
-					// console.log(documentDefinition);
-					(pdfMake as any).vfs = (pdfFonts.pdfMake as any).vfs;
-					pdfMake.createPdf(documentDefinition).open();
+					let vsf = pdfFonts.pdfMake.vfs;
+					pdfMake
+						.createPdf(
+							documentDefinition,
+							undefined,
+							undefined,
+							vsf
+						)
+						.open();
 				}
 			},
 		},
