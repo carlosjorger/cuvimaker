@@ -1,30 +1,38 @@
 <template>
 	<AppearFadePanelTransition>
 		<div v-show="canShowPreviewResume" class="p-5 max-lg:p-3 max-md:p-2">
-			<PreviewIntroduction :introduction="resume.introduction" />
-			<div
-				class="mt-5 grid grid-cols-2 gap-3 p-1 text-base max-md:grid-cols-1"
-			>
-				<PreviewSection
-					v-for="section in resume.sections"
-					:section="section"
-					:key="section.name"
-				/>
+			<div id="resume">
+				<PreviewIntroduction :introduction="resume.introduction" />
+				<div
+					class="mt-5 grid grid-cols-2 gap-3 p-1 text-base max-md:grid-cols-1"
+				>
+					<PreviewSection
+						v-for="section in resume.sections"
+						:section="section"
+						:key="section.name"
+					/>
+				</div>
 			</div>
+			<BasicButton class="w-28" name="Save" @click="save" />
 		</div>
 	</AppearFadePanelTransition>
 </template>
 
 <script lang="ts">
 	import { Resume } from '../../../models/Resume';
+	import BasicButton from '../../shared/Button/BasicButton.vue';
 	import AppearFadePanelTransition from '../../shared/Transition/AppearFadePanelTransition.vue';
 	import PreviewIntroduction from './PreviewIntroduction.vue';
 	import PreviewSection from './PreviewSection.vue';
+	import * as pdfMake from 'pdfmake/build/pdfmake';
+	import pdfFonts from 'pdfmake/build/vfs_fonts';
+	import htmlToPdfmake from 'html-to-pdfmake';
 	export default {
 		components: {
 			AppearFadePanelTransition,
 			PreviewIntroduction,
 			PreviewSection,
+			BasicButton,
 		},
 		props: {
 			resume: {
@@ -38,6 +46,19 @@
 			previewResumeTransition: {
 				type: Number,
 				default: 0.5,
+			},
+		},
+		methods: {
+			save() {
+				const pdfTable = document.getElementById('resume');
+				if (pdfTable) {
+					//html to pdf format
+					var html = htmlToPdfmake(pdfTable.innerHTML);
+					const documentDefinition = { content: html };
+					// console.log(documentDefinition);
+					(pdfMake as any).vfs = (pdfFonts.pdfMake as any).vfs;
+					pdfMake.createPdf(documentDefinition).open();
+				}
 			},
 		},
 	};

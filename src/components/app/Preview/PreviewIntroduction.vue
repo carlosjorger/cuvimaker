@@ -5,11 +5,14 @@
 		<div
 			class="mt-3 grid grid-cols-3 gap-3 text-base max-lg:grid-cols-2 max-md:grid-cols-1"
 		>
-			<div class="flex items-center" v-if="introduction.location">
-				<Icon icon="mdi:location" width="20" />
-				<span class="p-1"></span>
-				{{ introduction.location }}
+			<div>
+				<div class="flex items-center" v-if="introduction.location">
+					<Icon icon="mdi:location" width="20" />
+					<span class="p-1"></span>
+					{{ introduction.location }}
+				</div>
 			</div>
+
 			<div class="flex items-center" v-if="introduction.email">
 				<Icon icon="mdi:email" width="20" />
 				<span class="p-1"></span>
