@@ -24,9 +24,10 @@
 	import AppearFadePanelTransition from '../../shared/Transition/AppearFadePanelTransition.vue';
 	import PreviewIntroduction from './PreviewIntroduction.vue';
 	import PreviewSection from './PreviewSection.vue';
-	import * as pdfMake from 'pdfmake/build/pdfmake';
-	import pdfFonts from 'pdfmake/build/vfs_fonts';
-	import htmlToPdfmake from 'html-to-pdfmake';
+	import {
+		savePDF,
+		createResumePDFDefinition,
+	} from '../../../utils/resumePDF';
 	export default {
 		components: {
 			AppearFadePanelTransition,
@@ -50,20 +51,8 @@
 		},
 		methods: {
 			save() {
-				const pdfTable = document.getElementById('resume');
-				if (pdfTable) {
-					var html = htmlToPdfmake(pdfTable.innerHTML);
-					const documentDefinition = { content: html };
-					let vsf = pdfFonts.pdfMake.vfs;
-					pdfMake
-						.createPdf(
-							documentDefinition,
-							undefined,
-							undefined,
-							vsf
-						)
-						.open();
-				}
+				var resumeDefinition = createResumePDFDefinition(this.resume);
+				savePDF(resumeDefinition);
 			},
 		},
 	};
