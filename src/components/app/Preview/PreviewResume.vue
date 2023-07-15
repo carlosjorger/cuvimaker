@@ -50,7 +50,7 @@
 			},
 		},
 		methods: {
-			save() {
+			async save() {
 				var resumeDefinition = createResumePDFDefinition(this.resume);
 				savePDF(resumeDefinition);
 			},
