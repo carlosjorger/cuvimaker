@@ -2,34 +2,40 @@
 import type {
 	ContentColumns,
 	Content,
-	TDocumentDefinitions,
 	Column,
+	TDocumentDefinitions,
 	TFontDictionary,
 } from 'pdfmake/interfaces';
-import { Resume } from '../models/Resume';
+import type { Resume } from '../models/Resume';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-import { Introduction } from '../models/Introduction';
+import type { Introduction } from '../models/Introduction';
 import { getInfoFromUrl } from './urlService';
 const enum IntroductionColumnType {
 	email,
 	link,
 	text,
 }
-const isContentColumns = (content: any): content is ContentColumns => {
-	return content;
+const isContentColumns = (
+	content: Content | undefined
+): content is ContentColumns => {
+	return Boolean(content);
 };
 function createIntroductionColumn(
-	text: string,
+	link: string,
 	introductionColumnType: IntroductionColumnType
 ): Column {
-	const urlInfo = getInfoFromUrl(text);
+	const urlInfo = getInfoFromUrl(link);
 	if (introductionColumnType == IntroductionColumnType.link) {
-		return { text: urlInfo, style: ['introductionColumn', 'link'] };
+		return {
+			text: urlInfo,
+			link: link,
+			style: ['introductionColumn', 'link'],
+		};
 	} else if (introductionColumnType == IntroductionColumnType.email) {
 		return {
 			text: urlInfo,
-			link: `mailto:${text}`,
+			link: `mailto:${link}`,
 			style: ['introductionColumn', 'link'],
 		};
 	} else {
