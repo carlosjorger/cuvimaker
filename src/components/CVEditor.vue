@@ -6,7 +6,7 @@
 		<EditorBar v-model="isEditingResume" />
 
 		<div
-			class="dark:border-t-3 max-h-[calc(100vh-16rem)] min-h-[calc(100vh-14rem)] overflow-scroll overflow-x-hidden border-t-4 border-primary bg-[#eee8ff] p-6 dark:border-zinc-300 dark:bg-[#130624] max-md:p-2"
+			class="dark:border-t-3 max-h-[calc(100vh-16rem)] min-h-[calc(100vh-11.5rem)] overflow-scroll overflow-x-hidden border-t-4 border-primary bg-[#eee8ff] p-4 dark:border-zinc-300 dark:bg-[#130624] max-md:p-2"
 		>
 			<AppearFadePanelTransition>
 				<section v-show="isEditingResume" class="relative">

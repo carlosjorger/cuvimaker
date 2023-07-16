@@ -1,6 +1,6 @@
 <template>
 	<li
-		class="m-1 flex w-11/12 items-center justify-end rounded-lg p-2 transition-all duration-300 ease-linear"
+		class="m-1 flex w-11/12 items-center justify-end rounded-lg p-0.5 transition-all duration-300 ease-linear"
 		@mouseover="mouseover"
 		@mouseleave="mouseleave"
 		:class="{
@@ -32,11 +32,13 @@
 					@click="saveElement"
 					color="var(--primary-color)"
 					icon="el:ok"
+					:width="1.5"
 				/>
 				<CircleButtonWithIcon
 					@click="cancelElement"
 					color="var(--primary-color)"
 					icon="mdi:cancel-bold"
+					:width="1.5"
 				/>
 			</div>
 		</AppearFadeTransition>
@@ -49,11 +51,13 @@
 					@click="editElement"
 					color="var(--primary-color)"
 					icon="ic:baseline-edit"
+					:width="1.5"
 				/>
 				<CircleButtonWithIcon
 					@click="deleteElement"
 					color="var(--primary-color)"
 					icon="ic:baseline-delete"
+					:width="1.5"
 				/>
 			</div>
 		</AppearFadeTransition>

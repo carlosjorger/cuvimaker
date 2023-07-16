@@ -1,9 +1,8 @@
-<!-- TODO: add more space to editor -->
 <template>
 	<SubsectionAlign>
 		<div class="justify-left flex items-center">
 			<BasicButton
-				class="m-1 w-32"
+				class="m-[0.1rem] w-32"
 				name="Edit"
 				:active="isEditingResume"
 				@click="
@@ -13,7 +12,7 @@
 				"
 			/>
 			<BasicButton
-				class="m-1 w-32"
+				class="m-[0.1rem] w-32"
 				name="Preview"
 				:active="!isEditingResume"
 				@click="

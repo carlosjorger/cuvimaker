@@ -18,7 +18,6 @@
 						<CircleButtonWithIcon
 							v-if="!subsection.last && !editing"
 							@click="editSubSection"
-							:width="2.5"
 							color="var(--primary-color)"
 							icon="ic:baseline-mode-edit"
 						/>

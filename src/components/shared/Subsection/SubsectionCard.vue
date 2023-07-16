@@ -3,11 +3,11 @@
 		<article
 			class="w-full rounded-md border-4 border-solid border-primary bg-[#f6f4fb] shadow-xl transition-colors duration-700 hover:bg-[#e1d7fd] dark:border-zinc-300 dark:bg-dark-primary-300 dark:hover:bg-dark-primary"
 		>
-			<body class="p-6 max-md:p-4 max-sm:p-2" @click="changeSetting">
+			<body class="p-4 max-md:p-4 max-sm:p-2" @click="changeSetting">
 				<slot name="body"></slot>
 			</body>
 			<footer
-				class="relative flex w-full justify-end overflow-hidden bg-primary transition-all duration-500 dark:bg-zinc-300"
+				class="relative flex w-full justify-end overflow-hidden bg-primary transition-all duration-200 dark:bg-zinc-300"
 				:class="{
 					['h-12']: isBeingShowedSetting,
 					['h-0']: !isBeingShowedSetting,
