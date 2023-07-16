@@ -2,7 +2,7 @@
 	<SubsectionAlign>
 		<div class="justify-left flex items-center">
 			<BasicButton
-				class="m-[0.1rem] w-32"
+				class="w-24"
 				name="Edit"
 				:active="isEditingResume"
 				@click="
@@ -12,7 +12,7 @@
 				"
 			/>
 			<BasicButton
-				class="m-[0.1rem] w-32"
+				class="w-24"
 				name="Preview"
 				:active="!isEditingResume"
 				@click="

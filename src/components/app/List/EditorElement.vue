@@ -1,12 +1,11 @@
 <template>
 	<div
-		class="mt-2 flex w-11/12 items-center justify-end rounded-lg border-solid border-white p-1 shadow-xl transition-all duration-300 ease-linear"
+		class="mt-2 flex min-h-[5.5rem] w-full items-center justify-end rounded-lg border-solid border-white p-1 text-sm shadow-xl transition-all duration-300 ease-linear"
 		:class="{
 			['border-4']: editingElement && selecting && editing,
 			['bg-[#664596] dark:bg-[#49387a]']: selecting && editing,
 			['bg-[var(--primary-form-color)] dark:bg-dark-primary']:
 				!selecting || !editing,
-			['ml-1']: editing,
 		}"
 		@click="selectElement"
 	>
@@ -14,7 +13,7 @@
 			ref="element"
 			:id="index.toString()"
 			v-model="currentElement"
-			class="pointer-events-none w-10/12 resize-none overflow-hidden border-0 bg-inherit p-2 text-white focus:outline-none max-md:w-11/12"
+			class="pointer-events-none w-[95%] resize-none overflow-hidden border-0 bg-inherit p-2 text-white focus:outline-none"
 			:class="{
 				['pointer-events-auto']: editingElement && selecting && editing,
 			}"
@@ -23,41 +22,43 @@
 		></textarea>
 		<div class="w-1/4"></div>
 		<AppearFadeTransition>
-			<div
-				v-if="selecting && editingElement"
-				class="absolute flex items-center"
-			>
-				<CircleButtonWithIcon
-					v-if="editing"
-					@click="saveElement"
-					color="var(--primary-color)"
-					icon="el:ok"
-				/>
-				<CircleButtonWithIcon
-					v-if="editing"
-					@click="cancelElement"
-					color="var(--primary-color)"
-					icon="mdi:cancel-bold"
-				/>
+			<div v-if="selecting && editingElement" class="absolute">
+				<div class="flex items-center max-md:flex-col-reverse">
+					<CircleButtonWithIcon
+						v-if="editing"
+						@click="saveElement"
+						color="var(--primary-color)"
+						icon="el:ok"
+						:width="2"
+					/>
+					<CircleButtonWithIcon
+						v-if="editing"
+						@click="cancelElement"
+						color="var(--primary-color)"
+						icon="mdi:cancel-bold"
+						:width="2"
+					/>
+				</div>
 			</div>
 		</AppearFadeTransition>
 		<AppearFadeTransition>
-			<div
-				v-if="selecting && !editingElement"
-				class="absolute flex items-center"
-			>
-				<CircleButtonWithIcon
-					v-if="editing"
-					@click="editElement"
-					color="var(--primary-color)"
-					icon="ic:baseline-edit"
-				/>
-				<CircleButtonWithIcon
-					v-if="editing"
-					@click="deleteElement"
-					color="var(--primary-color)"
-					icon="ic:baseline-delete"
-				/>
+			<div v-if="selecting && !editingElement" class="absolute">
+				<div class="flex items-center max-md:flex-col-reverse">
+					<CircleButtonWithIcon
+						v-if="editing"
+						@click="editElement"
+						color="var(--primary-color)"
+						icon="ic:baseline-edit"
+						:width="2"
+					/>
+					<CircleButtonWithIcon
+						v-if="editing"
+						@click="deleteElement"
+						color="var(--primary-color)"
+						icon="ic:baseline-delete"
+						:width="2"
+					/>
+				</div>
 			</div>
 		</AppearFadeTransition>
 	</div>

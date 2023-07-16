@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="mt-2 flex justify-between rounded-3xl border-2 border-solid border-white bg-[var(--primary-form-color)] p-1.5 shadow-xl dark:bg-dark-primary"
+		class="mt-2 flex justify-between rounded-3xl border-2 border-solid border-white bg-[var(--primary-form-color)] p-1.5 text-sm shadow-xl dark:bg-dark-primary"
 		v-if="editing"
 	>
 		<textarea
