@@ -16,7 +16,7 @@
 					{ month: 'long' }
 				)
 			}}
-			{{ subsection?.subsectionTimeInterval?.dateFrom?.getDate() }}
+			{{ subsection?.subsectionTimeInterval?.dateFrom?.getFullYear() }}
 		</div>
 		&nbsp;-&nbsp;
 		<div>
@@ -26,7 +26,7 @@
 					{ month: 'long' }
 				)
 			}}
-			{{ subsection?.subsectionTimeInterval?.dateTo?.getDate() }}
+			{{ subsection?.subsectionTimeInterval?.dateTo?.getFullYear() }}
 		</div>
 	</div>
 	<div class="text-sm">
@@ -44,7 +44,7 @@
 
 <script lang="ts">
 	import type { PropType } from 'vue';
-	import type { Subsection } from '../../../../models/Subsection';
+	import type { Subsection } from '../../../models/Subsection';
 	import { Icon } from '@iconify/vue';
 
 	export default {
@@ -56,5 +56,6 @@
 				require: true,
 			},
 		},
+		methods: {},
 	};
 </script>

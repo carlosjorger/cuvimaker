@@ -13,6 +13,8 @@ import type { Introduction } from '../models/Introduction';
 import { getInfoFromUrl } from './urlService';
 import type { Section } from '../models/Section';
 import type { Subsection } from '../models/Subsection';
+import type { SubsectionElement } from '../models/SubsectionElement';
+import type { TimeInterval } from '../models/SubsectionTimeInterval';
 const enum IntroductionColumnType {
 	email,
 	link,
@@ -101,18 +103,60 @@ function createIntroductionColumns(introduction: Introduction) {
 	}
 	return result;
 }
+export function createElementsDefinition(elements: SubsectionElement[]) {
+	return {
+		ul: elements.map((element) => ({ text: element.name })),
+		style: 'ul',
+	};
+}
+export function createDateDefinition(date: Date) {
+	const mount =
+		date.toLocaleString('en-US', {
+			month: 'long',
+		}) ?? '';
+	const year = date?.getFullYear().toString() ?? '';
+	const simplificedDate = `${mount} ${year}`;
+	return simplificedDate;
+}
+export function createSubsectionTimeIntervalDefinition(
+	timeInterval: TimeInterval | undefined
+): Content {
+	let interval = '';
+	if (timeInterval && timeInterval.dateFrom) {
+		interval += createDateDefinition(timeInterval.dateFrom);
+	}
+	if (timeInterval) {
+		interval += ' - ';
+	}
+	if (timeInterval && timeInterval.dateTo) {
+		interval += createDateDefinition(timeInterval.dateTo);
+	}
+	return { text: interval, style: 'h5' };
+}
 export function createSubsectionDefinition(subsection: Subsection): Content {
-	return { text: subsection.title, style: 'h3' };
+	const result = [{ text: subsection.title, style: 'h3' }] as Content[];
+	if (subsection.text) {
+		result.push({ text: subsection.text, style: 'h4' });
+	}
+	result.push(
+		createSubsectionTimeIntervalDefinition(
+			subsection.subsectionTimeInterval
+		)
+	);
+
+	result.push(createElementsDefinition(subsection.elements));
+	return result;
 }
 export function createSubsectionsDefinition(
 	subsections: Subsection[]
 ): Content {
-	const allTheSubsectionDoesntHaveChildrens = subsections.every(
+	const allSubsectionsDoesntHaveChildrens = subsections.every(
 		(subsection) => subsection.elements.length == 0
 	);
-	if (allTheSubsectionDoesntHaveChildrens) {
+	if (allSubsectionsDoesntHaveChildrens) {
 		return {
 			ul: subsections.map((subsection) => ({ text: subsection.title })),
+			style: 'ul',
 		};
 	} else {
 		return subsections.map((subsection) =>
@@ -152,6 +196,15 @@ export function createResumePDFDefinition(
 			h3: {
 				fontSize: 18,
 				marginTop: 6,
+				bold: true,
+			},
+			h4: {
+				fontSize: 15,
+				marginTop: 5,
+			},
+			h5: {
+				fontSize: 12,
+				marginTop: 5,
 			},
 			introductionColumn: {
 				marginTop: 10,
@@ -162,6 +215,9 @@ export function createResumePDFDefinition(
 			},
 			br: {
 				background: 'black',
+			},
+			ul: {
+				marginTop: 5,
 			},
 		},
 	};
