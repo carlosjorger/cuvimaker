@@ -11,6 +11,8 @@ import * as pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import type { Introduction } from '../models/Introduction';
 import { getInfoFromUrl } from './urlService';
+import type { Section } from '../models/Section';
+import type { Subsection } from '../models/Subsection';
 const enum IntroductionColumnType {
 	email,
 	link,
@@ -99,6 +101,34 @@ function createIntroductionColumns(introduction: Introduction) {
 	}
 	return result;
 }
+export function createSubsectionDefinition(subsection: Subsection): Content {
+	return { text: subsection.title, style: 'h3' };
+}
+export function createSubsectionsDefinition(
+	subsections: Subsection[]
+): Content {
+	const allTheSubsectionDoesntHaveChildrens = subsections.every(
+		(subsection) => subsection.elements.length == 0
+	);
+	if (allTheSubsectionDoesntHaveChildrens) {
+		return {
+			ul: subsections.map((subsection) => ({ text: subsection.title })),
+		};
+	} else {
+		return subsections.map((subsection) =>
+			createSubsectionDefinition(subsection)
+		);
+	}
+}
+export function creatreSectionDefinition(section: Section): Content {
+	return [
+		{ text: section.name, style: 'h2' },
+		createSubsectionsDefinition(section.subsections),
+	];
+}
+export function creatreSectionsDefinition(sections: Section[]) {
+	return sections.map((section) => creatreSectionDefinition(section));
+}
 export function createResumePDFDefinition(
 	resume: Resume
 ): TDocumentDefinitions {
@@ -107,6 +137,7 @@ export function createResumePDFDefinition(
 			{ text: resume.introduction.name, style: 'h1' },
 			{ text: resume.introduction.profetion, style: 'h2' },
 			...createIntroductionColumns(resume.introduction),
+			...creatreSectionsDefinition(resume.sections),
 		],
 		styles: {
 			h1: {
@@ -114,9 +145,13 @@ export function createResumePDFDefinition(
 				bold: true,
 			},
 			h2: {
-				marginTop: 15,
+				marginTop: 10,
 				fontSize: 23,
 				bold: true,
+			},
+			h3: {
+				fontSize: 18,
+				marginTop: 6,
 			},
 			introductionColumn: {
 				marginTop: 10,
@@ -124,6 +159,9 @@ export function createResumePDFDefinition(
 			},
 			link: {
 				color: 'blue',
+			},
+			br: {
+				background: 'black',
 			},
 		},
 	};
