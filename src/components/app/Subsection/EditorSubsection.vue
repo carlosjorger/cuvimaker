@@ -129,10 +129,7 @@
 		},
 		mounted() {
 			emitter.on('editing', (index) => {
-				if (index == this.subsectionIndex) {
-					scrollSmoothToElement(this.$el);
-					this.shakeSubsection();
-				}
+				this.tryingGoToThisSubsection(index);
 			});
 		},
 		methods: {
@@ -148,6 +145,12 @@
 					editing: false,
 					shake: false,
 				};
+			},
+			tryingGoToThisSubsection(index: number) {
+				if (index == this.subsectionIndex) {
+					scrollSmoothToElement(this.$el);
+					this.shakeSubsection();
+				}
 			},
 			resetWindow: function () {
 				this.v$.$reset();
@@ -203,7 +206,6 @@
 			emmitSendEditing() {
 				emitter?.emit('editing', this.section.editingIndex);
 			},
-
 			shakeSubsection() {
 				this.shake = true;
 				setTimeout(() => {

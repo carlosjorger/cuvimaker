@@ -39,6 +39,7 @@
 					tag="div"
 				>
 					<subsection-menu
+						ref="editorSubsection"
 						v-for="(subsection, index) in section.subsections"
 						:key="subsection.id"
 						:subsectionIndex="index"
@@ -83,7 +84,9 @@
 	import ErrorsSection from '../../shared/Error/ErrorsSection.vue';
 	import ModalTemplate from '../../shared/others/ModalTemplate.vue';
 	import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
+	import mitt from 'mitt';
 
+	const emitter = mitt();
 	export default {
 		name: 'CreateSectionModal',
 		props: {
@@ -159,7 +162,15 @@
 				this.$emit('close-modal');
 			},
 			updateSection: function () {
-				if (this.isEditing) {
+				if (this.section.editingIndex != -1) {
+					(
+						this.$refs.editorSubsection as (typeof SubsectionMenu)[]
+					).forEach((subsectionChild) => {
+						subsectionChild.tryingGoToThisSubsection(
+							this.section.editingIndex
+						);
+					});
+				} else if (this.isEditing) {
 					this.v$.$validate();
 					if (this.v$.$error) {
 						return;
