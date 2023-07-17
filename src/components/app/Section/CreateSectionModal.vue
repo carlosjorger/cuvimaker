@@ -57,7 +57,6 @@
 				:name="'Add Section'"
 				v-on:click="addSection(section)"
 			/>
-			<!-- TODO: avoid save section if any subsection is edited -->
 			<BasicButton
 				v-if="isEditing"
 				class="mx-auto w-full p-2"

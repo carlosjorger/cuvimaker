@@ -107,6 +107,7 @@
 		},
 
 		methods: {
+			// TODO: call this method is change the width of the window
 			changeTextArea() {
 				var textArea = this.$refs.element as HTMLInputElement | null;
 
