@@ -105,9 +105,18 @@
 				fileInput,
 			};
 		},
+		created() {
+			window.addEventListener('resize', this.resizeHandler);
+		},
 
+		unmounted() {
+			window.removeEventListener('resize', this.resizeHandler);
+		},
 		methods: {
 			// TODO: call this method is change the width of the window
+			resizeHandler() {
+				this.changeTextArea();
+			},
 			changeTextArea() {
 				var textArea = this.$refs.element as HTMLInputElement | null;
 
