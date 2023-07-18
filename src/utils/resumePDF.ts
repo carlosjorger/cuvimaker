@@ -1,4 +1,5 @@
 //TODO: Add icons
+// TODO: See the pdfmake output when an html is passed
 import type {
 	ContentColumns,
 	Content,

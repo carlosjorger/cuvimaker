@@ -113,7 +113,6 @@
 			window.removeEventListener('resize', this.resizeHandler);
 		},
 		methods: {
-			// TODO: call this method is change the width of the window
 			resizeHandler() {
 				this.changeTextArea();
 			},
