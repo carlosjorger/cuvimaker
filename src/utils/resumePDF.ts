@@ -168,6 +168,20 @@ export function createSubsectionsDefinition(
 export function creatreSectionDefinition(section: Section): Content {
 	return [
 		{ text: section.name, style: 'h2' },
+		{
+			margin: [0, 3, 0, 3],
+			canvas: [
+				{
+					type: 'line',
+					x1: 0,
+					y1: 0,
+					x2: 514,
+					y2: 0,
+					lineWidth: 2,
+					lineColor: '#000000',
+				},
+			],
+		},
 		createSubsectionsDefinition(section.subsections),
 	];
 }
@@ -219,6 +233,7 @@ export function createResumePDFDefinition(
 			},
 			ul: {
 				marginTop: 5,
+				marginBottom: 7,
 			},
 		},
 	};

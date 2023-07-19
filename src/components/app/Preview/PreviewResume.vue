@@ -28,6 +28,8 @@
 		savePDF,
 		createResumePDFDefinition,
 	} from '../../../utils/resumePDF';
+	import htmlToPdfmake from 'html-to-pdfmake';
+	import pdfFonts from 'pdfmake/build/vfs_fonts';
 	export default {
 		components: {
 			AppearFadePanelTransition,
@@ -51,6 +53,13 @@
 		},
 		methods: {
 			async save() {
+				// const pdfTable = document.getElementById('resume');
+				// var html = htmlToPdfmake(pdfTable?.innerHTML ?? '');
+
+				// const documentDefinition = { content: html };
+				// console.log(documentDefinition);
+				// pdfMake.vfs = pdfFonts.pdfMake.vfs;
+				// pdfMake.createPdf(documentDefinition).open();
 				var resumeDefinition = createResumePDFDefinition(this.resume);
 				savePDF(resumeDefinition);
 			},
