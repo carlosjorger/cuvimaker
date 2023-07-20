@@ -15,6 +15,7 @@
         "@astrojs/vue": "^2.2.1",
         "@fontsource/montserrat": "^5.0.2",
         "@fortawesome/fontawesome-svg-core": "^6.4.0",
+        "@types/node": "^20.4.2",
         "@vuelidate/core": "^2.0.2",
         "@vuelidate/validators": "^2.0.2",
         "@vuepic/vue-datepicker": "^5.1.2",

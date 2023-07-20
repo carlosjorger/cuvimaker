@@ -53,10 +53,10 @@
 		},
 		methods: {
 			async save() {
-				// const pdfTable = document.getElementById('resume');
-				// var html = htmlToPdfmake(pdfTable?.innerHTML ?? '');
+				const pdfTable = document.getElementById('resume');
+				var html = htmlToPdfmake(pdfTable?.innerHTML ?? '');
 
-				// const documentDefinition = { content: html };
+				const documentDefinition = { content: html };
 				// console.log(documentDefinition);
 				// pdfMake.vfs = pdfFonts.pdfMake.vfs;
 				// pdfMake.createPdf(documentDefinition).open();
