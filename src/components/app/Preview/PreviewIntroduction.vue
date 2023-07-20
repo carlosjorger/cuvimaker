@@ -7,19 +7,19 @@
 		>
 			<div>
 				<div class="flex items-center" v-if="introduction.location">
-					<Icon icon="mdi:location" width="20" />
+					<Icon id="location" icon="mdi:location" width="20" />
 					<span class="p-1"></span>
 					{{ introduction.location }}
 				</div>
 			</div>
 
 			<div class="flex items-center" v-if="introduction.email">
-				<Icon icon="mdi:email" width="20" />
+				<Icon id="email" icon="mdi:email" width="20" />
 				<span class="p-1"></span>
 				<BasicEmail :email="introduction.email" />
 			</div>
 			<div class="flex items-center" v-if="introduction.website">
-				<Icon icon="el:website" width="20" />
+				<Icon id="website" icon="el:website" width="20" />
 				<span class="p-1"></span>
 				<BasicLink
 					:href="introduction.website"

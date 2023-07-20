@@ -61,6 +61,7 @@
 				// pdfMake.vfs = pdfFonts.pdfMake.vfs;
 				// pdfMake.createPdf(documentDefinition).open();
 				var resumeDefinition = createResumePDFDefinition(this.resume);
+				console.log(resumeDefinition);
 				savePDF(resumeDefinition);
 			},
 		},

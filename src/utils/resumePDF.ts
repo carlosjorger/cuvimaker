@@ -6,6 +6,7 @@ import type {
 	Column,
 	TDocumentDefinitions,
 	TFontDictionary,
+	ContentSvg,
 } from 'pdfmake/interfaces';
 import type { Resume } from '../models/Resume';
 import * as pdfMake from 'pdfmake/build/pdfmake';
@@ -53,17 +54,44 @@ function addIntroductionColumn(
 	result: Content[],
 	text: string,
 	count: number,
-	introductionColumnType: IntroductionColumnType
+	introductionColumnType: IntroductionColumnType,
+	iconType?: string
 ) {
+	const svgElement = iconType ? document.getElementById(iconType) : undefined;
+	if (svgElement && svgElement instanceof SVGSVGElement) {
+		//TODO: change viewbox
+		console.log(svgElement);
+	}
+	const svg = iconType
+		? document.getElementById(iconType)?.outerHTML
+		: undefined;
+	const contentSVG = svg
+		? ({ svg: svg, style: ['html-svg'] } as ContentSvg)
+		: undefined;
+
 	const column = createIntroductionColumn(text, introductionColumnType);
+	let currentColumns = [column];
+	if (contentSVG) {
+		currentColumns = [
+			{
+				columns: [contentSVG],
+
+				width: 25,
+			},
+			...currentColumns,
+		];
+	}
+	const currentElement: ContentColumns = {
+		columns: currentColumns,
+	};
 	if (count % 3 == 0) {
-		result.push({ columns: [column] });
+		result.push({ columns: [currentElement] });
 	} else {
 		const lastColumns = result.pop();
 		if (isContentColumns(lastColumns)) {
 			const columns = lastColumns as ContentColumns;
 			result.push({
-				columns: [...columns.columns, column],
+				columns: [...columns.columns, currentElement],
 			});
 		}
 	}
@@ -76,7 +104,8 @@ function createIntroductionColumns(introduction: Introduction) {
 			result,
 			introduction.location,
 			count++,
-			IntroductionColumnType.text
+			IntroductionColumnType.text,
+			'location'
 		);
 	}
 	if (introduction.email) {
@@ -84,7 +113,8 @@ function createIntroductionColumns(introduction: Introduction) {
 			result,
 			introduction.email,
 			count++,
-			IntroductionColumnType.email
+			IntroductionColumnType.email,
+			'email'
 		);
 	}
 	if (introduction.website) {
@@ -92,7 +122,8 @@ function createIntroductionColumns(introduction: Introduction) {
 			result,
 			introduction.website,
 			count++,
-			IntroductionColumnType.link
+			IntroductionColumnType.link,
+			'website'
 		);
 	}
 	for (let index = 0; index < introduction.socialAccounts.length; index++) {
@@ -149,7 +180,7 @@ export function createSubsectionTimeIntervalDefinition(
 	if (timeInterval) {
 		result.push({ text: interval, style: 'h5' });
 	}
-	return { columns: result, style: 'timetInterval' };
+	return { columns: result };
 }
 export function createSubsectionDefinition(subsection: Subsection): Content {
 	const result = [{ text: subsection.title, style: 'h3' }] as Content[];
