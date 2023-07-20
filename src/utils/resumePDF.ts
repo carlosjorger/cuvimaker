@@ -125,11 +125,16 @@ export function createSubsectionTimeIntervalDefinition(
 	timeInterval: TimeInterval | undefined
 ): Content {
 	let interval = '';
-	const result = [];
+	const result = [] as Column[];
 	if (timeInterval && (timeInterval.dateFrom || timeInterval.dateTo)) {
 		result.push({
-			svg: dateRange,
-			style: ['html-svg'],
+			columns: [
+				{
+					svg: dateRange,
+					style: ['html-svg'],
+				},
+			],
+			width: 25,
 		});
 	}
 	if (timeInterval && timeInterval.dateFrom) {
@@ -144,7 +149,7 @@ export function createSubsectionTimeIntervalDefinition(
 	if (timeInterval) {
 		result.push({ text: interval, style: 'h5' });
 	}
-	return [result];
+	return { columns: result, style: 'timetInterval' };
 }
 export function createSubsectionDefinition(subsection: Subsection): Content {
 	const result = [{ text: subsection.title, style: 'h3' }] as Content[];
