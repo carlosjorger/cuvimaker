@@ -59,8 +59,8 @@ function addIntroductionColumn(
 ) {
 	const svgElement = iconType ? document.getElementById(iconType) : undefined;
 	if (svgElement && svgElement instanceof SVGSVGElement) {
-		//TODO: change viewbox
-		console.log(svgElement);
+		svgElement.setAttribute('width', '15');
+		svgElement.setAttribute('height', '15');
 	}
 	const svg = iconType
 		? document.getElementById(iconType)?.outerHTML
@@ -76,7 +76,7 @@ function addIntroductionColumn(
 			{
 				columns: [contentSVG],
 
-				width: 25,
+				width: 20,
 			},
 			...currentColumns,
 		];
@@ -270,8 +270,8 @@ export function createResumePDFDefinition(
 				marginTop: 5,
 			},
 			introductionColumn: {
-				marginTop: 10,
 				fontSize: 10,
+				marginTop: 2,
 			},
 			link: {
 				color: 'blue',
