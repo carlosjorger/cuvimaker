@@ -1,5 +1,5 @@
 <template>
-	<Icon :icon="getIconByUrl" width="20" />
+	<Icon :id="id" :icon="getIconByUrl" width="20" />
 </template>
 
 <script lang="ts">
@@ -16,6 +16,9 @@
 		components: { Icon },
 		computed: {
 			getIconByUrl() {
+				return getIconByUrl(this.url);
+			},
+			id() {
 				return getIconByUrl(this.url);
 			},
 		},

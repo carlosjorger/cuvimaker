@@ -1,3 +1,5 @@
+<!-- TODO: Add more documentation -->
+
 # CUVIMAKER - CV Maker
 
 An online cv maker made in astro with vuejs components using typescript and tailwind. With the Astro's island arquitecture we are able to combine SPA and SSG approaches.

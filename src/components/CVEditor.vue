@@ -1,4 +1,3 @@
-<!-- TODO: Save the pdf -->
 <template>
 	<div
 		class="dark:border-3 overflow-hidden rounded-lg border-4 border-primary bg-primary dark:border-zinc-300 dark:bg-dark-primary"
