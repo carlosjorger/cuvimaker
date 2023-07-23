@@ -7,7 +7,7 @@ import type {
 } from 'pdfmake/interfaces';
 import type { Resume } from '../models/Resume';
 import * as pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import type { Introduction } from '../models/Introduction';
 import { getInfoFromUrl } from './urlService';
 import type { Section } from '../models/Section';
@@ -316,26 +316,9 @@ export function createResumePDFDefinition(
 	};
 }
 export function savePDF(resumeDefinition: TDocumentDefinitions) {
-	const fonts: TFontDictionary = {
-		Fontello: {
-			normal: 'public/fonts/fontello.ttf',
-			bold: 'public/fonts/fontello.ttf',
-			italics: 'public/fonts/fontello.ttf',
-			bolditalics: 'public/fonts/fontello.ttf',
-		},
-		Roboto: {
-			normal: 'Roboto-Regular.ttf',
-			bold: 'Roboto-Medium.ttf',
-			italics: 'Roboto-Italic.ttf',
-			bolditalics: 'Roboto-Italic.ttf',
-		},
-		FontAwesome: {
-			normal: 'FontAwesome.ttf',
-			bold: 'FontAwesome.ttf',
-			italics: 'FontAwesome.ttf',
-			bolditalics: 'FontAwesome.ttf',
-		},
-	};
-	const vsf = pdfFonts.pdfMake.vfs;
-	pdfMake.createPdf(resumeDefinition, undefined, fonts, vsf).open();
+	const vsf =
+		pdfFonts && pdfFonts.pdfMake
+			? pdfFonts.pdfMake.vfs
+			: globalThis.pdfMake.vfs;
+	pdfMake.createPdf(resumeDefinition, undefined, undefined, vsf).open();
 }
