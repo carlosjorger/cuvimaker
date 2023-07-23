@@ -4,7 +4,6 @@ import type {
 	Column,
 	TDocumentDefinitions,
 	TFontDictionary,
-	ContentSvg,
 } from 'pdfmake/interfaces';
 import type { Resume } from '../models/Resume';
 import * as pdfMake from 'pdfmake/build/pdfmake';
