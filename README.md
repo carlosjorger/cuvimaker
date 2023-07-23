@@ -35,9 +35,8 @@ Inside of your Astro project, you'll see the following folders and files:
 Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
 There's nothing special about `src/components/`, but that's where we like to put any Astro/Vue components.
-Inside `src/components/` there are two folders: `src/components/app` and `src/components/shared`.
 
-Inside app are the business component. Inside shared are the component that can be used by any components and doesnt depend on the business data or doesnt need to be descended from any particular components.
+Inside `src/components/` there are two folders: `src/components/app` and `src/components/shared`. Inside app are the business component. Inside shared are the component that can be used by any components and doesn't depend on the business data.
 
 Any static assets, like images, can be placed in the `public/` directory.
 

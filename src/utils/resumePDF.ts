@@ -17,7 +17,7 @@ import type { TimeInterval } from '../models/SubsectionTimeInterval';
 import { getIconByUrl } from '../utils/urlService';
 
 const dateRange =
-	'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="20" height="20" viewBox="0 0 24 24" class="iconify iconify--mdi"><path fill="currentColor" d="M8 14q-.425 0-.713-.288T7 13q0-.425.288-.713T8 12q.425 0 .713.288T9 13q0 .425-.288.713T8 14Zm4 0q-.425 0-.713-.288T11 13q0-.425.288-.713T12 12q.425 0 .713.288T13 13q0 .425-.288.713T12 14Zm4 0q-.425 0-.713-.288T15 13q0-.425.288-.713T16 12q.425 0 .713.288T17 13q0 .425-.288.713T16 14ZM5 22q-.825 0-1.413-.588T3 20V6q0-.825.588-1.413T5 4h1V2h2v2h8V2h2v2h1q.825 0 1.413.588T21 6v14q0 .825-.588 1.413T19 22H5Zm0-2h14V10H5v10Z"/></svg>';
+	'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="15" height="15" viewBox="0 0 22 22" class="iconify iconify--mdi"><path fill="currentColor" d="M8 14q-.425 0-.713-.288T7 13q0-.425.288-.713T8 12q.425 0 .713.288T9 13q0 .425-.288.713T8 14Zm4 0q-.425 0-.713-.288T11 13q0-.425.288-.713T12 12q.425 0 .713.288T13 13q0 .425-.288.713T12 14Zm4 0q-.425 0-.713-.288T15 13q0-.425.288-.713T16 12q.425 0 .713.288T17 13q0 .425-.288.713T16 14ZM5 22q-.825 0-1.413-.588T3 20V6q0-.825.588-1.413T5 4h1V2h2v2h8V2h2v2h1q.825 0 1.413.588T21 6v14q0 .825-.588 1.413T19 22H5Zm0-2h14V10H5v10Z"/></svg>';
 const enum IntroductionColumnType {
 	email,
 	link,
@@ -181,7 +181,7 @@ function createSubsectionTimeIntervalDefinition(
 		interval += createDateDefinition(timeInterval.dateTo);
 	}
 	result.push({ text: interval, style: 'h5' });
-	return { columns: result };
+	return { columns: result, style: ['timeInterval'] };
 }
 function createSubsectionDefinition(subsection: Subsection): Content {
 	const result = [{ text: subsection.title, style: 'h3' }] as Content[];
@@ -283,7 +283,7 @@ export function createResumePDFDefinition(
 			},
 			h5: {
 				fontSize: 12,
-				marginTop: 5,
+				marginTop: 2,
 			},
 			introductionColumn: {
 				fontSize: 10,
@@ -308,6 +308,9 @@ export function createResumePDFDefinition(
 			},
 			introductionColumnsBlock: {
 				marginTop: 5,
+			},
+			timeInterval: {
+				marginTop: 3,
 			},
 		},
 	};
