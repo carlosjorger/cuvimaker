@@ -91,13 +91,17 @@ function addIntroductionColumn(
 		columns: currentColumns,
 	};
 	if (count % 3 == 0) {
-		result.push({ columns: [lastColumn] });
+		result.push({
+			columns: [lastColumn],
+			style: ['introductionRow'],
+		});
 	} else {
 		const lastColumns = result.pop();
 		if (isContentColumns(lastColumns)) {
 			const columns = lastColumns as ContentColumns;
 			result.push({
 				columns: [...columns.columns, lastColumn],
+				style: ['introductionRow'],
 			});
 		}
 	}
@@ -144,13 +148,13 @@ function createIntroductionColumns(introduction: Introduction) {
 	}
 	return columns;
 }
-export function createElementsDefinition(elements: SubsectionElement[]) {
+function createElementsDefinition(elements: SubsectionElement[]) {
 	return {
 		ul: elements.map((element) => ({ text: element.name })),
 		style: 'ul',
 	};
 }
-export function createDateDefinition(date: Date) {
+function createDateDefinition(date: Date) {
 	const mount =
 		date.toLocaleString('en-US', {
 			month: 'long',
@@ -159,7 +163,7 @@ export function createDateDefinition(date: Date) {
 	const simplificedDate = `${mount} ${year}`;
 	return simplificedDate;
 }
-export function createSubsectionTimeIntervalDefinition(
+function createSubsectionTimeIntervalDefinition(
 	timeInterval: TimeInterval | undefined
 ): Content {
 	let interval = '';
@@ -180,7 +184,7 @@ export function createSubsectionTimeIntervalDefinition(
 	result.push({ text: interval, style: 'h5' });
 	return { columns: result };
 }
-export function createSubsectionDefinition(subsection: Subsection): Content {
+function createSubsectionDefinition(subsection: Subsection): Content {
 	const result = [{ text: subsection.title, style: 'h3' }] as Content[];
 	if (subsection.text) {
 		result.push({ text: subsection.text, style: 'h4' });
@@ -194,9 +198,7 @@ export function createSubsectionDefinition(subsection: Subsection): Content {
 	result.push(createElementsDefinition(subsection.elements));
 	return result;
 }
-export function createSubsectionsDefinition(
-	subsections: Subsection[]
-): Content {
+function createSubsectionsDefinition(subsections: Subsection[]): Content {
 	const allSubsectionsDoesntHaveChildrens = subsections.every(
 		(subsection) => subsection.elements.length == 0
 	);
@@ -211,7 +213,7 @@ export function createSubsectionsDefinition(
 		);
 	}
 }
-export function creatreSectionDefinition(section: Section): Content {
+function creatreSectionDefinition(section: Section): Content {
 	return [
 		{ text: section.name, style: 'h2' },
 		{
@@ -231,17 +233,33 @@ export function creatreSectionDefinition(section: Section): Content {
 		createSubsectionsDefinition(section.subsections),
 	];
 }
-export function creatreSectionsDefinition(sections: Section[]) {
+function creatreSectionsDefinition(sections: Section[]) {
 	return sections.map((section) => creatreSectionDefinition(section));
+}
+function createIntroductionColumnsDefinition(
+	introduction: Introduction
+): Content {
+	return {
+		stack: createIntroductionColumns(introduction),
+		style: ['introductionColumnsBlock'],
+	};
+}
+function createIntroductionDefinition(introduction: Introduction): Column {
+	return {
+		stack: [
+			{ text: introduction.name, style: 'h1' },
+			{ text: introduction.profetion, style: 'h2' },
+			createIntroductionColumnsDefinition(introduction),
+		],
+		style: ['introduction'],
+	};
 }
 export function createResumePDFDefinition(
 	resume: Resume
 ): TDocumentDefinitions {
 	return {
 		content: [
-			{ text: resume.introduction.name, style: 'h1' },
-			{ text: resume.introduction.profetion, style: 'h2' },
-			...createIntroductionColumns(resume.introduction),
+			createIntroductionDefinition(resume.introduction),
 			...creatreSectionsDefinition(resume.sections),
 		],
 		styles: {
@@ -250,10 +268,10 @@ export function createResumePDFDefinition(
 				bold: true,
 			},
 			h2: {
-				marginTop: 10,
+				marginTop: 8,
 				fontSize: 23,
 				bold: true,
-				marginBottom: 8,
+				marginBottom: 2,
 			},
 			h3: {
 				fontSize: 18,
@@ -271,6 +289,7 @@ export function createResumePDFDefinition(
 			introductionColumn: {
 				fontSize: 10,
 				marginTop: 2,
+				marginBottom: 2,
 			},
 			link: {
 				color: 'blue',
@@ -280,7 +299,16 @@ export function createResumePDFDefinition(
 			},
 			ul: {
 				marginTop: 5,
-				marginBottom: 7,
+				marginBottom: 5,
+			},
+			introduction: {
+				marginBottom: 12,
+			},
+			introductionRow: {
+				marginTop: 3,
+			},
+			introductionColumnsBlock: {
+				marginTop: 5,
 			},
 		},
 	};
