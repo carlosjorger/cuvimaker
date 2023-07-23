@@ -46,13 +46,13 @@
 </template>
 
 <script lang="ts">
-	import { Subsection } from '../../../models/Subsection';
-	import CloseAddButton from '../../shared/Button/CloseAddButton.vue';
+	import { Subsection } from '../../../../models/Subsection';
+	import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
 	import SubsectionElement from './EditorElement.vue';
 	import { inject } from 'vue';
-	import AppearFadeTransition from '../../shared/Transition/AppearFadeTransition.vue';
-	import ListTransition from '../../shared/Transition/ListTransition.vue';
-	import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
+	import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
+	import ListTransition from '../../../shared/Transition/ListTransition.vue';
+	import ConfirmationModal from '../../../shared/Modal/ConfirmationModal.vue';
 	export default {
 		name: 'EditorElements',
 		components: {

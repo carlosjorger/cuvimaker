@@ -38,10 +38,10 @@
 						v-model="subsection.text"
 						:placeholder="'Subsection subtitle'"
 					/>
-					<SubsectionTimeIntervalSection
+					<EditorTimeIntervalSection
 						v-model="subsection.subsectionTimeInterval"
 					/>
-					<SubsectionListSection />
+					<EditorListSection />
 					<div class="flex justify-between">
 						<ModalButton
 							v-if="editing"
@@ -68,9 +68,9 @@
 	import { scrollSmoothToElement } from '../../../utils/scrollServices';
 	import { useVuelidate } from '@vuelidate/core';
 	import { required } from '@vuelidate/validators';
-	import SubsectionTimeIntervalSection from '../TimeInterval/EditorTimeIntervalSection.vue';
+	import EditorTimeIntervalSection from '../Editor/TimeInterval/EditorTimeIntervalSection.vue';
 	import ModalButton from '../../shared/Button/ModalButton.vue';
-	import SubsectionListSection from '../List/EditorListSection.vue';
+	import EditorListSection from '../Editor/List/EditorListSection.vue';
 	import { computed } from 'vue';
 	import AppearFadeTransition from '../../shared/Transition/AppearFadeTransition.vue';
 	import CircleButtonWithIcon from '../../shared/Button/CircleButtonWithIcon.vue';
@@ -99,9 +99,9 @@
 		components: {
 			CloseAddButton,
 			SubsectionForm,
-			SubsectionTimeIntervalSection,
+			EditorTimeIntervalSection,
 			ModalButton,
-			SubsectionListSection,
+			EditorListSection,
 			AppearFadeTransition,
 			CircleButtonWithIcon,
 			ShakeTemplate,

@@ -74,7 +74,7 @@
 	import SectionComponent from './app/SectionView/EditorSection.vue';
 	import BasicButton from './shared/Button/BasicButton.vue';
 	import { computed } from 'vue';
-	import EditorIntroduction from './app/SectionView/Introduction/EditorIntroduction.vue';
+	import EditorIntroduction from './app/Editor/Introduction/EditorIntroduction.vue';
 	import ListTransition from './shared/Transition/ListTransition.vue';
 	import ConfirmationModal from './shared/Modal/ConfirmationModal.vue';
 	import SubsectionAlign from './shared/Subsection/SubsectionAlign.vue';

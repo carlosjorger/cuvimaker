@@ -14,12 +14,12 @@
 </template>
 
 <script lang="ts">
-	import SwitchCheckbox from '../../shared/checkbox/SwitchCheckbox.vue';
+	import SwitchCheckbox from '../../../shared/checkbox/SwitchCheckbox.vue';
 	import { inject } from 'vue';
-	import { Subsection } from '../../../models/Subsection';
+	import { Subsection } from '../../../../models/Subsection';
 	import '@vuepic/vue-datepicker/dist/main.css';
 	import SubsectionTimeInterval from './EditorTimeInterval.vue';
-	import { TimeInterval } from '../../../models/SubsectionTimeInterval';
+	import { TimeInterval } from '../../../../models/SubsectionTimeInterval';
 	export default {
 		name: 'SubsectionTimeIntervalSection',
 		props: {
