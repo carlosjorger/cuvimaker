@@ -4,7 +4,7 @@
 
 An online cv maker web application used to design a custom curriculum vitae and save it in a pdf file.
 
-![Editor Example](./public/doc/Editor%20example.jpg)
+![Editor Example](./public/doc/Editor-example.webp)
 
 ## 🧰 Features
 
