@@ -50,13 +50,18 @@ function createIntroductionColumn(
 		return { text: urlInfo, style: 'introductionColumn' };
 	}
 }
-function addIntroductionColumn(
-	result: Content[],
-	text: string,
-	count: number,
-	introductionColumnType: IntroductionColumnType,
-	iconType?: string
-) {
+function getSVGIconColunm(svg: string): Column {
+	return {
+		columns: [
+			{
+				svg: svg,
+				style: ['html-svg'],
+			},
+		],
+		width: 20,
+	};
+}
+function getSocialAccountSVGIconColumn(iconType?: string): Column | undefined {
 	const svgElement = iconType ? document.getElementById(iconType) : undefined;
 	if (svgElement && svgElement instanceof SVGSVGElement) {
 		svgElement.setAttribute('width', '15');
@@ -65,43 +70,44 @@ function addIntroductionColumn(
 	const svg = iconType
 		? document.getElementById(iconType)?.outerHTML
 		: undefined;
-	const contentSVG = svg
-		? ({ svg: svg, style: ['html-svg'] } as ContentSvg)
-		: undefined;
-
+	if (svg) {
+		return getSVGIconColunm(svg);
+	}
+}
+function addIntroductionColumn(
+	result: Content[],
+	text: string,
+	count: number,
+	introductionColumnType: IntroductionColumnType,
+	iconType?: string
+) {
+	const svgColumn = getSocialAccountSVGIconColumn(iconType);
 	const column = createIntroductionColumn(text, introductionColumnType);
 	let currentColumns = [column];
-	if (contentSVG) {
-		currentColumns = [
-			{
-				columns: [contentSVG],
-
-				width: 20,
-			},
-			...currentColumns,
-		];
+	if (svgColumn) {
+		currentColumns = [svgColumn, ...currentColumns];
 	}
-	const currentElement: ContentColumns = {
+	const lastColumn: ContentColumns = {
 		columns: currentColumns,
 	};
 	if (count % 3 == 0) {
-		result.push({ columns: [currentElement] });
+		result.push({ columns: [lastColumn] });
 	} else {
 		const lastColumns = result.pop();
 		if (isContentColumns(lastColumns)) {
 			const columns = lastColumns as ContentColumns;
 			result.push({
-				columns: [...columns.columns, currentElement],
+				columns: [...columns.columns, lastColumn],
 			});
 		}
 	}
 }
 function createIntroductionColumns(introduction: Introduction) {
-	const result = [] as Content[];
+	const columns = [] as Content[];
 	let count = 0;
 	if (introduction.location) {
 		addIntroductionColumn(
-			result,
+			columns,
 			introduction.location,
 			count++,
 			IntroductionColumnType.text,
@@ -110,7 +116,7 @@ function createIntroductionColumns(introduction: Introduction) {
 	}
 	if (introduction.email) {
 		addIntroductionColumn(
-			result,
+			columns,
 			introduction.email,
 			count++,
 			IntroductionColumnType.email,
@@ -119,7 +125,7 @@ function createIntroductionColumns(introduction: Introduction) {
 	}
 	if (introduction.website) {
 		addIntroductionColumn(
-			result,
+			columns,
 			introduction.website,
 			count++,
 			IntroductionColumnType.link,
@@ -129,14 +135,14 @@ function createIntroductionColumns(introduction: Introduction) {
 	for (let index = 0; index < introduction.socialAccounts.length; index++) {
 		const element = introduction.socialAccounts[index];
 		addIntroductionColumn(
-			result,
+			columns,
 			element.link,
 			count++,
 			IntroductionColumnType.link,
 			getIconByUrl(element.link)
 		);
 	}
-	return result;
+	return columns;
 }
 export function createElementsDefinition(elements: SubsectionElement[]) {
 	return {
@@ -158,29 +164,20 @@ export function createSubsectionTimeIntervalDefinition(
 ): Content {
 	let interval = '';
 	const result = [] as Column[];
-	if (timeInterval && (timeInterval.dateFrom || timeInterval.dateTo)) {
-		result.push({
-			columns: [
-				{
-					svg: dateRange,
-					style: ['html-svg'],
-				},
-			],
-			width: 25,
-		});
+	if (!timeInterval) {
+		return { columns: [] };
 	}
-	if (timeInterval && timeInterval.dateFrom) {
+	if (timeInterval.dateFrom || timeInterval.dateTo) {
+		result.push(getSVGIconColunm(dateRange));
+	}
+	if (timeInterval.dateFrom) {
 		interval += createDateDefinition(timeInterval.dateFrom);
 	}
-	if (timeInterval) {
-		interval += ' - ';
-	}
-	if (timeInterval && timeInterval.dateTo) {
+	interval += ' - ';
+	if (timeInterval.dateTo) {
 		interval += createDateDefinition(timeInterval.dateTo);
 	}
-	if (timeInterval) {
-		result.push({ text: interval, style: 'h5' });
-	}
+	result.push({ text: interval, style: 'h5' });
 	return { columns: result };
 }
 export function createSubsectionDefinition(subsection: Subsection): Content {
