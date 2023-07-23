@@ -13,7 +13,7 @@
 					/>
 				</div>
 			</div>
-			<BasicButton class="w-28" name="Save" @click="save" />
+			<BasicButton class="w-28" name="Download" @click="save" />
 		</div>
 	</AppearFadePanelTransition>
 </template>
