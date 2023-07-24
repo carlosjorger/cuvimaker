@@ -3,7 +3,6 @@ import type {
 	Content,
 	Column,
 	TDocumentDefinitions,
-	TFontDictionary,
 } from 'pdfmake/interfaces';
 import type { Resume } from '../models/Resume';
 import * as pdfMake from 'pdfmake/build/pdfmake';

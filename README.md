@@ -1,5 +1,3 @@
-<!-- TODO: Add more documentation -->
-
 # CUVIMAKER / CV Maker
 
 An online cv maker web application used to design a custom curriculum vitae and save it in a pdf file.

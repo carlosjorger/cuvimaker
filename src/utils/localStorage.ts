@@ -1,3 +1,5 @@
+// TODO: conver into a pinia store
+
 import { Resume } from '../models/Resume';
 export function saveResume(resume: Resume) {
 	window.localStorage.setItem('resume', JSON.stringify(resume));
