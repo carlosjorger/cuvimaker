@@ -4,9 +4,10 @@ import type {
 	Column,
 	TDocumentDefinitions,
 } from 'pdfmake/interfaces';
-import type { Resume } from '../models/Resume';
 import { createPdf } from 'pdfmake/build/pdfmake';
+// TODO: create custom font https://github.com/bpampuch/pdfmake/issues/1877
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import type { Resume } from '../models/Resume';
 import type { Introduction } from '../models/Introduction';
 import { getInfoFromUrl } from './urlService';
 import type { Section } from '../models/Section';
