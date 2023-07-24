@@ -72,7 +72,7 @@
 	import { useIntroductionStore } from '../../../../stores/IntroductionStore';
 	import { appStore } from '../../../../store';
 	import type { ComputedRef, PropType } from 'vue';
-	import SubsectionForm from '../../Subsection/SubsectionForm.vue';
+	import SubsectionForm from '../../../shared/TextArea/BasicTextArea.vue';
 	import CircleButtonWithIcon from '../../../shared/Button/CircleButtonWithIcon.vue';
 	import IconByUrl from '../../../shared/Icon/IconByUrl.vue';
 	export default {

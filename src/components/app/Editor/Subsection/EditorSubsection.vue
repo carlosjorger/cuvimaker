@@ -64,7 +64,7 @@
 	import { Subsection } from '../../../../models/Subsection';
 	import { Section } from '../../../../models/Section';
 	import mitt from 'mitt';
-	import SubsectionForm from '../../Subsection/SubsectionForm.vue';
+	import SubsectionForm from '../../../shared/TextArea/BasicTextArea.vue';
 	import { scrollSmoothToElement } from '../../../../utils/scrollServices';
 	import { useVuelidate } from '@vuelidate/core';
 	import { required } from '@vuelidate/validators';

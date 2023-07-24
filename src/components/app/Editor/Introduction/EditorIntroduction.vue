@@ -189,7 +189,7 @@
 
 <script lang="ts">
 	import type { Introduction } from '../../../../models/Introduction';
-	import SubsectionForm from '../../Subsection/SubsectionForm.vue';
+	import SubsectionForm from '../../../shared/TextArea/BasicTextArea.vue';
 	import { PropType, computed } from 'vue';
 	import SubsectionCard from '../../../shared/Subsection/SubsectionCard.vue';
 	import { Icon } from '@iconify/vue';

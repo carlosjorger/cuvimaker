@@ -26,7 +26,7 @@
 	import ErrorsSection from '../../shared/Error/ErrorsSection.vue';
 	import AdaptableTextArea from '../../shared/TextArea/AdaptableTextArea.vue';
 	export default {
-		name: 'SubsectionForm',
+		name: 'BasicTextArea',
 		props: {
 			modelValue: {
 				type: String,
