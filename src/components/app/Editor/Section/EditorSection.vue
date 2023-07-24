@@ -44,11 +44,11 @@
 	</SubsectionCard>
 </template>
 <script lang="ts">
-	import type { Section } from '../../../models/Section';
-	import SubsectionComponent from '../Preview/PreviewSubsection.vue';
+	import type { Section } from '../../../../models/Section';
+	import SubsectionComponent from '../../Preview/PreviewSubsection.vue';
 	import { Icon } from '@iconify/vue';
-	import SubsectionCard from '../../shared/Subsection/SubsectionCard.vue';
-	import { scrollSmoothToElement } from '../../../utils/scrollServices';
+	import SubsectionCard from '../../../shared/Subsection/SubsectionCard.vue';
+	import { scrollSmoothToElement } from '../../../../utils/scrollServices';
 	import type { PropType } from 'vue';
 	export default {
 		name: 'EditorSection',

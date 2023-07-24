@@ -71,7 +71,7 @@
 </template>
 <script lang="ts">
 	import CreateSectionModal from './app/Section/CreateSectionModal.vue';
-	import SectionComponent from './app/SectionView/EditorSection.vue';
+	import SectionComponent from './app/Editor/Section/EditorSection.vue';
 	import BasicButton from './shared/Button/BasicButton.vue';
 	import { computed } from 'vue';
 	import EditorIntroduction from './app/Editor/Introduction/EditorIntroduction.vue';

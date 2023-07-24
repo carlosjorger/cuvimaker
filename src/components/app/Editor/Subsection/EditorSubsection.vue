@@ -60,25 +60,25 @@
 	</div>
 </template>
 <script lang="ts">
-	import CloseAddButton from '../../shared/Button/CloseAddButton.vue';
-	import { Subsection } from '../../../models/Subsection';
-	import { Section } from '../../../models/Section';
+	import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
+	import { Subsection } from '../../../../models/Subsection';
+	import { Section } from '../../../../models/Section';
 	import mitt from 'mitt';
-	import SubsectionForm from './SubsectionForm.vue';
-	import { scrollSmoothToElement } from '../../../utils/scrollServices';
+	import SubsectionForm from '../../Subsection/SubsectionForm.vue';
+	import { scrollSmoothToElement } from '../../../../utils/scrollServices';
 	import { useVuelidate } from '@vuelidate/core';
 	import { required } from '@vuelidate/validators';
-	import EditorTimeIntervalSection from '../Editor/TimeInterval/EditorTimeIntervalSection.vue';
-	import ModalButton from '../../shared/Button/ModalButton.vue';
-	import EditorListSection from '../Editor/List/EditorListSection.vue';
+	import EditorTimeIntervalSection from '../TimeInterval/EditorTimeIntervalSection.vue';
+	import ModalButton from '../../../shared/Button/ModalButton.vue';
+	import EditorListSection from '../List/EditorListSection.vue';
 	import { computed } from 'vue';
-	import AppearFadeTransition from '../../shared/Transition/AppearFadeTransition.vue';
-	import CircleButtonWithIcon from '../../shared/Button/CircleButtonWithIcon.vue';
-	import ShakeTemplate from '../../shared/others/ShakeTemplate.vue';
+	import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
+	import CircleButtonWithIcon from '../../../shared/Button/CircleButtonWithIcon.vue';
+	import ShakeTemplate from '../../../shared/others/ShakeTemplate.vue';
 	import {
 		copySubsection,
 		isEmptySubsection,
-	} from '../../../extensions/extensions';
+	} from '../../../../extensions/extensions';
 	const emitter = mitt();
 	export default {
 		name: 'EditorSubsection',
