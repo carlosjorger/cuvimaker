@@ -23,14 +23,14 @@
 					class="mt-2 w-full rounded-3xl border-2 border-solid p-2 font-semibold text-primary shadow-xl transition-all duration-300 placeholder:text-base focus:border-4 dark:bg-dark-primary-200 dark:text-zinc-300"
 					:class="{
 						'border-red-600 placeholder:text-red-600 dark:border-rose-500 dark:placeholder:text-rose-500 ':
-							v$.section.name.$errors.length > 0,
+							v$.section?.name.$errors.length > 0,
 						'border-primary placeholder:text-primary dark:border-zinc-300  dark:placeholder:text-zinc-300':
-							v$.section.name.$errors.length <= 0,
+							v$.section?.name.$errors.length <= 0,
 					}"
 					placeholder="Section Name"
 					type="text"
 				/>
-				<ErrorsSection :errors="v$.section.name.$errors" />
+				<ErrorsSection :errors="v$.section?.name.$errors" />
 			</div>
 			<div class="mb-2 box-border">
 				<transition-group
@@ -83,9 +83,7 @@
 	import ErrorsSection from '../../shared/Error/ErrorsSection.vue';
 	import ModalTemplate from '../../shared/others/ModalTemplate.vue';
 	import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
-	import mitt from 'mitt';
 
-	const emitter = mitt();
 	export default {
 		name: 'CreateSectionModal',
 		props: {

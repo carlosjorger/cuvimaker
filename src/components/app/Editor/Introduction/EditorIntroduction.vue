@@ -11,7 +11,7 @@
 					placeholder="Your name"
 					:lightColor="'primary'"
 					:darkColor="'zinc-300'"
-					:errors="v$.currentIntroduction.name.$errors"
+					:errors="v$.currentIntroduction?.name?.$errors"
 				/>
 				<SubsectionForm
 					class="mt-1 text-lg"
@@ -19,7 +19,7 @@
 					placeholder="Profetion"
 					:lightColor="'primary'"
 					:darkColor="'zinc-300'"
-					:errors="v$.currentIntroduction.profetion.$errors"
+					:errors="v$.currentIntroduction?.profetion?.$errors"
 				/>
 				<div class="flex items-center">
 					<div
@@ -53,7 +53,7 @@
 						placeholder="Email"
 						:lightColor="'primary'"
 						:darkColor="'zinc-300'"
-						:errors="v$.currentIntroduction.email.$errors"
+						:errors="v$.currentIntroduction?.email?.$errors"
 					/>
 				</div>
 				<div
@@ -82,7 +82,7 @@
 						placeholder="Website"
 						:lightColor="'primary'"
 						:darkColor="'zinc-300'"
-						:errors="v$.currentIntroduction.website.$errors"
+						:errors="v$.currentIntroduction?.website?.$errors"
 					/>
 				</div>
 				<div
@@ -114,7 +114,7 @@
 						placeholder="Add a Social Account"
 						:lightColor="'primary'"
 						:darkColor="'zinc-300'"
-						:errors="v$.currentSocialAccount.$errors"
+						:errors="v$.currentSocialAccount?.$errors"
 					/>
 					<AppearFadeTransition>
 						<CloseAddButton

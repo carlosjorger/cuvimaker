@@ -82,8 +82,9 @@
 	import PreviewResume from './app/Preview/PreviewResume.vue';
 	import type { Introduction } from '../models/Introduction';
 	import AppearFadePanelTransition from './shared/Transition/AppearFadePanelTransition.vue';
-	import '../utils/localStorage';
-	import { loadResume, saveResume } from '../utils/localStorage';
+	import { useLocalStorageStore } from '../stores/localStorageStore';
+	import { appStore } from '../store';
+
 	export default {
 		name: 'CVEditor',
 		components: {
@@ -98,11 +99,17 @@
 			EditorBar,
 			PreviewResume,
 		},
+		setup() {
+			const localStorageStore = useLocalStorageStore(appStore);
+			return { localStorageStore };
+		},
 		data() {
+			this.localStorageStore.loadResume();
+			const resume = this.localStorageStore.resume;
 			return {
 				showModal: false,
 				editIndex: undefined as number | undefined,
-				resume: this.loadResume(),
+				resume: resume,
 				confirmationDeleteModal: false,
 				sectionIndexToDelete: -1,
 				isEditingResume: true,
@@ -135,10 +142,7 @@
 				this.saveResume();
 			},
 			saveResume() {
-				saveResume(this.resume);
-			},
-			loadResume() {
-				return loadResume();
+				this.localStorageStore.saveResume(this.resume);
 			},
 		},
 	};
@@ -148,3 +152,4 @@
 		width: 40%;
 	}
 </style>
+../stores/localStorageStore
