@@ -1,8 +1,10 @@
 export const scrollSmoothToElement = (element: Element) => {
 	setTimeout(() => {
-		element.scrollIntoView({
-			block: 'end',
-			behavior: 'smooth',
-		});
+		if (element instanceof Element) {
+			element.scrollIntoView({
+				block: 'end',
+				behavior: 'smooth',
+			});
+		}
 	}, 100);
 };

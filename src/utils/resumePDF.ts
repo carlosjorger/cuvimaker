@@ -5,7 +5,7 @@ import type {
 	TDocumentDefinitions,
 } from 'pdfmake/interfaces';
 import type { Resume } from '../models/Resume';
-import * as pdfMake from 'pdfmake/build/pdfmake';
+import { createPdf } from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import type { Introduction } from '../models/Introduction';
 import { getInfoFromUrl } from './urlService';
@@ -319,5 +319,5 @@ export function savePDF(resumeDefinition: TDocumentDefinitions) {
 		pdfFonts && pdfFonts.pdfMake
 			? pdfFonts.pdfMake.vfs
 			: globalThis.pdfMake.vfs;
-	pdfMake.createPdf(resumeDefinition, undefined, undefined, vsf).open();
+	createPdf(resumeDefinition, undefined, undefined, vsf).open();
 }

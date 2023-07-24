@@ -1,5 +1,3 @@
-// TODO: conver into a pinia store
-
 import { defineStore } from 'pinia';
 import { Resume } from '../models/Resume';
 
