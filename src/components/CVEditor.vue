@@ -38,7 +38,7 @@
 					/>
 					<ConfirmationModal
 						:entity-to-delete="'Section'"
-						v-show="confirmationDeleteModal"
+						v-if="confirmationDeleteModal"
 						@delete="deleteSection(sectionIndexToDelete)"
 						@cancel="confirmationDeleteModal = false"
 					/>
