@@ -52,7 +52,7 @@
 		methods: {
 			async save() {
 				var resumeDefinition = createResumePDFDefinition(this.resume);
-				savePDF(resumeDefinition);
+				await savePDF(resumeDefinition);
 			},
 		},
 	};

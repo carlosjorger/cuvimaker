@@ -4,9 +4,6 @@ import type {
 	Column,
 	TDocumentDefinitions,
 } from 'pdfmake/interfaces';
-import { createPdf } from 'pdfmake/build/pdfmake';
-// TODO: create custom font https://github.com/bpampuch/pdfmake/issues/1877
-import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import type { Resume } from '../models/Resume';
 import type { Introduction } from '../models/Introduction';
 import { getInfoFromUrl } from './urlService';
@@ -315,10 +312,13 @@ export function createResumePDFDefinition(
 		},
 	};
 }
-export function savePDF(resumeDefinition: TDocumentDefinitions) {
+export async function savePDF(resumeDefinition: TDocumentDefinitions) {
+	const { createPdf } = await import('pdfmake/build/pdfmake.min');
+	const pdfFonts = await import('pdfmake/build/vfs_fonts');
 	const vsf =
 		pdfFonts && pdfFonts.pdfMake
 			? pdfFonts.pdfMake.vfs
 			: globalThis.pdfMake.vfs;
+
 	createPdf(resumeDefinition, undefined, undefined, vsf).open();
 }
