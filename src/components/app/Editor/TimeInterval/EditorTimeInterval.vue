@@ -18,6 +18,7 @@
 </template>
 
 <script lang="ts">
+	//TODO: use a cheaper datepicker https://dev.to/elreco/add-a-tailwind-datepicker-to-your-vue-3-application-57j2
 	import VueDatePicker from '@vuepic/vue-datepicker';
 	import '@vuepic/vue-datepicker/dist/main.css';
 	import { TimeInterval } from '../../../../models/SubsectionTimeInterval';

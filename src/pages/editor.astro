@@ -3,7 +3,5 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CVEditor from '../components/CVEditor.vue';
 ---
 
-<!-- TODO: to use another client --><!-- TODO: increase performance of this page --><!-- TODO: add gzip -->
-<BaseLayout pageTitle="Editor">
-	<CVEditor client:only="vue" />
-</BaseLayout>
+<!-- TODO: to use another client -->
+<CVEditor client:only="vue" />
