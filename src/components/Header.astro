@@ -4,41 +4,41 @@ import ThemeIcon from './ThemeIcon.astro';
 ---
 
 <header>
-    <nav
-        class="flex justify-between p-2 bg-[#f5f0ff] dark:bg-dark-primary-200 shadow-md transition-colors dark:transition-colors dark:duration-500"
-    >
-        <Navigation />
-        <ThemeIcon />
-    </nav>
+	<nav
+		class="flex justify-between p-2 bg-[#f5f0ff] dark:bg-dark-primary-200 shadow-md transition-colors dark:transition-colors dark:duration-500"
+	>
+		<Navigation />
+		<ThemeIcon />
+	</nav>
 </header>
 
 <script is:inline>
-    const theme = (() => {
-        if (
-            typeof localStorage !== 'undefined' &&
-            localStorage.getItem('theme')
-        ) {
-            return localStorage.getItem('theme') ?? 'light';
-        }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark';
-        }
-        return 'light';
-    })();
+	const theme = (() => {
+		if (
+			typeof localStorage !== 'undefined' &&
+			localStorage.getItem('theme')
+		) {
+			return localStorage.getItem('theme') ?? 'light';
+		}
+		if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			return 'dark';
+		}
+		return 'light';
+	})();
 
-    const classList = document.documentElement.classList;
-    classList.toggle('dark', theme == 'dark');
+	const classList = document.documentElement.classList;
+	classList.toggle('dark', theme == 'dark');
 
-    window.localStorage.setItem('theme', theme);
+	window.localStorage.setItem('theme', theme);
 
-    const handleToggleClick = () => {
-        const classList = document.documentElement.classList;
-        classList.toggle('dark');
-        const isDark = classList.contains('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    };
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle != null) {
-        themeToggle.addEventListener('click', handleToggleClick);
-    }
+	const handleToggleClick = () => {
+		const classList = document.documentElement.classList;
+		classList.toggle('dark');
+		const isDark = classList.contains('dark');
+		localStorage.setItem('theme', isDark ? 'dark' : 'light');
+	};
+	const themeToggle = document.getElementById('themeToggle');
+	if (themeToggle != null) {
+		themeToggle.addEventListener('click', handleToggleClick);
+	}
 </script>

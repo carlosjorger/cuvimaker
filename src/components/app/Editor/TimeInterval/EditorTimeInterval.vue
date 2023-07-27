@@ -11,6 +11,7 @@
 			required
 			@cleared="cleanTimeInterval"
 			input-class-name="shadow-xl"
+			:dark="isDarkMode()"
 		/>
 		<ErrorsSection :errors="v$.value.dateFrom.$errors" />
 		<ErrorsSection :errors="v$.value.dateTo.$errors" />
@@ -18,7 +19,7 @@
 </template>
 
 <script lang="ts">
-	//TODO: use a cheaper datepicker https://dev.to/elreco/add-a-tailwind-datepicker-to-your-vue-3-application-57j2
+	//TODO: customize colors of dark and normal mode https://vue3datepicker.com/customization/theming/
 	import VueDatePicker from '@vuepic/vue-datepicker';
 	import '@vuepic/vue-datepicker/dist/main.css';
 	import { TimeInterval } from '../../../../models/SubsectionTimeInterval';
@@ -26,7 +27,7 @@
 	import { useVuelidate } from '@vuelidate/core';
 	import { inject } from 'vue';
 	import ErrorsSection from '../../../shared/Error/ErrorsSection.vue';
-
+	import { isDarkMode } from '../../../../utils/theme';
 	export default {
 		name: 'EditorTimeInterval',
 
@@ -54,6 +55,9 @@
 			this.setTimeInteval(this.value);
 		},
 		methods: {
+			isDarkMode() {
+				return isDarkMode();
+			},
 			handleTimeInterval(dateRange: Date[] | null) {
 				if (dateRange && dateRange.length > 1) {
 					this.value = new TimeInterval(dateRange[0], dateRange[1]);
