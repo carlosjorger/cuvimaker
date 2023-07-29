@@ -1,5 +1,6 @@
 <template>
 	<div class="mt-2 w-11/12">
+		<!-- TODO: shrink  the font size with a small window weight-->
 		<VueDatePicker
 			:range="true"
 			v-model="interval"
@@ -19,7 +20,6 @@
 </template>
 
 <script lang="ts">
-	//TODO: customize colors of dark and normal mode https://vue3datepicker.com/customization/theming/
 	import VueDatePicker from '@vuepic/vue-datepicker';
 	import '@vuepic/vue-datepicker/dist/main.css';
 	import { TimeInterval } from '../../../../models/SubsectionTimeInterval';
