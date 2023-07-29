@@ -13,7 +13,12 @@
 					/>
 				</div>
 			</div>
-			<BasicButton class="w-28" name="Download" @click="save" />
+			<BasicButton
+				v-if="!isResumeEmpty()"
+				class="w-28"
+				name="Download"
+				@click="save"
+			/>
 		</div>
 	</AppearFadePanelTransition>
 </template>
@@ -28,6 +33,7 @@
 		savePDF,
 		createResumePDFDefinition,
 	} from '../../../utils/resumePDF';
+	import { Introduction } from '../../../models/Introduction';
 	export default {
 		components: {
 			AppearFadePanelTransition,
@@ -53,6 +59,13 @@
 			async save() {
 				var resumeDefinition = createResumePDFDefinition(this.resume);
 				await savePDF(resumeDefinition);
+			},
+			isResumeEmpty() {
+				return (
+					this.resume.sections.length == 0 &&
+					JSON.stringify(this.resume.introduction) ===
+						JSON.stringify(new Introduction())
+				);
 			},
 		},
 	};
