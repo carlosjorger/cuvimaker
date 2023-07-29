@@ -133,4 +133,27 @@
 		--dp-danger-color: #e53935;
 		--dp-highlight-color: rgba(0, 92, 178, 0.2);
 	}
+	.dp__theme_light {
+		--primary-color: #3c1774;
+
+		--dp-background-color: #ffffff;
+		--dp-text-color: var(--primary-color);
+		--dp-hover-color: #f3f3f3;
+		--dp-hover-text-color: var(--primary-color);
+		--dp-hover-icon-color: var(--primary-color);
+		--dp-primary-color: var(--primary-color);
+		--dp-primary-text-color: #f8f5f5;
+		--dp-secondary-color: #c0c4cc;
+		--dp-border-color: var(--primary-color);
+		--dp-menu-border-color: var(--primary-color);
+		--dp-border-color-hover: #aaaeb7;
+		--dp-disabled-color: #f6f6f6;
+		--dp-scroll-bar-background: #f3f3f3;
+		--dp-scroll-bar-color: var(--primary-color);
+		--dp-success-color: #76d275;
+		--dp-success-color-disabled: #a3d9b1;
+		--dp-icon-color: var(--primary-color);
+		--dp-danger-color: #ff6f60;
+		--dp-highlight-color: rgba(25, 118, 210, 0.1);
+	}
 </style>

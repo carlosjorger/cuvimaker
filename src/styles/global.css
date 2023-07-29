@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 :root {
 	--vdp-elem-font-size: 0.6em;
 	--primary-color: #3c1774;
@@ -11,6 +12,7 @@
 	--dark-primary: #3f3268;
 	--dark-primary-200: #261c46;
 	--dark-primary-300: #120a25;
+	--dp-action-button-height: 30px !important;
 }
 /* width */
 ::-webkit-scrollbar {
