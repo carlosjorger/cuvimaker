@@ -1,8 +1,8 @@
 {
-    "extends": "astro/tsconfigs/strict",
-    "compilerOptions": {
-        "jsx": "preserve",
-        "allowJs": true
-    },
-    "include": ["./src/*.ts", "**/*.vue"]
+	"extends": "astro/tsconfigs/strict",
+	"compilerOptions": {
+		"jsx": "preserve",
+		"allowJs": true
+	},
+	"include": ["./src/*.ts", "**/*.vue"]
 }
