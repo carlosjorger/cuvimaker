@@ -1,6 +1,5 @@
 <template>
 	<div class="mt-2 w-11/12">
-		<!-- TODO: shrink  the font size with a small window weight-->
 		<VueDatePicker
 			:range="true"
 			v-model="interval"
@@ -13,6 +12,7 @@
 			@cleared="cleanTimeInterval"
 			input-class-name="shadow-xl"
 			:dark="isDarkMode()"
+			:format="format"
 		/>
 		<ErrorsSection :errors="v$.value.dateFrom.$errors" />
 		<ErrorsSection :errors="v$.value.dateTo.$errors" />
@@ -70,6 +70,24 @@
 				if (value && value.dateFrom && value.dateTo) {
 					this.interval = [value.dateFrom, value.dateTo];
 				}
+			},
+			format(dates: Date[]) {
+				const [dateFrom, dateTo] = dates;
+				let result = '';
+				if (dateFrom) {
+					result += this.formatDate(dateFrom);
+				}
+				if (dateTo) {
+					result += ` - ${this.formatDate(dateTo)}`;
+				}
+				return result;
+			},
+			formatDate(date: Date) {
+				const day = date.getDate();
+				const month = date.getMonth() + 1;
+				const year = date.getFullYear();
+
+				return `${day}/${month}/${year}`;
 			},
 		},
 		watch: {
