@@ -6,7 +6,7 @@
 		<template #body>
 			<form v-on:submit.prevent class="font-extrabold">
 				<SubsectionForm
-					class="mt-1 text-xl"
+					class="mt-1 text-lg"
 					v-model="currentIntroduction.name"
 					placeholder="Your name"
 					:lightColor="'primary'"
@@ -14,7 +14,7 @@
 					:errors="v$.currentIntroduction?.name?.$errors"
 				/>
 				<SubsectionForm
-					class="mt-1 text-lg"
+					class="mt-1"
 					v-model="currentIntroduction.profetion"
 					placeholder="Profetion"
 					:lightColor="'primary'"
@@ -33,7 +33,7 @@
 					</div>
 
 					<SubsectionForm
-						class="mt-1 min-w-[82%] text-base"
+						class="mt-1 min-w-[82%] text-sm"
 						v-model="currentIntroduction.location"
 						placeholder="Location"
 						:lightColor="'primary'"
@@ -48,7 +48,7 @@
 					</div>
 
 					<SubsectionForm
-						class="mt-1 min-w-[82%] text-base"
+						class="mt-1 min-w-[82%] text-sm"
 						v-model="currentIntroduction.email"
 						placeholder="Email"
 						:lightColor="'primary'"
@@ -77,7 +77,7 @@
 					</div>
 
 					<SubsectionForm
-						class="mt-1 min-w-[82%] text-base"
+						class="mt-1 min-w-[82%] text-sm"
 						v-model="currentIntroduction.website"
 						placeholder="Website"
 						:lightColor="'primary'"
@@ -109,7 +109,7 @@
 						<Icon icon="mdi:account" width="20" />
 					</div>
 					<SubsectionForm
-						class="mt-1 min-w-[82%] text-base"
+						class="mt-1 min-w-[82%] text-sm"
 						v-model="currentSocialAccount"
 						placeholder="Add a Social Account"
 						:lightColor="'primary'"

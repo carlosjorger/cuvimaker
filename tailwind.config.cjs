@@ -25,6 +25,9 @@ module.exports = {
 			},
 			translate: ['dark'],
 		},
+		fontFamily: {
+			montserrat: ['Montserrat', 'ui-sans-serif'],
+		},
 	},
 	plugins: [],
 };

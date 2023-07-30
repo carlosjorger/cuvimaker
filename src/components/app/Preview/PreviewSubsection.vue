@@ -1,6 +1,6 @@
 <template>
-	<h4 class="mt-2 text-lg font-semibold">{{ subsection?.title }}</h4>
-	<h5 class="mt-1 text-base font-extrabold">{{ subsection?.text }}</h5>
+	<h4 class="mt-2 text-base font-semibold">{{ subsection?.title }}</h4>
+	<h5 class="mt-1 text-sm font-extrabold">{{ subsection?.text }}</h5>
 	<div
 		class="mt-1 flex flex-row items-center text-sm"
 		v-if="subsection?.subsectionTimeInterval != null"

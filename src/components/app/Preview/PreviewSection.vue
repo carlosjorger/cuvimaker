@@ -1,7 +1,7 @@
 <template>
 	<section class="m-2">
 		<header>
-			<h3 class="text-xl font-extrabold text-primary dark:text-white">
+			<h3 class="text-lg font-extrabold text-primary dark:text-white">
 				{{ section?.name }}
 			</h3>
 		</header>

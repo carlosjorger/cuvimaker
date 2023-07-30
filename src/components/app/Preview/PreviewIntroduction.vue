@@ -1,9 +1,9 @@
 <template>
 	<div class="p-2">
-		<h2 class="mt-3 text-2xl font-extrabold">{{ introduction.name }}</h2>
-		<h3 class="mt-3 text-xl">{{ introduction.profetion }}</h3>
+		<h2 class="mt-3 text-xl font-extrabold">{{ introduction.name }}</h2>
+		<h3 class="mt-3 text-lg">{{ introduction.profetion }}</h3>
 		<div
-			class="mt-3 grid grid-cols-3 gap-3 text-base max-lg:grid-cols-2 max-md:grid-cols-1"
+			class="mt-3 grid grid-cols-3 gap-3 text-sm max-lg:grid-cols-2 max-md:grid-cols-1"
 		>
 			<div>
 				<div class="flex items-center" v-if="introduction.location">

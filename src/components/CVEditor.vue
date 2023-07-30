@@ -28,7 +28,7 @@
 							"
 						/>
 					</SubsectionAlign>
-
+					<!-- TODO async component -->
 					<create-section-modal
 						v-show="showModal"
 						:sections="resume.sections"

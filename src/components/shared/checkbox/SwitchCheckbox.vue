@@ -5,7 +5,7 @@
 			<div class="skin one"></div>
 			<div class="skin two"></div>
 		</div>
-		<h5 class="w-2/3">{{ title }}</h5>
+		<h5 class="w-2/3 text-base">{{ title }}</h5>
 	</div>
 </template>
 
@@ -45,8 +45,8 @@
 	}
 	.switch-checkbox {
 		display: grid;
-		width: 5rem;
-		height: 2rem;
+		width: 4.5rem;
+		height: 1.5rem;
 		border-radius: 1rem;
 		padding-right: 0.5rem;
 	}
@@ -73,9 +73,9 @@
 		background-color: rgb(185, 185, 185);
 
 		--mask: radial-gradient(
-			circle at 22% 50%,
-			rgba(0, 0, 0, 0) 22%,
-			rgba(0, 0, 0, 1) 22%
+			circle at 18% 50%,
+			rgba(0, 0, 0, 0) 18%,
+			rgba(0, 0, 0, 1) 18%
 		);
 		mask-image: var(--mask);
 		-webkit-mask-image: var(--mask);
@@ -88,15 +88,15 @@
 		background-color: white;
 
 		--mask: radial-gradient(
-			circle at 22% 50%,
-			rgba(0, 0, 0, 0) 22%,
-			rgba(0, 0, 0, 1) 22%
+			circle at 18% 50%,
+			rgba(0, 0, 0, 0) 18%,
+			rgba(0, 0, 0, 1) 18%
 		);
 
 		mask-image: var(--mask);
 		-webkit-mask-image: var(--mask);
-		-webkit-mask-position: 2.5rem 0%;
-		mask-position: 2.5rem 0%;
+		-webkit-mask-position: 2.55rem 0%;
+		mask-position: 2.55rem 0%;
 		transition: all 0.3s ease-out;
 	}
 </style>
