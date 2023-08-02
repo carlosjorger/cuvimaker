@@ -12,6 +12,6 @@ export default defineConfig({
 				path: './tailwind.config.cjs',
 			},
 		}),
-		compressor({ gzip: false, brotli: true }),
+		compressor({ gzip: true }),
 	],
 });

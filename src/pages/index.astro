@@ -4,14 +4,13 @@ import CVExampleImages from '../components/CVExampleImages.astro';
 import Subtitle from '../components/Subtitle.astro';
 import BasicButton from '../components/shared/Button/BasicButton.vue';
 ---
-<!-- TODO: Change the page style -->
 <BaseLayout pageTitle="Cuvimaker">
 	<div class="flex w-2/3 max-lg:w-3/4 max-md:w-full items-center">
 		<div class="p-5 max-md:p-2">
-			<Subtitle>Create elegant and simple CVs</Subtitle>
-			<p class="mb-6 text-sm">
-				Complete your personal data, skills, experience, projects and
-				more. Download the cv in a pdf file
+			<Subtitle>Create your own curriculum vitae as simple as possible ;)</Subtitle>
+			<p class="mb-6  text-base">
+				Save your personal data, skills, experience, projects and
+				more and download the cv in a pdf file.
 			</p>
 			<br />
 			<div class="hidden max-md:block">
@@ -19,7 +18,8 @@ import BasicButton from '../components/shared/Button/BasicButton.vue';
 			</div>
 
 			<a href="editor">
-				<BasicButton name={'Create CV'} />
+				<!-- TODO: Change the button -->
+				<BasicButton name={'Create curriculum'} />
 			</a>
 		</div>
 		<div class="block max-md:hidden">
