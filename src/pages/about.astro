@@ -10,11 +10,11 @@ const proyect = 'astro-vue-online-cv-maker';
 <BaseLayout pageTitle="About Cuvimaker">
 	<!-- TODO: modify max-width -->
 	<div
-		class="flex w-3/4 max-lg:w-4/5 max-md:w-11/12 items-center max-md:text-base max-md:text-center"
+		class="flex max-md:justify-center items-center max-md:text-base max-md:text-center"
 	>
 		<div class="p-5 max-md:p-2">
 			<div class="hidden max-md:block">
-				<ExampleImage imageSrc="./project.webp" />
+				<ExampleImage imageSrc="/project.webp" />
 			</div>
 			<Subtitle>Are you interested in this app?</Subtitle>
 			<p class="mb-4 text-base">
@@ -31,7 +31,7 @@ const proyect = 'astro-vue-online-cv-maker';
 			<Contacts />
 		</div>
 		<div class="block max-md:hidden">
-			<ExampleImage imageSrc="./project.webp" />
+			<ExampleImage imageSrc="/project.webp" />
 		</div>
 	</div>
 </BaseLayout>

@@ -7,19 +7,20 @@ import BasicButton from '../components/shared/Button/BasicButton.vue';
 <BaseLayout pageTitle="Cuvimaker">
 	<div class="flex w-2/3 max-lg:w-3/4 max-md:w-full items-center">
 		<div class="p-6 max-md:p-4">
-			<Subtitle>Create your own curriculum vitae as simple as possible ;)</Subtitle>
-			<p class="mb-6 text-base">
+			<Subtitle>Create your own curriculum vitae as simple as possible</Subtitle>
+			<p class="mb-6 text-base max-md:text-center">
 				Save your personal data, skills, experience, projects and
 				more and download the cv in a pdf file.
 			</p>
 			<div class="hidden max-md:block mb-6">
 				<CVExampleImages />
 			</div>
-
-			<a href="editor">
-				<!-- TODO: Change the button -->
-				<BasicButton name={'Create curriculum'} />
-			</a>
+			<div class="max-md:text-center">
+				<a href="editor">
+					<!-- TODO: Change the button -->
+					<BasicButton name={'Create curriculum'} />
+				</a>
+			</div>
 		</div>
 		<div class="block max-md:hidden">
 			<CVExampleImages />
