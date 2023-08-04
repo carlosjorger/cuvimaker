@@ -127,8 +127,8 @@
 						/>
 					</AppearFadeTransition>
 				</div>
-				<ul class="mt-1">
-					<ListTransition class="relative block">
+				<ul class="relative mt-1 block">
+					<ListTransition>
 						<SocialAccount
 							v-for="(
 								socialAccount, index

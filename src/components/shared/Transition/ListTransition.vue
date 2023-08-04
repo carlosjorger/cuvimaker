@@ -1,5 +1,5 @@
 <template>
-	<transition-group name="list" tag="div">
+	<transition-group name="list">
 		<slot></slot>
 	</transition-group>
 </template>
