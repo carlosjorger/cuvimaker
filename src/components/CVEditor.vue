@@ -28,8 +28,7 @@
 							"
 						/>
 					</SubsectionAlign>
-					<!-- TODO async component -->
-					<create-section-modal
+					<async-create-section-modal
 						v-show="showModal"
 						:sections="resume.sections"
 						:showModal="showModal"
@@ -70,10 +69,9 @@
 	</div>
 </template>
 <script lang="ts">
-	import CreateSectionModal from './app/Section/CreateSectionModal.vue';
 	import SectionComponent from './app/Editor/Section/EditorSection.vue';
 	import BasicButton from './shared/Button/BasicButton.vue';
-	import { computed } from 'vue';
+	import { computed, defineAsyncComponent } from 'vue';
 	import EditorIntroduction from './app/Editor/Introduction/EditorIntroduction.vue';
 	import ListTransition from './shared/Transition/ListTransition.vue';
 	import ConfirmationModal from './shared/Modal/ConfirmationModal.vue';
@@ -84,11 +82,12 @@
 	import AppearFadePanelTransition from './shared/Transition/AppearFadePanelTransition.vue';
 	import { useLocalStorageStore } from '../stores/localStorageStore';
 	import { appStore } from '../store';
-
+	const AsyncCreateSectionModal = defineAsyncComponent(
+		() => import('./app/Section/CreateSectionModal.vue')
+	);
 	export default {
 		name: 'CVEditor',
 		components: {
-			CreateSectionModal,
 			SectionComponent,
 			BasicButton,
 			EditorIntroduction,
@@ -98,6 +97,7 @@
 			AppearFadePanelTransition,
 			EditorBar,
 			PreviewResume,
+			AsyncCreateSectionModal,
 		},
 		setup() {
 			const localStorageStore = useLocalStorageStore(appStore);
