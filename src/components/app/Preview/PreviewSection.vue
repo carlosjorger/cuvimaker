@@ -1,3 +1,4 @@
+<!-- TODO: change the html tags https://www.smashingmagazine.com/2022/07/article-section-elements-accessibility/ -->
 <template>
 	<section class="m-2">
 		<header>
