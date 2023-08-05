@@ -1,12 +1,6 @@
-<!-- TODO: change the html tags https://www.smashingmagazine.com/2022/07/article-section-elements-accessibility/ -->
 <template>
 	<section class="m-2">
-		<header>
-			<h3 class="text-lg font-extrabold text-primary dark:text-white">
-				{{ section?.name }}
-			</h3>
-		</header>
-		<hr class="mt-1 h-1 rounded-md bg-primary dark:bg-zinc-300" />
+		<PreviewSectionHeader :name="section?.name" />
 		<SubsectionComponent
 			v-for="(subsection, index) in section?.subsections"
 			:key="index"
@@ -19,6 +13,7 @@
 	import type { PropType } from 'vue';
 	import type { Section } from '../../../models/Section';
 	import SubsectionComponent from '../Preview/PreviewSubsection.vue';
+	import PreviewSectionHeader from './PreviewSectionHeader.vue';
 	export default {
 		props: {
 			section: {
@@ -28,6 +23,7 @@
 		},
 		components: {
 			SubsectionComponent,
+			PreviewSectionHeader,
 		},
 	};
 </script>

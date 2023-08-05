@@ -4,16 +4,8 @@
 		:ifEditing="false"
 	>
 		<template #body>
-			<div class="p-4" @click="changeSetting">
-				<header>
-					<h3
-						class="text-lg font-extrabold text-primary dark:text-white"
-					>
-						{{ section?.name }}
-					</h3>
-				</header>
-				<hr class="mt-1 h-1 rounded-md bg-primary dark:bg-zinc-300" />
-
+			<div @click="changeSetting">
+				<PreviewSectionHeader :name="section?.name" />
 				<SubsectionComponent
 					v-for="(subsection, index) in section?.subsections"
 					:key="index"
@@ -49,10 +41,16 @@
 	import { Icon } from '@iconify/vue';
 	import SubsectionCard from '../../../shared/Subsection/SubsectionCard.vue';
 	import { scrollSmoothToElement } from '../../../../utils/scrollServices';
+	import PreviewSectionHeader from '../../Preview/PreviewSectionHeader.vue';
 	import type { PropType } from 'vue';
 	export default {
 		name: 'EditorSection',
-		components: { SubsectionComponent, Icon, SubsectionCard },
+		components: {
+			SubsectionComponent,
+			Icon,
+			SubsectionCard,
+			PreviewSectionHeader,
+		},
 		props: {
 			section: {
 				type: Object as PropType<Section>,
