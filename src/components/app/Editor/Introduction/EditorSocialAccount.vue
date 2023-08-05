@@ -7,7 +7,7 @@
 			['bg-[#9c74da]']: selecting && isBeingEditingIntroduction,
 		}"
 	>
-		<div class="flex w-3/4 resize-none items-center">
+		<div class="flex w-4/5 resize-none items-center">
 			<div
 				class="p-1 text-primary transition-colors duration-500 dark:text-white"
 			>
@@ -22,7 +22,7 @@
 				class="w-full"
 			/>
 		</div>
-		<div class="w-1/4"></div>
+		<div class="w-1/5"></div>
 		<AppearFadeTransition>
 			<div
 				v-if="selecting && editing && isBeingEditingIntroduction"
