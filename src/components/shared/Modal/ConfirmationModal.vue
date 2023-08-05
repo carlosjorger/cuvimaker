@@ -1,6 +1,6 @@
 <template>
 	<ModalTemplate>
-		<div
+		<section
 			class="overflow-hidden rounded border-4 border-solid border-primary bg-white text-lg font-extrabold text-primary dark:border-zinc-100 dark:bg-dark-primary-300 dark:text-zinc-300 max-xl:w-1/3 max-lg:w-3/5 max-md:w-9/12 max-sm:w-9/12"
 		>
 			<div
@@ -22,7 +22,7 @@
 					/>
 				</div>
 			</div>
-		</div>
+		</section>
 	</ModalTemplate>
 </template>
 <script lang="ts">
