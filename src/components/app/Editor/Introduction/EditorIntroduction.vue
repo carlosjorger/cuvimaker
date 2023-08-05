@@ -4,6 +4,7 @@
 		:ifEditing="isBeingEditingIntroduction"
 	>
 		<template #body>
+			<!-- TODO: Make subsection forms like website -->
 			<form v-on:submit.prevent class="font-extrabold">
 				<SubsectionForm
 					class="mt-1 text-lg"
