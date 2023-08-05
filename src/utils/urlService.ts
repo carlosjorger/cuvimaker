@@ -3,6 +3,9 @@ export const getInfoFromUrl = (url: string) => {
 	const urlWithoutHttp = urlWithoutHttps.replace('http://', '');
 	const urlWithoutWWW = urlWithoutHttp.replace('www.', '');
 	const urlWithoutMailto = urlWithoutWWW.replace('mailto:', '');
+	if (urlWithoutMailto.endsWith('/')) {
+		return urlWithoutMailto.slice(0, -1);
+	}
 	return urlWithoutMailto;
 };
 
