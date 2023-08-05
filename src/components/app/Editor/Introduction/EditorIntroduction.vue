@@ -150,7 +150,7 @@
 					v-if="isBeingEditingIntroduction"
 					class="absolute flex h-full items-center"
 				>
-					<a
+					<button
 						class="w-12 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
 						@click="
 							() => {
@@ -161,9 +161,10 @@
 								);
 							}
 						"
+						title="Save Introduction Section"
 					>
 						<Icon icon="el:ok" width="30" />
-					</a>
+					</button>
 				</div>
 			</Transition>
 			<Transition>
@@ -171,16 +172,17 @@
 					v-if="!isBeingEditingIntroduction"
 					class="absolute flex h-full items-center"
 				>
-					<a
+					<button
 						class="w-12 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
 						@click="
 							() => {
 								setEditingIntroduction(true);
 							}
 						"
+						title="Edit Introduction Section"
 					>
 						<Icon icon="ic:baseline-edit" width="30" />
-					</a>
+					</button>
 				</div>
 			</Transition>
 		</template>

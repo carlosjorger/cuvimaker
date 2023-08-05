@@ -14,24 +14,26 @@
 			</div>
 		</template>
 		<template #footer>
-			<a
+			<button
 				class="w-12 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
+				title="Delete a Section"
 			>
 				<Icon
 					@click="$emit('delete-section')"
 					icon="mdi:trash"
 					width="30"
 				/>
-			</a>
-			<a
+			</button>
+			<button
 				class="w-12 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
+				title="Edit a Section"
 			>
 				<Icon
 					icon="material-symbols:edit"
 					width="30"
 					@click="$emit('edit-section')"
 				/>
-			</a>
+			</button>
 		</template>
 	</SubsectionCard>
 </template>
