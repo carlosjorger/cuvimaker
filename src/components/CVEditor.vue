@@ -104,16 +104,7 @@
 			return { localStorageStore };
 		},
 		data() {
-			this.localStorageStore.loadResume();
-			const resume = this.localStorageStore.resume;
-			return {
-				showModal: false,
-				editIndex: undefined as number | undefined,
-				resume: resume,
-				confirmationDeleteModal: false,
-				sectionIndexToDelete: -1,
-				isEditingResume: true,
-			};
+			return this.initialState();
 		},
 		provide() {
 			return {
@@ -121,6 +112,18 @@
 			};
 		},
 		methods: {
+			initialState() {
+				this.localStorageStore.loadResume();
+				const resume = this.localStorageStore.resume;
+				return {
+					showModal: false,
+					editIndex: undefined as number | undefined,
+					resume: resume,
+					confirmationDeleteModal: false,
+					sectionIndexToDelete: -1,
+					isEditingResume: true,
+				};
+			},
 			confirmDeleteSection(index: number) {
 				this.confirmationDeleteModal = true;
 				this.sectionIndexToDelete = index;
