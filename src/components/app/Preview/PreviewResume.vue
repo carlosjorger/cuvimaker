@@ -34,6 +34,7 @@
 		createResumePDFDefinition,
 	} from '../../../utils/resumePDF';
 	import { Introduction } from '../../../models/Introduction';
+	import type { PropType } from 'vue';
 	export default {
 		components: {
 			AppearFadePanelTransition,
@@ -43,7 +44,7 @@
 		},
 		props: {
 			resume: {
-				type: Resume,
+				type: Object as PropType<Resume>,
 				required: true,
 			},
 			canShowPreviewResume: {
