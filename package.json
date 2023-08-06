@@ -8,7 +8,8 @@
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"test": "vitest"
 	},
 	"dependencies": {
 		"@astrojs/tailwind": "^4.0.0",
@@ -16,12 +17,14 @@
 		"@fontsource/montserrat": "^5.0.5",
 		"@fortawesome/fontawesome-svg-core": "^6.4.0",
 		"@types/node": "^20.4.5",
+		"@vitejs/plugin-vue": "^4.2.3",
 		"@vuelidate/core": "^2.0.3",
 		"@vuelidate/validators": "^2.0.3",
 		"@vuepic/vue-datepicker": "^5.4.0",
 		"astro": "^2.9.6",
 		"astro-compressor": "^0.4.0",
 		"astro-icon": "^0.8.1",
+		"jsdom": "^22.1.0",
 		"mitt": "^3.0.1",
 		"pdfmake": "^0.2.7",
 		"pinia": "^2.1.6",

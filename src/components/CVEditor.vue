@@ -19,7 +19,8 @@
 					/>
 					<SubsectionAlign>
 						<BasicButton
-							:name="'Add Section'"
+							class="add-section"
+							:name="'Add a new Section'"
 							@click="
 								() => {
 									showModal = true;
