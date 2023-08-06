@@ -46,7 +46,8 @@
 						:section="section"
 						:prevSubsection="subsection"
 						@show-confirmation-to-delete="
-							confirmationDeleteModal = true
+							selectedSectionIndex = index;
+							confirmationDeleteModal = true;
 						"
 					/>
 				</transition-group>
@@ -108,6 +109,7 @@
 			section: Section;
 			sections: Section[];
 			confirmationDeleteModal: boolean;
+			selectedSectionIndex: number;
 		} {
 			return {
 				...this.initialState(),
@@ -128,6 +130,7 @@
 			initialState(): {
 				section: Section;
 				confirmationDeleteModal: boolean;
+				selectedSectionIndex: number;
 			} {
 				let section = new Section();
 				if (this.editIndex != undefined && this.isEditing) {
@@ -141,6 +144,7 @@
 				return {
 					section: section,
 					confirmationDeleteModal: false,
+					selectedSectionIndex: 0,
 				};
 			},
 			resetWindow: function () {
@@ -179,9 +183,9 @@
 					this.closeModal();
 				}
 			},
-			removeSubsection(subsectionIndex: number) {
+			removeSubsection() {
 				this.confirmationDeleteModal = false;
-				this.section.removeSubsection(subsectionIndex);
+				this.section.removeSubsection(this.selectedSectionIndex);
 			},
 		},
 		validations() {
