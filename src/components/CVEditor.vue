@@ -105,6 +105,7 @@
 		},
 		provide() {
 			return {
+				// TODO: use resume.sections from store
 				sections: computed(() => this.resume.sections),
 			};
 		},
