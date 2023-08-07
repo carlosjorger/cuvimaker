@@ -11,7 +11,6 @@
 			name: {
 				type: String,
 			},
-			isBeingEditingIntroduction: Boolean,
 		},
 	};
 </script>

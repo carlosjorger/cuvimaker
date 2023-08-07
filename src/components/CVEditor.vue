@@ -11,9 +11,6 @@
 				<div v-if="isEditingResume" class="relative">
 					<EditorIntroduction
 						:introduction="resume.introduction"
-						:isBeingEditingIntroduction="
-							resume.isBeingEditingIntroduction
-						"
 						@set-editing-introduction="setEditingIntroduction"
 						@set-introduction="setIntroduction"
 					/>
@@ -48,9 +45,6 @@
 							:section="section"
 							:key="section.name"
 							@delete-section="confirmDeleteSection(index)"
-							:isBeingEditingIntroduction="
-								resume.isBeingEditingIntroduction
-							"
 							@edit-section="
 								() => {
 									showModal = true;
@@ -82,6 +76,7 @@
 	import type { Introduction } from '../models/Introduction';
 	import AppearFadePanelTransition from './shared/Transition/AppearFadePanelTransition.vue';
 	import { useLocalStorageStore } from '../stores/localStorageStore';
+	import { useResumeStore } from '../stores/resumeStore';
 	import { appStore } from '../store';
 	const AsyncCreateSectionModal = defineAsyncComponent(
 		() => import('./app/Section/CreateSectionModal.vue')
@@ -101,8 +96,9 @@
 			AsyncCreateSectionModal,
 		},
 		setup() {
+			const resumeStore = useResumeStore(appStore);
 			const localStorageStore = useLocalStorageStore(appStore);
-			return { localStorageStore };
+			return { localStorageStore, resumeStore };
 		},
 		data() {
 			return this.initialState();
@@ -115,7 +111,9 @@
 		methods: {
 			initialState() {
 				this.localStorageStore.loadResume();
-				const resume = this.localStorageStore.resume;
+				const resumeFromLocalStorage = this.localStorageStore.resume;
+				this.resumeStore.setResume(resumeFromLocalStorage);
+				const { resume } = this.resumeStore;
 				return {
 					showModal: false,
 					editIndex: undefined as number | undefined,
@@ -130,12 +128,12 @@
 				this.sectionIndexToDelete = index;
 			},
 			deleteSection(index: number) {
-				this.resume.sections.splice(index, 1);
+				this.resumeStore.deleteSection(index);
 				this.confirmationDeleteModal = false;
 				this.saveResume();
 			},
 			setEditingIntroduction(value: boolean) {
-				this.resume.isBeingEditingIntroduction = value;
+				this.resumeStore.isBeingEditingIntroduction = value;
 			},
 			setIntroduction(introduction: Introduction) {
 				this.resume.introduction = introduction;

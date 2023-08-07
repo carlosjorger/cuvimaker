@@ -1,8 +1,5 @@
 <template>
-	<SubsectionCard
-		:disableEditSetting="isBeingEditingIntroduction"
-		:ifEditing="false"
-	>
+	<SubsectionCard :ifEditing="false">
 		<template #body>
 			<div @click="changeSetting">
 				<PreviewSectionHeader :name="section?.name" />
@@ -45,6 +42,8 @@
 	import { scrollSmoothToElement } from '../../../../utils/scrollServices';
 	import PreviewSectionHeader from '../../Preview/PreviewSectionHeader.vue';
 	import type { PropType } from 'vue';
+	import { useResumeStore } from '../../../../stores/resumeStore';
+	import { appStore } from '../../../../store';
 	export default {
 		name: 'EditorSection',
 		components: {
@@ -58,7 +57,12 @@
 				type: Object as PropType<Section>,
 				require: true,
 			},
-			isBeingEditingIntroduction: Boolean,
+		},
+		setup() {
+			const resumeStore = useResumeStore(appStore);
+			return {
+				resumeStore,
+			};
 		},
 		mounted() {
 			scrollSmoothToElement(this.$el);
@@ -67,6 +71,11 @@
 			return {
 				showSetting: false,
 			};
+		},
+		computed: {
+			isBeingEditingIntroduction() {
+				return this.resumeStore.isBeingEditingIntroduction;
+			},
 		},
 		methods: {
 			changeSetting() {

@@ -1,8 +1,5 @@
 <template>
-	<SubsectionCard
-		:disableEditSetting="isBeingEditingIntroduction"
-		:ifEditing="isBeingEditingIntroduction"
-	>
+	<SubsectionCard :ifEditing="isBeingEditingIntroduction">
 		<template #body>
 			<!-- TODO: Make subsection forms like website -->
 			<form v-on:submit.prevent class="font-extrabold">
@@ -136,9 +133,6 @@
 							) in currentIntroduction.socialAccounts"
 							:key="socialAccount.id"
 							:socialAccount="socialAccount"
-							:isBeingEditingIntroduction="
-								isBeingEditingIntroduction
-							"
 							:index="index"
 						/>
 					</ListTransition>
@@ -206,6 +200,7 @@
 	import ListTransition from '../../../shared/Transition/ListTransition.vue';
 	import BasicLink from '../../../shared/Anchor/BasicLink.vue';
 	import BasicEmail from '../../../shared/Anchor/BasicEmail.vue';
+	import { useResumeStore } from '../../../../stores/resumeStore';
 
 	export default {
 		components: {
@@ -221,9 +216,12 @@
 		},
 		setup() {
 			const introductionStore = useIntroductionStore(appStore);
+			const resumeStore = useResumeStore(appStore);
+
 			return {
 				v$: useVuelidate({ $scope: true }),
 				introductionStore,
+				resumeStore,
 			};
 		},
 		name: 'EditorIntroduction',
@@ -232,7 +230,6 @@
 				type: Object as PropType<Introduction>,
 				required: true,
 			},
-			isBeingEditingIntroduction: Boolean,
 		},
 		data(): {
 			currentIntroduction: Introduction;
@@ -280,6 +277,11 @@
 				);
 
 				this.currentSocialAccount = '';
+			},
+		},
+		computed: {
+			isBeingEditingIntroduction() {
+				return this.resumeStore.isBeingEditingIntroduction;
 			},
 		},
 		validations: {

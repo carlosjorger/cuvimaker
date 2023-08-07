@@ -75,6 +75,7 @@
 	import SubsectionForm from '../../../shared/TextArea/BasicTextArea.vue';
 	import CircleButtonWithIcon from '../../../shared/Button/CircleButtonWithIcon.vue';
 	import IconByUrl from '../../../shared/Icon/IconByUrl.vue';
+	import { useResumeStore } from '../../../../stores/resumeStore';
 	export default {
 		components: {
 			BasicLink,
@@ -85,8 +86,11 @@
 		},
 		setup() {
 			const introductionStore = useIntroductionStore(appStore);
+			const resumeStore = useResumeStore(appStore);
+
 			return {
 				introductionStore,
+				resumeStore,
 			};
 		},
 		name: 'EditorSocialAccount',
@@ -97,10 +101,6 @@
 			},
 			index: {
 				type: Number,
-				required: true,
-			},
-			isBeingEditingIntroduction: {
-				type: Boolean,
 				required: true,
 			},
 		},
@@ -158,6 +158,9 @@
 		computed: {
 			selecting() {
 				return this.isSelected(this.socialAccount.id);
+			},
+			isBeingEditingIntroduction() {
+				return this.resumeStore.isBeingEditingIntroduction;
 			},
 		},
 	};

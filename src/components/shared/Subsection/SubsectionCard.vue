@@ -22,20 +22,24 @@
 	import { scrollSmoothToElement } from '../../../utils/scrollServices';
 	import mitt from 'mitt';
 	import SubsectionAlign from './SubsectionAlign.vue';
+	import { useResumeStore } from '../../../stores/resumeStore';
+	import { appStore } from '../../../store';
 	const emitter = mitt();
 	export default {
 		name: 'SubsectionCard',
 		props: {
-			disableEditSetting: {
-				type: Boolean,
-				default: false,
-			},
 			ifEditing: {
 				type: Boolean,
 				default: false,
 			},
 		},
 		components: { SubsectionAlign },
+		setup() {
+			const resumeStore = useResumeStore(appStore);
+			return {
+				resumeStore,
+			};
+		},
 		data() {
 			return {
 				isBeingShowedSetting: false,
@@ -58,6 +62,11 @@
 					scrollSmoothToElement(this.$el);
 					this.isBeingShowedSetting = true;
 				}
+			},
+		},
+		computed: {
+			disableEditSetting() {
+				return this.resumeStore.isBeingEditingIntroduction;
 			},
 		},
 	};
