@@ -9,7 +9,6 @@ function findByText(wrap: VueWrapper, selector: string, text: string) {
 
 describe('CVEditor.vue Test', () => {
 	it('testing CVEditor load a resume sections', async () => {
-		// TODO: mock localstorage store https://pinia.vuejs.org/cookbook/testing.html
 		const wrapper = mount(CVEditor);
 
 		const resume = new Resume();

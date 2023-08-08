@@ -40,7 +40,7 @@
 						@cancel="confirmationDeleteModal = false"
 					/>
 					<ListTransition class="z-0 block">
-						<section-component
+						<editor-section
 							v-for="(section, index) in resume.sections"
 							:section="section"
 							:key="section.name"
@@ -64,7 +64,7 @@
 	</div>
 </template>
 <script lang="ts">
-	import SectionComponent from './app/Editor/Section/EditorSection.vue';
+	import EditorSection from './app/Editor/Section/EditorSection.vue';
 	import BasicButton from './shared/Button/BasicButton.vue';
 	import { computed, defineAsyncComponent } from 'vue';
 	import EditorIntroduction from './app/Editor/Introduction/EditorIntroduction.vue';
@@ -78,13 +78,14 @@
 	import { useLocalStorageStore } from '../stores/localStorageStore';
 	import { useResumeStore } from '../stores/resumeStore';
 	import { appStore } from '../store';
+	import type { Resume } from '../models/Resume';
 	const AsyncCreateSectionModal = defineAsyncComponent(
 		() => import('./app/Section/CreateSectionModal.vue')
 	);
 	export default {
 		name: 'CVEditor',
 		components: {
-			SectionComponent,
+			EditorSection,
 			BasicButton,
 			EditorIntroduction,
 			ListTransition,
@@ -110,7 +111,14 @@
 			};
 		},
 		methods: {
-			initialState() {
+			initialState(): {
+				showModal: boolean;
+				editIndex: number | undefined;
+				resume: Resume;
+				confirmationDeleteModal: boolean;
+				sectionIndexToDelete: number;
+				isEditingResume: boolean;
+			} {
 				this.localStorageStore.loadResume();
 				const resumeFromLocalStorage = this.localStorageStore.resume;
 				this.resumeStore.setResume(resumeFromLocalStorage);

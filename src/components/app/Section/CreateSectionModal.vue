@@ -84,6 +84,8 @@
 	import ErrorsSection from '../../shared/Error/ErrorsSection.vue';
 	import ModalTemplate from '../../shared/others/ModalTemplate.vue';
 	import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
+	import { useResumeStore } from '../../../stores/resumeStore';
+	import { appStore } from '../../../store';
 
 	export default {
 		name: 'CreateSectionModal',
@@ -104,16 +106,21 @@
 			ModalTemplate,
 			ConfirmationModal,
 		},
+		setup() {
+			const resumeStore = useResumeStore(appStore);
 
+			return {
+				v$: useVuelidate({ $scope: false }),
+				resumeStore,
+			};
+		},
 		data(): {
 			section: Section;
-			sections: Section[];
 			confirmationDeleteModal: boolean;
 			selectedSectionIndex: number;
 		} {
 			return {
 				...this.initialState(),
-				sections: inject('sections', [] as Section[]),
 			};
 		},
 		provide() {
@@ -123,8 +130,9 @@
 		},
 		methods: {
 			anySectionWithThisName() {
-				return !this.sections.some(
-					(s, i) => i != this.editIndex && s.name == this.section.name
+				return this.resumeStore.anySectionWithThisName(
+					this.editIndex,
+					this.section.name
 				);
 			},
 			initialState(): {
@@ -134,7 +142,9 @@
 			} {
 				let section = new Section();
 				if (this.editIndex != undefined && this.isEditing) {
-					const tempSection = this.sections[this.editIndex];
+					const tempSection = this.resumeStore.getSection(
+						this.editIndex
+					);
 					section = new Section(
 						tempSection.name,
 						tempSection.subsections,
@@ -155,7 +165,7 @@
 				if (this.v$.$error) {
 					return;
 				}
-				this.sections.push(section);
+				this.resumeStore.addSection(section);
 				this.closeModal();
 				this.v$.$reset();
 			},
@@ -177,7 +187,10 @@
 						return;
 					}
 					if (this.editIndex != undefined) {
-						this.sections[this.editIndex] = this.section;
+						this.resumeStore.setSection(
+							this.editIndex,
+							this.section
+						);
 					}
 					this.v$.$reset();
 					this.closeModal();
@@ -201,11 +214,7 @@
 				},
 			};
 		},
-		setup() {
-			return {
-				v$: useVuelidate({ $scope: false }),
-			};
-		},
+
 		watch: {
 			showModal(newValue) {
 				if (newValue) {
