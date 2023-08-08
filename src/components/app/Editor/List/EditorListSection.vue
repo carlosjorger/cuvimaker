@@ -23,7 +23,6 @@
 				editing: inject('editing', false),
 				hasElementList: false,
 				subsection: inject('subsection', new Subsection()),
-				showModal: inject('showModal', false),
 			};
 		},
 		mounted() {

@@ -80,7 +80,6 @@
 	import BasicButton from '../../shared/Button/BasicButton.vue';
 	import { useVuelidate } from '@vuelidate/core';
 	import { helpers, required } from '@vuelidate/validators';
-	import { inject, computed } from 'vue';
 	import ErrorsSection from '../../shared/Error/ErrorsSection.vue';
 	import ModalTemplate from '../../shared/others/ModalTemplate.vue';
 	import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
@@ -121,11 +120,6 @@
 		} {
 			return {
 				...this.initialState(),
-			};
-		},
-		provide() {
-			return {
-				showModal: computed(() => this.showModal),
 			};
 		},
 		methods: {

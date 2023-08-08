@@ -66,7 +66,7 @@
 <script lang="ts">
 	import EditorSection from './app/Editor/Section/EditorSection.vue';
 	import BasicButton from './shared/Button/BasicButton.vue';
-	import { computed, defineAsyncComponent } from 'vue';
+	import { defineAsyncComponent } from 'vue';
 	import EditorIntroduction from './app/Editor/Introduction/EditorIntroduction.vue';
 	import ListTransition from './shared/Transition/ListTransition.vue';
 	import ConfirmationModal from './shared/Modal/ConfirmationModal.vue';
@@ -103,12 +103,6 @@
 		},
 		data() {
 			return this.initialState();
-		},
-		provide() {
-			return {
-				// TODO: use resume.sections from store
-				sections: computed(() => this.resume.sections),
-			};
 		},
 		methods: {
 			initialState(): {
