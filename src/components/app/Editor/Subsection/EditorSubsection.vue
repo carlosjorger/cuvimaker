@@ -81,6 +81,7 @@
 	import { useSectionStore } from '../../../../stores/SectionStore';
 	import { appStore } from '../../../../store';
 	const emitter = mitt();
+	//TODO: refactor this component code
 	export default {
 		name: 'EditorSubsection',
 		props: {
