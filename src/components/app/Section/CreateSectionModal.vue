@@ -134,6 +134,7 @@
 				confirmationDeleteModal: boolean;
 				selectedSectionIndex: number;
 			} {
+				//TODO: create section pinia store
 				let section = new Section();
 				if (this.editIndex != undefined && this.isEditing) {
 					const tempSection = this.resumeStore.getSection(
