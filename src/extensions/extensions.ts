@@ -5,7 +5,7 @@ import { TimeInterval } from '../models/SubsectionTimeInterval';
 
 export function copySection(section?: Section) {
 	if (section) {
-		return new Section(section.name, section.subsections, section.count);
+		return new Section(section.name, section.subsections);
 	}
 }
 export function copySubsection(subsection: Subsection) {

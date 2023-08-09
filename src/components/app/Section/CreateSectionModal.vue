@@ -38,12 +38,11 @@
 					class="relative block h-96 overflow-scroll overflow-x-hidden p-5 max-md:p-3 max-sm:p-2"
 					tag="div"
 				>
-					<subsection-menu
+					<editor-subsection
 						ref="editorSubsection"
 						v-for="(subsection, index) in section.subsections"
 						:key="subsection.id"
 						:subsectionIndex="index"
-						:section="section"
 						:prevSubsection="subsection"
 						@show-confirmation-to-delete="
 							selectedSectionIndex = index;
@@ -75,7 +74,7 @@
 </template>
 <script lang="ts">
 	import CloseAddButton from '../../shared/Button/CloseAddButton.vue';
-	import SubsectionMenu from '../Editor/Subsection/EditorSubsection.vue';
+	import EditorSubsection from '../Editor/Subsection/EditorSubsection.vue';
 	import { Section } from '../../../models/Section';
 	import BasicButton from '../../shared/Button/BasicButton.vue';
 	import { useVuelidate } from '@vuelidate/core';
@@ -84,6 +83,8 @@
 	import ModalTemplate from '../../shared/others/ModalTemplate.vue';
 	import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
 	import { useResumeStore } from '../../../stores/resumeStore';
+	import { useSectionStore } from '../../../stores/SectionStore';
+
 	import { appStore } from '../../../store';
 
 	export default {
@@ -98,7 +99,7 @@
 			},
 		},
 		components: {
-			SubsectionMenu,
+			EditorSubsection,
 			CloseAddButton,
 			BasicButton,
 			ErrorsSection,
@@ -107,10 +108,11 @@
 		},
 		setup() {
 			const resumeStore = useResumeStore(appStore);
-
+			const sectionStore = useSectionStore(appStore);
 			return {
 				v$: useVuelidate({ $scope: false }),
 				resumeStore,
+				sectionStore,
 			};
 		},
 		data(): {
@@ -135,17 +137,15 @@
 				selectedSectionIndex: number;
 			} {
 				//TODO: create section pinia store
-				let section = new Section();
 				if (this.editIndex != undefined && this.isEditing) {
 					const tempSection = this.resumeStore.getSection(
 						this.editIndex
 					);
-					section = new Section(
-						tempSection.name,
-						tempSection.subsections,
-						tempSection.count
+					this.sectionStore.setSection(
+						new Section(tempSection.name, tempSection.subsections)
 					);
 				}
+				const { section } = this.sectionStore;
 				return {
 					section: section,
 					confirmationDeleteModal: false,
@@ -168,12 +168,13 @@
 				this.$emit('close-modal');
 			},
 			updateSection: function () {
-				if (this.section.editingIndex != -1) {
+				if (this.sectionStore.subsectionEditing) {
 					(
-						this.$refs.editorSubsection as (typeof SubsectionMenu)[]
+						this.$refs
+							.editorSubsection as (typeof EditorSubsection)[]
 					).forEach((subsectionChild) => {
 						subsectionChild.tryingGoToThisSubsection(
-							this.section.editingIndex
+							this.sectionStore.editingIndex
 						);
 					});
 				} else if (this.isEditing) {
@@ -193,7 +194,7 @@
 			},
 			removeSubsection() {
 				this.confirmationDeleteModal = false;
-				this.section.removeSubsection(this.selectedSectionIndex);
+				this.sectionStore.removeSubsection(this.selectedSectionIndex);
 			},
 		},
 		validations() {

@@ -62,7 +62,6 @@
 <script lang="ts">
 	import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
 	import { Subsection } from '../../../../models/Subsection';
-	import { Section } from '../../../../models/Section';
 	import mitt from 'mitt';
 	import SubsectionForm from '../../../shared/TextArea/BasicTextArea.vue';
 	import { scrollSmoothToElement } from '../../../../utils/scrollServices';
@@ -79,14 +78,12 @@
 		copySubsection,
 		isEmptySubsection,
 	} from '../../../../extensions/extensions';
+	import { useSectionStore } from '../../../../stores/SectionStore';
+	import { appStore } from '../../../../store';
 	const emitter = mitt();
 	export default {
 		name: 'EditorSubsection',
 		props: {
-			section: {
-				type: Section,
-				required: true,
-			},
 			prevSubsection: {
 				type: Subsection,
 				required: true,
@@ -107,8 +104,11 @@
 			ShakeTemplate,
 		},
 		setup() {
+			const sectionStore = useSectionStore(appStore);
+
 			return {
 				v$: useVuelidate({ $scope: true }),
+				sectionStore,
 			};
 		},
 		directives: {
@@ -118,7 +118,11 @@
 				}
 			},
 		},
-		data() {
+		data(): {
+			subsection: Subsection;
+			editing: boolean;
+			shake: boolean;
+		} {
 			return this.initialState();
 		},
 		provide() {
@@ -129,7 +133,7 @@
 		},
 		mounted() {
 			emitter.on('editing', (index) => {
-				this.tryingGoToThisSubsection(index);
+				this.tryingGoToThisSubsection(index as number);
 			});
 		},
 		methods: {
@@ -160,17 +164,17 @@
 				if (this.subsection.last) {
 					this.resetWindow();
 					this.addSubSection();
-				} else if (this.section.subsectionEditing) {
+				} else if (this.sectionStore.subsectionEditing) {
 					this.emmitSendEditing();
 				} else {
 					this.$emit('show-confirmation-to-delete');
 				}
 			},
 			addSubSection() {
-				if (this.section.subsectionEditing) {
+				if (this.sectionStore.subsectionEditing) {
 					this.emmitSendEditing();
 				} else {
-					this.section.addNewSubsection();
+					this.sectionStore.addNewSubsection();
 				}
 			},
 			saveSubSection() {
@@ -190,21 +194,21 @@
 				this.v$.$validate();
 			},
 			disabledEditing() {
-				this.section.disabledEditing();
+				this.sectionStore.disabledEditing();
 			},
 
 			editSubSection() {
-				if (this.section.subsectionEditing) {
+				if (this.sectionStore.subsectionEditing) {
 					this.emmitSendEditing();
 				} else {
 					this.setEditingIndex();
 				}
 			},
 			setEditingIndex() {
-				this.section.setEditingIndex(this.subsectionIndex);
+				this.sectionStore.setEditingIndex(this.subsectionIndex);
 			},
 			emmitSendEditing() {
-				emitter?.emit('editing', this.section.editingIndex);
+				emitter?.emit('editing', this.sectionStore.editingIndex);
 			},
 			shakeSubsection() {
 				this.shake = true;
@@ -222,11 +226,14 @@
 			},
 		},
 		watch: {
-			'section.editingIndex'(newValue: number) {
+			'sectionStore.editingIndex'(newValue: number) {
 				this.editing = newValue == this.subsectionIndex;
 			},
 			'prevSubsection.last'(newValue: boolean) {
 				this.subsection.last = newValue;
+			},
+			prevSubsection(newValue: Subsection) {
+				this.subsection.setSubsection(newValue);
 			},
 			section() {
 				this.resetWindow();
