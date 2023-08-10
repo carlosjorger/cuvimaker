@@ -24,6 +24,9 @@ export const useSectionStore = defineStore('section', {
 		setSection(section: Section) {
 			this.section = section;
 		},
+		clear() {
+			this.section = new Section();
+		},
 		disabledEditing() {
 			this.editingIndex = -1;
 		},
@@ -35,6 +38,9 @@ export const useSectionStore = defineStore('section', {
 			this.count++;
 			this.editingIndex = this.lastSubsectionIndex;
 			this.section.subsections.push(new Subsection(this.count));
+		},
+		setSubsection(index: number, subsection: Subsection) {
+			this.section.subsections[index] = subsection;
 		},
 		removeSubsection(index: number) {
 			if (this.editingIndex == index) {

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { Resume } from '../models/Resume';
-import type { Section } from '../models/Section';
+import { Section } from '../models/Section';
 type ResumeStoreStatus = {
 	resume: Resume;
 	isBeingEditingIntroduction: boolean;
@@ -29,7 +29,10 @@ export const useResumeStore = defineStore('resume', {
 		},
 
 		setSection(index: number, section: Section) {
-			this.resume.sections[index] = section;
+			this.resume.sections[index] = new Section(
+				section.name,
+				section.subsections
+			);
 		},
 		setResume(resume: Resume) {
 			this.resume = resume;

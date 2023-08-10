@@ -328,7 +328,6 @@ export function createResumePDFDefinition(
 		},
 	};
 }
-// TODO: fix bug about subsection without element list the date range is not showed
 export async function savePDF(resumeDefinition: TDocumentDefinitions) {
 	const { createPdf } = await import('pdfmake/build/pdfmake.min');
 	const pdfFonts = await import('pdfmake/build/vfs_fonts');

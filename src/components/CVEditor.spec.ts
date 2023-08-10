@@ -40,6 +40,5 @@ describe('CVEditor.vue Test', () => {
 			.at(0);
 		deleteConfirmationButton?.trigger('click');
 		await flushPromises();
-		console.log(wrapper.text());
 	});
 });

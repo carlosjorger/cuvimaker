@@ -75,7 +75,6 @@
 <script lang="ts">
 	import CloseAddButton from '../../shared/Button/CloseAddButton.vue';
 	import EditorSubsection from '../Editor/Subsection/EditorSubsection.vue';
-	import { Section } from '../../../models/Section';
 	import BasicButton from '../../shared/Button/BasicButton.vue';
 	import { useVuelidate } from '@vuelidate/core';
 	import { helpers, required } from '@vuelidate/validators';
@@ -86,6 +85,7 @@
 	import { useSectionStore } from '../../../stores/SectionStore';
 
 	import { appStore } from '../../../store';
+	import type { Section } from '../../../models/Section';
 
 	export default {
 		name: 'CreateSectionModal',
@@ -136,14 +136,13 @@
 				confirmationDeleteModal: boolean;
 				selectedSectionIndex: number;
 			} {
-				//TODO: create section pinia store
 				if (this.editIndex != undefined && this.isEditing) {
 					const tempSection = this.resumeStore.getSection(
 						this.editIndex
 					);
-					this.sectionStore.setSection(
-						new Section(tempSection.name, tempSection.subsections)
-					);
+					this.sectionStore.setSection(tempSection);
+				} else if (this.editIndex == undefined) {
+					this.sectionStore.clear();
 				}
 				const { section } = this.sectionStore;
 				return {

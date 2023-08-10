@@ -70,7 +70,7 @@
 	import EditorTimeIntervalSection from '../TimeInterval/EditorTimeIntervalSection.vue';
 	import ModalButton from '../../../shared/Button/ModalButton.vue';
 	import EditorListSection from '../List/EditorListSection.vue';
-	import { computed } from 'vue';
+	import { PropType, computed } from 'vue';
 	import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
 	import CircleButtonWithIcon from '../../../shared/Button/CircleButtonWithIcon.vue';
 	import ShakeTemplate from '../../../shared/others/ShakeTemplate.vue';
@@ -86,7 +86,7 @@
 		name: 'EditorSubsection',
 		props: {
 			prevSubsection: {
-				type: Subsection,
+				type: Object as PropType<Subsection>,
 				required: true,
 			},
 			subsectionIndex: {
@@ -184,28 +184,28 @@
 					return;
 				}
 				this.v$.$reset();
-				this.prevSubsection.setSubsection(this.subsection);
-				this.disabledEditing();
+				this.sectionStore.removeSubsection;
+				this.sectionStore.setSubsection(
+					this.subsectionIndex,
+					copySubsection(this.subsection)
+				);
+				this.sectionStore.disabledEditing();
 			},
 			cancelSubSection() {
-				this.subsection.setSubsection(this.prevSubsection);
-				this.disabledEditing();
+				this.subsection = copySubsection(this.prevSubsection);
+				this.sectionStore.disabledEditing();
 			},
 			validate() {
 				this.v$.$validate();
 			},
-			disabledEditing() {
-				this.sectionStore.disabledEditing();
-			},
-
 			editSubSection() {
 				if (this.sectionStore.subsectionEditing) {
 					this.emmitSendEditing();
 				} else {
-					this.setEditingIndex();
+					this.setEditingIndexToThisSubsection();
 				}
 			},
-			setEditingIndex() {
+			setEditingIndexToThisSubsection() {
 				this.sectionStore.setEditingIndex(this.subsectionIndex);
 			},
 			emmitSendEditing() {
