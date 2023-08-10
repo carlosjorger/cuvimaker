@@ -1,3 +1,4 @@
+//TODO: split the functionality from this file
 import type {
 	ContentColumns,
 	Content,
