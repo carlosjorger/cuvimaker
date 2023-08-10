@@ -194,13 +194,29 @@ function createSubsectionDefinition(subsection: Subsection): Content {
 	result.push(createElementsDefinition(subsection.elements));
 	return result;
 }
+function createSubsectionDefinitionWhitoutElements(
+	subsection: Subsection
+): Content {
+	const result = [{ text: subsection.title, style: 'h4' }] as Content[];
+	if (subsection.text) {
+		result.push({ text: subsection.text, style: 'h5' });
+	}
+	result.push(
+		createSubsectionTimeIntervalDefinition(
+			subsection.subsectionTimeInterval
+		)
+	);
+	return result;
+}
 function createSubsectionsDefinition(subsections: Subsection[]): Content {
 	const allSubsectionsDoesntHaveChildrens = subsections.every(
 		(subsection) => subsection.elements.length == 0
 	);
 	if (allSubsectionsDoesntHaveChildrens) {
 		return {
-			ul: subsections.map((subsection) => ({ text: subsection.title })),
+			ul: subsections.map((subsection) =>
+				createSubsectionDefinitionWhitoutElements(subsection)
+			),
 			style: 'ul',
 		};
 	} else {
