@@ -70,7 +70,7 @@
 	import EditorTimeIntervalSection from '../TimeInterval/EditorTimeIntervalSection.vue';
 	import ModalButton from '../../../shared/Button/ModalButton.vue';
 	import EditorListSection from '../List/EditorListSection.vue';
-	import { PropType, computed } from 'vue';
+	import { type PropType, computed } from 'vue';
 	import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
 	import CircleButtonWithIcon from '../../../shared/Button/CircleButtonWithIcon.vue';
 	import ShakeTemplate from '../../../shared/others/ShakeTemplate.vue';
