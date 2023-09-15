@@ -1,5 +1,6 @@
 <template>
 	<!-- TODO: pass this div to astro -->
+	<!-- TODO: center cv and make sections wider  -->
 	<div
 		class="dark:border-3 overflow-hidden rounded-lg border-4 border-primary bg-primary dark:border-zinc-300 dark:bg-dark-primary"
 	>
