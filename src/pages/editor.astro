@@ -5,5 +5,9 @@ import CVEditor from '../components/CVEditor.vue';
 
 <!-- TODO: to use another client client:load-->
 <BaseLayout pageTitle="Editor">
-	<CVEditor client:only="vue" />
+	<div
+		class="dark:border-3 overflow-hidden rounded-lg border-4 border-primary bg-primary dark:border-zinc-300 dark:bg-dark-primary"
+	>
+		<CVEditor client:only="vue" />
+	</div>
 </BaseLayout>

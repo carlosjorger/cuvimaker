@@ -1,8 +1,4 @@
 <template>
-	<!-- TODO: pass this div to astro -->
-	<!-- TODO: center cv and make sections wider  -->
-	<EditorBar v-model="isEditingResume" />
-
 	<div
 		class="dark:border-t-3 max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-scroll overflow-x-hidden border-t-4 border-primary bg-[#eee8ff] p-4 dark:border-zinc-300 dark:bg-[#130624] max-md:p-2"
 	>
@@ -62,37 +58,42 @@
 	</div>
 </template>
 <script lang="ts">
-	import EditorSection from './app/Editor/Section/EditorSection.vue';
-	import BasicButton from './shared/Button/BasicButton.vue';
 	import { defineAsyncComponent } from 'vue';
-	import EditorIntroduction from './app/Editor/Introduction/EditorIntroduction.vue';
-	import ListTransition from './shared/Transition/ListTransition.vue';
-	import ConfirmationModal from './shared/Modal/ConfirmationModal.vue';
-	import SubsectionAlign from './shared/Subsection/SubsectionAlign.vue';
-	import EditorBar from './app/Editor/EditorBar.vue';
-	import PreviewResume from './app/Preview/PreviewResume.vue';
-	import type { Introduction } from '../models/Introduction';
-	import AppearFadePanelTransition from './shared/Transition/AppearFadePanelTransition.vue';
-	import { useLocalStorageStore } from '../stores/localStorageStore';
-	import { useResumeStore } from '../stores/resumeStore';
-	import { appStore } from '../store';
-	import type { Resume } from '../models/Resume';
+	import BasicButton from '../../shared/Button/BasicButton.vue';
+	import SubsectionAlign from '../../shared/Subsection/SubsectionAlign.vue';
+	import AppearFadePanelTransition from '../../shared/Transition/AppearFadePanelTransition.vue';
+	import EditorIntroduction from './Introduction/EditorIntroduction.vue';
+	import PreviewResume from '../Preview/PreviewResume.vue';
+	import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
+	import ListTransition from '../../shared/Transition/ListTransition.vue';
+	import EditorSection from './Section/EditorSection.vue';
+	import type { Introduction } from '../../../models/Introduction';
+	import type { Resume } from '../../../models/Resume';
+	import { useLocalStorageStore } from '../../../stores/localStorageStore';
+	import { useResumeStore } from '../../../stores/resumeStore';
+	import { appStore } from '../../../store';
+
 	const AsyncCreateSectionModal = defineAsyncComponent(
-		() => import('./app/Section/CreateSectionModal.vue')
+		() => import('../../app/Section/CreateSectionModal.vue')
 	);
 	export default {
-		name: 'CVEditor',
+		name: 'EditorResume',
+		props: {
+			isEditingResume: {
+				type: Boolean,
+				required: true,
+			},
+		},
 		components: {
-			EditorSection,
-			BasicButton,
-			EditorIntroduction,
-			ListTransition,
-			ConfirmationModal,
-			SubsectionAlign,
 			AppearFadePanelTransition,
-			EditorBar,
-			PreviewResume,
+			EditorIntroduction,
+			SubsectionAlign,
+			BasicButton,
 			AsyncCreateSectionModal,
+			PreviewResume,
+			ConfirmationModal,
+			ListTransition,
+			EditorSection,
 		},
 		setup() {
 			const resumeStore = useResumeStore(appStore);
@@ -109,7 +110,6 @@
 				resume: Resume;
 				confirmationDeleteModal: boolean;
 				sectionIndexToDelete: number;
-				isEditingResume: boolean;
 			} {
 				this.localStorageStore.loadResume();
 				const resumeFromLocalStorage = this.localStorageStore.resume;
@@ -121,7 +121,6 @@
 					resume: resume,
 					confirmationDeleteModal: false,
 					sectionIndexToDelete: -1,
-					isEditingResume: true,
 				};
 			},
 			confirmDeleteSection(index: number) {
@@ -150,8 +149,3 @@
 		},
 	};
 </script>
-<style>
-	article {
-		width: 40%;
-	}
-</style>
