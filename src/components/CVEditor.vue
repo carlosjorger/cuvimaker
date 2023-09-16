@@ -1,6 +1,4 @@
 <template>
-	<!-- TODO: pass this div to astro -->
-	<!-- TODO: center cv and make sections wider  -->
 	<EditorBar v-model="isEditingResume" />
 
 	<div

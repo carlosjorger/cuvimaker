@@ -1,25 +1,30 @@
 <template>
 	<AppearFadePanelTransition>
-		<div v-if="canShowPreviewResume" class="p-3 max-lg:p-2 max-md:p-1">
-			<div id="resume">
-				<PreviewIntroduction :introduction="resume.introduction" />
-				<div
-					class="mt-5 grid grid-cols-2 gap-3 p-1 text-base max-md:grid-cols-1"
-				>
-					<PreviewSection
-						v-for="section in resume.sections"
-						:section="section"
-						:key="section.name"
-					/>
+		<SubsectionAlign>
+			<div
+				v-if="canShowPreviewResume"
+				class="rounded-md border-4 border-solid border-primary bg-[#f6f4fb] p-3 shadow-xl transition-colors duration-700 dark:border-zinc-300 dark:bg-dark-primary-300 max-lg:p-2 max-md:p-1"
+			>
+				<div id="resume">
+					<PreviewIntroduction :introduction="resume.introduction" />
+					<div
+						class="mt-5 grid grid-cols-2 gap-3 p-1 text-base max-md:grid-cols-1"
+					>
+						<PreviewSection
+							v-for="section in resume.sections"
+							:section="section"
+							:key="section.name"
+						/>
+					</div>
 				</div>
+				<BasicButton
+					v-if="!isResumeEmpty()"
+					class="w-28"
+					name="Download"
+					@click="save"
+				/>
 			</div>
-			<BasicButton
-				v-if="!isResumeEmpty()"
-				class="w-28"
-				name="Download"
-				@click="save"
-			/>
-		</div>
+		</SubsectionAlign>
 	</AppearFadePanelTransition>
 </template>
 
@@ -35,12 +40,15 @@
 	} from '../../../utils/resumePDF';
 	import { Introduction } from '../../../models/Introduction';
 	import type { PropType } from 'vue';
+	import SubsectionAlign from '../../shared/Subsection/SubsectionAlign.vue';
+
 	export default {
 		components: {
 			AppearFadePanelTransition,
 			PreviewIntroduction,
 			PreviewSection,
 			BasicButton,
+			SubsectionAlign,
 		},
 		props: {
 			resume: {
