@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import '@fontsource/montserrat';
+import ViewTransitions from 'astro/components/ViewTransitions.astro';
 const { pageTitle } = Astro.props;
 ---
 
@@ -21,14 +22,15 @@ const { pageTitle } = Astro.props;
 			name="description"
 			content="An online editor of cv, SEO-friendly made in Astro"
 		/>
+		<ViewTransitions />
 	</head>
 	<body
-		class=" font-montserrat text-primary bg-[#f5f0ff] dark:text-gray-300 dark:bg-[#130624] transition-colors duration-500 dark:transition-colors dark:duration-500"
+		class="bg-[#f5f0ff] font-montserrat text-primary transition-colors duration-500 dark:bg-[#130624] dark:text-gray-300 dark:transition-colors dark:duration-500"
 	>
 		<Header />
 		<main class="m-6 max-md:m-5 max-sm:m-3">
 			<h1
-				class="text-2xl mt-2 mb-2 font-bold dark:text-white max-md:text-2xl max-md:text-center"
+				class="mb-2 mt-2 text-2xl font-bold dark:text-white max-md:text-center max-md:text-2xl"
 			>
 				{pageTitle}
 			</h1>
