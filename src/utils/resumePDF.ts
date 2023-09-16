@@ -147,7 +147,7 @@ function createIntroductionColumns(introduction: Introduction) {
 }
 function createElementsDefinition(elements: SubsectionElement[]) {
 	return {
-		ul: elements.map((element) => ({ text: element.name })),
+		ul: elements.map((element) => ({ text: element.name, style: 'h6' })),
 		style: 'ul',
 	};
 }
@@ -289,14 +289,17 @@ export function createResumePDFDefinition(
 			h3: {
 				fontSize: 18,
 				marginTop: 6,
-				bold: true,
 			},
 			h4: {
 				fontSize: 15,
 				marginTop: 5,
+				bold: true,
 			},
 			h5: {
 				fontSize: 12,
+				marginTop: 2,
+			},
+			h6: {
 				marginTop: 2,
 			},
 			introductionColumn: {
