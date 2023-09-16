@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { Resume } from '../models/Resume';
 import { Section } from '../models/Section';
+import { copySection } from '../extensions/extensions.ts';
 type ResumeStoreStatus = {
 	resume: Resume;
 	isBeingEditingIntroduction: boolean;
@@ -17,7 +18,7 @@ export const useResumeStore = defineStore('resume', {
 				!sections.some((s, i) => i != index && s.name == sectionName);
 		},
 		getSection() {
-			return (index: number) => this.resume.sections[index];
+			return (index: number) => copySection(this.resume.sections[index]);
 		},
 	},
 	actions: {
