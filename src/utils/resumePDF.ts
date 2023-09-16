@@ -277,22 +277,21 @@ export function createResumePDFDefinition(
 		],
 		styles: {
 			h1: {
-				fontSize: 28,
+				fontSize: 35,
 				bold: true,
 			},
 			h2: {
-				marginTop: 8,
+				marginTop: 4,
 				fontSize: 23,
 				bold: true,
-				marginBottom: 2,
 			},
 			h3: {
-				fontSize: 18,
-				marginTop: 6,
+				fontSize: 17,
+				marginTop: 4,
 			},
 			h4: {
-				fontSize: 15,
-				marginTop: 5,
+				fontSize: 14,
+				marginTop: 3,
 				bold: true,
 			},
 			h5: {
