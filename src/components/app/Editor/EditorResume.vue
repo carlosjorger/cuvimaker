@@ -1,62 +1,52 @@
-<!-- TODO: Integrate with CVEditor component and pass resume as a v-model -->
 <template>
-	<div
-		class="dark:border-t-3 max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-scroll overflow-x-hidden border-t-4 border-primary bg-[#eee8ff] p-4 dark:border-zinc-300 dark:bg-[#130624] max-md:p-2"
-	>
-		<AppearFadePanelTransition>
-			<div v-if="isEditingResume" class="relative">
-				<EditorIntroduction
-					:introduction="resume.introduction"
-					@set-editing-introduction="setEditingIntroduction"
-					@set-introduction="setIntroduction"
+	<AppearFadePanelTransition>
+		<div v-if="isEditingResume" class="relative">
+			<EditorIntroduction
+				:introduction="resume.introduction"
+				@set-editing-introduction="setEditingIntroduction"
+				@set-introduction="setIntroduction"
+			/>
+			<SubsectionAlign>
+				<BasicButton
+					class="add-section"
+					:name="'Add a new Section'"
+					@click="
+						() => {
+							showModal = true;
+							editIndex = undefined;
+						}
+					"
 				/>
-				<SubsectionAlign>
-					<BasicButton
-						class="add-section"
-						:name="'Add a new Section'"
-						@click="
-							() => {
-								showModal = true;
-								editIndex = undefined;
-							}
-						"
-					/>
-				</SubsectionAlign>
-				<async-create-section-modal
-					v-show="showModal"
-					:sections="resume.sections"
-					:showModal="showModal"
-					@close-modal="closeSectionModal"
-					:editIndex="editIndex"
+			</SubsectionAlign>
+			<async-create-section-modal
+				v-show="showModal"
+				:sections="resume.sections"
+				:showModal="showModal"
+				@close-modal="closeSectionModal"
+				:editIndex="editIndex"
+			/>
+			<ConfirmationModal
+				:entity-to-delete="'Section'"
+				v-show="confirmationDeleteModal"
+				@delete="deleteSection(sectionIndexToDelete)"
+				@cancel="confirmationDeleteModal = false"
+			/>
+			<ListTransition class="z-0 block">
+				<editor-section
+					v-for="(section, index) in resume.sections"
+					:section="section"
+					:key="section.name"
+					@delete-section="confirmDeleteSection(index)"
+					@edit-section="
+						() => {
+							showModal = true;
+							editIndex = index;
+						}
+					"
 				/>
-				<ConfirmationModal
-					:entity-to-delete="'Section'"
-					v-show="confirmationDeleteModal"
-					@delete="deleteSection(sectionIndexToDelete)"
-					@cancel="confirmationDeleteModal = false"
-				/>
-				<ListTransition class="z-0 block">
-					<editor-section
-						v-for="(section, index) in resume.sections"
-						:section="section"
-						:key="section.name"
-						@delete-section="confirmDeleteSection(index)"
-						@edit-section="
-							() => {
-								showModal = true;
-								editIndex = index;
-							}
-						"
-					/>
-				</ListTransition>
-			</div>
-		</AppearFadePanelTransition>
-		<PreviewResume
-			class="relative"
-			:canShowPreviewResume="!isEditingResume"
-			:resume="resume"
-		/>
-	</div>
+			</ListTransition>
+		</div>
+	</AppearFadePanelTransition>
 </template>
 <script lang="ts">
 	import { defineAsyncComponent } from 'vue';
@@ -64,12 +54,11 @@
 	import SubsectionAlign from '../../shared/Subsection/SubsectionAlign.vue';
 	import AppearFadePanelTransition from '../../shared/Transition/AppearFadePanelTransition.vue';
 	import EditorIntroduction from './Introduction/EditorIntroduction.vue';
-	import PreviewResume from '../Preview/PreviewResume.vue';
 	import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
 	import ListTransition from '../../shared/Transition/ListTransition.vue';
 	import EditorSection from './Section/EditorSection.vue';
 	import type { Introduction } from '../../../models/Introduction';
-	import type { Resume } from '../../../models/Resume';
+	import { Resume } from '../../../models/Resume';
 	import { useLocalStorageStore } from '../../../stores/localStorageStore';
 	import { useResumeStore } from '../../../stores/resumeStore';
 	import { appStore } from '../../../store';
@@ -77,11 +66,21 @@
 	const AsyncCreateSectionModal = defineAsyncComponent(
 		() => import('../../app/Section/CreateSectionModal.vue')
 	);
+	type EditorResumeData = {
+		showModal: boolean;
+		editIndex: number | undefined;
+		confirmationDeleteModal: boolean;
+		sectionIndexToDelete: number;
+	};
 	export default {
 		name: 'EditorResume',
 		props: {
 			isEditingResume: {
 				type: Boolean,
+				required: true,
+			},
+			modelValue: {
+				type: Resume,
 				required: true,
 			},
 		},
@@ -91,7 +90,6 @@
 			SubsectionAlign,
 			BasicButton,
 			AsyncCreateSectionModal,
-			PreviewResume,
 			ConfirmationModal,
 			ListTransition,
 			EditorSection,
@@ -101,25 +99,14 @@
 			const localStorageStore = useLocalStorageStore(appStore);
 			return { localStorageStore, resumeStore };
 		},
-		data() {
+		data(): EditorResumeData {
 			return this.initialState();
 		},
 		methods: {
-			initialState(): {
-				showModal: boolean;
-				editIndex: number | undefined;
-				resume: Resume;
-				confirmationDeleteModal: boolean;
-				sectionIndexToDelete: number;
-			} {
-				this.localStorageStore.loadResume();
-				const resumeFromLocalStorage = this.localStorageStore.resume;
-				this.resumeStore.setResume(resumeFromLocalStorage);
-				const { resume } = this.resumeStore;
+			initialState(): EditorResumeData {
 				return {
 					showModal: false,
 					editIndex: undefined as number | undefined,
-					resume: resume,
 					confirmationDeleteModal: false,
 					sectionIndexToDelete: -1,
 				};
@@ -145,7 +132,18 @@
 				this.saveResume();
 			},
 			saveResume() {
+				this.$emit('update:modelValue', this.resume);
 				this.localStorageStore.saveResume(this.resume);
+			},
+		},
+		computed: {
+			resume: {
+				get() {
+					return this.modelValue;
+				},
+				set(value: Resume) {
+					this.$emit('update:modelValue', value);
+				},
 			},
 		},
 	};
