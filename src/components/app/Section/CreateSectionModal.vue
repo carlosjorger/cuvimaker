@@ -140,7 +140,9 @@
 					const tempSection = this.resumeStore.getSection(
 						this.editIndex
 					);
-					this.sectionStore.setSection(tempSection);
+					if (tempSection) {
+						this.sectionStore.setSection(tempSection);
+					}
 				} else if (this.editIndex == undefined) {
 					this.sectionStore.clear();
 				}

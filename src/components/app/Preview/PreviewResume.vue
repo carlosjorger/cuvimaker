@@ -14,6 +14,11 @@
 							v-for="section in resume.sections"
 							:section="section"
 							:key="section.name"
+							:class="{
+								[`row-span-2`]: section.subsections.length == 2,
+								[`row-span-3`]: section.subsections.length == 3,
+								[`row-span-4`]: section.subsections.length > 3,
+							}"
 						/>
 					</div>
 				</div>
