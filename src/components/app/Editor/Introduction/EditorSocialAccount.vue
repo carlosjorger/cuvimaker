@@ -75,7 +75,7 @@
 	import SubsectionForm from '../../../shared/TextArea/BasicTextArea.vue';
 	import CircleButtonWithIcon from '../../../shared/Button/CircleButtonWithIcon.vue';
 	import IconByUrl from '../../../shared/Icon/IconByUrl.vue';
-	import { useResumeStore } from '../../../../stores/resumeStore';
+	import { useResumeStore } from '../../../../stores/ResumeStore';
 	export default {
 		components: {
 			BasicLink,
