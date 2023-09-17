@@ -1,52 +1,14 @@
 //TODO: split the functionality from this file
-import type {
-	ContentColumns,
-	Content,
-	Column,
-	TDocumentDefinitions,
-} from 'pdfmake/interfaces';
-import type { Resume } from '../models/Resume';
-import type { Introduction } from '../models/Introduction';
-import { getInfoFromUrl } from './urlService';
-import type { Section } from '../models/Section';
-import type { Subsection } from '../models/Subsection';
-import type { SubsectionElement } from '../models/SubsectionElement';
-import type { TimeInterval } from '../models/SubsectionTimeInterval';
-import { getIconByUrl } from '../utils/urlService';
-
+import type { Content, Column, TDocumentDefinitions } from 'pdfmake/interfaces';
+import type { Resume } from '../../models/Resume';
+import type { Section } from '../../models/Section';
+import type { Subsection } from '../../models/Subsection';
+import type { SubsectionElement } from '../../models/SubsectionElement';
+import type { TimeInterval } from '../../models/SubsectionTimeInterval';
+import { createIntroductionDefinition } from './introductionPDF';
 const dateRange =
 	'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="15" height="15" viewBox="0 0 22 22" class="iconify iconify--mdi"><path fill="currentColor" d="M8 14q-.425 0-.713-.288T7 13q0-.425.288-.713T8 12q.425 0 .713.288T9 13q0 .425-.288.713T8 14Zm4 0q-.425 0-.713-.288T11 13q0-.425.288-.713T12 12q.425 0 .713.288T13 13q0 .425-.288.713T12 14Zm4 0q-.425 0-.713-.288T15 13q0-.425.288-.713T16 12q.425 0 .713.288T17 13q0 .425-.288.713T16 14ZM5 22q-.825 0-1.413-.588T3 20V6q0-.825.588-1.413T5 4h1V2h2v2h8V2h2v2h1q.825 0 1.413.588T21 6v14q0 .825-.588 1.413T19 22H5Zm0-2h14V10H5v10Z"/></svg>';
-const enum IntroductionColumnType {
-	email,
-	link,
-	text,
-}
-const isContentColumns = (
-	content: Content | undefined
-): content is ContentColumns => {
-	return Boolean(content);
-};
-function createIntroductionColumn(
-	link: string,
-	introductionColumnType: IntroductionColumnType
-): Column {
-	const urlInfo = getInfoFromUrl(link);
-	if (introductionColumnType == IntroductionColumnType.link) {
-		return {
-			text: urlInfo,
-			link: link,
-			style: ['introductionColumn', 'link'],
-		};
-	} else if (introductionColumnType == IntroductionColumnType.email) {
-		return {
-			text: urlInfo,
-			link: `mailto:${link}`,
-			style: ['introductionColumn', 'link'],
-		};
-	} else {
-		return { text: urlInfo, style: 'introductionColumn' };
-	}
-}
+
 function getSVGIconColunm(svg: string): Column {
 	return {
 		columns: [
@@ -58,93 +20,7 @@ function getSVGIconColunm(svg: string): Column {
 		width: 20,
 	};
 }
-function getSocialAccountSVGIconColumn(iconType?: string): Column | undefined {
-	const svgElement = iconType ? document.getElementById(iconType) : undefined;
-	if (svgElement && svgElement instanceof SVGSVGElement) {
-		svgElement.setAttribute('width', '15');
-		svgElement.setAttribute('height', '15');
-	}
-	const svg = iconType
-		? document.getElementById(iconType)?.outerHTML
-		: undefined;
-	if (svg) {
-		return getSVGIconColunm(svg);
-	}
-}
-function addIntroductionColumn(
-	result: Content[],
-	text: string,
-	count: number,
-	introductionColumnType: IntroductionColumnType,
-	iconType?: string
-) {
-	const svgColumn = getSocialAccountSVGIconColumn(iconType);
-	const column = createIntroductionColumn(text, introductionColumnType);
-	let currentColumns = [column];
-	if (svgColumn) {
-		currentColumns = [svgColumn, ...currentColumns];
-	}
-	const lastColumn: ContentColumns = {
-		columns: currentColumns,
-	};
-	if (count % 3 == 0) {
-		result.push({
-			columns: [lastColumn],
-			style: ['introductionRow'],
-		});
-	} else {
-		const lastColumns = result.pop();
-		if (isContentColumns(lastColumns)) {
-			const columns = lastColumns as ContentColumns;
-			result.push({
-				columns: [...columns.columns, lastColumn],
-				style: ['introductionRow'],
-			});
-		}
-	}
-}
-function createIntroductionColumns(introduction: Introduction) {
-	const columns = [] as Content[];
-	let count = 0;
-	if (introduction.location) {
-		addIntroductionColumn(
-			columns,
-			introduction.location,
-			count++,
-			IntroductionColumnType.text,
-			'location'
-		);
-	}
-	if (introduction.email) {
-		addIntroductionColumn(
-			columns,
-			introduction.email,
-			count++,
-			IntroductionColumnType.email,
-			'email'
-		);
-	}
-	if (introduction.website) {
-		addIntroductionColumn(
-			columns,
-			introduction.website,
-			count++,
-			IntroductionColumnType.link,
-			'website'
-		);
-	}
-	for (let index = 0; index < introduction.socialAccounts.length; index++) {
-		const element = introduction.socialAccounts[index];
-		addIntroductionColumn(
-			columns,
-			element.link,
-			count++,
-			IntroductionColumnType.link,
-			getIconByUrl(element.link)
-		);
-	}
-	return columns;
-}
+
 function createElementsDefinition(elements: SubsectionElement[]) {
 	return {
 		ul: elements.map((element) => ({ text: element.name, style: 'h6' })),
@@ -249,24 +125,7 @@ function creatreSectionDefinition(section: Section): Content {
 function creatreSectionsDefinition(sections: Section[]) {
 	return sections.map((section) => creatreSectionDefinition(section));
 }
-function createIntroductionColumnsDefinition(
-	introduction: Introduction
-): Content {
-	return {
-		stack: createIntroductionColumns(introduction),
-		style: ['introductionColumnsBlock'],
-	};
-}
-function createIntroductionDefinition(introduction: Introduction): Column {
-	return {
-		stack: [
-			{ text: introduction.name, style: 'h1' },
-			{ text: introduction.profetion, style: 'h2' },
-			createIntroductionColumnsDefinition(introduction),
-		],
-		style: ['introduction'],
-	};
-}
+
 export function createResumePDFDefinition(
 	resume: Resume
 ): TDocumentDefinitions {

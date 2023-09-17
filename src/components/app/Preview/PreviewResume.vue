@@ -42,7 +42,7 @@
 	import {
 		savePDF,
 		createResumePDFDefinition,
-	} from '../../../utils/resumePDF';
+	} from '../../../utils/pdf/resumePDF';
 	import { Introduction } from '../../../models/Introduction';
 	import type { PropType } from 'vue';
 	import SubsectionAlign from '../../shared/Subsection/SubsectionAlign.vue';
@@ -84,3 +84,4 @@
 		},
 	};
 </script>
+../../../utils/pdf/resumePDF
