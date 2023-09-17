@@ -16,7 +16,7 @@
 	import EditorBar from './app/Editor/EditorBar.vue';
 	import PreviewResume from './app/Preview/PreviewResume.vue';
 	import { useLocalStorageStore } from '../stores/localStorageStore';
-	import { useResumeStore } from '../stores/resumeStore';
+	import { useResumeStore } from '../stores/ResumeStore';
 	import { appStore } from '../store';
 	import type { Resume } from '../models/Resume';
 	import EditorResume from './app/Editor/EditorResume.vue';
@@ -59,3 +59,4 @@
 		width: 40%;
 	}
 </style>
+../stores/ResumeStore

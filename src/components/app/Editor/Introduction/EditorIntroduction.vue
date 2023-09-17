@@ -199,7 +199,7 @@
 	import ListTransition from '../../../shared/Transition/ListTransition.vue';
 	import BasicLink from '../../../shared/Anchor/BasicLink.vue';
 	import BasicEmail from '../../../shared/Anchor/BasicEmail.vue';
-	import { useResumeStore } from '../../../../stores/resumeStore';
+	import { useResumeStore } from '../../../../stores/ResumeStore';
 
 	export default {
 		components: {

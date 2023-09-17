@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { Resume } from '../models/Resume';
 import { Section } from '../models/Section';
-import { copySection } from '../extensions/extensions.ts';
+import { copySection } from '../extensions/extensions';
 type ResumeStoreStatus = {
 	resume: Resume;
 	isBeingEditingIntroduction: boolean;

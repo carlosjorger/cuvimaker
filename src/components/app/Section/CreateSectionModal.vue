@@ -81,7 +81,7 @@
 	import ErrorsSection from '../../shared/Error/ErrorsSection.vue';
 	import ModalTemplate from '../../shared/others/ModalTemplate.vue';
 	import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
-	import { useResumeStore } from '../../../stores/resumeStore';
+	import { useResumeStore } from '../../../stores/ResumeStore';
 	import { useSectionStore } from '../../../stores/SectionStore';
 
 	import { appStore } from '../../../store';

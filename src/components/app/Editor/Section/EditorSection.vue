@@ -42,7 +42,7 @@
 	import { scrollSmoothToElement } from '../../../../utils/scrollServices';
 	import PreviewSectionHeader from '../../Preview/PreviewSectionHeader.vue';
 	import type { PropType } from 'vue';
-	import { useResumeStore } from '../../../../stores/resumeStore';
+	import { useResumeStore } from '../../../../stores/ResumeStore';
 	import { appStore } from '../../../../store';
 	export default {
 		name: 'EditorSection',

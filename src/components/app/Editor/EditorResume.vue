@@ -60,7 +60,7 @@
 	import type { Introduction } from '../../../models/Introduction';
 	import { Resume } from '../../../models/Resume';
 	import { useLocalStorageStore } from '../../../stores/localStorageStore';
-	import { useResumeStore } from '../../../stores/resumeStore';
+	import { useResumeStore } from '../../../stores/ResumeStore';
 	import { appStore } from '../../../store';
 
 	const AsyncCreateSectionModal = defineAsyncComponent(

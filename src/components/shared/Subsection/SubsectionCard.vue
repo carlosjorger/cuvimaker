@@ -22,7 +22,7 @@
 	import { scrollSmoothToElement } from '../../../utils/scrollServices';
 	import mitt from 'mitt';
 	import SubsectionAlign from './SubsectionAlign.vue';
-	import { useResumeStore } from '../../../stores/resumeStore';
+	import { useResumeStore } from '../../../stores/ResumeStore';
 	import { appStore } from '../../../store';
 	const emitter = mitt();
 	export default {
