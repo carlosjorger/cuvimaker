@@ -1,3 +1,4 @@
+<!-- TODO: Add a Resume Name form and a guid -->
 <template>
 	<AppearFadePanelTransition>
 		<div v-if="isEditingResume" class="relative">

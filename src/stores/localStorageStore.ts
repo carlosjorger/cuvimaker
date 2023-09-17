@@ -41,6 +41,8 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 			}
 		},
 		saveResume(resume: Resume) {
+			//TODO: take in account that a resume doest exists
+			//TODO: add to localstorage to resume/guid url
 			localStorage.setItem('resume', JSON.stringify(resume));
 		},
 	},
