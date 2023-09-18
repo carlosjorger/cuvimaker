@@ -1,7 +1,7 @@
 <template>
 	<ul>
 		<li v-for="resume in resumes" :key="resume.id" class="text-zinc-300">
-			{{ getResumeName(resume) }}
+			<a :href="`editor/${resume.id}`">{{ getResumeName(resume) }}</a>
 		</li>
 	</ul>
 </template>

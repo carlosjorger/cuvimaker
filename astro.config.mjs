@@ -13,4 +13,5 @@ export default defineConfig({
 		}),
 		compressor({ gzip: true }),
 	],
+	output: 'server',
 });

@@ -46,14 +46,14 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 		loadResume() {
 			//TODO: add guid parameter to the function
 			const guid = '5fb8ab5b-de3a-4edf-b84c-2570aeea9b29';
-			const resumes = this.loadResumes();
+			const resumes = this.loadResumes;
 
 			this.resume =
 				resumes.find((resume) => resume.id === guid) ?? this.resume;
 		},
 		saveResume(resume: Resume) {
 			//TODO: take in account that a resume doest exists
-			const resumes = this.loadResumes();
+			const resumes = this.loadResumes;
 			const resumeIndex = resumes.findIndex((r) => r.id === resume.id);
 			if (resumeIndex >= 0) {
 				resumes[resumeIndex] = resume;
