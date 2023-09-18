@@ -21,7 +21,7 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 	state: (): LocalStorageStoreState => ({
 		resume: new Resume(),
 	}),
-	actions: {
+	getters: {
 		loadResumes(): Resume[] {
 			const resumesStringFormat = localStorage.getItem('resumes');
 			try {
@@ -41,6 +41,8 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 			}
 			return [] as Resume[];
 		},
+	},
+	actions: {
 		loadResume() {
 			//TODO: add guid parameter to the function
 			const guid = '5fb8ab5b-de3a-4edf-b84c-2570aeea9b29';

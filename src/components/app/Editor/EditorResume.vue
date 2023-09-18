@@ -1,4 +1,3 @@
-<!-- TODO: Add a Resume Name form-->
 <template>
 	<AppearFadePanelTransition>
 		<div v-if="isEditingResume" class="relative">
