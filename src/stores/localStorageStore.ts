@@ -39,6 +39,7 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 					console.log('Error: ', error.message);
 				}
 			}
+			console.log(this.resume);
 		},
 		saveResume(resume: Resume) {
 			//TODO: take in account that a resume doest exists
