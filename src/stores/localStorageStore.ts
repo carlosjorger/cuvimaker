@@ -22,15 +22,15 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 		resume: new Resume(),
 	}),
 	actions: {
-		loadResume() {
-			const resumeStringFormat = localStorage.getItem('resume');
+		loadResumes(): Resume[] {
+			const resumesStringFormat = localStorage.getItem('resumes');
 			try {
-				const resume = JSON.parse(
-					resumeStringFormat ?? '{}',
+				const resumes = JSON.parse(
+					resumesStringFormat ?? '{}',
 					ReviveDateTime
 				);
-				if (resume !== '') {
-					this.resume = Object.assign(new Resume(), resume) as Resume;
+				if (resumes !== '') {
+					return Object.assign([new Resume()], resumes) as [Resume];
 				}
 			} catch (error) {
 				if (typeof error === 'string') {
@@ -39,12 +39,27 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 					console.log('Error: ', error.message);
 				}
 			}
-			console.log(this.resume);
+			return [] as Resume[];
+		},
+		loadResume() {
+			//TODO: add guid parameter to the function
+			const guid = '5fb8ab5b-de3a-4edf-b84c-2570aeea9b29';
+			const resumes = this.loadResumes();
+
+			this.resume =
+				resumes.find((resume) => resume.id === guid) ?? this.resume;
 		},
 		saveResume(resume: Resume) {
 			//TODO: take in account that a resume doest exists
-			//TODO: add to localstorage to resume/guid url
-			localStorage.setItem('resume', JSON.stringify(resume));
+			const resumes = this.loadResumes();
+			const resumeIndex = resumes.findIndex((r) => r.id === resume.id);
+			if (resumeIndex >= 0) {
+				resumes[resumeIndex] = resume;
+			} else {
+				resumes.push(resume);
+			}
+			console.log(resumes, resumeIndex);
+			localStorage.setItem('resumes', JSON.stringify(resumes));
 		},
 	},
 });

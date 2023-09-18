@@ -50,7 +50,7 @@
 	</AppearFadePanelTransition>
 </template>
 <script lang="ts">
-	import { defineAsyncComponent } from 'vue';
+	import { defineAsyncComponent, type PropType } from 'vue';
 	import BasicButton from '../../shared/Button/BasicButton.vue';
 	import SubsectionAlign from '../../shared/Subsection/SubsectionAlign.vue';
 	import AppearFadePanelTransition from '../../shared/Transition/AppearFadePanelTransition.vue';
@@ -81,7 +81,7 @@
 				required: true,
 			},
 			modelValue: {
-				type: Resume,
+				type: Object as PropType<Resume>,
 				required: true,
 			},
 		},
