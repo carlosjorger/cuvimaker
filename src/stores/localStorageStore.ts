@@ -43,9 +43,7 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 		},
 	},
 	actions: {
-		loadResume() {
-			//TODO: add guid parameter to the function
-			const guid = '5fb8ab5b-de3a-4edf-b84c-2570aeea9b29';
+		loadResume(guid: string) {
 			const resumes = this.loadResumes;
 
 			this.resume =
@@ -60,7 +58,6 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 			} else {
 				resumes.push(resume);
 			}
-			console.log(resumes, resumeIndex);
 			localStorage.setItem('resumes', JSON.stringify(resumes));
 		},
 	},

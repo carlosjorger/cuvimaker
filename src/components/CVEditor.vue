@@ -37,12 +37,20 @@
 			const localStorageStore = useLocalStorageStore(appStore);
 			return { localStorageStore, resumeStore };
 		},
+		props: {
+			Id: {
+				type: String,
+			},
+		},
+
 		data(): CVEditorData {
 			return this.initialState();
 		},
 		methods: {
 			initialState(): CVEditorData {
-				this.localStorageStore.loadResume();
+				if (this.Id) {
+					this.localStorageStore.loadResume(this.Id);
+				}
 				const resumeFromLocalStorage = this.localStorageStore.resume;
 				this.resumeStore.setResume(resumeFromLocalStorage);
 				const { resume } = this.resumeStore;

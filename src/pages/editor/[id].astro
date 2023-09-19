@@ -1,6 +1,7 @@
 ---
 import CVEditor from '../../components/CVEditor.vue';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+const { id } = Astro.params;
 ---
 
 <BaseLayout pageTitle="Editor">
@@ -8,6 +9,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 		class="dark:border-3 overflow-hidden rounded-lg border-4 border-primary bg-primary dark:border-zinc-300 dark:bg-dark-primary"
 	>
 		<!-- pass id to CVEditor -->
-		<CVEditor client:only="vue" />
+		<CVEditor client:only="vue" Id={id} />
 	</div>
 </BaseLayout>
