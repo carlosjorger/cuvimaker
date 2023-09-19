@@ -13,5 +13,6 @@ export default defineConfig({
 		}),
 		compressor({ gzip: true }),
 	],
-	output: 'server',
+	//TODO: fix adapter problem
+	output: 'hybrid',
 });
