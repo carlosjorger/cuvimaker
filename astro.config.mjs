@@ -13,6 +13,4 @@ export default defineConfig({
 		}),
 		compressor({ gzip: true }),
 	],
-	//TODO: Remove ssr
-	output: 'hybrid',
 });

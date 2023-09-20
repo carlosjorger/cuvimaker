@@ -19,9 +19,14 @@ type LocalStorageStoreState = {
 };
 export const useLocalStorageStore = defineStore('localStorageStore', {
 	state: (): LocalStorageStoreState => ({
-		resume: new Resume(),
+		resume: new Resume('-1'),
 	}),
 	getters: {
+		getResume(): (id: string) => Resume | undefined {
+			const resumes = this.loadResumes;
+			return (id: string): Resume | undefined =>
+				resumes.find((resume) => resume.id === id);
+		},
 		loadResumes(): Resume[] {
 			const resumesStringFormat = localStorage.getItem('resumes');
 			try {
@@ -30,7 +35,9 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 					ReviveDateTime
 				);
 				if (resumes !== '') {
-					return Object.assign([new Resume()], resumes) as [Resume];
+					return Object.assign([new Resume('-1')], resumes) as [
+						Resume,
+					];
 				}
 			} catch (error) {
 				if (typeof error === 'string') {
@@ -43,11 +50,11 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 		},
 	},
 	actions: {
-		loadResume(guid: string) {
+		loadResume(id: string) {
+			this.resume = new Resume(id);
 			const resumes = this.loadResumes;
-
 			this.resume =
-				resumes.find((resume) => resume.id === guid) ?? this.resume;
+				resumes.find((resume) => resume.id === id) ?? this.resume;
 		},
 		saveResume(resume: Resume) {
 			//TODO: take in account that a resume doest exists

@@ -8,7 +8,7 @@ type ResumeStoreStatus = {
 };
 export const useResumeStore = defineStore('resume', {
 	state: (): ResumeStoreStatus => ({
-		resume: new Resume(),
+		resume: new Resume('-1'),
 		isBeingEditingIntroduction: false,
 	}),
 	getters: {

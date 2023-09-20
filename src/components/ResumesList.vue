@@ -1,17 +1,19 @@
 <template>
 	<ul>
-		<li v-for="resume in resumes" :key="resume.id" class="text-zinc-300">
-			<a :href="`editor/${resume.id}`">{{ getResumeName(resume) }}</a>
+		<li v-for="path in paths" :key="path.params.id" class="text-zinc-300">
+			<a :href="`editor/${path.params.id}`">{{
+				getResumeName(path.params.id)
+			}}</a>
 		</li>
 	</ul>
 </template>
 
 <script lang="ts">
-	import type { Resume } from '../models/Resume';
 	import { appStore } from '../store';
 	import { useLocalStorageStore } from '../stores/localStorageStore';
+	import { getResumePaths, type ResumePathsType } from '../utils/resumePaths';
 	type ResumesListData = {
-		resumes: Resume[];
+		paths: ResumePathsType[];
 	};
 	export default {
 		name: 'ResumesList',
@@ -24,12 +26,16 @@
 		},
 		methods: {
 			initialState(): ResumesListData {
-				var resumes = this.localStorageStore.loadResumes;
+				var paths = getResumePaths();
 				return {
-					resumes,
+					paths: paths,
 				};
 			},
-			getResumeName(resume: Resume) {
+			getResumeName(id: string) {
+				const resume = this.localStorageStore.getResume(id);
+				if (!resume) {
+					return '-----';
+				}
 				if (
 					resume.introduction &&
 					resume.introduction.name &&
@@ -40,7 +46,7 @@
 				if (resume.introduction && resume.introduction.name) {
 					return `${resume.introduction.name} `;
 				}
-				return '';
+				return '-----';
 			},
 		},
 	};

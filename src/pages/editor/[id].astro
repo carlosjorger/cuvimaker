@@ -1,8 +1,11 @@
 ---
 import CVEditor from '../../components/CVEditor.vue';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getResumePaths } from '../../utils/resumePaths';
+export async function getStaticPaths() {
+	return getResumePaths();
+}
 const { id } = Astro.params;
-export const prerender = false;
 ---
 
 <BaseLayout pageTitle="Editor">
