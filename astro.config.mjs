@@ -13,6 +13,6 @@ export default defineConfig({
 		}),
 		compressor({ gzip: true }),
 	],
-	//TODO: fix adapter problem
+	//TODO: Remove ssr
 	output: 'hybrid',
 });
