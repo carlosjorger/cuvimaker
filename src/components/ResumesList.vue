@@ -1,3 +1,5 @@
+<!-- TODO: Add clear resume button -->
+<!-- TODO: improve design -->
 <template>
 	<ul>
 		<li v-for="path in paths" :key="path.params.id" class="text-zinc-300">

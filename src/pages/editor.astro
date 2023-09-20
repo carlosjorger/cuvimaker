@@ -3,12 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ResumesList from '../components/ResumesList.vue';
 ---
 
-<!-- TODO: to use another client client:load--><!-- TODO: add list of resumes -->
 <BaseLayout pageTitle="Editor">
 	<div
 		class="dark:border-3 overflow-hidden rounded-lg border-4 border-primary bg-primary dark:border-zinc-300 dark:bg-dark-primary"
 	>
 		<ResumesList client:only="vue" />
-		<!-- <CVEditor client:only="vue" /> -->
 	</div>
 </BaseLayout>

@@ -57,7 +57,6 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 				resumes.find((resume) => resume.id === id) ?? this.resume;
 		},
 		saveResume(resume: Resume) {
-			//TODO: take in account that a resume doest exists
 			const resumes = this.loadResumes;
 			const resumeIndex = resumes.findIndex((r) => r.id === resume.id);
 			if (resumeIndex >= 0) {
