@@ -4,13 +4,8 @@ import Header from '../components/Header.astro';
 import '@fontsource/montserrat';
 import ViewTransitions from 'astro/components/ViewTransitions.astro';
 import { Icon } from 'astro-icon';
-
+import TitleLayout from './TitleLayout.astro';
 const { pageTitle } = Astro.props;
-const pathname = Astro.url.pathname;
-const isANestedPathRex = /^\/\w+\/\w+/;
-const isANestedPath = pathname.match(isANestedPathRex)?.[0];
-const parentPathRex = /^\/\w+/;
-const parentPath = pathname.match(parentPathRex)?.[0];
 ---
 
 <!-- Add view transition api -->
@@ -35,23 +30,9 @@ const parentPath = pathname.match(parentPathRex)?.[0];
 		class="bg-[#f5f0ff] font-montserrat text-primary transition-colors duration-500 dark:bg-[#130624] dark:text-gray-300 dark:transition-colors dark:duration-500"
 	>
 		<Header />
-		<main class="m-6 max-md:m-5 max-sm:m-3">
-			<div class="flex items-center">
-				{
-					isANestedPath && (
-						<a href={parentPath} aria-label="go back">
-							<Icon name="ic:baseline-arrow-left" class="w-8" />
-						</a>
-					)
-				}
-				{!isANestedPath && <div class="w-8" />}
-				<h1
-					class="mb-4 mt-4 text-2xl font-bold dark:text-white max-md:text-center max-md:text-2xl"
-				>
-					{pageTitle}
-				</h1>
-			</div>
-			<div class="ml-2"><slot /></div>
+		<main class="max-lg:m-6a m-4 max-md:m-3 max-sm:m-2">
+			<TitleLayout pageTitle={pageTitle} />
+			<div class="mx-4"><slot /></div>
 		</main>
 	</body>
 </html>

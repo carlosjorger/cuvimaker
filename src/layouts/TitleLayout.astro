@@ -1,0 +1,27 @@
+---
+import { Icon } from 'astro-icon';
+
+const { pageTitle } = Astro.props;
+const pathname = Astro.url.pathname;
+const isANestedPathRex = /^\/\w+\/\w+/;
+const isANestedPath = pathname.match(isANestedPathRex)?.[0];
+const parentPathRex = /^\/\w+/;
+const parentPath = pathname.match(parentPathRex)?.[0];
+---
+
+<div class="flex items-center max-md:justify-center">
+	{
+		isANestedPath && (
+			<a href={parentPath} aria-label="go back">
+				<Icon name="ic:baseline-arrow-left" class="w-10" />
+			</a>
+		)
+	}
+	{!isANestedPath && <div class="w-10" />}
+	<h1
+		class="mb-4 mt-4 text-2xl font-bold dark:text-white max-md:text-center max-md:text-2xl"
+	>
+		{pageTitle}
+	</h1>
+	<div class="w-10"></div>
+</div>
