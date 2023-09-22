@@ -34,11 +34,14 @@
 		<ListTransition class="z-0 block">
 			<editor-section
 				v-for="(section, index) in resume.sections"
+				:id="section.name"
 				:section="section"
 				:key="section.name"
 				:draggable="true"
-				@dragstart="startDrag($event, section, index)"
+				@dragstart="startDrag($event, index)"
 				@drop="onDrop($event, section, index)"
+				@dragenter="onDragEnter(index)"
+				:marked="markedSection == index"
 				@dragover.prevent
 				@delete-section="confirmDeleteSection(index)"
 				class="cursor-move"
@@ -75,6 +78,7 @@
 		editIndex: number | undefined;
 		confirmationDeleteModal: boolean;
 		sectionIndexToDelete: number;
+		markedSection: number;
 	};
 	export default {
 		name: 'EditorResume',
@@ -108,6 +112,7 @@
 					editIndex: undefined as number | undefined,
 					confirmationDeleteModal: false,
 					sectionIndexToDelete: -1,
+					markedSection: -1,
 				};
 			},
 
@@ -135,7 +140,9 @@
 				this.$emit('update:modelValue', this.resume);
 				this.localStorageStore.saveResume(this.resume);
 			},
-			// TODO: add dragover event and change color to section element
+			onDragEnter(index: number) {
+				this.markedSection = index;
+			},
 			onDrop(event: DragEvent, section: Section, index: number) {
 				const eventDataTransfer = event.dataTransfer;
 				if (eventDataTransfer) {
@@ -145,10 +152,11 @@
 					const sourceSection = this.resume.sections[sourceIndex];
 					this.resume.sections[sourceIndex] = section;
 					this.resume.sections[index] = sourceSection;
+					this.markedSection = -1;
 					this.saveResume();
 				}
 			},
-			startDrag(event: DragEvent, item: Section, index: number) {
+			startDrag(event: DragEvent, index: number) {
 				const eventDataTransfer = event.dataTransfer;
 				if (eventDataTransfer) {
 					eventDataTransfer.dropEffect = 'move';

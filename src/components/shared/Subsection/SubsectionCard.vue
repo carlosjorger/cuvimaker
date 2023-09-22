@@ -1,7 +1,7 @@
 <template>
 	<SubsectionAlign>
 		<section
-			class="w-full rounded-md border-4 border-solid border-primary bg-[#f6f4fb] shadow-xl transition-colors duration-700 hover:bg-[#e1d7fd] dark:border-zinc-300 dark:bg-dark-primary-300 dark:hover:bg-dark-primary"
+			class="section w-full rounded-md border-4 border-solid border-primary bg-[#f6f4fb] shadow-xl transition-all duration-300 hover:bg-[#e1d7fd] dark:border-zinc-300 dark:bg-dark-primary-300 dark:hover:bg-dark-primary"
 		>
 			<main class="p-4 max-md:p-4 max-sm:p-2" @mousedown="changeSetting">
 				<slot name="body"></slot>
@@ -31,6 +31,10 @@
 			ifEditing: {
 				type: Boolean,
 				default: false,
+			},
+			marked: {
+				type: Boolean,
+				require: true,
 			},
 		},
 		components: { SubsectionAlign },
@@ -71,3 +75,13 @@
 		},
 	};
 </script>
+<style>
+	.marked .section {
+		background-color: #e1d7fd;
+		transform: translateX(1rem);
+	}
+	.dark .marked .section {
+		background-color: rgb(63 50 104);
+		transform: translateX(1rem);
+	}
+</style>

@@ -1,5 +1,11 @@
 <template>
-	<SubsectionCard :ifEditing="false">
+	<SubsectionCard
+		:class="{
+			['marked']: marked,
+		}"
+		:marked="marked"
+		:ifEditing="false"
+	>
 		<template #body>
 			<div @click="changeSetting">
 				<PreviewSectionHeader :name="section?.name" />
@@ -55,6 +61,10 @@
 		props: {
 			section: {
 				type: Object as PropType<Section>,
+				require: true,
+			},
+			marked: {
+				type: Boolean,
 				require: true,
 			},
 		},
