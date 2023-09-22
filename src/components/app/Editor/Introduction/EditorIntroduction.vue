@@ -18,86 +18,95 @@
 					:darkColor="'zinc-300'"
 					:errors="v$.currentIntroduction?.profetion?.$errors"
 				/>
-				<div class="flex items-center">
+				<div class="grid grid-cols-2 gap-2 max-sm:grid-cols-1">
+					<div class="flex items-center">
+						<div
+							v-if="
+								currentIntroduction.location ||
+								isBeingEditingIntroduction
+							"
+							class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+						>
+							<Icon icon="mdi:location" width="20" />
+						</div>
+
+						<SubsectionForm
+							class="mt-1 min-w-[82%] text-sm"
+							v-model="currentIntroduction.location"
+							placeholder="Location"
+							:lightColor="'primary'"
+							:darkColor="'zinc-300'"
+						/>
+					</div>
 					<div
+						class="flex items-start"
+						v-if="isBeingEditingIntroduction"
+					>
+						<div
+							class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+						>
+							<Icon icon="mdi:email" width="20" />
+						</div>
+
+						<SubsectionForm
+							class="mt-1 min-w-[82%] text-sm"
+							v-model="currentIntroduction.email"
+							placeholder="Email"
+							:lightColor="'primary'"
+							:darkColor="'zinc-300'"
+							:errors="v$.currentIntroduction?.email?.$errors"
+						/>
+					</div>
+					<div
+						class="flex items-center"
 						v-if="
-							currentIntroduction.location ||
-							isBeingEditingIntroduction
+							currentIntroduction.email &&
+							!isBeingEditingIntroduction
 						"
-						class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
 					>
-						<Icon icon="mdi:location" width="20" />
+						<div
+							class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+						>
+							<Icon icon="mdi:email" width="20" />
+						</div>
+						<BasicEmail :email="currentIntroduction.email" />
 					</div>
+					<div
+						class="flex items-start"
+						v-if="isBeingEditingIntroduction"
+					>
+						<div
+							class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+						>
+							<Icon icon="el:website" width="20" />
+						</div>
 
-					<SubsectionForm
-						class="mt-1 min-w-[82%] text-sm"
-						v-model="currentIntroduction.location"
-						placeholder="Location"
-						:lightColor="'primary'"
-						:darkColor="'zinc-300'"
-					/>
-				</div>
-				<div class="flex items-start" v-if="isBeingEditingIntroduction">
-					<div
-						class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
-					>
-						<Icon icon="mdi:email" width="20" />
+						<SubsectionForm
+							class="mt-1 min-w-[82%] text-sm"
+							v-model="currentIntroduction.website"
+							placeholder="Website"
+							:lightColor="'primary'"
+							:darkColor="'zinc-300'"
+							:errors="v$.currentIntroduction?.website?.$errors"
+						/>
 					</div>
-
-					<SubsectionForm
-						class="mt-1 min-w-[82%] text-sm"
-						v-model="currentIntroduction.email"
-						placeholder="Email"
-						:lightColor="'primary'"
-						:darkColor="'zinc-300'"
-						:errors="v$.currentIntroduction?.email?.$errors"
-					/>
-				</div>
-				<div
-					class="flex items-center"
-					v-if="
-						currentIntroduction.email && !isBeingEditingIntroduction
-					"
-				>
 					<div
-						class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+						class="flex items-center"
+						v-if="
+							currentIntroduction.website &&
+							!isBeingEditingIntroduction
+						"
 					>
-						<Icon icon="mdi:email" width="20" />
+						<div
+							class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+						>
+							<Icon icon="el:website" width="20" />
+						</div>
+						<BasicLink
+							:href="currentIntroduction.website"
+							:link="currentIntroduction.website"
+						/>
 					</div>
-					<BasicEmail :email="currentIntroduction.email" />
-				</div>
-				<div class="flex items-start" v-if="isBeingEditingIntroduction">
-					<div
-						class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
-					>
-						<Icon icon="el:website" width="20" />
-					</div>
-
-					<SubsectionForm
-						class="mt-1 min-w-[82%] text-sm"
-						v-model="currentIntroduction.website"
-						placeholder="Website"
-						:lightColor="'primary'"
-						:darkColor="'zinc-300'"
-						:errors="v$.currentIntroduction?.website?.$errors"
-					/>
-				</div>
-				<div
-					class="flex items-center"
-					v-if="
-						currentIntroduction.website &&
-						!isBeingEditingIntroduction
-					"
-				>
-					<div
-						class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
-					>
-						<Icon icon="el:website" width="20" />
-					</div>
-					<BasicLink
-						:href="currentIntroduction.website"
-						:link="currentIntroduction.website"
-					/>
 				</div>
 				<div class="flex items-start" v-if="isBeingEditingIntroduction">
 					<div
