@@ -31,12 +31,18 @@
 				@delete="deleteSection(sectionIndexToDelete)"
 				@cancel="confirmationDeleteModal = false"
 			/>
+
 			<ListTransition class="z-0 block">
 				<editor-section
 					v-for="(section, index) in resume.sections"
 					:section="section"
 					:key="section.name"
+					:draggable="true"
+					@dragstart="startDrag($event, section, index)"
+					@drop="onDrop($event, section, index)"
+					@dragover.prevent
 					@delete-section="confirmDeleteSection(index)"
+					class="cursor-move"
 					@edit-section="
 						() => {
 							showModal = true;
@@ -62,6 +68,7 @@
 	import { useLocalStorageStore } from '../../../stores/localStorageStore';
 	import { useResumeStore } from '../../../stores/ResumeStore';
 	import { appStore } from '../../../store';
+	import type { Section } from '../../../models/Section';
 
 	const AsyncCreateSectionModal = defineAsyncComponent(
 		() => import('../../app/Section/CreateSectionModal.vue')
@@ -111,6 +118,7 @@
 					sectionIndexToDelete: -1,
 				};
 			},
+
 			confirmDeleteSection(index: number) {
 				this.confirmationDeleteModal = true;
 				this.sectionIndexToDelete = index;
@@ -134,6 +142,27 @@
 			saveResume() {
 				this.$emit('update:modelValue', this.resume);
 				this.localStorageStore.saveResume(this.resume);
+			},
+			onDrop(event: DragEvent, section: Section, index: number) {
+				const eventDataTransfer = event.dataTransfer;
+				if (eventDataTransfer) {
+					const draggedSectionName =
+						eventDataTransfer.getData('itemID');
+					const sourceIndex = Number.parseInt(draggedSectionName);
+					const sourceSection = this.resume.sections[sourceIndex];
+					this.resume.sections[sourceIndex] = section;
+					this.resume.sections[index] = sourceSection;
+				}
+			},
+			startDrag(event: DragEvent, item: Section, index: number) {
+				const eventDataTransfer = event.dataTransfer;
+				if (eventDataTransfer) {
+					eventDataTransfer.dropEffect = 'move';
+					eventDataTransfer.effectAllowed = 'move';
+					eventDataTransfer.setData('itemID', index.toString());
+				}
+				(event.target as HTMLElement).style.opacity = '1';
+				console.log();
 			},
 		},
 		computed: {
