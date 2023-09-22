@@ -143,6 +143,7 @@
 				this.$emit('update:modelValue', this.resume);
 				this.localStorageStore.saveResume(this.resume);
 			},
+			// TODO: add dragover event and change color to section element
 			onDrop(event: DragEvent, section: Section, index: number) {
 				const eventDataTransfer = event.dataTransfer;
 				if (eventDataTransfer) {
@@ -152,6 +153,7 @@
 					const sourceSection = this.resume.sections[sourceIndex];
 					this.resume.sections[sourceIndex] = section;
 					this.resume.sections[index] = sourceSection;
+					this.saveResume();
 				}
 			},
 			startDrag(event: DragEvent, item: Section, index: number) {
