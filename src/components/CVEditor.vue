@@ -5,11 +5,7 @@
 	>
 		<AppearFadePanelTransition>
 			<EditorResume v-if="isEditingResume" v-model="resume" />
-			<PreviewResume
-				class="relative"
-				:canShowPreviewResume="!isEditingResume"
-				:resume="resume"
-			/>
+			<PreviewResume class="relative" v-else :resume="resume" />
 		</AppearFadePanelTransition>
 	</div>
 </template>
