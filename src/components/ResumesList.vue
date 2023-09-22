@@ -3,7 +3,7 @@
 <template>
 	<ul>
 		<li v-for="path in paths" :key="path.params.id" class="text-zinc-300">
-			<a :href="`editor/${path.params.id}`">{{
+			<a :href="`/editor/${path.params.id}`">{{
 				getResumeName(path.params.id)
 			}}</a>
 		</li>
