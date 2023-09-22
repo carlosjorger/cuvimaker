@@ -53,13 +53,13 @@
 			</div>
 			<BasicButton
 				v-if="!isEditing"
-				class="mx-auto w-full p-2"
+				class="mx-auto w-full p-1"
 				:name="'Add Section'"
 				v-on:click="addSection(section)"
 			/>
 			<BasicButton
 				v-if="isEditing"
-				class="mx-auto w-full p-2"
+				class="mx-auto w-full p-1"
 				:name="'Edit Section'"
 				v-on:click="updateSection"
 			/>
