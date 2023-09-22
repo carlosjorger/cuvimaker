@@ -133,7 +133,9 @@
 						/>
 					</AppearFadeTransition>
 				</div>
-				<ul class="relative mt-1 block">
+				<ul
+					class="relative mt-1 grid grid-cols-2 gap-2 max-sm:grid-cols-1"
+				>
 					<ListTransition>
 						<SocialAccount
 							v-for="(

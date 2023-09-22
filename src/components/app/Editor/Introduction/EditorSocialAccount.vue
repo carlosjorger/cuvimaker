@@ -1,6 +1,6 @@
 <template>
 	<li
-		class="m-1 flex w-11/12 items-center justify-end rounded-lg p-0.5 transition-all duration-300 ease-linear"
+		class="flex w-11/12 items-center justify-end rounded-lg transition-all duration-300 ease-linear"
 		@mouseover="mouseover"
 		@mouseleave="mouseleave"
 		:class="{
