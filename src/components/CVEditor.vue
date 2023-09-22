@@ -1,3 +1,4 @@
+<!-- TODO: fix animations transitions between EditorResume and PreviewResume-->
 <template>
 	<EditorBar v-model="isEditingResume" />
 
