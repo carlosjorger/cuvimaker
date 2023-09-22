@@ -1,42 +1,38 @@
 <template>
-	<AppearFadePanelTransition>
-		<SubsectionAlign>
-			<div
-				v-if="canShowPreviewResume"
-				class="rounded-md border-4 border-solid border-primary bg-[#f6f4fb] p-3 shadow-xl transition-colors duration-700 dark:border-zinc-300 dark:bg-dark-primary-300 max-lg:p-2 max-md:p-1"
-			>
-				<div id="resume">
-					<PreviewIntroduction :introduction="resume.introduction" />
-					<div
-						class="mt-5 grid grid-cols-2 gap-3 p-1 text-base max-md:grid-cols-1"
-					>
-						<PreviewSection
-							v-for="section in resume.sections"
-							:section="section"
-							:key="section.name"
-							:class="{
-								[`row-span-2`]: section.subsections.length == 2,
-								[`row-span-3`]: section.subsections.length == 3,
-								[`row-span-4`]: section.subsections.length > 3,
-							}"
-						/>
-					</div>
+	<SubsectionAlign>
+		<div
+			class="rounded-md border-4 border-solid border-primary bg-[#f6f4fb] p-3 shadow-xl transition-colors duration-700 dark:border-zinc-300 dark:bg-dark-primary-300 max-lg:p-2 max-md:p-1"
+		>
+			<div id="resume">
+				<PreviewIntroduction :introduction="resume.introduction" />
+				<div
+					class="mt-5 grid grid-cols-2 gap-3 p-1 text-base max-md:grid-cols-1"
+				>
+					<PreviewSection
+						v-for="section in resume.sections"
+						:section="section"
+						:key="section.name"
+						:class="{
+							[`row-span-2`]: section.subsections.length == 2,
+							[`row-span-3`]: section.subsections.length == 3,
+							[`row-span-4`]: section.subsections.length > 3,
+						}"
+					/>
 				</div>
-				<BasicButton
-					v-if="!isResumeEmpty()"
-					class="w-28"
-					name="Download"
-					@click="save"
-				/>
 			</div>
-		</SubsectionAlign>
-	</AppearFadePanelTransition>
+			<BasicButton
+				v-if="!isResumeEmpty()"
+				class="w-28"
+				name="Download"
+				@click="save"
+			/>
+		</div>
+	</SubsectionAlign>
 </template>
 
 <script lang="ts">
 	import { Resume } from '../../../models/Resume';
 	import BasicButton from '../../shared/Button/BasicButton.vue';
-	import AppearFadePanelTransition from '../../shared/Transition/AppearFadePanelTransition.vue';
 	import PreviewIntroduction from './PreviewIntroduction.vue';
 	import PreviewSection from './PreviewSection.vue';
 	import {
@@ -49,7 +45,6 @@
 
 	export default {
 		components: {
-			AppearFadePanelTransition,
 			PreviewIntroduction,
 			PreviewSection,
 			BasicButton,
@@ -58,10 +53,6 @@
 		props: {
 			resume: {
 				type: Object as PropType<Resume>,
-				required: true,
-			},
-			canShowPreviewResume: {
-				type: Boolean,
 				required: true,
 			},
 			previewResumeTransition: {

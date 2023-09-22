@@ -1,16 +1,16 @@
-<!-- TODO: fix animations transitions between EditorResume and PreviewResume-->
 <template>
 	<EditorBar v-model="isEditingResume" />
-
 	<div
 		class="dark:border-t-3 max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-scroll overflow-x-hidden border-t-4 border-primary bg-[#eee8ff] p-4 dark:border-zinc-300 dark:bg-[#130624] max-md:p-2"
 	>
-		<EditorResume :isEditingResume="isEditingResume" v-model="resume" />
-		<PreviewResume
-			class="relative"
-			:canShowPreviewResume="!isEditingResume"
-			:resume="resume"
-		/>
+		<AppearFadePanelTransition>
+			<EditorResume v-if="isEditingResume" v-model="resume" />
+			<PreviewResume
+				class="relative"
+				:canShowPreviewResume="!isEditingResume"
+				:resume="resume"
+			/>
+		</AppearFadePanelTransition>
 	</div>
 </template>
 <script lang="ts">
@@ -21,6 +21,7 @@
 	import { appStore } from '../store';
 	import type { Resume } from '../models/Resume';
 	import EditorResume from './app/Editor/EditorResume.vue';
+	import AppearFadePanelTransition from './shared/Transition/AppearFadePanelTransition.vue';
 
 	type CVEditorData = {
 		resume: Resume;
@@ -32,6 +33,7 @@
 			EditorBar,
 			PreviewResume,
 			EditorResume,
+			AppearFadePanelTransition,
 		},
 		setup() {
 			const resumeStore = useResumeStore(appStore);

@@ -1,64 +1,61 @@
 <template>
-	<AppearFadePanelTransition>
-		<div v-if="isEditingResume" class="relative">
-			<EditorIntroduction
-				:introduction="resume.introduction"
-				@set-editing-introduction="setEditingIntroduction"
-				@set-introduction="setIntroduction"
+	<div class="relative">
+		<EditorIntroduction
+			:introduction="resume.introduction"
+			@set-editing-introduction="setEditingIntroduction"
+			@set-introduction="setIntroduction"
+		/>
+		<SubsectionAlign>
+			<BasicButton
+				class="add-section"
+				:name="'Add a new Section'"
+				@click="
+					() => {
+						showModal = true;
+						editIndex = undefined;
+					}
+				"
 			/>
-			<SubsectionAlign>
-				<BasicButton
-					class="add-section"
-					:name="'Add a new Section'"
-					@click="
-						() => {
-							showModal = true;
-							editIndex = undefined;
-						}
-					"
-				/>
-			</SubsectionAlign>
-			<async-create-section-modal
-				v-show="showModal"
-				:sections="resume.sections"
-				:showModal="showModal"
-				@close-modal="closeSectionModal"
-				:editIndex="editIndex"
-			/>
-			<ConfirmationModal
-				:entity-to-delete="'Section'"
-				v-show="confirmationDeleteModal"
-				@delete="deleteSection(sectionIndexToDelete)"
-				@cancel="confirmationDeleteModal = false"
-			/>
+		</SubsectionAlign>
+		<async-create-section-modal
+			v-show="showModal"
+			:sections="resume.sections"
+			:showModal="showModal"
+			@close-modal="closeSectionModal"
+			:editIndex="editIndex"
+		/>
+		<ConfirmationModal
+			:entity-to-delete="'Section'"
+			v-show="confirmationDeleteModal"
+			@delete="deleteSection(sectionIndexToDelete)"
+			@cancel="confirmationDeleteModal = false"
+		/>
 
-			<ListTransition class="z-0 block">
-				<editor-section
-					v-for="(section, index) in resume.sections"
-					:section="section"
-					:key="section.name"
-					:draggable="true"
-					@dragstart="startDrag($event, section, index)"
-					@drop="onDrop($event, section, index)"
-					@dragover.prevent
-					@delete-section="confirmDeleteSection(index)"
-					class="cursor-move"
-					@edit-section="
-						() => {
-							showModal = true;
-							editIndex = index;
-						}
-					"
-				/>
-			</ListTransition>
-		</div>
-	</AppearFadePanelTransition>
+		<ListTransition class="z-0 block">
+			<editor-section
+				v-for="(section, index) in resume.sections"
+				:section="section"
+				:key="section.name"
+				:draggable="true"
+				@dragstart="startDrag($event, section, index)"
+				@drop="onDrop($event, section, index)"
+				@dragover.prevent
+				@delete-section="confirmDeleteSection(index)"
+				class="cursor-move"
+				@edit-section="
+					() => {
+						showModal = true;
+						editIndex = index;
+					}
+				"
+			/>
+		</ListTransition>
+	</div>
 </template>
 <script lang="ts">
 	import { defineAsyncComponent, type PropType } from 'vue';
 	import BasicButton from '../../shared/Button/BasicButton.vue';
 	import SubsectionAlign from '../../shared/Subsection/SubsectionAlign.vue';
-	import AppearFadePanelTransition from '../../shared/Transition/AppearFadePanelTransition.vue';
 	import EditorIntroduction from './Introduction/EditorIntroduction.vue';
 	import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
 	import ListTransition from '../../shared/Transition/ListTransition.vue';
@@ -82,17 +79,12 @@
 	export default {
 		name: 'EditorResume',
 		props: {
-			isEditingResume: {
-				type: Boolean,
-				required: true,
-			},
 			modelValue: {
 				type: Object as PropType<Resume>,
 				required: true,
 			},
 		},
 		components: {
-			AppearFadePanelTransition,
 			EditorIntroduction,
 			SubsectionAlign,
 			BasicButton,
