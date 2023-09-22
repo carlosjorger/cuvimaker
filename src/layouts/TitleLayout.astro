@@ -12,7 +12,11 @@ const parentPath = pathname.match(parentPathRex)?.[0];
 <div class="flex items-center max-md:justify-center">
 	{
 		isANestedPath && (
-			<a href={parentPath} aria-label="go back">
+			<a
+				href={parentPath}
+				aria-label="go back"
+				class=" transition-transform duration-300 hover:-translate-x-2"
+			>
 				<Icon name="ic:baseline-arrow-left" class="w-10" />
 			</a>
 		)
