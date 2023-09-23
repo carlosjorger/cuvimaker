@@ -1,16 +1,51 @@
 <!-- TODO: Add clear resume button -->
-<!-- TODO: improve design -->
+<!-- TODO: Make responsible -->
+<!-- TODO: improve the resume design list -->
 <template>
-	<ul>
-		<li v-for="path in paths" :key="path.params.id" class="text-zinc-300">
-			<a :href="`/editor/${path.params.id}`">{{
-				getResumeName(path.params.id)
-			}}</a>
-		</li>
-	</ul>
+	<div class="m-4">
+		<h2
+			class="mx-20 my-3 font-montserrat text-4xl font-extrabold text-zinc-50"
+		>
+			Resumes
+		</h2>
+		<ul>
+			<li v-for="path in paths" :key="path.params.id">
+				<a :href="`/editor/${path.params.id}`">
+					<div
+						v-if="
+							getResumeName(path.params.id)?.introduction.name &&
+							getResumeName(path.params.id)?.introduction
+								.profetion
+						"
+						class="mx-20 my-3 w-2/3 rounded-lg border-4 border-zinc-300 p-7 font-medium text-zinc-300 backdrop-brightness-75 transition-all hover:border-[6px] hover:border-zinc-50 hover:font-extrabold hover:text-zinc-50 max-md:w-5/6 max-sm:w-11/12"
+					>
+						<div class="text-lg">
+							{{
+								getResumeName(path.params.id)?.introduction.name
+							}}
+						</div>
+						<div>
+							{{
+								getResumeName(path.params.id)?.introduction
+									.profetion
+							}}
+						</div>
+					</div>
+					<div
+						v-else
+						class="font-blackOpsOne mx-20 my-5 w-2/3 rounded-lg border-4 border-double border-zinc-300 p-7 font-normal text-zinc-300 transition-all hover:border-[6px] hover:border-zinc-50 hover:text-zinc-50 hover:shadow-lg max-md:w-5/6 max-sm:w-11/12"
+					>
+						<div class="text-2xl">EMPTY</div>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
 </template>
 
 <script lang="ts">
+	import '@fontsource/black-ops-one';
+
 	import { appStore } from '../store';
 	import { useLocalStorageStore } from '../stores/localStorageStore';
 	import { getResumePaths, type ResumePathsType } from '../utils/resumePaths';
@@ -35,20 +70,7 @@
 			},
 			getResumeName(id: string) {
 				const resume = this.localStorageStore.getResume(id);
-				if (!resume) {
-					return '-----';
-				}
-				if (
-					resume.introduction &&
-					resume.introduction.name &&
-					resume.introduction.profetion
-				) {
-					return `${resume.introduction.name} - ${resume.introduction.profetion}`;
-				}
-				if (resume.introduction && resume.introduction.name) {
-					return `${resume.introduction.name} `;
-				}
-				return '-----';
+				return resume;
 			},
 		},
 	};

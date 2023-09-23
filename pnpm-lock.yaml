@@ -11,6 +11,9 @@ dependencies:
   '@astrojs/vue':
     specifier: ^3.0.0
     version: 3.0.0(@babel/core@7.22.19)(astro@3.1.0)(vite@4.4.9)(vue@3.3.4)
+  '@fontsource/black-ops-one':
+    specifier: ^5.0.8
+    version: 5.0.8
   '@fontsource/montserrat':
     specifier: ^5.0.8
     version: 5.0.8
@@ -1050,6 +1053,10 @@ packages:
 
   /@foliojs-fork/restructure@2.0.2:
     resolution: {integrity: sha512-59SgoZ3EXbkfSX7b63tsou/SDGzwUEK6MuB5sKqgVK1/XE0fxmpsOb9DQI8LXW3KfGnAjImCGhhEb7uPPAUVNA==}
+    dev: false
+
+  /@fontsource/black-ops-one@5.0.8:
+    resolution: {integrity: sha512-Vx+zWLkhFSAO3pV3XSoY0Uu28CL+ultKdyyU4ec3b8DRlKSDZEIrldIJLJqoP25zRQD2QtIjQCYdoMYwTJgmPg==}
     dev: false
 
   /@fontsource/montserrat@5.0.8:

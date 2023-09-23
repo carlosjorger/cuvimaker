@@ -14,6 +14,7 @@
 	"dependencies": {
 		"@astrojs/tailwind": "^5.0.0",
 		"@astrojs/vue": "^3.0.0",
+		"@fontsource/black-ops-one": "^5.0.8",
 		"@fontsource/montserrat": "^5.0.8",
 		"@fortawesome/fontawesome-svg-core": "^6.4.2",
 		"@types/node": "^20.6.0",
