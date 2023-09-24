@@ -131,6 +131,8 @@
 					this.section.name
 				);
 			},
+			//TODO: prove immerjs instead make a copy
+			//https://play.vuejs.org/#eNp9VF9v0zAQ/yomL+ukNkHaA6K0Y4D2UIQAbcDLvIeQXFOvjm3ZTldU9btzPjtttk6LKie+v7+7+1132Sdj8k0H2TSbucoK45kD35lLrkRrtPVsxzoHi7YFy/ZsaXXLzvJChHv+4M64YoyrSisXLJ0vPUyZ8NC6MetMjVf0mh9CjO6Cwy4c+HjhJZrz7BuUVrE/HfBsnHS1VqjyFmUo2JP4xO+3g+DFHoVfMUrwPMCylC5G4Or+nCuulp2qvNCKed00EhaIdSRUDdvzGD+iHlENbH7ZJ6X7HRne5yE2VvXmREiZMA1mmxWxn9hJvKChkRgXb4zNOklv/JKCbSZLbec8G+1iYWOCjiWzBEuomJ1nqTR8ppUsnUOvXbIeKq8qKao1Kk9K5FlKHJ5dSsj2CJfQFFJEgAUhnBUD2Hh1/p8Mn7F+aoyHrZ/UUGlbhqZOmRQKJn5lddesPvSNIL9snEVKTdrSIHe0QtJREJ4UWOG073eQ0TzDnFfeGzctik6ZdZNXuo0EvHqfv83fFbVwPjESXIuRP7a67iSSKQ1+T6kjYzFnIraxaFVB5PQh3YD3blVKqR9vYHlgPm4KUp4r2JLNgUsHfv8tHdyGLYhs4p7F3aDNQMocYw5MqWI6LO4ebkJPdPLqCZ2IGV82sfVolm9Kiasw7+saDaT9LtqYipoST/xhc7xDlEvRPJsKNtoICfaHCUU+nQ6V8ZVkYUkTSPRZQbV+Qf7gtnGWPy04sJvjqiNNS9uAj+rr2+9IqYGyn+UryhtwWnYBYzT73KkaYQ/sCO2CBitU88tdbz0o1xf19F+GZzjlL6+UfoR7kV8cKLb/D8HGwkM=
 			initialState(): {
 				section: Section;
 				confirmationDeleteModal: boolean;

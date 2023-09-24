@@ -33,7 +33,7 @@
 					</div>
 					<div
 						v-else
-						class="font-blackOpsOne mx-20 my-5 w-2/3 rounded-lg border-4 border-double border-zinc-300 p-7 font-normal text-zinc-300 transition-all hover:border-[6px] hover:border-zinc-50 hover:text-zinc-50 hover:shadow-lg max-md:w-5/6 max-sm:w-11/12"
+						class="mx-20 my-5 w-2/3 rounded-lg border-4 border-double border-zinc-300 p-7 font-blackOpsOne font-normal text-zinc-300 transition-all hover:border-[6px] hover:border-zinc-50 hover:text-zinc-50 hover:shadow-lg max-md:w-5/6 max-sm:w-11/12"
 					>
 						<div class="text-2xl">EMPTY</div>
 					</div>
