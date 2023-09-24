@@ -1,5 +1,4 @@
 import { ref } from 'vue';
-//TODO: use this composable
 export function useDrag<T>(collection: T[], save: () => void) {
 	const markedSection = ref(-1);
 	const onDragEnter = (index: number) => {

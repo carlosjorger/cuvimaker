@@ -5,7 +5,7 @@
 			v-model="hasElementList"
 			:title="'Add a List'"
 		/>
-		<subsection-elements v-if="hasElementList" />
+		<editor-elements v-if="hasElementList" />
 	</div>
 </template>
 
@@ -13,10 +13,10 @@
 	import { inject } from 'vue';
 	import { Subsection } from '../../../../models/Subsection';
 	import SwitchCheckbox from '../../../shared/checkbox/SwitchCheckbox.vue';
-	import SubsectionElements from './EditorElements.vue';
+	import EditorElements from './EditorElements.vue';
 	export default {
 		name: 'EditorListSection',
-		components: { SwitchCheckbox, SubsectionElements },
+		components: { SwitchCheckbox, EditorElements },
 
 		data() {
 			return {

@@ -68,7 +68,6 @@
 	import { useLocalStorageStore } from '../../../stores/localStorageStore';
 	import { useResumeStore } from '../../../stores/ResumeStore';
 	import { appStore } from '../../../store';
-	import type { Section } from '../../../models/Section';
 	import { useDrag } from '../../../composables/useDrag';
 	const AsyncCreateSectionModal = defineAsyncComponent(
 		() => import('../../app/Section/CreateSectionModal.vue')
