@@ -82,7 +82,7 @@
 	import { appStore } from '../../../../store';
 	const emitter = mitt();
 	//TODO: use subsection store
-
+	// TODO: use composition api
 	export default {
 		name: 'EditorSubsection',
 		props: {
