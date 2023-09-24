@@ -5,7 +5,12 @@ import { TimeInterval } from '../models/SubsectionTimeInterval';
 
 export function copySection(section?: Section) {
 	if (section) {
-		return new Section(section.name, section.subsections);
+		return new Section(
+			section.name,
+			section.subsections?.map((s) => copySubsection(s)) ?? [
+				new Subsection(0),
+			]
+		);
 	}
 }
 export function copySubsection(subsection: Subsection) {

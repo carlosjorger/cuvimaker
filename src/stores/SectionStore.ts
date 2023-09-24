@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { Section } from '../models/Section';
 import { Subsection } from '../models/Subsection';
+import { copySection } from '../extensions/extensions';
 type SectionStoreState = {
 	section: Section;
 	editingIndex: number;
@@ -22,7 +23,10 @@ export const useSectionStore = defineStore('section', {
 	},
 	actions: {
 		setSection(section: Section) {
-			this.section = section;
+			const sectionCopy = copySection(section);
+			if (sectionCopy) {
+				this.section = sectionCopy;
+			}
 		},
 		clear() {
 			this.section = new Section();

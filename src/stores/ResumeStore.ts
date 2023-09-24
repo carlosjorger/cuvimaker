@@ -18,7 +18,7 @@ export const useResumeStore = defineStore('resume', {
 				!sections.some((s, i) => i != index && s.name == sectionName);
 		},
 		getSection() {
-			return (index: number) => copySection(this.resume.sections[index]);
+			return (index: number) => this.resume.sections[index];
 		},
 	},
 	actions: {
@@ -30,10 +30,7 @@ export const useResumeStore = defineStore('resume', {
 		},
 
 		setSection(index: number, section: Section) {
-			this.resume.sections[index] = new Section(
-				section.name,
-				section.subsections
-			);
+			this.resume.sections[index] = copySection(section);
 		},
 		setResume(resume: Resume) {
 			this.resume = resume;

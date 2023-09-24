@@ -235,7 +235,7 @@
 				this.subsection.last = newValue;
 			},
 			prevSubsection(newValue: Subsection) {
-				this.subsection.setSubsection(newValue);
+				this.subsection = copySubsection(newValue);
 			},
 			section() {
 				this.resetWindow();

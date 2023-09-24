@@ -98,7 +98,7 @@
 				this.indexOfElementToDelete = index;
 			},
 			deleteElement() {
-				this.subsection.elements.splice(this.index, 1);
+				this.subsection.elements.splice(this.indexOfElementToDelete, 1);
 				this.confirmationDeleteModal = false;
 			},
 			initTextArea() {
