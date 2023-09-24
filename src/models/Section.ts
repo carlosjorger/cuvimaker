@@ -6,6 +6,6 @@ export class Section {
 
 	constructor(name?: string, subsections?: Subsection[]) {
 		this.name = name ?? '';
-		this.subsections = subsections ?? [];
+		this.subsections = subsections ?? [new Subsection(0)];
 	}
 }

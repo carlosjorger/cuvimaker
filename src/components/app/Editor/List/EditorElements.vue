@@ -1,8 +1,8 @@
-<!-- TODO: use component api and reuse useDrag -->
+<!-- TODO: use markedSection variable -->
 <template>
 	<div
 		class="mt-2 flex justify-between rounded-3xl border-2 border-solid border-white bg-[var(--primary-form-color)] p-1.5 text-sm shadow-xl dark:bg-dark-primary"
-		v-if="editing"
+		v-if="editing.value"
 	>
 		<textarea
 			id="newElement"
@@ -27,6 +27,11 @@
 	<ListTransition class="relative block">
 		<SubsectionElement
 			v-for="(element, index) in subsection.elements"
+			:draggable="editing.value"
+			@dragstart="startDrag($event, index)"
+			@drop="onDrop($event, element, index)"
+			@dragenter="onDragEnter(index)"
+			@dragover.prevent
 			:key="element.id"
 			@selectElement="
 				selectedElement = selectedElement != index ? index : undefined
@@ -46,85 +51,58 @@
 	/>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+	import { computed, inject, ref } from 'vue';
 	import { Subsection } from '../../../../models/Subsection';
 	import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
 	import SubsectionElement from './EditorElement.vue';
-	import { inject } from 'vue';
 	import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
 	import ListTransition from '../../../shared/Transition/ListTransition.vue';
 	import ConfirmationModal from '../../../shared/Modal/ConfirmationModal.vue';
-	export default {
-		name: 'EditorElements',
-		components: {
-			CloseAddButton,
-			SubsectionElement,
-			AppearFadeTransition,
-			ListTransition,
-			ConfirmationModal,
-		},
+	import { useDrag } from '../../../../composables/useDrag';
 
-		data() {
-			return {
-				...this.initialState(),
-				editing: inject('editing', false),
-				subsection: inject('subsection', new Subsection()),
-				confirmationDeleteModal: false,
-				indexOfElementToDelete: -1,
-			};
-		},
+	const newElement = ref('');
+	const selectedElement = ref(undefined as number | undefined);
+	const confirmationDeleteModal = ref(false);
+	const indexOfElementToDelete = ref(-1);
 
-		mounted() {
-			this.changeTextArea();
-		},
-		methods: {
-			initialState(): {
-				newElement: string;
-				selectedElement: number | undefined;
-			} {
-				return {
-					newElement: '',
-					selectedElement: undefined,
-				};
-			},
-			hasAtLeastOneElement() {
-				return (
-					this.subsection.elements.length > 0 ||
-					this.newElement.length > 0
-				);
-			},
-
-			tryToDeleteElement(index: number) {
-				this.confirmationDeleteModal = true;
-				this.indexOfElementToDelete = index;
-			},
-			deleteElement() {
-				this.subsection.elements.splice(this.indexOfElementToDelete, 1);
-				this.confirmationDeleteModal = false;
-			},
-			initTextArea() {
-				var input = document.getElementById('newElement');
-				if (input instanceof HTMLTextAreaElement) {
-					input.style.height = '';
-				}
-			},
-			changeTextArea() {
-				var input = document.getElementById('newElement');
-				if (input) {
-					input.style.height = '';
-				}
-				if (input instanceof HTMLTextAreaElement && input?.value) {
-					input.style.height = `${input?.scrollHeight}px`;
-				}
-			},
-			addElement() {
-				this.addElementIntoSubsection(this.newElement);
-				this.newElement = '';
-				this.initTextArea();
-			},
-			addElementIntoSubsection(newElement: string) {
-				this.subsection.addElement(newElement);
-			},
-		},
+	const subsection = inject('subsection', new Subsection()) as any;
+	const editing = computed(() => inject<boolean>('editing', false)) as any;
+	const tryToDeleteElement = (index: number) => {
+		confirmationDeleteModal.value = true;
+		indexOfElementToDelete.value = index;
 	};
+	const deleteElement = () => {
+		subsection.value.elements.splice(indexOfElementToDelete.value, 1);
+		confirmationDeleteModal.value = false;
+	};
+
+	const changeTextArea = () => {
+		var input = document.getElementById('newElement');
+		if (input) {
+			input.style.height = '';
+		}
+		if (input instanceof HTMLTextAreaElement && input?.value) {
+			input.style.height = `${input?.scrollHeight}px`;
+		}
+	};
+	const addElement = () => {
+		addElementIntoSubsection(newElement.value);
+		newElement.value = '';
+		initTextArea();
+	};
+	const initTextArea = () => {
+		var input = document.getElementById('newElement');
+		if (input instanceof HTMLTextAreaElement) {
+			input.style.height = '';
+		}
+	};
+	const addElementIntoSubsection = (newElement: string) => {
+		console.log(subsection.value);
+		subsection.value.addElement(newElement);
+	};
+	const { onDragEnter, onDrop, startDrag, markedSection } = useDrag(
+		subsection.value.elements,
+		() => ({})
+	);
 </script>

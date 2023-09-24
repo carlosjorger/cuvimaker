@@ -30,7 +30,10 @@ export const useResumeStore = defineStore('resume', {
 		},
 
 		setSection(index: number, section: Section) {
-			this.resume.sections[index] = copySection(section);
+			const sectionCopy = copySection(section);
+			if (sectionCopy) {
+				this.resume.sections[index] = sectionCopy;
+			}
 		},
 		setResume(resume: Resume) {
 			this.resume = resume;
