@@ -1,7 +1,6 @@
 import { ref } from 'vue';
-import type { Ref } from 'vue';
 //TODO: use this composable
-export function useEventListener<T>(collection: Ref<T[]>, save: () => void) {
+export function useDrag<T>(collection: T[], save: () => void) {
 	const markedSection = ref(-1);
 	const onDragEnter = (index: number) => {
 		markedSection.value = index;
@@ -14,7 +13,7 @@ export function useEventListener<T>(collection: Ref<T[]>, save: () => void) {
 			const sourceSection = collection[sourceIndex];
 			collection[sourceIndex] = element;
 			collection[index] = sourceSection;
-			this.markedSection = -1;
+			markedSection.value = -1;
 			save();
 		}
 	};

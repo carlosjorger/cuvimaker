@@ -55,8 +55,8 @@
 		</ListTransition>
 	</div>
 </template>
-<script lang="ts">
-	import { defineAsyncComponent, type PropType } from 'vue';
+<script setup lang="ts">
+	import { computed, defineAsyncComponent, ref, type PropType } from 'vue';
 	import BasicButton from '../../shared/Button/BasicButton.vue';
 	import SubsectionAlign from '../../shared/Subsection/SubsectionAlign.vue';
 	import EditorIntroduction from './Introduction/EditorIntroduction.vue';
@@ -69,113 +69,59 @@
 	import { useResumeStore } from '../../../stores/ResumeStore';
 	import { appStore } from '../../../store';
 	import type { Section } from '../../../models/Section';
-
+	import { useDrag } from '../../../composables/useDrag';
 	const AsyncCreateSectionModal = defineAsyncComponent(
 		() => import('../../app/Section/CreateSectionModal.vue')
 	);
-	type EditorResumeData = {
-		showModal: boolean;
-		editIndex: number | undefined;
-		confirmationDeleteModal: boolean;
-		sectionIndexToDelete: number;
-		markedSection: number;
-	};
-	export default {
-		name: 'EditorResume',
-		props: {
-			modelValue: {
-				type: Object as PropType<Resume>,
-				required: true,
-			},
+	const props = defineProps({
+		modelValue: {
+			type: Object as PropType<Resume>,
+			required: true,
 		},
-		components: {
-			EditorIntroduction,
-			SubsectionAlign,
-			BasicButton,
-			AsyncCreateSectionModal,
-			ConfirmationModal,
-			ListTransition,
-			EditorSection,
-		},
-		setup() {
-			const resumeStore = useResumeStore(appStore);
-			const localStorageStore = useLocalStorageStore(appStore);
-			return { localStorageStore, resumeStore };
-		},
-		data(): EditorResumeData {
-			return this.initialState();
-		},
-		methods: {
-			initialState(): EditorResumeData {
-				return {
-					showModal: false,
-					editIndex: undefined as number | undefined,
-					confirmationDeleteModal: false,
-					sectionIndexToDelete: -1,
-					markedSection: -1,
-				};
-			},
+	});
+	const showModal = ref(false);
+	const editIndex = ref(undefined as number | undefined);
+	const confirmationDeleteModal = ref(false);
+	const sectionIndexToDelete = ref(-1);
 
-			confirmDeleteSection(index: number) {
-				this.confirmationDeleteModal = true;
-				this.sectionIndexToDelete = index;
-			},
-			deleteSection(index: number) {
-				this.resumeStore.deleteSection(index);
-				this.confirmationDeleteModal = false;
-				this.saveResume();
-			},
-			setEditingIntroduction(value: boolean) {
-				this.resumeStore.isBeingEditingIntroduction = value;
-			},
-			setIntroduction(introduction: Introduction) {
-				this.resume.introduction = introduction;
-				this.saveResume();
-			},
-			closeSectionModal() {
-				this.showModal = false;
-				this.saveResume();
-			},
-			saveResume() {
-				this.$emit('update:modelValue', this.resume);
-				this.localStorageStore.saveResume(this.resume);
-			},
-			onDragEnter(index: number) {
-				this.markedSection = index;
-			},
-			onDrop(event: DragEvent, section: Section, index: number) {
-				const eventDataTransfer = event.dataTransfer;
-				if (eventDataTransfer) {
-					const draggedSectionName =
-						eventDataTransfer.getData('itemID');
-					const sourceIndex = Number.parseInt(draggedSectionName);
-					const sourceSection = this.resume.sections[sourceIndex];
-					this.resume.sections[sourceIndex] = section;
-					this.resume.sections[index] = sourceSection;
-					this.markedSection = -1;
-					this.saveResume();
-				}
-			},
-			startDrag(event: DragEvent, index: number) {
-				const eventDataTransfer = event.dataTransfer;
-				if (eventDataTransfer) {
-					eventDataTransfer.dropEffect = 'move';
-					eventDataTransfer.effectAllowed = 'move';
-					eventDataTransfer.setData('itemID', index.toString());
-				}
-				(event.target as HTMLElement).style.opacity = '1';
-				console.log();
-			},
+	const resumeStore = useResumeStore(appStore);
+	const localStorageStore = useLocalStorageStore(appStore);
+
+	const emit = defineEmits(['update:modelValue']);
+	const resume = computed({
+		get() {
+			return props.modelValue;
 		},
-		computed: {
-			resume: {
-				get() {
-					return this.modelValue;
-				},
-				set(value: Resume) {
-					this.$emit('update:modelValue', value);
-				},
-			},
+		set(value: Resume) {
+			emit('update:modelValue', value);
 		},
+	});
+	const confirmDeleteSection = (index: number) => {
+		confirmationDeleteModal.value = true;
+		sectionIndexToDelete.value = index;
 	};
+	const deleteSection = (index: number) => {
+		resumeStore.deleteSection(index);
+		confirmationDeleteModal.value = false;
+		saveResume();
+	};
+	const setEditingIntroduction = (value: boolean) => {
+		resumeStore.isBeingEditingIntroduction = value;
+	};
+	const setIntroduction = (introduction: Introduction) => {
+		resume.value.introduction = introduction;
+		saveResume();
+	};
+	const closeSectionModal = () => {
+		showModal.value = false;
+		saveResume();
+	};
+	const saveResume = () => {
+		emit('update:modelValue', resume.value);
+		localStorageStore.saveResume(resume.value);
+	};
+	const { onDragEnter, onDrop, startDrag, markedSection } = useDrag(
+		resume.value.sections,
+		saveResume
+	);
 </script>
