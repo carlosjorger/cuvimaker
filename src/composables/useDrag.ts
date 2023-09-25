@@ -1,10 +1,15 @@
 import { ref } from 'vue';
-export function useDrag<T>(collection: T[], save: () => void) {
+export function useDrag<T>(save: () => void) {
 	const markedSection = ref(-1);
 	const onDragEnter = (index: number) => {
 		markedSection.value = index;
 	};
-	const onDrop = (event: DragEvent, element: T, index: number) => {
+	const onDrop = (
+		event: DragEvent,
+		element: T,
+		collection: T[],
+		index: number
+	) => {
 		const eventDataTransfer = event.dataTransfer;
 		if (eventDataTransfer) {
 			const draggedSectionName = eventDataTransfer.getData('itemID');

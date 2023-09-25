@@ -39,7 +39,7 @@
 				:key="section.name"
 				:draggable="true"
 				@dragstart="startDrag($event, index)"
-				@drop="onDrop($event, section, index)"
+				@drop="onDrop($event, section, resume.sections, index)"
 				@dragenter="onDragEnter(index)"
 				:marked="markedSection == index"
 				@dragover.prevent
@@ -119,8 +119,6 @@
 		emit('update:modelValue', resume.value);
 		localStorageStore.saveResume(resume.value);
 	};
-	const { onDragEnter, onDrop, startDrag, markedSection } = useDrag(
-		resume.value.sections,
-		saveResume
-	);
+	const { onDragEnter, onDrop, startDrag, markedSection } =
+		useDrag(saveResume);
 </script>

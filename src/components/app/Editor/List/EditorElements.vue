@@ -29,7 +29,7 @@
 			v-for="(element, index) in subsection.elements"
 			:draggable="editing"
 			@dragstart="startDrag($event, index)"
-			@drop="onDrop($event, element, index)"
+			@drop="onDrop($event, element, subsection.elements, index)"
 			@dragenter="onDragEnter(index)"
 			@dragover.prevent
 			:key="element.id"
@@ -41,6 +41,7 @@
 			v-bind="$attrs"
 			:selecting="selectedElement == index"
 			:element="element.name"
+			:marked="markedSection == index"
 		/>
 	</ListTransition>
 	<ConfirmationModal
@@ -52,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-	import { computed, inject, ref } from 'vue';
+	import { inject, ref, watch } from 'vue';
 	import { Subsection } from '../../../../models/Subsection';
 	import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
 	import SubsectionElement from './EditorElement.vue';
@@ -101,7 +102,12 @@
 		subsection.addElement(newElement);
 	};
 	const { onDragEnter, onDrop, startDrag, markedSection } = useDrag(
-		subsection.elements,
 		() => ({})
+	);
+	watch(
+		() => subsection,
+		(newValue: Subsection) => {
+			Object.assign(subsection.elements, newValue.elements);
+		}
 	);
 </script>
