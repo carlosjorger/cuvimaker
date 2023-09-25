@@ -86,6 +86,7 @@
 
 	import { appStore } from '../../../store';
 	import type { Section } from '../../../models/Section';
+	import emitter from '../../../utils/eventBus';
 
 	export default {
 		name: 'CreateSectionModal',
@@ -170,14 +171,7 @@
 			},
 			updateSection: function () {
 				if (this.sectionStore.subsectionEditing) {
-					(
-						this.$refs
-							.editorSubsection as (typeof EditorSubsection)[]
-					).forEach((subsectionChild) => {
-						subsectionChild.tryingGoToThisSubsection(
-							this.sectionStore.editingIndex
-						);
-					});
+					emitter?.emit('editing', this.sectionStore.editingIndex);
 				} else if (this.isEditing) {
 					this.v$.$validate();
 					if (this.v$.$error) {
