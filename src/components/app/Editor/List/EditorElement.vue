@@ -125,7 +125,6 @@
 				}
 			},
 			deleteElement() {
-				console.log(this.index);
 				this.$emit('delete-element', this.index);
 			},
 			editElement() {

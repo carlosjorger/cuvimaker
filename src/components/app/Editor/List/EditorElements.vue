@@ -2,7 +2,7 @@
 <template>
 	<div
 		class="mt-2 flex justify-between rounded-3xl border-2 border-solid border-white bg-[var(--primary-form-color)] p-1.5 text-sm shadow-xl dark:bg-dark-primary"
-		v-if="editing.value"
+		v-if="editing"
 	>
 		<textarea
 			id="newElement"
@@ -27,7 +27,7 @@
 	<ListTransition class="relative block">
 		<SubsectionElement
 			v-for="(element, index) in subsection.elements"
-			:draggable="editing.value"
+			:draggable="editing"
 			@dragstart="startDrag($event, index)"
 			@drop="onDrop($event, element, index)"
 			@dragenter="onDragEnter(index)"
@@ -66,14 +66,14 @@
 	const confirmationDeleteModal = ref(false);
 	const indexOfElementToDelete = ref(-1);
 
-	const subsection = inject('subsection', new Subsection()) as any;
-	const editing = computed(() => inject<boolean>('editing', false)) as any;
+	const subsection = inject('subsection', new Subsection());
+	const editing = inject<boolean>('editing', false);
 	const tryToDeleteElement = (index: number) => {
 		confirmationDeleteModal.value = true;
 		indexOfElementToDelete.value = index;
 	};
 	const deleteElement = () => {
-		subsection.value.elements.splice(indexOfElementToDelete.value, 1);
+		subsection.elements.splice(indexOfElementToDelete.value, 1);
 		confirmationDeleteModal.value = false;
 	};
 
@@ -98,11 +98,10 @@
 		}
 	};
 	const addElementIntoSubsection = (newElement: string) => {
-		console.log(subsection.value);
-		subsection.value.addElement(newElement);
+		subsection.addElement(newElement);
 	};
 	const { onDragEnter, onDrop, startDrag, markedSection } = useDrag(
-		subsection.value.elements,
+		subsection.elements,
 		() => ({})
 	);
 </script>

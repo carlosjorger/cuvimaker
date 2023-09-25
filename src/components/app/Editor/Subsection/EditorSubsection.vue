@@ -132,7 +132,6 @@
 		}
 	};
 	let { subsection, editing, shake } = initialState();
-	console.log(subsection);
 	const rules = {
 		subsection: {
 			title: {
@@ -150,10 +149,8 @@
 	const resetWindow = () => {
 		v$.value.$reset();
 		Object.assign({ subsection, editing, shake }, initialState());
-		console.log(subsection);
 	};
 	//TODO: use subsection store
-	// TODO: use composition api
 	const vScrollIf = {
 		mounted: (el: Element, { value }: { value: Subsection }): void => {
 			if (value.last) {
@@ -208,7 +205,6 @@
 		sectionStore.setEditingIndex(props.subsectionIndex);
 	};
 	const editSubSection = () => {
-		console.log(sectionStore.editingIndex);
 		if (sectionStore.subsectionEditing) {
 			emmitSendEditing();
 		} else {
@@ -230,7 +226,6 @@
 	watch(
 		() => props.prevSubsection,
 		(newValue: Subsection) => {
-			console.log(props.prevSubsection);
 			Object.assign(subsection, copySubsection(newValue));
 		}
 	);
