@@ -150,7 +150,6 @@
 		v$.value.$reset();
 		Object.assign({ subsection, editing, shake }, initialState());
 	};
-	//TODO: use subsection store
 	const vScrollIf = {
 		mounted: (el: Element, { value }: { value: Subsection }): void => {
 			if (value.last) {
