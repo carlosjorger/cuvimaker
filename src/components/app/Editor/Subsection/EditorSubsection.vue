@@ -1,5 +1,6 @@
+<!-- TODO keep testing this component	 -->
 <template>
-	<div>
+	<div ref="el">
 		<ShakeTemplate
 			:shake="shake"
 			v-scroll-if="subsection"
@@ -30,7 +31,7 @@
 				>
 					<SubsectionForm
 						class="text-lg"
-						v-model="subsection.title"
+						v-model="state.subsection.title"
 						:placeholder="'Subsection title'"
 						:errors="v$.subsection.title.$errors"
 					/>
@@ -59,10 +60,9 @@
 		</ShakeTemplate>
 	</div>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 	import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
 	import { Subsection } from '../../../../models/Subsection';
-	import mitt from 'mitt';
 	import SubsectionForm from '../../../shared/TextArea/BasicTextArea.vue';
 	import { scrollSmoothToElement } from '../../../../utils/scrollServices';
 	import { useVuelidate } from '@vuelidate/core';
@@ -70,7 +70,15 @@
 	import EditorTimeIntervalSection from '../TimeInterval/EditorTimeIntervalSection.vue';
 	import ModalButton from '../../../shared/Button/ModalButton.vue';
 	import EditorListSection from '../List/EditorListSection.vue';
-	import { type PropType, computed } from 'vue';
+	import {
+		type PropType,
+		ref,
+		reactive,
+		type Ref,
+		onMounted,
+		watch,
+		provide,
+	} from 'vue';
 	import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
 	import CircleButtonWithIcon from '../../../shared/Button/CircleButtonWithIcon.vue';
 	import ShakeTemplate from '../../../shared/others/ShakeTemplate.vue';
@@ -80,166 +88,150 @@
 	} from '../../../../extensions/extensions';
 	import { useSectionStore } from '../../../../stores/SectionStore';
 	import { appStore } from '../../../../store';
-	const emitter = mitt();
-	//TODO: use subsection store
-	// TODO: use composition api
-	export default {
-		name: 'EditorSubsection',
-		props: {
-			prevSubsection: {
-				type: Object as PropType<Subsection>,
-				required: true,
-			},
-			subsectionIndex: {
-				type: Number,
-				required: true,
-			},
+	import emitter from '../../../../utils/eventBus';
+	const props = defineProps({
+		prevSubsection: {
+			type: Object as PropType<Subsection>,
+			required: true,
 		},
-		components: {
-			CloseAddButton,
-			SubsectionForm,
-			EditorTimeIntervalSection,
-			ModalButton,
-			EditorListSection,
-			AppearFadeTransition,
-			CircleButtonWithIcon,
-			ShakeTemplate,
+		subsectionIndex: {
+			type: Number,
+			required: true,
 		},
-		setup() {
-			const sectionStore = useSectionStore(appStore);
+	});
+	const sectionStore = useSectionStore(appStore);
 
-			return {
-				v$: useVuelidate({ $scope: true }),
-				sectionStore,
-			};
-		},
-		directives: {
-			scrollIf(el: Element, { value }) {
-				if (value.last) {
-					scrollSmoothToElement(el);
-				}
-			},
-		},
-		data(): {
-			subsection: Subsection;
-			editing: boolean;
-			shake: boolean;
-		} {
-			return this.initialState();
-		},
-		provide() {
-			return {
-				subsection: computed(() => this.subsection),
-				editing: computed(() => this.editing),
-			};
-		},
-		mounted() {
-			emitter.on('editing', (index) => {
-				this.tryingGoToThisSubsection(index as number);
-			});
-		},
-		methods: {
-			initialState(): {
-				subsection: Subsection;
-				editing: boolean;
-				shake: boolean;
-			} {
-				return {
-					subsection: isEmptySubsection(this.prevSubsection)
-						? new Subsection()
-						: copySubsection(this.prevSubsection),
-					editing: false,
-					shake: false,
-				};
-			},
-			tryingGoToThisSubsection(index: number) {
-				if (index == this.subsectionIndex) {
-					scrollSmoothToElement(this.$el);
-					this.shakeSubsection();
-				}
-			},
-			resetWindow: function () {
-				this.v$.$reset();
-				Object.assign(this.$data, this.initialState());
-			},
-			addRemoveSubSection() {
-				if (this.subsection.last) {
-					this.resetWindow();
-					this.addSubSection();
-				} else if (this.sectionStore.subsectionEditing) {
-					this.emmitSendEditing();
-				} else {
-					this.$emit('show-confirmation-to-delete');
-				}
-			},
-			addSubSection() {
-				if (this.sectionStore.subsectionEditing) {
-					this.emmitSendEditing();
-				} else {
-					this.sectionStore.addNewSubsection();
-				}
-			},
-			saveSubSection() {
-				this.validate();
-				if (this.v$.$error) {
-					return;
-				}
-				this.v$.$reset();
-				this.sectionStore.removeSubsection;
-				this.sectionStore.setSubsection(
-					this.subsectionIndex,
-					copySubsection(this.subsection)
-				);
-				this.sectionStore.disabledEditing();
-			},
-			cancelSubSection() {
-				this.subsection = copySubsection(this.prevSubsection);
-				this.sectionStore.disabledEditing();
-			},
-			validate() {
-				this.v$.$validate();
-			},
-			editSubSection() {
-				if (this.sectionStore.subsectionEditing) {
-					this.emmitSendEditing();
-				} else {
-					this.setEditingIndexToThisSubsection();
-				}
-			},
-			setEditingIndexToThisSubsection() {
-				this.sectionStore.setEditingIndex(this.subsectionIndex);
-			},
-			emmitSendEditing() {
-				emitter?.emit('editing', this.sectionStore.editingIndex);
-			},
-			shakeSubsection() {
-				this.shake = true;
-				setTimeout(() => {
-					this.shake = false;
-				}, 1500);
-			},
-		},
+	const el = ref<HTMLElement | null>(null);
+	const emit = defineEmits(['show-confirmation-to-delete']);
 
-		validations: {
-			subsection: {
-				title: {
-					required,
-				},
-			},
-		},
-		watch: {
-			'sectionStore.editingIndex'(newValue: number) {
-				this.editing = newValue == this.subsectionIndex;
-			},
-			'prevSubsection.last'(newValue: boolean) {
-				this.subsection.last = newValue;
-			},
-			prevSubsection(newValue: Subsection) {
-				this.subsection = copySubsection(newValue);
-			},
-			section() {
-				this.resetWindow();
+	const initialState = (): {
+		subsection: Subsection;
+		editing: Ref<boolean>;
+		shake: Ref<boolean>;
+	} => {
+		return {
+			subsection: reactive(
+				isEmptySubsection(props.prevSubsection)
+					? new Subsection()
+					: copySubsection(props.prevSubsection)
+			),
+			editing: ref(false),
+			shake: ref(false),
+		};
+	};
+	const shakeSubsection = () => {
+		shake.value = true;
+		setTimeout(() => {
+			shake.value = false;
+		}, 1500);
+	};
+	const tryingGoToThisSubsection = (index: number) => {
+		if (index == props.subsectionIndex) {
+			scrollSmoothToElement(el.value as Element);
+			shakeSubsection();
+		}
+	};
+	let { subsection, editing, shake } = initialState();
+	console.log(subsection);
+	const rules = {
+		subsection: {
+			title: {
+				required,
 			},
 		},
 	};
+	const state = reactive({ subsection: subsection });
+	const v$ = useVuelidate(rules, state, { $scope: true });
+	onMounted(() => {
+		emitter.on('editing', (index) => {
+			tryingGoToThisSubsection(index as number);
+		});
+	});
+	const resetWindow = () => {
+		v$.value.$reset();
+		Object.assign({ subsection, editing, shake }, initialState());
+		console.log(subsection);
+	};
+	//TODO: use subsection store
+	// TODO: use composition api
+	const vScrollIf = {
+		mounted: (el: Element, { value }: { value: Subsection }): void => {
+			if (value.last) {
+				scrollSmoothToElement(el);
+			}
+		},
+	};
+	provide('subsection', subsection);
+	provide('editing', editing);
+	const emmitSendEditing = () => {
+		emitter?.emit('editing', sectionStore.editingIndex);
+	};
+	const addSubSection = () => {
+		if (sectionStore.subsectionEditing) {
+			emmitSendEditing();
+		} else {
+			sectionStore.addNewSubsection();
+		}
+	};
+	const addRemoveSubSection = () => {
+		if (subsection.last) {
+			resetWindow();
+			addSubSection();
+		} else if (sectionStore.subsectionEditing) {
+			emmitSendEditing();
+		} else {
+			emit('show-confirmation-to-delete');
+		}
+	};
+	const validate = () => {
+		v$.value.$validate();
+	};
+	const saveSubSection = () => {
+		validate();
+		if (v$.value.$error) {
+			return;
+		}
+		v$.value.$reset();
+		sectionStore.removeSubsection;
+		sectionStore.setSubsection(
+			props.subsectionIndex,
+			copySubsection(subsection)
+		);
+		sectionStore.disabledEditing();
+	};
+	const cancelSubSection = () => {
+		subsection = copySubsection(props.prevSubsection);
+		sectionStore.disabledEditing();
+	};
+
+	const setEditingIndexToThisSubsection = () => {
+		sectionStore.setEditingIndex(props.subsectionIndex);
+	};
+	const editSubSection = () => {
+		console.log(sectionStore.editingIndex);
+		if (sectionStore.subsectionEditing) {
+			emmitSendEditing();
+		} else {
+			setEditingIndexToThisSubsection();
+		}
+	};
+	watch(
+		() => sectionStore.editingIndex,
+		(newValue: number) => {
+			editing.value = newValue == props.subsectionIndex;
+		}
+	);
+	watch(
+		() => props.prevSubsection.last,
+		(newValue: boolean) => {
+			subsection.last = newValue;
+		}
+	);
+	watch(
+		() => props.prevSubsection,
+		(newValue: Subsection) => {
+			console.log(props.prevSubsection);
+			Object.assign(subsection, copySubsection(newValue));
+		}
+	);
 </script>

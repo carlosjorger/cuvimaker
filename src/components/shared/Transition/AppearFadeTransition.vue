@@ -4,10 +4,6 @@
 	</transition>
 </template>
 
-<script>
-	export default {};
-</script>
-
 <style>
 	.appear-fade-leave-active,
 	.appear-fade-enter-active {
