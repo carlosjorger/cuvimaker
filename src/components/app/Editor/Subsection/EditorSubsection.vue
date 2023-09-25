@@ -218,15 +218,10 @@
 		}
 	);
 	watch(
-		() => props.prevSubsection.last,
-		(newValue: boolean) => {
-			subsection.last = newValue;
-		}
-	);
-	watch(
 		() => props.prevSubsection,
 		(newValue: Subsection) => {
 			Object.assign(subsection, copySubsection(newValue));
-		}
+		},
+		{ deep: true }
 	);
 </script>
