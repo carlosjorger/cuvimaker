@@ -120,6 +120,7 @@
 	const resumeStore = useResumeStore(appStore);
 	const sectionStore = useSectionStore(appStore);
 	const editing = computed(() => sectionStore.editingIndex >= 0);
+	const isEditing = computed(() => props.editIndex != undefined);
 	const initialState = (): {
 		section: Ref<Section>;
 		confirmationDeleteModal: Ref<boolean>;
@@ -165,7 +166,6 @@
 		},
 	};
 	const v$ = useVuelidate(rules, state, { $scope: true });
-	const isEditing = computed(() => props.editIndex != undefined);
 
 	const resetWindow = () => {
 		Object.assign(
