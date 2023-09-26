@@ -89,7 +89,7 @@
 	import emitter from '../../../utils/eventBus';
 	import { reactive, computed, ref, watch, type Ref } from 'vue';
 	import { storeToRefs } from 'pinia';
-
+	// TODO: add useDrag
 	const props = defineProps({
 		showModal: {
 			type: Boolean,
