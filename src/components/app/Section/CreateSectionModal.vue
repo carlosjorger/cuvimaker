@@ -72,7 +72,7 @@
 		</div>
 	</ModalTemplate>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 	import CloseAddButton from '../../shared/Button/CloseAddButton.vue';
 	import EditorSubsection from '../Editor/Subsection/EditorSubsection.vue';
 	import BasicButton from '../../shared/Button/BasicButton.vue';
@@ -87,138 +87,113 @@
 	import { appStore } from '../../../store';
 	import type { Section } from '../../../models/Section';
 	import emitter from '../../../utils/eventBus';
+	import { reactive, computed, ref, watch, type Ref } from 'vue';
+	import { storeToRefs } from 'pinia';
 
-	export default {
-		name: 'CreateSectionModal',
-		props: {
-			showModal: {
-				type: Boolean,
-				required: true,
-			},
-			editIndex: {
-				type: Number,
-			},
+	const props = defineProps({
+		showModal: {
+			type: Boolean,
+			required: true,
 		},
-		components: {
-			EditorSubsection,
-			CloseAddButton,
-			BasicButton,
-			ErrorsSection,
-			ModalTemplate,
-			ConfirmationModal,
+		editIndex: {
+			type: Number,
 		},
-		setup() {
-			const resumeStore = useResumeStore(appStore);
-			const sectionStore = useSectionStore(appStore);
-			return {
-				v$: useVuelidate({ $scope: false }),
-				resumeStore,
-				sectionStore,
-			};
-		},
-		data(): {
-			section: Section;
-			confirmationDeleteModal: boolean;
-			selectedSectionIndex: number;
-		} {
-			return {
-				...this.initialState(),
-			};
-		},
-		methods: {
-			anySectionWithThisName() {
-				return this.resumeStore.anySectionWithThisName(
-					this.editIndex,
-					this.section.name
-				);
-			},
-			initialState(): {
-				section: Section;
-				confirmationDeleteModal: boolean;
-				selectedSectionIndex: number;
-			} {
-				if (this.editIndex != undefined && this.isEditing) {
-					const tempSection = this.resumeStore.getSection(
-						this.editIndex
-					);
-					if (tempSection) {
-						this.sectionStore.setSection(tempSection);
-					}
-				} else if (this.editIndex == undefined) {
-					this.sectionStore.clear();
-				}
-				const { section } = this.sectionStore;
-				return {
-					section: section,
-					confirmationDeleteModal: false,
-					selectedSectionIndex: 0,
-				};
-			},
-			resetWindow: function () {
-				Object.assign(this.$data, this.initialState());
-			},
-			addSection: function (section: Section) {
-				this.v$.$validate();
-				if (this.v$.$error) {
-					return;
-				}
-				this.resumeStore.addSection(section);
-				this.closeModal();
-				this.v$.$reset();
-			},
-			closeModal: function () {
-				this.$emit('close-modal');
-			},
-			updateSection: function () {
-				if (this.sectionStore.subsectionEditing) {
-					emitter?.emit('editing', this.sectionStore.editingIndex);
-				} else if (this.isEditing) {
-					this.v$.$validate();
-					if (this.v$.$error) {
-						return;
-					}
-					if (this.editIndex != undefined) {
-						this.resumeStore.setSection(
-							this.editIndex,
-							this.section
-						);
-					}
-					this.v$.$reset();
-					this.closeModal();
-				}
-			},
-			removeSubsection() {
-				this.confirmationDeleteModal = false;
-				this.sectionStore.removeSubsection(this.selectedSectionIndex);
-			},
-		},
-		validations() {
-			return {
-				section: {
-					name: {
-						required,
-						anySectionWithThisName: helpers.withMessage(
-							'Cannot have a Section with the same name',
-							this.anySectionWithThisName
-						),
-					},
-				},
-			};
-		},
+	});
+	const resumeStore = useResumeStore(appStore);
+	const sectionStore = useSectionStore(appStore);
+	const initialState = (): {
+		section: Ref<Section>;
+		confirmationDeleteModal: Ref<boolean>;
+		selectedSectionIndex: Ref<number>;
+	} => {
+		if (props.editIndex != undefined && isEditing) {
+			const tempSection = reactive(
+				resumeStore.getSection(props.editIndex)
+			);
+			if (tempSection) {
+				sectionStore.setSection(tempSection);
+			}
+		} else if (props.editIndex == undefined) {
+			sectionStore.clear();
+		}
+		const { section } = storeToRefs(sectionStore);
+		return {
+			section: section,
+			confirmationDeleteModal: ref(false),
+			selectedSectionIndex: ref(0),
+		};
+	};
+	let { section, confirmationDeleteModal, selectedSectionIndex } =
+		initialState();
+	const emit = defineEmits(['close-modal']);
 
-		watch: {
-			showModal(newValue) {
-				if (newValue) {
-					this.resetWindow();
-				}
-			},
-		},
-		computed: {
-			isEditing: function () {
-				return this.editIndex != undefined;
+	const anySectionWithThisName = () => {
+		return resumeStore.anySectionWithThisName(
+			props.editIndex,
+			section.value.name
+		);
+	};
+	const state = reactive({ section: section });
+	const rules = {
+		section: {
+			name: {
+				required,
+				anySectionWithThisName: helpers.withMessage(
+					'Cannot have a Section with the same name',
+					anySectionWithThisName
+				),
 			},
 		},
 	};
+	const v$ = useVuelidate(rules, state, { $scope: true });
+	const isEditing = computed(() => props.editIndex != undefined);
+
+	const resetWindow = () => {
+		Object.assign(
+			{ section, confirmationDeleteModal, selectedSectionIndex },
+			initialState()
+		);
+	};
+	const closeModal = () => {
+		emit('close-modal');
+	};
+	const addSection = (section: Section) => {
+		v$.value.$validate();
+		if (v$.value.$error) {
+			return;
+		}
+		resumeStore.addSection(section);
+		closeModal();
+		v$.value.$reset();
+	};
+
+	const updateSection = () => {
+		if (sectionStore.subsectionEditing) {
+			emitter?.emit('editing', sectionStore.editingIndex);
+		} else if (isEditing.value) {
+			v$.value.$validate();
+			if (v$.value.section?.name.$error) {
+				return;
+			}
+			if (props.editIndex != undefined) {
+				resumeStore.setSection(props.editIndex, section.value);
+			}
+			v$.value.$reset();
+			closeModal();
+		}
+	};
+	const removeSubsection = () => {
+		confirmationDeleteModal.value = false;
+		sectionStore.removeSubsection(selectedSectionIndex.value);
+	};
+	watch(
+		() => props.showModal,
+		(newValue: boolean) => {
+			if (newValue) {
+				resetWindow();
+			}
+		}
+	);
 </script>
 <style>
 	.subsection-move {
