@@ -1,18 +1,27 @@
 import { ref } from 'vue';
-export function useDrag<T>(save: () => void) {
+export function useDrag<T>(typeOfDrag: string, save: () => void) {
 	const markedSection = ref(-1);
-	const onDragEnter = (index: number) => {
+	const IdAttr = `${typeOfDrag}ID`;
+
+	const onDragEnter = (index: number, enableDrag: boolean) => {
+		if (!enableDrag) {
+			return;
+		}
 		markedSection.value = index;
 	};
 	const onDrop = (
 		event: DragEvent,
 		element: T,
 		collection: T[],
-		index: number
+		index: number,
+		enableDrag: boolean
 	) => {
+		if (!enableDrag) {
+			return;
+		}
 		const eventDataTransfer = event.dataTransfer;
 		if (eventDataTransfer) {
-			const draggedSectionName = eventDataTransfer.getData('itemID');
+			const draggedSectionName = eventDataTransfer.getData(IdAttr);
 			const sourceIndex = Number.parseInt(draggedSectionName);
 			const sourceSection = collection[sourceIndex];
 			collection[sourceIndex] = element;
@@ -26,7 +35,7 @@ export function useDrag<T>(save: () => void) {
 		if (eventDataTransfer) {
 			eventDataTransfer.dropEffect = 'move';
 			eventDataTransfer.effectAllowed = 'move';
-			eventDataTransfer.setData('itemID', index.toString());
+			eventDataTransfer.setData(IdAttr, index.toString());
 		}
 		(event.target as HTMLElement).style.opacity = '1';
 	};

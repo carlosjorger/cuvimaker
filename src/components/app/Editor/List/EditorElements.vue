@@ -26,12 +26,12 @@
 	<ListTransition class="relative block">
 		<SubsectionElement
 			v-for="(element, index) in subsection.elements"
+			:key="element.id"
 			:draggable="editing"
 			@dragstart="startDrag($event, index)"
-			@drop="onDrop($event, element, subsection.elements, index)"
-			@dragenter="onDragEnter(index)"
+			@drop="onDrop($event, element, subsection.elements, index, editing)"
+			@dragenter="onDragEnter(index, editing)"
 			@dragover.prevent
-			:key="element.id"
 			@selectElement="
 				selectedElement = selectedElement != index ? index : undefined
 			"
@@ -101,6 +101,7 @@
 		subsection.addElement(newElement);
 	};
 	const { onDragEnter, onDrop, startDrag, markedSection } = useDrag(
+		'Element',
 		() => ({})
 	);
 	watch(

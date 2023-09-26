@@ -42,6 +42,24 @@
 						ref="editorSubsection"
 						v-for="(subsection, index) in section.subsections"
 						:key="subsection.id"
+						:draggable="!editing && !subsection.last"
+						@dragstart="startDrag($event, index)"
+						@drop="
+							onDrop(
+								$event,
+								subsection,
+								section.subsections,
+								index,
+								!editing && !subsection.last
+							)
+						"
+						@dragenter="
+							onDragEnter(index, !editing && !subsection.last)
+						"
+						:class="{
+							['translate-x-2']: markedSection == index,
+						}"
+						@dragover.prevent
 						:subsectionIndex="index"
 						:prevSubsection="subsection"
 						@show-confirmation-to-delete="
@@ -89,7 +107,7 @@
 	import emitter from '../../../utils/eventBus';
 	import { reactive, computed, ref, watch, type Ref } from 'vue';
 	import { storeToRefs } from 'pinia';
-	// TODO: add useDrag
+	import { useDrag } from '../../../composables/useDrag';
 	const props = defineProps({
 		showModal: {
 			type: Boolean,
@@ -101,6 +119,7 @@
 	});
 	const resumeStore = useResumeStore(appStore);
 	const sectionStore = useSectionStore(appStore);
+	const editing = computed(() => sectionStore.editingIndex >= 0);
 	const initialState = (): {
 		section: Ref<Section>;
 		confirmationDeleteModal: Ref<boolean>;
@@ -186,6 +205,10 @@
 		confirmationDeleteModal.value = false;
 		sectionStore.removeSubsection(selectedSectionIndex.value);
 	};
+	const { onDragEnter, onDrop, startDrag, markedSection } = useDrag(
+		'Subsection',
+		() => ({})
+	);
 	watch(
 		() => props.showModal,
 		(newValue: boolean) => {
