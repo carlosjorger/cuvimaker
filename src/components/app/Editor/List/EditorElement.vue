@@ -3,10 +3,9 @@
 		class="mt-2 flex w-full items-center justify-end rounded-lg border-solid border-white p-1 text-sm shadow-xl transition-all duration-300 ease-linear max-md:min-h-[5.5rem]"
 		:class="{
 			['border-4']: editingElement && selecting && editing,
-			['translate-x-2 bg-[#7b669a] dark:bg-[#7661b5]']: marked,
-			['bg-[#8661bc] dark:bg-[#6551a1]']: selecting && editing,
+			['translate-x-2 bg-[#8661bc] dark:bg-[#6551a1]']: markedElement,
 			['bg-[var(--primary-form-color)] dark:bg-dark-primary']:
-				!selecting || !editing,
+				!markedElement,
 		}"
 		@click="selectElement"
 	>
@@ -156,6 +155,11 @@
 		mounted() {
 			this.changeTextArea();
 			this.resetElementValue();
+		},
+		computed: {
+			markedElement() {
+				return (this.selecting && this.editing) || this.marked;
+			},
 		},
 		watch: {
 			selecting(newValue: boolean) {
