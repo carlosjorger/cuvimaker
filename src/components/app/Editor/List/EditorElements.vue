@@ -4,7 +4,7 @@
 		v-if="editing"
 	>
 		<textarea
-			id="newElement"
+			ref="newElementHTML"
 			v-model="newElement"
 			class="w-4/5 resize-none overflow-hidden bg-inherit p-2 text-white outline-none"
 			placeholder="New element..."
@@ -63,6 +63,8 @@
 
 	const newElement = ref('');
 	const selectedElement = ref(undefined as number | undefined);
+	const newElementHTML = ref<HTMLElement | null>(null);
+
 	const confirmationDeleteModal = ref(false);
 	const indexOfElementToDelete = ref(-1);
 
@@ -78,7 +80,7 @@
 	};
 
 	const changeTextArea = () => {
-		var input = document.getElementById('newElement');
+		var input = newElementHTML.value;
 		if (input) {
 			input.style.height = '';
 		}
@@ -92,7 +94,7 @@
 		initTextArea();
 	};
 	const initTextArea = () => {
-		var input = document.getElementById('newElement');
+		var input = newElementHTML.value;
 		if (input instanceof HTMLTextAreaElement) {
 			input.style.height = '';
 		}
