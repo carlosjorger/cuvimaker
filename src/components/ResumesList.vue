@@ -17,7 +17,7 @@
 							getResumeName(path.params.id)?.introduction
 								.profetion
 						"
-						class="mx-20 my-3 w-2/3 rounded-lg border-4 border-zinc-300 p-7 font-medium text-zinc-300 backdrop-brightness-75 transition-all hover:border-[6px] hover:border-zinc-50 hover:font-extrabold hover:text-zinc-50 max-md:w-5/6 max-sm:w-11/12"
+						class="mx-20 my-3 w-2/3 rounded-lg bg-[#f5f0ff] p-7 font-extrabold transition-all dark:text-dark-primary max-md:w-5/6 max-sm:w-11/12"
 					>
 						<div class="text-lg">
 							{{
@@ -33,7 +33,7 @@
 					</div>
 					<div
 						v-else
-						class="mx-20 my-5 w-2/3 rounded-lg border-4 border-double border-zinc-300 p-7 font-blackOpsOne font-normal text-zinc-300 transition-all hover:border-[6px] hover:border-zinc-50 hover:text-zinc-50 hover:shadow-lg max-md:w-5/6 max-sm:w-11/12"
+						class="mx-20 my-3 w-2/3 rounded-lg bg-[#f5f0ff] p-7 font-blackOpsOne font-extrabold transition-all dark:text-dark-primary max-md:w-5/6 max-sm:w-11/12"
 					>
 						<div class="text-2xl">EMPTY</div>
 					</div>

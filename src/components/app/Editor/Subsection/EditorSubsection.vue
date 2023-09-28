@@ -1,4 +1,3 @@
-<!-- TODO keep testing this component	 -->
 <template>
 	<div ref="el">
 		<ShakeTemplate
