@@ -9,7 +9,7 @@
 			<li v-for="path in paths" :key="path.params.id">
 				<a :href="`/editor/${path.params.id}`">
 					<div
-						class="my-3 w-2/3 rounded-lg bg-[#f5f0ff] p-7 font-extrabold transition-all dark:text-dark-primary max-md:w-5/6 max-sm:w-full"
+						class="my-3 w-2/3 rounded-lg bg-[#f5f0ff] p-7 font-extrabold transition-all duration-200 hover:translate-x-6 hover:bg-[#e1d7fd] dark:text-dark-primary max-md:w-5/6 max-sm:w-full max-sm:hover:translate-x-2"
 					>
 						<div
 							v-if="
