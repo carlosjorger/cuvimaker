@@ -178,7 +178,7 @@
 	};
 	const addSection = (section: Section) => {
 		v$.value.$validate();
-		if (v$.value.$error) {
+		if (v$.value.section?.name.$error) {
 			return;
 		}
 		resumeStore.addSection(section);
