@@ -1,8 +1,9 @@
 <!-- TODO: Add clear resume button -->
-<!-- TODO: improve the resume design list -->
 <template>
 	<div class="m-4 mx-20 max-md:mx-10 max-sm:mx-auto max-sm:w-11/12">
-		<h2 class="my-3 font-montserrat text-4xl font-extrabold text-zinc-50">
+		<h2
+			class="my-3 font-montserrat text-4xl font-extrabold text-zinc-50 md:my-8"
+		>
 			Resumes
 		</h2>
 		<ul>
