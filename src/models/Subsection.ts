@@ -1,6 +1,6 @@
 import { SubsectionElement } from './SubsectionElement';
 import type { TimeInterval } from './SubsectionTimeInterval';
-
+// TODO: location to subsection
 export class Subsection {
 	id: number;
 	title: string;
