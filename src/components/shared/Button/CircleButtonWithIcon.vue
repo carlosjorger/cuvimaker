@@ -1,5 +1,8 @@
 <template>
-	<CircleButton :size="width" class="active:bg-[#a99cd2]">
+	<CircleButton
+		:size="width"
+		class="active:bg-[#a99cd2] dark:active:bg-[#887eaa]"
+	>
 		<Icon :icon="icon" :width="10 * width" :color="color" />
 	</CircleButton>
 </template>

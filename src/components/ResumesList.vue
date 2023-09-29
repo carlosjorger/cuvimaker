@@ -13,6 +13,7 @@
 						class="my-3 w-2/3 rounded-lg bg-[#f5f0ff] p-7 font-extrabold transition-all duration-200 hover:translate-x-6 hover:bg-[#e1d7fd] dark:text-dark-primary max-md:w-5/6 max-sm:w-full max-sm:hover:translate-x-2"
 					>
 						<div
+							class="flex items-center justify-between"
 							v-if="
 								getResumeName(path.params.id)?.introduction
 									.name &&
@@ -20,18 +21,27 @@
 									.profetion
 							"
 						>
-							<div class="text-lg">
-								{{
-									getResumeName(path.params.id)?.introduction
-										.name
-								}}
-							</div>
 							<div>
-								{{
-									getResumeName(path.params.id)?.introduction
-										.profetion
-								}}
+								<div class="text-lg">
+									{{
+										getResumeName(path.params.id)
+											?.introduction.name
+									}}
+								</div>
+								<div>
+									{{
+										getResumeName(path.params.id)
+											?.introduction.profetion
+									}}
+								</div>
 							</div>
+							<CircleButtonWithIcon
+								color="var(--primary-color)"
+								icon="ic:baseline-delete"
+								:width="2"
+								class="border-2 border-primary"
+								@click.prevent="clear($event, path.params.id)"
+							/>
 						</div>
 						<div v-else class="font-blackOpsOne text-2xl">
 							EMPTY
@@ -49,11 +59,14 @@
 	import { appStore } from '../store';
 	import { useLocalStorageStore } from '../stores/localStorageStore';
 	import { getResumePaths, type ResumePathsType } from '../utils/resumePaths';
+	import CircleButtonWithIcon from './shared/Button/CircleButtonWithIcon.vue';
+
 	type ResumesListData = {
 		paths: ResumePathsType[];
 	};
 	export default {
 		name: 'ResumesList',
+		components: { CircleButtonWithIcon },
 		setup() {
 			const localStorageStore = useLocalStorageStore(appStore);
 			return { localStorageStore };
@@ -71,6 +84,12 @@
 			getResumeName(id: string) {
 				const resume = this.localStorageStore.getResume(id);
 				return resume;
+			},
+			clear(event: Event, id: string) {
+				event.stopPropagation();
+				this.localStorageStore.clearResume(id);
+				this.paths = getResumePaths();
+				return false;
 			},
 		},
 	};

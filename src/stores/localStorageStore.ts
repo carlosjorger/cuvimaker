@@ -56,6 +56,17 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 			this.resume =
 				resumes.find((resume) => resume.id === id) ?? this.resume;
 		},
+		clearResume(id: string) {
+			const newResume = new Resume(id);
+			const resumes = this.loadResumes;
+			const resumeIndex = resumes.findIndex((r) => r.id === id);
+			if (resumeIndex >= 0) {
+				resumes[resumeIndex] = newResume;
+			} else {
+				resumes.push(newResume);
+			}
+			localStorage.setItem('resumes', JSON.stringify(resumes));
+		},
 		saveResume(resume: Resume) {
 			const resumes = this.loadResumes;
 			const resumeIndex = resumes.findIndex((r) => r.id === resume.id);
