@@ -14,6 +14,7 @@
 		></textarea>
 		<AppearFadeTransition>
 			<CloseAddButton
+				toolTipText="Add Element"
 				v-if="newElement.trim()"
 				:size="2.3"
 				v-on:click="addElement()"

@@ -10,6 +10,7 @@
 					{{ isEditing ? 'Edit Section' : 'Add a Section' }}
 				</h3>
 				<CloseAddButton
+					toolTipText="Close Section Modal"
 					v-on:click="$emit('close-modal')"
 					:closeButton="true"
 					:lineColor="'white'"

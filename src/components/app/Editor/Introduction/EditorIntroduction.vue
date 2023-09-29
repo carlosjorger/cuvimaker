@@ -124,6 +124,7 @@
 					/>
 					<AppearFadeTransition>
 						<CloseAddButton
+							toolTipText="Add a Social Account"
 							v-if="currentSocialAccount.trim()"
 							:size="2.3"
 							v-on:click="addSocialAccount()"

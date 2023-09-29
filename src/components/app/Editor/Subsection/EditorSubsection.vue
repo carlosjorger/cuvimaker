@@ -9,6 +9,11 @@
 				<div class="flex items-center justify-between">
 					<AppearFadeTransition>
 						<CloseAddButton
+							:toolTipText="
+								subsection.last
+									? 'Add Subsection'
+									: 'Delete Subsection'
+							"
 							v-on:click="addRemoveSubSection()"
 							:closeButton="!subsection.last"
 							v-if="!editing"
