@@ -16,10 +16,7 @@
 
 				<div class="flex justify-between pt-5">
 					<ConfirmationButton :name="'No'" @click="$emit('cancel')" />
-					<ConfirmationButton
-						:name="'Yes'"
-						@click="$emit('delete')"
-					/>
+					<ConfirmationButton :name="'Yes'" @click="onDelete()" />
 				</div>
 			</div>
 		</section>
@@ -32,6 +29,12 @@
 		components: { ModalTemplate, ConfirmationButton },
 		props: {
 			entityToDelete: String,
+		},
+		methods: {
+			onDelete() {
+				this.$emit('delete');
+				this.$emit('cancel');
+			},
 		},
 	};
 </script>

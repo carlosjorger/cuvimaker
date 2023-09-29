@@ -1,4 +1,3 @@
-<!-- TODO: Add clear resume button -->
 <template>
 	<div class="m-4 mx-20 max-md:mx-10 max-sm:mx-auto max-sm:w-11/12">
 		<h2
@@ -40,7 +39,9 @@
 								icon="ic:baseline-delete"
 								:width="2"
 								class="border-2 border-primary"
-								@click.prevent="clear($event, path.params.id)"
+								@click.prevent="
+									tryToClearResume($event, path.params.id)
+								"
 							/>
 						</div>
 						<div v-else class="font-blackOpsOne text-2xl">
@@ -50,6 +51,12 @@
 				</a>
 			</li>
 		</ul>
+		<ConfirmationModal
+			v-show="confirmationDeleteModal"
+			:entityToDelete="'resume'"
+			@cancel="confirmationDeleteModal = false"
+			@delete="clear()"
+		/>
 	</div>
 </template>
 
@@ -60,13 +67,16 @@
 	import { useLocalStorageStore } from '../stores/localStorageStore';
 	import { getResumePaths, type ResumePathsType } from '../utils/resumePaths';
 	import CircleButtonWithIcon from './shared/Button/CircleButtonWithIcon.vue';
+	import ConfirmationModal from './shared/Modal/ConfirmationModal.vue';
 
 	type ResumesListData = {
 		paths: ResumePathsType[];
+		confirmationDeleteModal: boolean;
+		indexOfElementToDelete: string;
 	};
 	export default {
 		name: 'ResumesList',
-		components: { CircleButtonWithIcon },
+		components: { CircleButtonWithIcon, ConfirmationModal },
 		setup() {
 			const localStorageStore = useLocalStorageStore(appStore);
 			return { localStorageStore };
@@ -79,15 +89,22 @@
 				var paths = getResumePaths();
 				return {
 					paths: paths,
+					confirmationDeleteModal: false,
+					indexOfElementToDelete: '',
 				};
 			},
 			getResumeName(id: string) {
 				const resume = this.localStorageStore.getResume(id);
 				return resume;
 			},
-			clear(event: Event, id: string) {
+			tryToClearResume(event: Event, index: string) {
 				event.stopPropagation();
-				this.localStorageStore.clearResume(id);
+				this.confirmationDeleteModal = true;
+				this.indexOfElementToDelete = index;
+				return false;
+			},
+			clear() {
+				this.localStorageStore.clearResume(this.indexOfElementToDelete);
 				this.paths = getResumePaths();
 				return false;
 			},
