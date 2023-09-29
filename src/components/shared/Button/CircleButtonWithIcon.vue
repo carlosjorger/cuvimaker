@@ -1,15 +1,18 @@
 <template>
-	<CircleButton
-		:size="width"
-		class="active:bg-[#a99cd2] dark:active:bg-[#887eaa]"
-	>
-		<Icon :icon="icon" :width="10 * width" :color="color" />
-	</CircleButton>
+	<TooltipWrapper :text="text">
+		<CircleButton
+			:size="width"
+			class="border-2 border-primary active:bg-[#a99cd2] dark:active:bg-[#887eaa]"
+		>
+			<Icon :icon="icon" :width="10 * width" :color="color" />
+		</CircleButton>
+	</TooltipWrapper>
 </template>
 
 <script lang="ts">
 	import CircleButton from '../../shared/Button/CircleButton.vue';
 	import { Icon } from '@iconify/vue';
+	import TooltipWrapper from '../../shared/Tooltip/TooltipWrapper.vue';
 
 	export default {
 		props: {
@@ -25,8 +28,13 @@
 				type: Number,
 				default: 2.2,
 			},
+			text: {
+				type: String,
+				required: true,
+				default: '',
+			},
 		},
-		components: { CircleButton, Icon },
+		components: { CircleButton, Icon, TooltipWrapper },
 	};
 </script>
 

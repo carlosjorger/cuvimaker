@@ -29,6 +29,7 @@
 				class="absolute flex items-center"
 			>
 				<CircleButtonWithIcon
+					text="Save social account"
 					@click="saveElement"
 					color="var(--primary-color)"
 					icon="el:ok"
@@ -36,6 +37,7 @@
 				/>
 				<CircleButtonWithIcon
 					@click="cancelElement"
+					text="Cancel"
 					color="var(--primary-color)"
 					icon="mdi:cancel-bold"
 					:width="1.5"
@@ -48,12 +50,14 @@
 				class="absolute flex items-center"
 			>
 				<CircleButtonWithIcon
+					text="Edit social account"
 					@click="editElement"
 					color="var(--primary-color)"
 					icon="ic:baseline-edit"
 					:width="1.5"
 				/>
 				<CircleButtonWithIcon
+					text="Delete social account"
 					@click="deleteElement"
 					color="var(--primary-color)"
 					icon="ic:baseline-delete"

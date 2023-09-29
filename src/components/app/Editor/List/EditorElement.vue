@@ -27,6 +27,7 @@
 					<CircleButtonWithIcon
 						v-if="editing"
 						@click="saveElement"
+						text="Save element"
 						color="var(--primary-color)"
 						icon="el:ok"
 						:width="2"
@@ -34,6 +35,7 @@
 					<CircleButtonWithIcon
 						v-if="editing"
 						@click="cancelElement"
+						text="Cancel"
 						color="var(--primary-color)"
 						icon="mdi:cancel-bold"
 						:width="2"
@@ -47,6 +49,7 @@
 					<CircleButtonWithIcon
 						v-if="editing"
 						@click="editElement"
+						text="Edit element"
 						color="var(--primary-color)"
 						icon="ic:baseline-edit"
 						:width="2"
@@ -54,6 +57,7 @@
 					<CircleButtonWithIcon
 						v-if="editing"
 						@click="deleteElement"
+						text="Delete element"
 						color="var(--primary-color)"
 						icon="ic:baseline-delete"
 						:width="2"

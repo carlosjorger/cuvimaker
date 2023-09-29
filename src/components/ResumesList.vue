@@ -38,7 +38,7 @@
 								color="var(--primary-color)"
 								icon="ic:baseline-delete"
 								:width="2"
-								class="border-2 border-primary"
+								text="Clear Resume"
 								@click.prevent="
 									tryToClearResume($event, path.params.id)
 								"
@@ -68,7 +68,6 @@
 	import { getResumePaths, type ResumePathsType } from '../utils/resumePaths';
 	import CircleButtonWithIcon from './shared/Button/CircleButtonWithIcon.vue';
 	import ConfirmationModal from './shared/Modal/ConfirmationModal.vue';
-
 	type ResumesListData = {
 		paths: ResumePathsType[];
 		confirmationDeleteModal: boolean;
