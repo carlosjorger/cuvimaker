@@ -28,7 +28,7 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 				resumes.find((resume) => resume.id === id);
 		},
 		loadResumes(): Resume[] {
-			const resumesStringFormat = localStorage.getItem('resumes');
+			const resumesStringFormat = window.localStorage.getItem('resumes');
 			try {
 				const resumes = JSON.parse(
 					resumesStringFormat ?? '{}',
@@ -65,7 +65,7 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 			} else {
 				resumes.push(newResume);
 			}
-			localStorage.setItem('resumes', JSON.stringify(resumes));
+			window.localStorage.setItem('resumes', JSON.stringify(resumes));
 		},
 		saveResume(resume: Resume) {
 			const resumes = this.loadResumes;
@@ -75,7 +75,7 @@ export const useLocalStorageStore = defineStore('localStorageStore', {
 			} else {
 				resumes.push(resume);
 			}
-			localStorage.setItem('resumes', JSON.stringify(resumes));
+			window.localStorage.setItem('resumes', JSON.stringify(resumes));
 		},
 	},
 });

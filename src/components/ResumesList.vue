@@ -60,7 +60,7 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 	import '@fontsource/black-ops-one';
 
 	import { appStore } from '../store';
@@ -68,46 +68,30 @@
 	import { getResumePaths, type ResumePathsType } from '../utils/resumePaths';
 	import CircleButtonWithIcon from './shared/Button/CircleButtonWithIcon.vue';
 	import ConfirmationModal from './shared/Modal/ConfirmationModal.vue';
-	type ResumesListData = {
-		paths: ResumePathsType[];
-		confirmationDeleteModal: boolean;
-		indexOfElementToDelete: string;
+	import { onMounted, ref } from 'vue';
+
+	const localStorageStore = useLocalStorageStore(appStore);
+	let paths = ref([] as ResumePathsType[]);
+	const confirmationDeleteModal = ref(false);
+	const indexOfElementToDelete = ref('');
+	onMounted(() => {
+		paths.value = getResumePaths();
+	});
+	const getResumeName = (id: string) => {
+		const resume = localStorageStore.getResume(id);
+		return resume;
 	};
-	export default {
-		name: 'ResumesList',
-		components: { CircleButtonWithIcon, ConfirmationModal },
-		setup() {
-			const localStorageStore = useLocalStorageStore(appStore);
-			return { localStorageStore };
-		},
-		data(): ResumesListData {
-			return this.initialState();
-		},
-		methods: {
-			initialState(): ResumesListData {
-				var paths = getResumePaths();
-				return {
-					paths: paths,
-					confirmationDeleteModal: false,
-					indexOfElementToDelete: '',
-				};
-			},
-			getResumeName(id: string) {
-				const resume = this.localStorageStore.getResume(id);
-				return resume;
-			},
-			tryToClearResume(event: Event, index: string) {
-				event.stopPropagation();
-				this.confirmationDeleteModal = true;
-				this.indexOfElementToDelete = index;
-				return false;
-			},
-			clear() {
-				this.localStorageStore.clearResume(this.indexOfElementToDelete);
-				this.paths = getResumePaths();
-				return false;
-			},
-		},
+	const tryToClearResume = (event: Event, index: string) => {
+		event.stopPropagation();
+		confirmationDeleteModal.value = true;
+		indexOfElementToDelete.value = index;
+		return false;
+	};
+
+	const clear = () => {
+		localStorageStore.clearResume(indexOfElementToDelete.value);
+		paths = ref(getResumePaths());
+		return false;
 	};
 </script>
 
