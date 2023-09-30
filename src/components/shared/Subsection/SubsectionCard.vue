@@ -10,10 +10,10 @@
 				<slot name="body"></slot>
 			</main>
 			<footer
-				class="relative flex w-full justify-end overflow-hidden bg-primary transition-all duration-200 dark:bg-zinc-300"
+				class="relative flex w-full justify-end bg-primary transition-all duration-200 dark:bg-zinc-300"
 				:class="{
 					['h-12']: isBeingShowedSetting,
-					['h-0']: !isBeingShowedSetting,
+					['h-0 overflow-hidden']: !isBeingShowedSetting,
 				}"
 			>
 				<slot name="footer"> </slot>

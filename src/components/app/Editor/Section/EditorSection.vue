@@ -17,47 +17,37 @@
 			</div>
 		</template>
 		<template #footer>
-			<button
-				class="w-12 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
-				title="Delete a Section"
-			>
-				<Icon
-					@click="$emit('delete-section')"
-					icon="mdi:trash"
-					width="30"
-				/>
-			</button>
-			<!-- TODO: create component -->
-			<button
-				class="w-12 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
+			<icon-button
 				title="Edit a Section"
-			>
-				<Icon
-					icon="material-symbols:edit"
-					width="30"
-					@click="$emit('edit-section')"
-				/>
-			</button>
+				iconName="material-symbols:edit"
+				@click.prevent="$emit('edit-section')"
+			/>
+			<icon-button
+				title="Delete a Section"
+				iconName="mdi:trash"
+				@click.prevent="$emit('delete-section')"
+			/>
 		</template>
 	</SubsectionCard>
 </template>
 <script lang="ts">
 	import type { Section } from '../../../../models/Section';
 	import SubsectionComponent from '../../Preview/PreviewSubsection.vue';
-	import { Icon } from '@iconify/vue';
 	import SubsectionCard from '../../../shared/Subsection/SubsectionCard.vue';
 	import { scrollSmoothToElement } from '../../../../utils/scrollServices';
 	import PreviewSectionHeader from '../../Preview/PreviewSectionHeader.vue';
 	import type { PropType } from 'vue';
 	import { useResumeStore } from '../../../../stores/ResumeStore';
 	import { appStore } from '../../../../store';
+	import IconButton from '../../../shared/Button/IconButton.vue';
+
 	export default {
 		name: 'EditorSection',
 		components: {
 			SubsectionComponent,
-			Icon,
 			SubsectionCard,
 			PreviewSectionHeader,
+			IconButton,
 		},
 		props: {
 			section: {

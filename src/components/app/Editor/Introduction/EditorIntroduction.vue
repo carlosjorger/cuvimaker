@@ -156,9 +156,10 @@
 					v-if="isBeingEditingIntroduction"
 					class="absolute flex h-full items-center"
 				>
-					<button
-						class="w-12 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
-						@click="
+					<icon-button
+						title="Save Introduction Section"
+						icon-name="el:ok"
+						@click.prevent="
 							() => {
 								setEditingIntroduction(false);
 								$emit(
@@ -167,10 +168,7 @@
 								);
 							}
 						"
-						title="Save Introduction Section"
-					>
-						<Icon icon="el:ok" width="30" />
-					</button>
+					/>
 				</div>
 			</Transition>
 			<Transition>
@@ -178,17 +176,11 @@
 					v-if="!isBeingEditingIntroduction"
 					class="absolute flex h-full items-center"
 				>
-					<button
-						class="w-12 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
-						@click="
-							() => {
-								setEditingIntroduction(true);
-							}
-						"
+					<icon-button
 						title="Edit Introduction Section"
-					>
-						<Icon icon="ic:baseline-edit" width="30" />
-					</button>
+						icon-name="ic:baseline-edit"
+						@click.prevent="setEditingIntroduction(true)"
+					/>
 				</div>
 			</Transition>
 		</template>
@@ -212,6 +204,7 @@
 	import BasicLink from '../../../shared/Anchor/BasicLink.vue';
 	import BasicEmail from '../../../shared/Anchor/BasicEmail.vue';
 	import { useResumeStore } from '../../../../stores/ResumeStore';
+	import IconButton from '../../../shared/Button/IconButton.vue';
 
 	export default {
 		components: {
@@ -224,6 +217,7 @@
 			ListTransition,
 			BasicLink,
 			BasicEmail,
+			IconButton,
 		},
 		setup() {
 			const introductionStore = useIntroductionStore(appStore);

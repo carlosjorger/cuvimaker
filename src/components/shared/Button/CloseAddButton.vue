@@ -49,6 +49,5 @@
 		},
 		name: 'CloseAddButton',
 		components: { CircleButton, TooltipWrapper },
-		methods: {},
 	};
 </script>
