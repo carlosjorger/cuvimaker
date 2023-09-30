@@ -306,5 +306,13 @@
 			},
 			currentSocialAccount: { url },
 		},
+		watch: {
+			introduction() {
+				const { currentIntroduction, currentSocialAccount } =
+					this.initialState();
+				this.currentIntroduction = currentIntroduction;
+				this.currentSocialAccount = currentSocialAccount;
+			},
+		},
 	};
 </script>

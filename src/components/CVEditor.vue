@@ -9,61 +9,36 @@
 		</AppearFadePanelTransition>
 	</div>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 	import EditorBar from './app/Editor/EditorBar.vue';
 	import PreviewResume from './app/Preview/PreviewResume.vue';
 	import { useLocalStorageStore } from '../stores/localStorageStore';
 	import { useResumeStore } from '../stores/ResumeStore';
 	import { appStore } from '../store';
-	import type { Resume } from '../models/Resume';
+	import { Resume } from '../models/Resume';
 	import EditorResume from './app/Editor/EditorResume.vue';
 	import AppearFadePanelTransition from './shared/Transition/AppearFadePanelTransition.vue';
+	import { onMounted, ref } from 'vue';
 
-	type CVEditorData = {
-		resume: Resume;
-		isEditingResume: boolean;
-	};
-	export default {
-		name: 'CVEditor',
-		components: {
-			EditorBar,
-			PreviewResume,
-			EditorResume,
-			AppearFadePanelTransition,
+	const resumeStore = useResumeStore(appStore);
+	const localStorageStore = useLocalStorageStore(appStore);
+	const props = defineProps({
+		Id: {
+			type: String,
+			required: true,
 		},
-		setup() {
-			const resumeStore = useResumeStore(appStore);
-			const localStorageStore = useLocalStorageStore(appStore);
-			return { localStorageStore, resumeStore };
-		},
-		props: {
-			Id: {
-				type: String,
-			},
-		},
-
-		data(): CVEditorData {
-			return this.initialState();
-		},
-		methods: {
-			initialState(): CVEditorData {
-				if (this.Id) {
-					this.localStorageStore.loadResume(this.Id);
-				}
-				const resumeFromLocalStorage = this.localStorageStore.resume;
-				this.resumeStore.setResume(resumeFromLocalStorage);
-				const { resume } = this.resumeStore;
-				return {
-					resume: resume,
-					isEditingResume: true,
-				};
-			},
-		},
-	};
+	});
+	const isEditingResume = ref(true);
+	let resume = ref(new Resume(props.Id));
+	onMounted(() => {
+		localStorageStore.loadResume(props.Id);
+		const resumeFromLocalStorage = localStorageStore.resume;
+		resumeStore.setResume(resumeFromLocalStorage);
+		resume.value = resumeStore.resume;
+	});
 </script>
 <style>
 	article {
 		width: 40%;
 	}
 </style>
-../stores/ResumeStore
