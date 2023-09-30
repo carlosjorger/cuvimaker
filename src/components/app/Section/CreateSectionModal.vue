@@ -73,13 +73,15 @@
 			<BasicButton
 				v-if="!isEditing"
 				class="mx-auto w-full p-1"
-				:name="'Add Section'"
+				name="Add Section"
+				aria-label="Add Section"
 				v-on:click="addSection(section)"
 			/>
 			<BasicButton
 				v-if="isEditing"
 				class="mx-auto w-full p-1"
-				:name="'Edit Section'"
+				name="Edit Section"
+				aria-label="Edit Section"
 				v-on:click="updateSection"
 			/>
 			<ConfirmationModal

@@ -15,8 +15,16 @@
 				</div>
 
 				<div class="flex justify-between pt-5">
-					<ConfirmationButton :name="'No'" @click="$emit('cancel')" />
-					<ConfirmationButton :name="'Yes'" @click="onDelete()" />
+					<ConfirmationButton
+						aria-label="No"
+						:name="'No'"
+						@click="$emit('cancel')"
+					/>
+					<ConfirmationButton
+						aria-label="Yes"
+						:name="'Yes'"
+						@click="onDelete()"
+					/>
 				</div>
 			</div>
 		</section>

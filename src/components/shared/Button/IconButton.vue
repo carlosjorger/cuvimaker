@@ -2,6 +2,7 @@
 	<tooltip-wrapper :text="title">
 		<button
 			:title="title"
+			:aria-label="title"
 			type="button"
 			class="w-12 p-2 text-white transition-colors duration-500 hover:text-anchor dark:text-dark-primary dark:hover:text-anchor"
 		>

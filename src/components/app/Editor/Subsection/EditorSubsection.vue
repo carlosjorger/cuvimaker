@@ -50,12 +50,14 @@
 					<EditorListSection />
 					<div class="flex justify-between">
 						<ModalButton
+							aria-label="Save"
 							v-if="editing"
 							:name="'Save'"
 							v-on:click="saveSubSection"
 						/>
 						<ModalButton
 							v-if="editing && !prevSubsection.isEmpty"
+							aria-label="Cancel"
 							:name="'Cancel'"
 							v-on:click="cancelSubSection"
 						/>

@@ -4,6 +4,7 @@
 			<BasicButton
 				class="w-24"
 				name="Edit"
+				aria-label="Edit Resume"
 				:active="isEditingResume"
 				@click="
 					() => {
@@ -14,6 +15,7 @@
 			<BasicButton
 				class="w-24"
 				name="Preview"
+				aria-label="Preview Resume"
 				:active="!isEditingResume"
 				@click="
 					() => {

@@ -2,6 +2,7 @@
 	<TooltipWrapper :text="text">
 		<CircleButton
 			:size="width"
+			:aria-label="text"
 			class="border-2 border-primary active:bg-[#a99cd2] dark:active:bg-[#887eaa]"
 		>
 			<Icon :icon="icon" :width="10 * width" :color="color" />

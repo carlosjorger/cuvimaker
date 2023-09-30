@@ -7,8 +7,9 @@
 		/>
 		<SubsectionAlign>
 			<BasicButton
+				aria-label="Add a new Section"
 				class="add-section"
-				:name="'Add a new Section'"
+				name="Add a new Section"
 				@click="
 					() => {
 						showModal = true;

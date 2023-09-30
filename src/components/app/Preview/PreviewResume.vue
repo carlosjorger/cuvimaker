@@ -25,6 +25,7 @@
 				class="w-28"
 				name="Download"
 				@click="save"
+				aria-label="Download Resume"
 			/>
 		</div>
 	</SubsectionAlign>
