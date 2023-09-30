@@ -17,6 +17,7 @@ function ReviveDateTime(key: unknown, value: unknown): unknown {
 type LocalStorageStoreState = {
 	resume: Resume;
 };
+//TODO: convert this into a set of functions
 export const useLocalStorageStore = defineStore('localStorageStore', {
 	state: (): LocalStorageStoreState => ({
 		resume: new Resume('-1'),
