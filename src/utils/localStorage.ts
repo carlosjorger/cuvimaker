@@ -13,7 +13,6 @@ function ReviveDateTime(key: unknown, value: unknown): unknown {
 
 	return value;
 }
-//TODO: convert this into a set of functions
 
 const loadResumes = (): Resume[] => {
 	const resumesStringFormat = window.localStorage.getItem('resumes');

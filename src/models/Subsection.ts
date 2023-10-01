@@ -1,19 +1,21 @@
 import { SubsectionElement } from './SubsectionElement';
 import type { TimeInterval } from './SubsectionTimeInterval';
-// TODO: location to subsection
+
 export class Subsection {
 	id: number;
 	title: string;
 	text: string;
+	location: string;
 	last: boolean;
 	editing: boolean;
 	subsectionTimeInterval: TimeInterval | undefined;
 	elements: SubsectionElement[];
 	count: number;
-	constructor(id?: number, title?: string, text?: string) {
+	constructor(id?: number, title?: string, text?: string, location?: string) {
 		this.id = id ?? 0;
 		this.title = title ?? '';
 		this.text = text ?? '';
+		this.location = location ?? '';
 		this.last = true;
 		this.editing = true;
 		this.count = 0;

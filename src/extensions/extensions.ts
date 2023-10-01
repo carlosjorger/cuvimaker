@@ -17,7 +17,8 @@ export function copySubsection(subsection: Subsection) {
 	const result = new Subsection(
 		subsection.id,
 		subsection.title,
-		subsection.text
+		subsection.text,
+		subsection.location
 	);
 	result.last = subsection.last;
 	result.editing = subsection.editing;

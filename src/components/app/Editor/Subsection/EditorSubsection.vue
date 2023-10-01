@@ -44,6 +44,10 @@
 						v-model="subsection.text"
 						:placeholder="'Subsection subtitle'"
 					/>
+					<SubsectionForm
+						v-model="subsection.location"
+						:placeholder="'Subsection location'"
+					/>
 					<EditorTimeIntervalSection
 						v-model="subsection.subsectionTimeInterval"
 					/>
