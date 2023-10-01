@@ -2,7 +2,7 @@
 	<section class="p-2">
 		<h3 class="mt-2 text-base font-semibold">{{ subsection?.title }}</h3>
 		<h4 class="mt-1 text-sm font-extrabold">{{ subsection?.text }}</h4>
-		<div class="w-5/6 max-sm:w-11/12">
+		<div class="w-[88%] max-sm:w-11/12">
 			<div class="flex items-center justify-between">
 				<div
 					class="mt-1 flex flex-row items-center text-sm"

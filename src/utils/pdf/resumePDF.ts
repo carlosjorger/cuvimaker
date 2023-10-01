@@ -65,6 +65,9 @@ export function createResumePDFDefinition(
 			timeInterval: {
 				marginTop: 3,
 			},
+			location: {
+				marginTop: 5,
+			},
 		},
 	};
 }

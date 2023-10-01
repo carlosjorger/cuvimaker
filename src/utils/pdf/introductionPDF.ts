@@ -78,7 +78,7 @@ function addIntroductionColumn(
 	introductionColumnType: IntroductionColumnType,
 	iconType?: string
 ) {
-	const svgColumn = getSocialAccountSVGIconColumn(iconType);
+	const svgColumn = getSocialAccountSvgIconColumn(iconType);
 	const column = createIntroductionColumn(text, introductionColumnType);
 	let currentColumns = [column];
 	if (svgColumn) {
@@ -129,7 +129,7 @@ function createIntroductionColumn(
 		return { text: urlInfo, style: 'introductionColumn' };
 	}
 }
-function getSocialAccountSVGIconColumn(iconType?: string): Column | undefined {
+function getSocialAccountSvgIconColumn(iconType?: string): Column | undefined {
 	const svgElement = iconType ? document.getElementById(iconType) : undefined;
 	if (svgElement && svgElement instanceof SVGSVGElement) {
 		svgElement.setAttribute('width', '15');
