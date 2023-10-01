@@ -66,7 +66,7 @@
 	import EditorSection from './Section/EditorSection.vue';
 	import type { Introduction } from '../../../models/Introduction';
 	import { Resume } from '../../../models/Resume';
-	import { useLocalStorageStore } from '../../../stores/localStorageStore';
+	import { saveResumeInLocalStorage } from '../../../utils/localStorage';
 	import { useResumeStore } from '../../../stores/ResumeStore';
 	import { appStore } from '../../../store';
 	import { useDrag } from '../../../composables/useDrag';
@@ -85,7 +85,6 @@
 	const sectionIndexToDelete = ref(-1);
 
 	const resumeStore = useResumeStore(appStore);
-	const localStorageStore = useLocalStorageStore(appStore);
 
 	const emit = defineEmits(['update:modelValue']);
 	const resume = computed({
@@ -118,7 +117,7 @@
 	};
 	const saveResume = () => {
 		emit('update:modelValue', resume.value);
-		localStorageStore.saveResume(resume.value);
+		saveResumeInLocalStorage(resume.value);
 	};
 	const { onDragEnter, onDrop, startDrag, markedSection } = useDrag(
 		'Section',
