@@ -5,6 +5,7 @@
 			v-model="hasPeriodOfTime"
 			:title="'Add a time interval'"
 		/>
+		<!-- TODO: Add location -->
 		<SubsectionTimeInterval
 			v-if="hasPeriodOfTime"
 			v-model="value"

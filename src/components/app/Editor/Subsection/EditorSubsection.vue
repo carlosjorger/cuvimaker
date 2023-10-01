@@ -35,18 +35,20 @@
 					class="max-ms:p-1 p-5 max-md:p-1"
 				>
 					<SubsectionForm
-						class="text-lg"
+						class="mt-1 text-lg"
 						v-model="state.subsection.title"
-						:placeholder="'Subsection title'"
+						placeholder="Title"
 						:errors="v$.subsection.title.$errors"
 					/>
 					<SubsectionForm
+						class="mt-1"
 						v-model="subsection.text"
-						:placeholder="'Subsection subtitle'"
+						placeholder="* Subtitle"
 					/>
 					<SubsectionForm
+						class="mt-1"
 						v-model="subsection.location"
-						:placeholder="'Subsection location'"
+						placeholder="* Location"
 					/>
 					<EditorTimeIntervalSection
 						v-model="subsection.subsectionTimeInterval"
