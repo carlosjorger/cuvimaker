@@ -1,5 +1,5 @@
 <template>
-	<div class="mt-2 w-11/12">
+	<div class="mt-2">
 		<VueDatePicker
 			:range="true"
 			v-model="interval"

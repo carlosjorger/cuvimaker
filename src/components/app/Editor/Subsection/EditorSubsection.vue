@@ -45,12 +45,8 @@
 						v-model="subsection.text"
 						placeholder="* Subtitle"
 					/>
-					<SubsectionForm
-						class="mt-1"
-						v-model="subsection.location"
-						placeholder="* Location"
-					/>
-					<EditorTimeIntervalSection
+
+					<EditorSiteSection
 						v-model="subsection.subsectionTimeInterval"
 					/>
 					<EditorListSection />
@@ -80,7 +76,7 @@
 	import { scrollSmoothToElement } from '../../../../utils/scrollServices';
 	import { useVuelidate } from '@vuelidate/core';
 	import { required } from '@vuelidate/validators';
-	import EditorTimeIntervalSection from '../TimeInterval/EditorTimeIntervalSection.vue';
+	import EditorSiteSection from '../TimeInterval/EditorSiteSection.vue';
 	import ModalButton from '../../../shared/Button/ModalButton.vue';
 	import EditorListSection from '../List/EditorListSection.vue';
 	import {

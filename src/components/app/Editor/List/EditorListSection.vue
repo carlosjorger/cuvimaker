@@ -1,5 +1,5 @@
 <template>
-	<div class="mx-2 mt-2">
+	<div class="m-1">
 		<SwitchCheckbox
 			v-if="editing"
 			v-model="hasElementList"
