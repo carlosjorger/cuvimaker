@@ -1,7 +1,5 @@
-<!-- TODO:improve readme.md -->
-
 <h1 align="center">
-    <img src="./public/cuvimaker.svg" alt="Icon" width="150" height="150" />
+    <img src="./public/cuvimaker.svg" alt="Icon" width="150" height="140" />
   <br>Cuvimaker <br>
 </h1>
 An online cv maker web application used to design a custom curriculum vitae and save it in a pdf file.

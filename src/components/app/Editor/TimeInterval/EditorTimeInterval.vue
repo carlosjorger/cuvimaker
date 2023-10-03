@@ -1,3 +1,4 @@
+<!-- TODO: can also select from datetime -->
 <template>
 	<div class="mt-2">
 		<VueDatePicker
