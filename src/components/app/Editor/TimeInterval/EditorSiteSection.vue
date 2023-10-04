@@ -69,11 +69,7 @@
 			},
 
 			hasSettedPeriodOfTime: function () {
-				return Boolean(
-					this.modelValue &&
-						this.modelValue?.dateFrom &&
-						this.modelValue?.dateTo
-				);
+				return Boolean(this.modelValue && this.modelValue?.dateFrom);
 			},
 		},
 		watch: {

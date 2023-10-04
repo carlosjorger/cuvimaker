@@ -66,8 +66,12 @@
 				this.value = new TimeInterval();
 			},
 			setTimeInteval(value: TimeInterval | undefined) {
-				if (value && value.dateFrom && value.dateTo) {
-					this.interval = [value.dateFrom, value.dateTo];
+				if (!value || !value.dateFrom) {
+					return;
+				}
+				this.interval = [value.dateFrom];
+				if (value.dateTo) {
+					this.interval.push(value.dateTo);
 				}
 			},
 			format(dates: Date[]) {
