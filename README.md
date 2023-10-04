@@ -11,8 +11,9 @@ An online cv maker web application used to design a custom curriculum vitae and 
 
 ## 🧰 Features
 
+-   Versatile creation of CVs.
 -   Light/dark mode.
--   Local Storage.
+-   Local Storage data persistence.
 -   Responsive Design.
 -   Download CV in PDF format.
 -   Save at most 6 CVs.
