@@ -24,7 +24,7 @@
 						}}
 					</div>
 					&nbsp;-&nbsp;
-					<div>
+					<div v-if="subsection?.subsectionTimeInterval?.dateTo">
 						{{
 							subsection?.subsectionTimeInterval?.dateTo?.toLocaleString(
 								'en-US',
@@ -35,6 +35,7 @@
 							subsection?.subsectionTimeInterval?.dateTo?.getFullYear()
 						}}
 					</div>
+					<div v-else>current</div>
 				</div>
 				<h5 class="mt-1 text-sm font-extrabold">
 					{{ subsection?.location }}

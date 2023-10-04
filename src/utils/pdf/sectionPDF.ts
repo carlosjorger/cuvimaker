@@ -109,6 +109,8 @@ function createSubsectionTimeIntervalDefinition(
 	interval += ' - ';
 	if (timeInterval.dateTo) {
 		interval += createDateDefinition(timeInterval.dateTo);
+	} else {
+		interval += 'current';
 	}
 	result.push({ text: interval, style: 'h5' });
 	return { columns: result, style: ['timeInterval'] };

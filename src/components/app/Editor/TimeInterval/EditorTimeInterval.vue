@@ -1,4 +1,3 @@
-<!-- TODO: can also select from datetime -->
 <template>
 	<div class="mt-2">
 		<VueDatePicker
@@ -16,7 +15,6 @@
 			:format="format"
 		/>
 		<ErrorsSection :errors="v$.value.dateFrom.$errors" />
-		<ErrorsSection :errors="v$.value.dateTo.$errors" />
 	</div>
 </template>
 
@@ -111,12 +109,6 @@
 				dateFrom: {
 					required: helpers.withMessage(
 						'Date From is required',
-						required
-					),
-				},
-				dateTo: {
-					required: helpers.withMessage(
-						'Date To is required',
 						required
 					),
 				},
