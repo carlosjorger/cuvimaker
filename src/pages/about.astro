@@ -7,9 +7,11 @@ const platform = 'github';
 const username = 'carlosjorger';
 const proyect = 'astro-vue-online-cv-maker';
 ---
+
+<!-- TODO: Improve design -->
 <BaseLayout pageTitle="About Cuvimaker">
 	<div
-		class="flex max-md:justify-center items-center max-md:text-base max-md:text-center"
+		class="flex items-center max-md:justify-center max-md:text-center max-md:text-base"
 	>
 		<div class="p-5 max-md:p-2">
 			<div class="hidden max-md:block">
@@ -19,13 +21,13 @@ const proyect = 'astro-vue-online-cv-maker';
 			<p class="mb-4 text-base">
 				Learn more about this project on
 				<a
-					class="text-anchor bg-anchorImage bg-[0%_100%] bg-[length:100%_0%] bg-no-repeat hover:bg-[length:100%_15%] transition-all duration-300"
+					class="bg-anchorImage bg-[length:100%_0%] bg-[0%_100%] bg-no-repeat text-anchor transition-all duration-300 hover:bg-[length:100%_15%]"
 					href={`https://www.${platform}.com/${username}/${proyect}`}
 				>
 					{platform}</a
 				>
 				<br />
-				Contributions are welcome too!!
+				 Contributions are welcome too!!
 			</p>
 			<Contacts />
 		</div>
