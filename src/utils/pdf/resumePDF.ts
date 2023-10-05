@@ -3,7 +3,7 @@ import type { Resume } from '../../models/Resume';
 import type { Section } from '../../models/Section';
 import { createIntroductionDefinition } from './introductionPDF';
 import { creatreSectionDefinition } from './sectionPDF';
-
+// TODO: Add font to pdf
 export function createResumePDFDefinition(
 	resume: Resume
 ): TDocumentDefinitions {
