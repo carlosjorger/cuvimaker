@@ -6,9 +6,9 @@ import ViewTransitions from 'astro/components/ViewTransitions.astro';
 import { Icon } from 'astro-icon';
 import TitleLayout from './TitleLayout.astro';
 const { pageTitle } = Astro.props;
+const isEditPage = pageTitle === 'Editor';
 ---
 
-<!-- Add view transition api -->
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -31,8 +31,23 @@ const { pageTitle } = Astro.props;
 	>
 		<Header />
 		<main class="max-lg:m-6a m-4 max-md:m-3 max-sm:m-2">
-			<TitleLayout pageTitle={pageTitle} />
-			<div class="mx-4"><slot /></div>
+			<div class="mx-4">
+				{
+					!isEditPage && (
+						<div class="mx-auto flex w-4/5 items-center justify-between max-lg:w-5/6 max-md:w-full max-md:justify-center max-md:text-center max-md:text-base">
+							<slot />
+						</div>
+					)
+				}
+				{
+					isEditPage && (
+						<div class="mx-auto w-4/5 max-lg:w-5/6 max-md:w-full max-md:text-center max-md:text-base">
+							<TitleLayout pageTitle={pageTitle} />
+							<slot />
+						</div>
+					)
+				}
+			</div>
 		</main>
 	</body>
 </html>

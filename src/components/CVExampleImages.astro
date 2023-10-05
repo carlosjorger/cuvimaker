@@ -2,10 +2,11 @@
 import ExampleImage from './ExampleImage.astro';
 ---
 
-<div class="flex m-8 max-md:m-5 justify-center">
+<div class="m-8 flex justify-center max-md:m-5">
 	<div
-		class="shadow-[0_5px_40px_rgba(63,50,104)] dark:shadow-[0_5px_40px_#42bbc2] max-w-[350px] rounded-sm overflow-hidden"
+		class="max-w-[350px] overflow-hidden rounded-sm shadow-[0_5px_40px_rgba(63,50,104)] dark:shadow-[0_5px_40px_#42bbc2]"
 	>
+		<!-- TODO: create a better image -->
 		<ExampleImage imageSrc="./cv.webp" />
 	</div>
 </div>
