@@ -104,7 +104,6 @@
 	import ConfirmationModal from '../../shared/Modal/ConfirmationModal.vue';
 	import { useResumeStore } from '../../../stores/ResumeStore';
 	import { useSectionStore } from '../../../stores/SectionStore';
-
 	import { appStore } from '../../../store';
 	import type { Section } from '../../../models/Section';
 	import emitter from '../../../utils/eventBus';
@@ -124,6 +123,7 @@
 	const sectionStore = useSectionStore(appStore);
 	const editing = computed(() => sectionStore.editingIndex >= 0);
 	const isEditing = computed(() => props.editIndex != undefined);
+
 	const initialState = (): {
 		section: Ref<Section>;
 		confirmationDeleteModal: Ref<boolean>;
@@ -133,13 +133,12 @@
 			const tempSection = reactive(
 				resumeStore.getSection(props.editIndex)
 			);
-			if (tempSection) {
-				sectionStore.setSection(tempSection);
-			}
+			sectionStore.setSection(tempSection);
 		} else if (props.editIndex == undefined) {
 			sectionStore.clear();
 		}
 		const { section } = storeToRefs(sectionStore);
+		sectionStore.editingIndex = -1;
 		return {
 			section: section,
 			confirmationDeleteModal: ref(false),

@@ -29,6 +29,7 @@ export const useSectionStore = defineStore('section', {
 			}
 		},
 		clear() {
+			this.editingIndex = -1;
 			this.section = new Section();
 		},
 		disabledEditing() {

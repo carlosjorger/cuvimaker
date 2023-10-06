@@ -40,7 +40,6 @@
 	import { useResumeStore } from '../../../../stores/ResumeStore';
 	import { appStore } from '../../../../store';
 	import IconButton from '../../../shared/Button/IconButton.vue';
-	// TODO: Fix a bug after save section
 	export default {
 		name: 'EditorSection',
 		components: {
