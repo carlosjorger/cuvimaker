@@ -7,7 +7,6 @@
 		}"
 		type="button"
 		class="relative m-0.5 flex h-10 w-10 cursor-pointer items-center justify-evenly rounded-full p-1 transition-all duration-200 ease-in"
-		:class="[buttonColor ?? 'bg-white']"
 	>
 		<slot></slot>
 	</button>

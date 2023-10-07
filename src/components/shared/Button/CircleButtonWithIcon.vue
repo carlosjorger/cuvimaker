@@ -3,7 +3,7 @@
 		<CircleButton
 			:size="width"
 			:aria-label="text"
-			class="border-2 border-primary active:bg-[#a99cd2] dark:active:bg-[#887eaa]"
+			class="border-2 border-accent"
 		>
 			<Icon :icon="icon" :width="10 * width" :color="color" />
 		</CircleButton>

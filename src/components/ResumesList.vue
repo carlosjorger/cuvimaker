@@ -1,5 +1,7 @@
 <template>
-	<div class="m-5 mx-20 max-md:mx-10 max-sm:mx-auto max-sm:w-11/12">
+	<div
+		class="m-5 mx-20 focus:text-neutral-focus max-md:mx-10 max-sm:mx-auto max-sm:w-11/12"
+	>
 		<h2
 			class="py-5 font-montserrat text-5xl font-extrabold max-sm:text-4xl"
 		>
@@ -9,7 +11,7 @@
 			<li v-for="path in paths" :key="path.params.id">
 				<a :href="`/editor/${path.params.id}`">
 					<div
-						class="my-3 w-2/3 rounded-lg bg-[#f5f0ff] p-7 font-extrabold transition-all duration-200 hover:translate-x-6 hover:bg-[#e1d7fd] dark:text-dark-primary max-md:w-5/6 max-sm:w-full max-sm:hover:translate-x-2"
+						class="card my-3 w-2/3 rounded-lg p-7 font-extrabold shadow-xl transition-all duration-200 hover:translate-x-6 hover:bg-base-200 max-md:w-5/6 max-sm:w-full max-sm:hover:translate-x-2"
 					>
 						<div
 							class="flex items-center justify-between"
@@ -34,8 +36,9 @@
 									}}
 								</div>
 							</div>
+							<!-- TODO: create primary color -->
 							<CircleButtonWithIcon
-								color="var(--primary-color)"
+								color="var(--anchor-color)"
 								icon="ic:baseline-delete"
 								:width="2"
 								text="Clear Resume"
