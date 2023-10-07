@@ -1,12 +1,14 @@
 <template>
-	<EditorBar v-model="isEditingResume" />
-	<div
-		class="max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-scroll overflow-x-hidden border-0 bg-base-100 p-4 max-md:p-2"
-	>
-		<AppearFadePanelTransition>
-			<EditorResume v-if="isEditingResume" v-model="resume" />
-			<PreviewResume class="relative" v-else :resume="resume" />
-		</AppearFadePanelTransition>
+	<div class="grid">
+		<EditorBar v-model="isEditingResume" />
+		<div
+			class="max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-scroll overflow-x-hidden rounded-sm border-0 bg-base-100 bg-top p-4 max-md:p-2"
+		>
+			<AppearFadePanelTransition>
+				<EditorResume v-if="isEditingResume" v-model="resume" />
+				<PreviewResume class="relative" v-else :resume="resume" />
+			</AppearFadePanelTransition>
+		</div>
 	</div>
 </template>
 <script setup lang="ts">

@@ -1,13 +1,13 @@
 <template>
-	<div class="tabs">
+	<div class="tabs -mb-px">
 		<a
-			class="tab tab-lifted"
+			class="tab tab-lifted tab-lg [--tab-border-color:transparent]"
 			:class="{ 'tab-active': isEditingResume }"
 			@click="isEditingResume = true"
 			>Edit</a
 		>
 		<a
-			class="tab tab-lifted"
+			class="tab tab-lifted tab-lg [--tab-border-color:transparent]"
 			:class="{ 'tab-active': !isEditingResume }"
 			@click="isEditingResume = false"
 			>Preview</a
