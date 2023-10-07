@@ -35,6 +35,7 @@
 		const classList = document.documentElement.classList;
 		classList.toggle('dark', theme == 'dark');
 		window.localStorage.setItem('theme', theme);
+		document.querySelector('html').setAttribute('data-theme', theme);
 	};
 	setDarkMode();
 
@@ -43,6 +44,9 @@
 		classList.toggle('dark');
 		const isDark = classList.contains('dark');
 		localStorage.setItem('theme', isDark ? 'dark' : 'light');
+		document
+			.querySelector('html')
+			.setAttribute('data-theme', isDark ? 'dark' : 'light');
 	};
 	var themeToggle = document.getElementById('themeToggle');
 	if (themeToggle != null) {

@@ -1,21 +1,12 @@
 <template>
 	<button
 		type="submit"
-		class="rounded-xl border-4 border-primary p-1 text-sm font-extrabold text-primary shadow-xl transition-colors duration-200 ease-out dark:border-zinc-300 dark:text-zinc-300"
+		class="btn btn-primary p-2 text-sm font-extrabold shadow-xl transition-colors duration-200 ease-out"
 		:class="{
-			'bg-[#f6f4fb] active:bg-[#9e97bf] dark:bg-dark-primary-200 dark:active:bg-[#140c29]':
-				!active,
-			'bg-[#9e97bf]  dark:bg-[#140c29]': active,
+			'btn-active': active,
 		}"
 	>
-		<div
-			class="rounded-lg p-0.5 transition-colors duration-200 ease-out"
-			:class="{
-				'hover:bg-[#c4bddd] dark:hover:bg-[#4e417a]': !active,
-			}"
-		>
-			{{ name }}
-		</div>
+		{{ name }}
 	</button>
 </template>
 

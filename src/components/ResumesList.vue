@@ -1,7 +1,7 @@
 <template>
-	<div class="m-4 mx-20 max-md:mx-10 max-sm:mx-auto max-sm:w-11/12">
+	<div class="m-5 mx-20 max-md:mx-10 max-sm:mx-auto max-sm:w-11/12">
 		<h2
-			class="my-3 font-montserrat text-4xl font-extrabold text-zinc-50 md:my-8"
+			class="py-5 font-montserrat text-5xl font-extrabold max-sm:text-4xl"
 		>
 			Resumes
 		</h2>
