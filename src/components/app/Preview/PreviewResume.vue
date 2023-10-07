@@ -1,7 +1,7 @@
 <template>
 	<SubsectionAlign>
 		<div
-			class="rounded-md border-primary bg-base-200 p-3 shadow-xl transition-colors duration-700 max-lg:p-2 max-md:p-1"
+			class="rounded-md border-primary bg-base-300 p-3 shadow-xl transition-colors duration-700 max-lg:p-2 max-md:p-1"
 		>
 			<div id="resume">
 				<PreviewIntroduction :introduction="resume.introduction" />
