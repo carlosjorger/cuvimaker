@@ -1,11 +1,7 @@
 <template>
 	<TooltipWrapper :text="text">
-		<CircleButton
-			:size="width"
-			:aria-label="text"
-			class="border-2 border-accent"
-		>
-			<Icon :icon="icon" :width="10 * width" :color="color" />
+		<CircleButton :size="width" :aria-label="text" class="bg-primary">
+			<Icon :icon="icon" :width="10 * width" class="text-base-100" />
 		</CircleButton>
 	</TooltipWrapper>
 </template>
@@ -17,10 +13,6 @@
 
 	export default {
 		props: {
-			color: {
-				type: String,
-				required: true,
-			},
 			icon: {
 				type: String,
 				required: true,

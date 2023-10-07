@@ -1,15 +1,9 @@
 <template>
-	<div class="tooltip-wrapper relative inline-block text-xs">
+	<div
+		class="tooltip tooltip-bottom relative inline-block text-xs"
+		:data-tip="text"
+	>
 		<slot />
-		<span
-			class="tooltip-text invisible absolute -bottom-[70%] z-50 rounded-md bg-dark-primary p-1 text-center text-white opacity-0 transition-all duration-500 dark:bg-dark-primary-200"
-			:class="{
-				[`-inset-x-[225%]`]: text.length > 20,
-				[`-inset-x-[205%]`]: text.length > 17,
-				[`-inset-x-[105%]`]: text.length > 10,
-			}"
-			>{{ text }}</span
-		>
 	</div>
 </template>
 <script setup lang="ts">
@@ -20,9 +14,3 @@
 		},
 	});
 </script>
-<style>
-	.tooltip-wrapper:hover .tooltip-text {
-		visibility: visible;
-		opacity: 1;
-	}
-</style>

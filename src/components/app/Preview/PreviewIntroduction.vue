@@ -7,19 +7,34 @@
 		>
 			<div>
 				<div class="flex items-center" v-if="introduction.location">
-					<Icon id="location" icon="mdi:location" width="20" />
+					<Icon
+						id="location"
+						class="text-accent"
+						icon="mdi:location"
+						width="20"
+					/>
 					<span class="p-1"></span>
 					{{ introduction.location }}
 				</div>
 			</div>
 
 			<div class="flex items-center" v-if="introduction.email">
-				<Icon id="email" icon="mdi:email" width="20" />
+				<Icon
+					id="email"
+					class="text-accent"
+					icon="mdi:email"
+					width="20"
+				/>
 				<span class="p-1"></span>
 				<BasicEmail :email="introduction.email" />
 			</div>
 			<div class="flex items-center" v-if="introduction.website">
-				<Icon id="website" icon="el:website" width="20" />
+				<Icon
+					id="website"
+					class="text-accent"
+					icon="bi:person-fill"
+					width="20"
+				/>
 				<span class="p-1"></span>
 				<BasicLink
 					:href="introduction.website"

@@ -1,36 +1,21 @@
 <template>
-	<SubsectionAlign>
-		<div class="justify-left flex items-center">
-			<BasicButton
-				class="w-24"
-				name="Edit"
-				aria-label="Edit Resume"
-				:active="isEditingResume"
-				@click="
-					() => {
-						isEditingResume = true;
-					}
-				"
-			/>
-			<BasicButton
-				class="w-24"
-				name="Preview"
-				aria-label="Preview Resume"
-				:active="!isEditingResume"
-				@click="
-					() => {
-						isEditingResume = false;
-					}
-				"
-			/>
-		</div>
-	</SubsectionAlign>
+	<div class="tabs">
+		<a
+			class="tab tab-lifted"
+			:class="{ 'tab-active': isEditingResume }"
+			@click="isEditingResume = true"
+			>Edit</a
+		>
+		<a
+			class="tab tab-lifted"
+			:class="{ 'tab-active': !isEditingResume }"
+			@click="isEditingResume = false"
+			>Preview</a
+		>
+	</div>
 </template>
 
 <script lang="ts">
-	import SubsectionAlign from '../../shared/Subsection/SubsectionAlign.vue';
-	import BasicButton from '../../shared/Button/BasicButton.vue';
-
 	export default {
 		props: {
 			modelValue: {
@@ -38,7 +23,6 @@
 				required: true,
 			},
 		},
-		components: { SubsectionAlign, BasicButton },
 		computed: {
 			isEditingResume: {
 				get() {

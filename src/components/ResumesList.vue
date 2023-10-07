@@ -11,7 +11,7 @@
 			<li v-for="path in paths" :key="path.params.id">
 				<a :href="`/editor/${path.params.id}`">
 					<div
-						class="card my-3 w-2/3 rounded-lg p-7 font-extrabold shadow-xl transition-all duration-200 hover:translate-x-6 hover:bg-base-200 max-md:w-5/6 max-sm:w-full max-sm:hover:translate-x-2"
+						class="card my-3 w-2/3 rounded-lg p-7 font-extrabold shadow-2xl shadow-base-300 transition-all duration-200 hover:translate-x-6 hover:bg-base-300 max-md:w-5/6 max-sm:w-full max-sm:hover:translate-x-2"
 					>
 						<div
 							class="flex items-center justify-between"
@@ -36,9 +36,7 @@
 									}}
 								</div>
 							</div>
-							<!-- TODO: create primary color -->
 							<CircleButtonWithIcon
-								color="var(--anchor-color)"
 								icon="ic:baseline-delete"
 								:width="2"
 								text="Clear Resume"

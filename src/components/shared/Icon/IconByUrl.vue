@@ -1,5 +1,5 @@
 <template>
-	<Icon :id="id" :icon="getIconByUrl" width="20" />
+	<Icon :id="id" :icon="getIconByUrl" class="text-accent" width="20" />
 </template>
 
 <script lang="ts">

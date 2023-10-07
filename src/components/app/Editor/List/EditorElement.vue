@@ -4,7 +4,7 @@
 		:class="{
 			['border-4']: editingElement && selecting && editing,
 			['translate-x-2 bg-[#8661bc] dark:bg-[#6551a1]']: markedElement,
-			['bg-[var(--primary-form-color)] dark:bg-dark-primary']:
+			['dark:bg-dark-primary bg-[var(--primary-form-color)]']:
 				!markedElement,
 		}"
 		@click="selectElement"
@@ -28,7 +28,6 @@
 						v-if="editing"
 						@click="saveElement"
 						text="Save element"
-						color="var(--primary-color)"
 						icon="el:ok"
 						:width="2"
 					/>
@@ -36,7 +35,6 @@
 						v-if="editing"
 						@click="cancelElement"
 						text="Cancel"
-						color="var(--primary-color)"
 						icon="mdi:cancel-bold"
 						:width="2"
 					/>
@@ -50,7 +48,6 @@
 						v-if="editing"
 						@click="editElement"
 						text="Edit element"
-						color="var(--primary-color)"
 						icon="ic:baseline-edit"
 						:width="2"
 					/>
@@ -58,7 +55,6 @@
 						v-if="editing"
 						@click="deleteElement"
 						text="Delete element"
-						color="var(--primary-color)"
 						icon="ic:baseline-delete"
 						:width="2"
 					/>

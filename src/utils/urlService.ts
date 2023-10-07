@@ -29,5 +29,5 @@ export const getIconByUrl = (url: string) => {
 			return socialMediaDict.get(key) ?? '';
 		}
 	}
-	return 'el:website';
+	return 'bi:person-fill';
 };

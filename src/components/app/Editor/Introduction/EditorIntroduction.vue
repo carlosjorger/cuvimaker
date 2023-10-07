@@ -78,7 +78,7 @@
 						<div
 							class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
 						>
-							<Icon icon="el:website" width="20" />
+							<Icon icon="bi:person-fill" width="20" />
 						</div>
 
 						<SubsectionForm
@@ -100,7 +100,7 @@
 						<div
 							class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
 						>
-							<Icon icon="el:website" width="20" />
+							<Icon icon="bi:person-fill" width="20" />
 						</div>
 						<BasicLink
 							:href="currentIntroduction.website"

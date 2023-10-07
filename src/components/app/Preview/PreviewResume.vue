@@ -1,12 +1,12 @@
 <template>
 	<SubsectionAlign>
 		<div
-			class="rounded-md border-4 border-solid border-primary bg-[#f6f4fb] p-3 shadow-xl transition-colors duration-700 dark:border-zinc-300 dark:bg-dark-primary-300 max-lg:p-2 max-md:p-1"
+			class="rounded-md border-primary bg-base-200 p-3 shadow-xl transition-colors duration-700 max-lg:p-2 max-md:p-1"
 		>
 			<div id="resume">
 				<PreviewIntroduction :introduction="resume.introduction" />
 				<div
-					class="mt-5 grid grid-cols-2 gap-3 p-1 text-base max-md:grid-cols-1"
+					class="mt-5 grid grid-cols-2 gap-2 p-1 text-base max-md:grid-cols-1"
 				>
 					<PreviewSection
 						v-for="section in resume.sections"
@@ -76,4 +76,3 @@
 		},
 	};
 </script>
-../../../utils/pdf/resumePDF

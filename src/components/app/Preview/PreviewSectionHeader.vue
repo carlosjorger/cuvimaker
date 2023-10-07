@@ -1,8 +1,8 @@
 <template>
-	<h2 class="text-lg font-extrabold text-primary dark:text-white">
+	<h2 class="text-lg font-extrabold">
 		{{ name }}
 	</h2>
-	<hr class="mt-1 h-1 rounded-md bg-primary dark:bg-zinc-300" />
+	<hr class="mt-1 h-1 rounded-md" />
 </template>
 
 <script>

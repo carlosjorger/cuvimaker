@@ -9,9 +9,7 @@ const { id } = Astro.params;
 ---
 
 <BaseLayout pageTitle="Editor">
-	<div
-		class="dark:border-3 overflow-hidden rounded-lg border-4 border-primary bg-primary dark:border-zinc-300 dark:bg-dark-primary"
-	>
-		<CVEditor client:only="vue" Id={id} />
+	<div class="overflow-hidden rounded-lg">
+		<CVEditor client:only="vue" Id={id ?? ''} />
 	</div>
 </BaseLayout>
