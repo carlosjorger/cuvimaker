@@ -14,7 +14,7 @@ export function createResumePDFDefinition(
 		],
 		styles: {
 			h1: {
-				fontSize: 35,
+				fontSize: 30,
 				bold: true,
 			},
 			h2: {

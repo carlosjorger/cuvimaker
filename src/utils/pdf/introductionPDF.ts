@@ -14,7 +14,7 @@ export function createIntroductionDefinition(
 ): Column {
 	return {
 		stack: [
-			{ text: introduction.name, style: 'h1' },
+			{ text: introduction.name.toLocaleUpperCase(), style: 'h1' },
 			{ text: introduction.profetion, style: 'h2' },
 			createIntroductionColumnsDefinition(introduction),
 		],
