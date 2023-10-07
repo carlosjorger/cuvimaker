@@ -3,7 +3,7 @@ import type { Resume } from '../../models/Resume';
 import type { Section } from '../../models/Section';
 import { createIntroductionDefinition } from './introductionPDF';
 import { creatreSectionDefinition } from './sectionPDF';
-// TODO: Add font to pdf
+import { latoBold } from '../../../public/fonts/Lato';
 export function createResumePDFDefinition(
 	resume: Resume
 ): TDocumentDefinitions {
@@ -16,11 +16,13 @@ export function createResumePDFDefinition(
 			h1: {
 				fontSize: 30,
 				bold: true,
+				font: 'Lato',
 			},
 			h2: {
 				marginTop: 4,
-				fontSize: 23,
+				fontSize: 22,
 				bold: true,
+				font: 'Lato',
 			},
 			h3: {
 				fontSize: 17,
@@ -30,6 +32,7 @@ export function createResumePDFDefinition(
 				fontSize: 14,
 				marginTop: 3,
 				bold: true,
+				font: 'Lato',
 			},
 			h5: {
 				fontSize: 12,
@@ -78,10 +81,22 @@ function createSectionsDefinition(sections: Section[]) {
 export async function savePDF(resumeDefinition: TDocumentDefinitions) {
 	const { createPdf } = await import('pdfmake/build/pdfmake.min');
 	const pdfFonts = await import('pdfmake/build/vfs_fonts');
+
 	const vsf =
 		pdfFonts && pdfFonts.pdfMake
 			? pdfFonts.pdfMake.vfs
 			: globalThis.pdfMake.vfs;
-
-	createPdf(resumeDefinition, undefined, undefined, vsf).open();
+	vsf['Lato-Bold.tff'] = latoBold;
+	const fonts = {
+		Roboto: {
+			normal: 'Roboto-Regular.ttf',
+			bold: 'Roboto-Medium.ttf',
+			italics: 'Roboto-Italic.ttf',
+			bolditalics: 'Roboto-MediumItalic.ttf',
+		},
+		Lato: {
+			bold: 'Lato-Bold.tff',
+		},
+	};
+	createPdf(resumeDefinition, undefined, fonts, vsf).open();
 }
