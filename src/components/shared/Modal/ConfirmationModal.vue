@@ -1,3 +1,4 @@
+<!-- TODO: Use daisy Ui modals -->
 <template>
 	<ModalTemplate>
 		<section

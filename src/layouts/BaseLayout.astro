@@ -9,7 +9,7 @@ const { pageTitle } = Astro.props;
 const isEditPage = pageTitle === 'Editor';
 ---
 
-<html lang="en">
+<html lang="en" class="h-full">
 	<head>
 		<meta charset="utf-8" />
 		<meta
@@ -27,7 +27,7 @@ const isEditPage = pageTitle === 'Editor';
 		<ViewTransitions />
 	</head>
 	<body
-		class="h-screen bg-base-300 font-montserrat text-neutral transition-colors duration-500 dark:text-gray-300 dark:transition-colors dark:duration-500"
+		class="h-full bg-base-300 font-montserrat text-neutral transition-colors duration-300 dark:text-gray-300 dark:transition-colors dark:duration-500"
 	>
 		<Header />
 		<main class="max-lg:m-6a m-4 max-md:m-3 max-sm:m-2">
