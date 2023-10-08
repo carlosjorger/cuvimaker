@@ -1,5 +1,6 @@
 <template>
 	<SubsectionCard
+		class="group"
 		:class="{
 			['marked']: marked,
 		}"
