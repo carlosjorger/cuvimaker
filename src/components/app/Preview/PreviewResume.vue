@@ -8,7 +8,6 @@
 				<div
 					class="mt-5 grid min-w-0 grid-cols-2 gap-2 overflow-hidden p-1 text-base max-md:grid-cols-1"
 				>
-					<!-- TODO: taking all the space -->
 					<PreviewSection
 						v-for="section in resume.sections"
 						:section="section"
