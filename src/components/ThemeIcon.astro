@@ -2,8 +2,7 @@
 
 ---
 
-<!-- TODO: convert to vue -->
-<label class="swap swap-rotate">
+<label class="swap-rotate swap">
 	<input
 		type="checkbox"
 		id="themeToggle"
@@ -44,6 +43,8 @@
 		classList.toggle('dark', theme == 'dark');
 		window.localStorage.setItem('theme', theme);
 		document.querySelector('html').setAttribute('data-theme', theme);
+		var themeToggle = document.getElementById('themeToggle');
+		themeToggle.checked = theme !== 'light';
 	};
 	setDarkMode();
 
