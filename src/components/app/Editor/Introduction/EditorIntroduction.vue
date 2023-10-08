@@ -25,7 +25,7 @@
 								currentIntroduction.location ||
 								isBeingEditingIntroduction
 							"
-							class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+							class="mt-1 p-1 text-accent transition-colors duration-500"
 						>
 							<Icon icon="mdi:location" width="20" />
 						</div>
@@ -43,7 +43,7 @@
 						v-if="isBeingEditingIntroduction"
 					>
 						<div
-							class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+							class="mt-1 p-1 text-accent transition-colors duration-500"
 						>
 							<Icon icon="mdi:email" width="20" />
 						</div>
@@ -65,7 +65,7 @@
 						"
 					>
 						<div
-							class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+							class="mt-1 p-1 text-accent transition-colors duration-500"
 						>
 							<Icon icon="mdi:email" width="20" />
 						</div>
@@ -76,7 +76,7 @@
 						v-if="isBeingEditingIntroduction"
 					>
 						<div
-							class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+							class="mt-1 p-1 text-accent transition-colors duration-500"
 						>
 							<Icon icon="bi:person-fill" width="20" />
 						</div>
@@ -98,7 +98,7 @@
 						"
 					>
 						<div
-							class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+							class="mt-1 p-1 text-accent transition-colors duration-500"
 						>
 							<Icon icon="bi:person-fill" width="20" />
 						</div>
@@ -110,7 +110,7 @@
 				</div>
 				<div class="flex items-start" v-if="isBeingEditingIntroduction">
 					<div
-						class="mt-1 p-1 text-primary transition-colors duration-500 dark:text-white"
+						class="mt-1 p-1 text-accent transition-colors duration-500"
 					>
 						<Icon icon="mdi:account" width="20" />
 					</div>
