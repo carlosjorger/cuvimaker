@@ -10,7 +10,7 @@
 					: 'pointer-events-none border-b-0 shadow-none',
 				errors != undefined && errors.length > 0
 					? 'border-red-600 placeholder:text-red-600 dark:border-rose-500 dark:placeholder:text-rose-500'
-					: `border-accent-content placeholder-neutral-content`,
+					: `border-accent-content placeholder-base-content`,
 			]"
 			type="text"
 			:placeholder="placeholder"
