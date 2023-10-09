@@ -1,3 +1,4 @@
+<!-- TODO: Add photo -->
 <template>
 	<SubsectionCard :ifEditing="isBeingEditingIntroduction">
 		<template #body>

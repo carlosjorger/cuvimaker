@@ -98,5 +98,6 @@ export async function savePDF(resumeDefinition: TDocumentDefinitions) {
 			bold: 'Lato-Bold.tff',
 		},
 	};
-	createPdf(resumeDefinition, undefined, fonts, vsf).open();
+	const pdf = createPdf(resumeDefinition, undefined, fonts, vsf);
+	pdf.open();
 }
