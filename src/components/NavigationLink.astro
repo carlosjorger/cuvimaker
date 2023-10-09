@@ -4,13 +4,6 @@ const currentPath = Astro.url.pathname;
 const active = href == currentPath;
 ---
 
-<a
-	class="hover:text-neutral-focus focus:text-neutral-focus inline-block px-2 py-1 text-center transition-all duration-300 ease-in hover:font-bold hover:no-underline"
-	class:list={[
-		{
-			'neutral-focus font-extrabold dark:text-gray-500': active,
-			'neutral-focus font-medium dark:text-white': !active,
-		},
-	]}
-	href={href}>{text}</a
->
+<a class="btn btn-ghost drawer-button font-normal normal-case" href={href}
+	>{text}
+</a>
