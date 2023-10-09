@@ -53,9 +53,8 @@
 			</li>
 		</ul>
 		<ConfirmationModal
-			v-show="confirmationDeleteModal"
+			id="delete_resume_modal"
 			:entityToDelete="'resume'"
-			@cancel="confirmationDeleteModal = false"
 			@delete="clear()"
 		/>
 	</div>
@@ -68,9 +67,10 @@
 	import CircleButtonWithIcon from './shared/Button/CircleButtonWithIcon.vue';
 	import ConfirmationModal from './shared/Modal/ConfirmationModal.vue';
 	import { onMounted, ref } from 'vue';
+	import { useOpenModal } from './../composables/useOpenModal';
 
+	const { onShowModal } = useOpenModal('delete_resume_modal');
 	let paths = ref([] as ResumePathsType[]);
-	const confirmationDeleteModal = ref(false);
 	const indexOfElementToDelete = ref('');
 	onMounted(() => {
 		paths.value = getResumePaths();
@@ -80,14 +80,14 @@
 	};
 	const tryToClearResume = (event: Event, index: string) => {
 		event.stopPropagation();
-		confirmationDeleteModal.value = true;
 		indexOfElementToDelete.value = index;
+		onShowModal();
 		return false;
 	};
 
 	const clear = () => {
 		clearResume(indexOfElementToDelete.value);
-		paths = ref(getResumePaths());
+		paths.value = getResumePaths();
 		return false;
 	};
 </script>

@@ -1,49 +1,43 @@
-<!-- TODO: Use daisy Ui modals -->
 <template>
-	<ModalTemplate>
-		<section
-			class="overflow-hidden rounded border-4 border-solid border-primary bg-white text-lg font-extrabold text-primary dark:border-zinc-100 dark:bg-dark-primary-300 dark:text-zinc-300 max-xl:w-1/3 max-lg:w-3/5 max-md:w-9/12 max-sm:w-9/12"
-		>
-			<div
-				class="bg-primary p-4 text-2xl text-zinc-300 dark:bg-white dark:text-primary"
-			>
-				Confirmation
-			</div>
-			<div class="p-4">
-				<div>
-					A you sure that you whant to delete this
-					{{ entityToDelete }}?
-				</div>
-
-				<div class="flex justify-between pt-5">
-					<ConfirmationButton
-						aria-label="No"
-						:name="'No'"
-						@click="$emit('cancel')"
-					/>
-					<ConfirmationButton
-						aria-label="Yes"
-						:name="'Yes'"
-						@click="onDelete()"
-					/>
-				</div>
-			</div>
-		</section>
-	</ModalTemplate>
+	<dialog :id="id" class="modal text-neutral">
+		<div class="modal-box">
+			<form method="dialog">
+				<button
+					class="btn btn-circle btn-ghost btn-sm absolute right-2 top-2"
+				>
+					✕
+				</button>
+			</form>
+			<h3 class="text-lg font-bold">Wait!</h3>
+			<p class="py-4">
+				A you sure that you whant to delete this {{ entityToDelete }}?
+			</p>
+			<form method="dialog" class="flex justify-between pt-3">
+				<button aria-label="No" @click="$emit('cancel')" class="btn">
+					No
+				</button>
+				<button aria-label="Yes" @click="onDelete()" class="btn">
+					Yes
+				</button>
+			</form>
+		</div>
+	</dialog>
 </template>
-<script lang="ts">
-	import ModalTemplate from '../others/ModalTemplate.vue';
-	import ConfirmationButton from '../Button/ConfirmationButton.vue';
-	export default {
-		components: { ModalTemplate, ConfirmationButton },
-		props: {
-			entityToDelete: String,
+<script setup lang="ts">
+	defineProps({
+		entityToDelete: {
+			type: String,
+			required: true,
 		},
-		methods: {
-			onDelete() {
-				this.$emit('delete');
-				this.$emit('cancel');
-			},
+		id: {
+			type: String,
+			default: 'confirmationModal',
 		},
+	});
+	const emit = defineEmits(['delete', 'cancel']);
+
+	const onDelete = () => {
+		emit('delete');
+		emit('cancel');
 	};
 </script>

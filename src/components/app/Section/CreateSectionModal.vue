@@ -65,7 +65,7 @@
 						:prevSubsection="subsection"
 						@show-confirmation-to-delete="
 							selectedSectionIndex = index;
-							confirmationDeleteModal = true;
+							showDeleteModal();
 						"
 					/>
 				</transition-group>
@@ -85,9 +85,8 @@
 				v-on:click="updateSection"
 			/>
 			<ConfirmationModal
-				v-show="confirmationDeleteModal"
+				id="delete_subsection_modal"
 				:entityToDelete="'Subsection'"
-				@cancel="confirmationDeleteModal = false"
 				@delete="removeSubsection"
 			/>
 		</div>
@@ -110,6 +109,7 @@
 	import { reactive, computed, ref, watch, type Ref } from 'vue';
 	import { storeToRefs } from 'pinia';
 	import { useDrag } from '../../../composables/useDrag';
+	import { useOpenModal } from '../../../composables/useOpenModal';
 	const props = defineProps({
 		showModal: {
 			type: Boolean,
@@ -119,6 +119,8 @@
 			type: Number,
 		},
 	});
+
+	const { onShowModal } = useOpenModal('delete_subsection_modal');
 	const resumeStore = useResumeStore(appStore);
 	const sectionStore = useSectionStore(appStore);
 	const editing = computed(() => sectionStore.editingIndex >= 0);
@@ -126,7 +128,6 @@
 
 	const initialState = (): {
 		section: Ref<Section>;
-		confirmationDeleteModal: Ref<boolean>;
 		selectedSectionIndex: Ref<number>;
 	} => {
 		if (props.editIndex != undefined && isEditing) {
@@ -141,12 +142,10 @@
 		sectionStore.editingIndex = -1;
 		return {
 			section: section,
-			confirmationDeleteModal: ref(false),
 			selectedSectionIndex: ref(0),
 		};
 	};
-	let { section, confirmationDeleteModal, selectedSectionIndex } =
-		initialState();
+	let { section, selectedSectionIndex } = initialState();
 	const emit = defineEmits(['close-modal']);
 
 	const anySectionWithThisName = () => {
@@ -170,10 +169,7 @@
 	const v$ = useVuelidate(rules, state, { $scope: true });
 
 	const resetWindow = () => {
-		Object.assign(
-			{ section, confirmationDeleteModal, selectedSectionIndex },
-			initialState()
-		);
+		Object.assign({ section, selectedSectionIndex }, initialState());
 	};
 	const closeModal = () => {
 		emit('close-modal');
@@ -203,8 +199,10 @@
 			closeModal();
 		}
 	};
+	const showDeleteModal = () => {
+		onShowModal();
+	};
 	const removeSubsection = () => {
-		confirmationDeleteModal.value = false;
 		sectionStore.removeSubsection(selectedSectionIndex.value);
 	};
 	const { onDragEnter, onDrop, startDrag, markedSection } = useDrag(

@@ -26,10 +26,9 @@
 			:editIndex="editIndex"
 		/>
 		<ConfirmationModal
+			id="delete_section_modal"
 			:entity-to-delete="'Section'"
-			v-show="confirmationDeleteModal"
 			@delete="deleteSection(sectionIndexToDelete)"
-			@cancel="confirmationDeleteModal = false"
 		/>
 
 		<ListTransition class="z-0 block">
@@ -70,6 +69,9 @@
 	import { useResumeStore } from '../../../stores/ResumeStore';
 	import { appStore } from '../../../store';
 	import { useDrag } from '../../../composables/useDrag';
+	import { useOpenModal } from '../../../composables/useOpenModal';
+
+	const { onShowModal } = useOpenModal('delete_section_modal');
 	const AsyncCreateSectionModal = defineAsyncComponent(
 		() => import('../../app/Section/CreateSectionModal.vue')
 	);
@@ -81,7 +83,6 @@
 	});
 	const showModal = ref(false);
 	const editIndex = ref(undefined as number | undefined);
-	const confirmationDeleteModal = ref(false);
 	const sectionIndexToDelete = ref(-1);
 
 	const resumeStore = useResumeStore(appStore);
@@ -96,12 +97,11 @@
 		},
 	});
 	const confirmDeleteSection = (index: number) => {
-		confirmationDeleteModal.value = true;
+		onShowModal();
 		sectionIndexToDelete.value = index;
 	};
 	const deleteSection = (index: number) => {
 		resumeStore.deleteSection(index);
-		confirmationDeleteModal.value = false;
 		saveResume();
 	};
 	const setEditingIntroduction = (value: boolean) => {
