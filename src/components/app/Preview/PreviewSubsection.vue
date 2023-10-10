@@ -46,7 +46,7 @@
 				</h5>
 			</div>
 
-			<ul class="ml-6 list-disc">
+			<ul class="ml-6 list-disc text-left">
 				<li
 					class="p-1"
 					v-for="(element, index) in subsection?.elements"

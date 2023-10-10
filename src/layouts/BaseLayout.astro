@@ -3,7 +3,6 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import '@fontsource/montserrat';
 import ViewTransitions from 'astro/components/ViewTransitions.astro';
-import { Icon } from 'astro-icon';
 import TitleLayout from './TitleLayout.astro';
 const { pageTitle } = Astro.props;
 const isEditPage = pageTitle === 'Editor';
@@ -27,7 +26,7 @@ const isEditPage = pageTitle === 'Editor';
 		<ViewTransitions />
 	</head>
 	<body
-		class="h-full bg-base-300 font-montserrat text-neutral transition-colors duration-300 dark:text-gray-300 dark:transition-colors dark:duration-500"
+		class="h-full bg-base-300 font-montserrat text-base-content transition-colors duration-300 dark:transition-colors dark:duration-500"
 	>
 		<Header />
 		<main class="max-lg:m-6a m-4 max-md:m-3 max-sm:m-2">

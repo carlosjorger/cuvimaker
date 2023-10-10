@@ -21,7 +21,7 @@
 					v-model="section.name"
 					type="text"
 					placeholder="Section Name"
-					class="input input-bordered input-primary mt-2 w-full"
+					class="input input-bordered input-primary mt-2 w-full border-2"
 					:class="{
 						' input-error  text-error placeholder:text-red-600 ':
 							v$.section?.name.$errors.length > 0,

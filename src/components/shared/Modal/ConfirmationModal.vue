@@ -1,5 +1,5 @@
 <template>
-	<dialog :id="id" class="modal text-neutral-content">
+	<dialog :id="id" class="modal text-base-content">
 		<div class="modal-box">
 			<form method="dialog">
 				<button
