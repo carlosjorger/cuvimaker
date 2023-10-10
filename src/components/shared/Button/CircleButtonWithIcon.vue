@@ -1,7 +1,7 @@
 <template>
 	<TooltipWrapper :text="text">
-		<CircleButton :size="width" :aria-label="text" class="bg-primary">
-			<Icon :icon="icon" :width="14 * width" class="text-base-100" />
+		<CircleButton :size="width" :aria-label="text">
+			<Icon :icon="icon" :width="14 * width" />
 		</CircleButton>
 	</TooltipWrapper>
 </template>

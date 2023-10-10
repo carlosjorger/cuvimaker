@@ -1,7 +1,7 @@
 <template>
 	<button
 		type="button"
-		class="relative m-0.5 flex h-12 w-12 cursor-pointer items-center justify-evenly rounded-full p-1 transition-all duration-200 ease-in"
+		class="btn btn-circle btn-primary btn-outline relative border-2 transition-all duration-200 ease-in"
 	>
 		<slot></slot>
 	</button>

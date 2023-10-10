@@ -1,5 +1,9 @@
 <template>
-	<input type="checkbox" class="toggle toggle-primary" v-model="value" />
+	<input
+		type="checkbox"
+		class="toggle toggle-primary toggle-lg"
+		v-model="value"
+	/>
 </template>
 
 <script setup lang="ts">
