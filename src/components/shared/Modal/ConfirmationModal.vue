@@ -13,11 +13,11 @@
 				A you sure that you whant to delete this {{ entityToDelete }}?
 			</p>
 			<form method="dialog" class="flex justify-between pt-3">
-				<button aria-label="No" @click="$emit('cancel')" class="btn">
-					No
-				</button>
 				<button aria-label="Yes" @click="onDelete()" class="btn">
 					Yes
+				</button>
+				<button aria-label="No" @click="$emit('cancel')" class="btn">
+					No
 				</button>
 			</form>
 		</div>

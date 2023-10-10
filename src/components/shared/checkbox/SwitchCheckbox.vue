@@ -1,9 +1,12 @@
 <template>
-	<input
-		type="checkbox"
-		class="toggle toggle-primary toggle-lg"
-		v-model="value"
-	/>
+	<div class="flex items-center gap-3">
+		<input
+			type="checkbox"
+			class="toggle toggle-primary toggle-lg"
+			v-model="value"
+		/>
+		<h4>{{ title }}</h4>
+	</div>
 </template>
 
 <script setup lang="ts">

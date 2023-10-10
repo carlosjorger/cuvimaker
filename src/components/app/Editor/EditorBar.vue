@@ -1,17 +1,19 @@
 <template>
 	<div class="tabs -mb-px">
-		<a
+		<button
 			class="tab tab-lifted tab-lg [--tab-border-color:transparent]"
 			:class="{ 'tab-active': isEditingResume }"
 			@click="isEditingResume = true"
-			>Edit</a
 		>
-		<a
+			Edit
+		</button>
+		<button
 			class="tab tab-lifted tab-lg [--tab-border-color:transparent]"
 			:class="{ 'tab-active': !isEditingResume }"
 			@click="isEditingResume = false"
-			>Preview</a
 		>
+			Preview
+		</button>
 	</div>
 </template>
 
