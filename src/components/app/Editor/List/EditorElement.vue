@@ -22,7 +22,7 @@
 		<div class="w-1/4"></div>
 		<AppearFadeTransition>
 			<div v-if="selecting && editingElement" class="absolute">
-				<div class="flex items-center max-md:flex-col-reverse">
+				<div class="flex items-center gap-1 max-md:flex-col-reverse">
 					<CircleButtonWithIcon
 						v-if="editing"
 						@click="saveElement"
@@ -42,7 +42,7 @@
 		</AppearFadeTransition>
 		<AppearFadeTransition>
 			<div v-if="selecting && !editingElement" class="absolute">
-				<div class="flex items-center max-md:flex-col-reverse">
+				<div class="flex items-center gap-1 max-md:flex-col-reverse">
 					<CircleButtonWithIcon
 						v-if="editing"
 						@click="editElement"

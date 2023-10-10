@@ -120,7 +120,7 @@
 		},
 	};
 </script>
-<!-- TODO: Change colors-->
+<!-- TODO: change colors-->
 <style>
 	.dp__theme_dark {
 		--zinc-color: rgb(212 212 216);
