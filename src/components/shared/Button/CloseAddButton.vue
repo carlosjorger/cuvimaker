@@ -1,53 +1,46 @@
 <template>
 	<TooltipWrapper :text="toolTipText">
-		<circle-button
-			:buttonColor="buttonColor"
-			:size="size"
-			class="border-4 border-solid"
-			:class="[
-				`border-${lineColor} dark:border-${darklineColor}`,
-				closeButton ? 'rotate-45' : '',
-			]"
+		<button
+			class="btn btn-circle btn-primary btn-outline rotate-45"
+			:class="[closeButton ? 'rotate-0' : '']"
 		>
-			<div
-				:class="[`bg-${lineColor} dark:bg-${darklineColor}`]"
-				class="absolute h-1 w-1/2 rotate-90 rounded-sm transition-all duration-300"
-			></div>
-			<div
-				:class="[`bg-${lineColor} dark:bg-${darklineColor}`]"
-				class="absolute h-1 w-1/2 rotate-180 rounded-sm transition-all duration-300"
-			></div>
-		</circle-button>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="h-6 w-6"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M6 18L18 6M6 6l12 12"
+				/>
+			</svg>
+		</button>
 	</TooltipWrapper>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 	import TooltipWrapper from '../Tooltip/TooltipWrapper.vue';
 	import CircleButton from './CircleButton.vue';
-	export default {
-		props: {
-			closeButton: {
-				type: Boolean,
-			},
-			lineColor: {
-				type: String,
-				default: 'primary',
-			},
-			darklineColor: {
-				type: String,
-				default: 'dark-primary',
-			},
-			buttonColor: {
-				type: String,
-			},
-			size: {
-				type: Number,
-			},
-			toolTipText: {
-				type: String,
-				default: '',
-			},
+	defineProps({
+		closeButton: {
+			type: Boolean,
 		},
-		name: 'CloseAddButton',
-		components: { CircleButton, TooltipWrapper },
-	};
+		lineColor: {
+			type: String,
+			default: 'primary',
+		},
+		buttonColor: {
+			type: String,
+		},
+		size: {
+			type: Number,
+		},
+		toolTipText: {
+			type: String,
+			default: '',
+		},
+	});
 </script>

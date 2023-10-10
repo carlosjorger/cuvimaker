@@ -1,11 +1,10 @@
 <template>
 	<div
-		class="mt-2 flex w-full items-center justify-end rounded-lg border-solid border-white p-1 text-sm shadow-xl transition-all duration-300 ease-linear max-md:min-h-[5.5rem]"
+		class="mt-2 flex w-full items-center justify-end rounded-lg border-solid border-accent-content p-3 text-sm shadow-xl transition-all duration-300 ease-linear max-md:min-h-[5.5rem]"
 		:class="{
 			['border-4']: editingElement && selecting && editing,
-			['translate-x-2 bg-[#8661bc] dark:bg-[#6551a1]']: markedElement,
-			['dark:bg-dark-primary bg-[var(--primary-form-color)]']:
-				!markedElement,
+			['translate-x-2 bg-base-200']: markedElement,
+			[' bg-base-100']: !markedElement,
 		}"
 		@click="selectElement"
 	>
@@ -13,7 +12,7 @@
 			ref="element"
 			:id="index.toString()"
 			v-model="currentElement"
-			class="pointer-events-none w-[95%] resize-none overflow-hidden border-0 bg-inherit p-2 text-white focus:outline-none"
+			class="pointer-events-none w-[95%] resize-none overflow-hidden border-0 bg-inherit p-2 focus:outline-none"
 			:class="{
 				['pointer-events-auto']: editingElement && selecting && editing,
 			}"

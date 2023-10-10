@@ -1,12 +1,7 @@
 <template>
 	<button
-		:style="{
-			width: `${size}rem`,
-			height: `${size}rem`,
-			padding: `${(size ?? 0) / 12}rem`,
-		}"
 		type="button"
-		class="relative m-0.5 flex h-10 w-10 cursor-pointer items-center justify-evenly rounded-full p-1 transition-all duration-200 ease-in"
+		class="relative m-0.5 flex h-12 w-12 cursor-pointer items-center justify-evenly rounded-full p-1 transition-all duration-200 ease-in"
 	>
 		<slot></slot>
 	</button>

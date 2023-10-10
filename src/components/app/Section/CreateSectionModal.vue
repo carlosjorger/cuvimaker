@@ -2,35 +2,30 @@
 <template>
 	<ModalTemplate>
 		<div
-			class="m-0 flex w-1/2 flex-col rounded-lg border-4 border-primary bg-white p-4 dark:border-zinc-100 dark:bg-dark-primary-300 max-xl:w-1/2 max-lg:w-4/5 max-md:w-11/12 max-sm:w-11/12"
+			class="m-0 flex w-1/2 flex-col rounded-lg border-primary bg-base-100 p-4 max-xl:w-1/2 max-lg:w-4/5 max-md:w-11/12 max-sm:w-11/12"
 		>
 			<header class="mb-2 flex items-center justify-between">
-				<h3
-					class="text-xl font-semibold text-primary dark:text-zinc-300"
-				>
+				<h3 class="text-xl font-semibold">
 					{{ isEditing ? 'Edit Section' : 'Add a Section' }}
 				</h3>
 				<CloseAddButton
 					toolTipText="Close Section Modal"
 					v-on:click="$emit('close-modal')"
 					:closeButton="true"
-					:lineColor="'white'"
-					:darklineColor="'zinc-300'"
+					:lineColor="'base-content'"
 					:buttonColor="'bg-[var(--primary-color)] dark:bg-dark-primary'"
 				/>
 			</header>
 			<div class="mb-2 box-border">
 				<input
 					v-model="section.name"
-					class="mt-2 w-full rounded-3xl border-2 border-solid p-2 font-semibold text-primary shadow-xl transition-all duration-300 placeholder:text-base focus:border-4 dark:bg-dark-primary-200 dark:text-zinc-300"
-					:class="{
-						'border-red-600 placeholder:text-red-600 dark:border-rose-500 dark:placeholder:text-rose-500 ':
-							v$.section?.name.$errors.length > 0,
-						'border-primary placeholder:text-primary dark:border-zinc-300  dark:placeholder:text-zinc-300':
-							v$.section?.name.$errors.length <= 0,
-					}"
-					placeholder="Section Name"
 					type="text"
+					placeholder="Section Name"
+					class="input input-bordered input-primary mt-2 w-full"
+					:class="{
+						' input-error  text-error placeholder:text-red-600 ':
+							v$.section?.name.$errors.length > 0,
+					}"
 				/>
 				<ErrorsSection :errors="v$.section?.name.$errors" />
 			</div>
