@@ -1,4 +1,3 @@
-<!-- TODO: use pdf design -->
 <template>
 	<SubsectionAlign>
 		<div

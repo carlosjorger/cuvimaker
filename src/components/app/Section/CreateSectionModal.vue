@@ -1,4 +1,3 @@
-<!-- TODO: use daisyUI design -->
 <template>
 	<ModalTemplate>
 		<div
