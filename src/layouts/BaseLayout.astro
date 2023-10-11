@@ -4,8 +4,12 @@ import Header from '../components/Header.astro';
 import '@fontsource/montserrat';
 import ViewTransitions from 'astro/components/ViewTransitions.astro';
 import TitleLayout from './TitleLayout.astro';
+
+interface Props {
+	pageTitle: string;
+}
 const { pageTitle } = Astro.props;
-const isEditPage = pageTitle === 'Editor';
+const isEditPage = pageTitle.includes('Editor');
 ---
 
 <html lang="en" class="h-full">
@@ -13,7 +17,7 @@ const isEditPage = pageTitle === 'Editor';
 		<meta charset="utf-8" />
 		<meta
 			name="keywords"
-			content="cuvimaker,Online Cv Maker,Astro,CV,Online,Editor,CV Maker,CSS,JavaScript,Github,Repository"
+			content="cuvimaker,Online Cv Maker,Astro,CV,Online,Editor,CV Maker,CSS,JavaScript,Github,Repository,Resume builder"
 		/>
 		<link rel="icon" type="image/svg+xml" href="/cuvimaker.svg" />
 		<meta name="viewport" content="width=device-width" />
@@ -41,7 +45,7 @@ const isEditPage = pageTitle === 'Editor';
 				{
 					isEditPage && (
 						<div class="mx-auto w-4/5 max-lg:w-5/6 max-md:w-full max-md:text-center max-md:text-base">
-							<TitleLayout pageTitle={pageTitle} />
+							<TitleLayout />
 							<slot />
 						</div>
 					)

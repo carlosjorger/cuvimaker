@@ -1,7 +1,5 @@
 ---
 const { href, text = '' } = Astro.props;
-const currentPath = Astro.url.pathname;
-const active = href == currentPath;
 ---
 
 <a class="btn btn-ghost drawer-button font-normal normal-case" href={href}

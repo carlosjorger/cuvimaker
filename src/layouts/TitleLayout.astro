@@ -2,7 +2,6 @@
 import { Icon } from 'astro-icon';
 import Subtitle from '../components/Subtitle.astro';
 
-const { pageTitle } = Astro.props;
 const pathname = Astro.url.pathname;
 const isANestedPathRex = /^\/\w+\/\w+/;
 const isANestedPath = pathname.match(isANestedPathRex)?.[0];
