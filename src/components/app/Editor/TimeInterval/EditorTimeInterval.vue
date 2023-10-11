@@ -120,7 +120,6 @@
 		},
 	};
 </script>
-<!-- TODO: change colors-->
 <style>
 	.dp__theme_dark {
 		--zinc-color: rgb(212 212 216);
@@ -128,46 +127,46 @@
 		--zinc-color-3: #71717a;
 		--dark-primary-color: #3f3268;
 
-		--dp-background-color: #120a25;
-		--dp-text-color: var(--zinc-color);
-		--dp-hover-color: var(--dark-primary-color);
+		--dp-background-color: hsl(var(--b3));
+		--dp-text-color: hsl(var(--bc));
+		--dp-hover-color: hsl(var(--sf));
 		--dp-hover-text-color: var(--zinc-color);
 		--dp-hover-icon-color: var(--zinc-color-3);
-		--dp-primary-color: var(--dark-primary-color);
+		--dp-primary-color: hsl(var(--sf));
 		--dp-primary-text-color: var(--zinc-color);
 		--dp-secondary-color: var(--zinc-color-2);
-		--dp-border-color: var(--zinc-color-3);
+		--dp-border-color: rgba(0, 0, 0, 0);
 		--dp-menu-border-color: var(--zinc-color-3);
 		--dp-border-color-hover: #aaaeb7;
-		--dp-disabled-color: var(--zinc-color-3);
+		--dp-disabled-color: : hsl(var(--b1));
 		--dp-scroll-bar-background: #120a25;
 		--dp-scroll-bar-color: #3f3268;
 		--dp-success-color: #00701a;
 		--dp-success-color-disabled: #428f59;
-		--dp-icon-color: var(--zinc-color-2);
+		--dp-icon-color: hsl(var(--s));
 		--dp-danger-color: #e53935;
 		--dp-highlight-color: rgba(0, 92, 178, 0.2);
 	}
 	.dp__theme_light {
 		--primary-color: #3c1774;
 
-		--dp-background-color: #ffffff;
-		--dp-text-color: var(--primary-color);
-		--dp-hover-color: #f3f3f3;
+		--dp-background-color: hsl(var(--b3));
+		--dp-text-color: hsl(var(--bc));
+		--dp-hover-color: hsl(var(--sf));
 		--dp-hover-text-color: var(--primary-color);
 		--dp-hover-icon-color: var(--primary-color);
-		--dp-primary-color: var(--primary-color);
+		--dp-primary-color: hsl(var(--sf));
 		--dp-primary-text-color: #f8f5f5;
 		--dp-secondary-color: #c0c4cc;
-		--dp-border-color: var(--primary-color);
+		--dp-border-color: rgba(0, 0, 0, 0);
 		--dp-menu-border-color: var(--primary-color);
 		--dp-border-color-hover: #aaaeb7;
-		--dp-disabled-color: #f6f6f6;
+		--dp-disabled-color: : hsl(var(--b1));
 		--dp-scroll-bar-background: #f3f3f3;
 		--dp-scroll-bar-color: var(--primary-color);
 		--dp-success-color: #76d275;
-		--dp-success-color-disabled: #a3d9b1;
-		--dp-icon-color: var(--primary-color);
+		--dp-success-color-disabled: hsl(var(--s));
+		--dp-icon-color: hsl(var(--s));
 		--dp-danger-color: #ff6f60;
 		--dp-highlight-color: rgba(25, 118, 210, 0.1);
 	}
