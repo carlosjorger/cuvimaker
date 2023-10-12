@@ -150,6 +150,13 @@
 					</ListTransition>
 				</ul>
 			</form>
+			<AppearFadeTransition>
+				<div v-if="!isNotEmpty && !isBeingEditingIntroduction">
+					<h2 class="text-lg text-info">
+						Please fill the Introduction Section...
+					</h2>
+				</div>
+			</AppearFadeTransition>
 		</template>
 		<template #footer>
 			<Transition>
@@ -206,6 +213,7 @@
 	import BasicEmail from '../../../shared/Anchor/BasicEmail.vue';
 	import { useResumeStore } from '../../../../stores/ResumeStore';
 	import IconButton from '../../../shared/Button/IconButton.vue';
+	import { isNotEmptyIntroduction } from '../../../../extensions/extensions';
 
 	export default {
 		components: {
@@ -288,6 +296,9 @@
 		computed: {
 			isBeingEditingIntroduction() {
 				return this.resumeStore.isBeingEditingIntroduction;
+			},
+			isNotEmpty() {
+				return isNotEmptyIntroduction(this.currentIntroduction);
 			},
 		},
 		validations: {

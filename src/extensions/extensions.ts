@@ -1,3 +1,4 @@
+import type { Introduction } from '../models/Introduction';
 import { Section } from '../models/Section';
 import { Subsection } from '../models/Subsection';
 import { SubsectionElement } from '../models/SubsectionElement';
@@ -46,5 +47,16 @@ export function isEmptySubsection(subsection: Subsection) {
 	return (
 		(subsection.title == '' || subsection.title == undefined) &&
 		(subsection.text == '' || subsection.text == undefined)
+	);
+}
+export function isNotEmptyIntroduction(introduction: Introduction) {
+	return Boolean(
+		introduction.email ||
+			introduction.location ||
+			introduction.name.length ||
+			introduction.phone ||
+			introduction.profetion.length ||
+			introduction.socialAccounts.length ||
+			introduction.website
 	);
 }
