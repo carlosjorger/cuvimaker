@@ -28,7 +28,7 @@
 		<SubsectionElement
 			v-for="(element, index) in subsection.elements"
 			:key="element.id"
-			:draggable="editing"
+			:draggable="editing && selectedElement != index"
 			@dragstart="startDrag($event, index)"
 			@drop="onDrop($event, element, subsection.elements, index, editing)"
 			@dragenter="onDragEnter(index, editing)"
