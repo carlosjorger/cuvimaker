@@ -1,11 +1,7 @@
 ---
 const { imageSrc = '', width = 400 } = Astro.props;
 ---
+
 <picture class="block" class:list={[`max-w-[${width}px]`]}>
-	<img
-		class="bg-transparent"
-		src={imageSrc}
-		alt="logo"
-		width={width}
-	/>
+	<img class="bg-transparent" src={imageSrc} alt="logo" width={width} />
 </picture>
