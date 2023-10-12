@@ -1,6 +1,6 @@
 <template>
 	<TooltipWrapper :text="text">
-		<CircleButton :aria-label="text">
+		<CircleButton :aria-label="text" :buttonSize="buttonSize">
 			<Icon :icon="icon" :width="14 * width" />
 		</CircleButton>
 	</TooltipWrapper>
@@ -25,6 +25,10 @@
 				type: String,
 				required: true,
 				default: '',
+			},
+			buttonSize: {
+				type: String,
+				default: 'md',
 			},
 		},
 		components: { CircleButton, Icon, TooltipWrapper },

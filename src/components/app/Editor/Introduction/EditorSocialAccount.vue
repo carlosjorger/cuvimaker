@@ -1,16 +1,14 @@
 <template>
 	<li
-		class="flex w-11/12 items-center justify-end rounded-lg transition-all duration-300 ease-linear"
+		class="flex w-11/12 items-center justify-end rounded-lg p-1 transition-all duration-300 ease-linear"
 		@mouseover="mouseover"
 		@mouseleave="mouseleave"
 		:class="{
-			['bg-[#9c74da]']: selecting && isBeingEditingIntroduction,
+			[' bg-base-100']: selecting && isBeingEditingIntroduction,
 		}"
 	>
 		<div class="flex w-4/5 resize-none items-center">
-			<div
-				class="p-1 text-primary transition-colors duration-500 dark:text-white"
-			>
+			<div class="p-1 transition-colors duration-500">
 				<IconByUrl :url="link" />
 			</div>
 			<BasicLink v-if="!editing" :link="link" />
@@ -26,38 +24,42 @@
 		<AppearFadeTransition>
 			<div
 				v-if="selecting && editing && isBeingEditingIntroduction"
-				class="absolute flex items-center"
+				class="absolute flex items-center gap-1"
 			>
 				<CircleButtonWithIcon
 					text="Save social account"
 					@click="saveElement"
 					icon="el:ok"
-					:width="1.5"
+					:width="1.2"
+					buttonSize="xs"
 				/>
 				<CircleButtonWithIcon
 					@click="cancelElement"
 					text="Cancel"
 					icon="mdi:cancel-bold"
-					:width="1.5"
+					:width="1.2"
+					buttonSize="xs"
 				/>
 			</div>
 		</AppearFadeTransition>
 		<AppearFadeTransition>
 			<div
 				v-if="selecting && !editing && isBeingEditingIntroduction"
-				class="absolute flex items-center"
+				class="absolute flex items-center gap-1"
 			>
 				<CircleButtonWithIcon
 					text="Edit social account"
 					@click="editElement"
 					icon="ic:baseline-edit"
-					:width="1.5"
+					:width="1.2"
+					buttonSize="xs"
 				/>
 				<CircleButtonWithIcon
 					text="Delete social account"
 					@click="deleteElement"
 					icon="ic:baseline-delete"
-					:width="1.5"
+					:width="1.2"
+					buttonSize="xs"
 				/>
 			</div>
 		</AppearFadeTransition>
