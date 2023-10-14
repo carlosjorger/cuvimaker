@@ -7,11 +7,13 @@
 		>
 			Resumes
 		</h2>
-		<ul>
+		<ul
+			class="max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-scroll overflow-x-hidden"
+		>
 			<li v-for="path in paths" :key="path.params.id">
 				<a :href="`/editor/${path.params.id}`">
 					<div
-						class="card my-3 w-2/3 rounded-lg p-7 font-extrabold shadow-2xl shadow-base-300 transition-all duration-200 hover:translate-x-6 hover:bg-base-300 max-md:w-5/6 max-sm:w-full max-sm:hover:translate-x-2"
+						class="card my-3 w-5/6 rounded-lg p-7 font-extrabold shadow-2xl shadow-base-300 transition-all duration-200 hover:translate-x-6 hover:bg-base-300 max-md:w-11/12 max-sm:w-full max-sm:hover:translate-x-2"
 					>
 						<div
 							class="flex items-center justify-between"
