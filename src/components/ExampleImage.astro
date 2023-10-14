@@ -1,7 +1,11 @@
 ---
-const { imageSrc = '', width = 400 } = Astro.props;
+const { imageSrc = '', width = 400, altText } = Astro.props;
 ---
 
-<picture class="block" class:list={[`max-w-[${width}px]`]}>
-	<img class="bg-transparent" src={imageSrc} alt="logo" width={width} />
+<picture
+	class="max-w-[350px] overflow-hidden rounded-sm shadow-[-11px_11px_60px_hsl(var(--wa))] dark:shadow-[-11px_11px_60px_hsl(var(--a))]"
+	class="block"
+	class:list={[`max-w-[${width}px]`]}
+>
+	<img class="bg-transparent" src={imageSrc} alt={altText} width={width} />
 </picture>
