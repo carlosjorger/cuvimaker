@@ -9,6 +9,10 @@ An online cv maker web application used to design a custom curriculum vitae and 
 |  ![Editor Example](./public/doc/Editor-example.webp)  |  ![Editor Example2](./public/doc/Editor-example-light.webp)  |
 | ![Editor Example](./public/doc/Editor-example-2.webp) | ![Editor Example2](./public/doc/Editor-example-light-2.webp) |
 
+## 🚀 Demo
+
+View a live demo of [Cuvimaker](https://cuvimaker.netlify.app/)
+
 ## 🧰 Features
 
 -   Versatile creation of CVs.
