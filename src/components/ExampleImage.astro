@@ -22,10 +22,10 @@ const { id, imageSrc = '', width = 400, altText } = Astro.props;
 		var imageWrappers = document.getElementsByClassName('wrapper');
 		[...imageWrappers].forEach((imageWrapper) => {
 			const image = imageWrapper.firstChild;
-			const { width, height } = imageWrapper.getBoundingClientRect();
-			const halfWidth = width / 2;
-			const halfHeight = height / 2;
 			imageWrapper?.addEventListener('mousemove', (event) => {
+				const { width, height } = imageWrapper.getBoundingClientRect();
+				const halfWidth = width / 2;
+				const halfHeight = height / 2;
 				const { offsetX, offsetY } = event;
 				const alpha = 10;
 				const rotationX = ((offsetX - halfWidth) / halfWidth) * alpha;
