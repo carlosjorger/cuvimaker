@@ -1,11 +1,46 @@
 ---
-const { imageSrc = '', width = 400, altText } = Astro.props;
+const { id, imageSrc = '', width = 400, altText } = Astro.props;
 ---
 
-<picture
-	class="max-w-[350px] overflow-hidden rounded-sm shadow-[-11px_11px_30px_hsl(var(--wac))] dark:shadow-[-11px_11px_60px_hsl(var(--a))]"
-	class="block"
-	class:list={[`max-w-[${width}px]`]}
->
-	<img class="bg-transparent" src={imageSrc} alt={altText} width={width} />
-</picture>
+<div class="wrapper z-10 mx-auto my-0 flex max-w-[350px]">
+	<picture
+		class="image relative -z-10 overflow-hidden rounded-sm shadow-[-5px_5px_30px_hsl(var(--wac))] dark:shadow-[-5px_5px_60px_hsl(var(--a))]"
+		class="block"
+		class:list={[`max-w-[${width}px]`]}
+	>
+		<img
+			id={id}
+			class="bg-transparent"
+			src={imageSrc}
+			alt={altText}
+			width={width}
+		/>
+	</picture>
+</div>
+<script is:inline>
+	document.addEventListener('DOMContentLoaded', () => {
+		var imageWrappers = document.getElementsByClassName('wrapper');
+		[...imageWrappers].forEach((imageWrapper) => {
+			const image = imageWrapper.firstChild;
+			const { width, height } = imageWrapper.getBoundingClientRect();
+			const halfWidth = width / 2;
+			const halfHeight = height / 2;
+			imageWrapper?.addEventListener('mousemove', (event) => {
+				const { offsetX, offsetY } = event;
+				const alpha = 10;
+				const rotationX = ((offsetX - halfWidth) / halfWidth) * alpha;
+				const rotationY = ((halfHeight - offsetY) / halfHeight) * alpha;
+				image.style.transform = `rotateX(${rotationY}deg) rotateY(${rotationX}deg)`;
+			});
+			imageWrapper?.addEventListener('mouseleave', () => {
+				image.style.transition = 'transform .4s ease-out';
+				image.style.transform = `rotateX(0deg) rotateY(0deg)`;
+			});
+		});
+	});
+</script>
+<style>
+	.wrapper {
+		perspective: 50rem;
+	}
+</style>
