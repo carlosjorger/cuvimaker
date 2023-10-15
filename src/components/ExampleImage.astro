@@ -27,13 +27,19 @@ const { id, imageSrc = '', width = 400, altText } = Astro.props;
 				const halfWidth = width / 2;
 				const halfHeight = height / 2;
 				const { offsetX, offsetY } = event;
-				const alpha = 10;
+				const alpha = 15;
 				const rotationX = ((offsetX - halfWidth) / halfWidth) * alpha;
 				const rotationY = ((halfHeight - offsetY) / halfHeight) * alpha;
 				image.style.transform = `rotateX(${rotationY}deg) rotateY(${rotationX}deg)`;
 			});
+			imageWrapper?.addEventListener('mouseenter', () => {
+				setTimeout(() => {
+					image.style.transition = 'none';
+				}, 300);
+			});
 			imageWrapper?.addEventListener('mouseleave', () => {
-				image.style.transition = 'transform .4s ease-out';
+				console.log('leaave');
+				image.style.transition = 'transform .3s ease-out';
 				image.style.transform = `rotateX(0deg) rotateY(0deg)`;
 			});
 		});
