@@ -23,6 +23,7 @@ const { id, imageSrc = '', width = 400, altText } = Astro.props;
 		[...imageWrappers].forEach((imageWrapper) => {
 			const image = imageWrapper.firstChild;
 			imageWrapper?.addEventListener('mousemove', (event) => {
+				// add a time between launch the event
 				const { width, height } = imageWrapper.getBoundingClientRect();
 				const halfWidth = width / 2;
 				const halfHeight = height / 2;
@@ -38,7 +39,6 @@ const { id, imageSrc = '', width = 400, altText } = Astro.props;
 				}, 300);
 			});
 			imageWrapper?.addEventListener('mouseleave', () => {
-				console.log('leaave');
 				image.style.transition = 'transform .3s ease-out';
 				image.style.transform = `rotateX(0deg) rotateY(0deg)`;
 			});
