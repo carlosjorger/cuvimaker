@@ -2,7 +2,7 @@
 import Contacts from '../components/Contacts.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Subtitle from '../components/Subtitle.astro';
-import ExampleImage from '../components/ExampleImage.astro';
+import StaticImage from '../components/StaticImage.astro';
 const platform = 'github';
 const username = 'carlosjorger';
 const proyect = 'astro-vue-online-cv-maker';
@@ -12,7 +12,7 @@ const proyect = 'astro-vue-online-cv-maker';
 <BaseLayout pageTitle="About Cuvimaker / Cuvimaker">
 	<div class="p-5 max-md:p-2">
 		<div class="hidden max-md:block">
-			<ExampleImage imageSrc="/project.webp" altText="project example" />
+			<StaticImage imageSrc="/project.webp" altText="project example" />
 		</div>
 		<Subtitle>Are you interested in this app?</Subtitle>
 		<p class="mb-4 text-base">
@@ -29,6 +29,6 @@ const proyect = 'astro-vue-online-cv-maker';
 		<Contacts />
 	</div>
 	<div class="block max-md:hidden">
-		<ExampleImage imageSrc="/project.webp" altText="project example" />
+		<StaticImage imageSrc="/project.webp" altText="project example" />
 	</div>
 </BaseLayout>
