@@ -4,7 +4,7 @@ const { id, imageSrc = '', width = 400, altText } = Astro.props;
 
 <div class="wrapper z-10 mx-auto my-0 flex max-w-[350px]">
 	<picture
-		class="image relative -z-10 overflow-hidden rounded-md shadow-[-5px_5px_30px] shadow-warning-content transition-all duration-300 ease-out dark:shadow-accent-focus"
+		class="image relative -z-10 overflow-hidden rounded-md shadow-[0px_0px_30px] shadow-warning-content transition-all duration-300 ease-out dark:shadow-accent-focus"
 		class="block"
 		class:list={[`max-w-[${width}px]`]}
 	>
@@ -12,42 +12,41 @@ const { id, imageSrc = '', width = 400, altText } = Astro.props;
 	</picture>
 </div>
 <script is:inline>
-	const delay = 50;
-	let lastMouseHoverTriggerTime = Date.now();
-	document.addEventListener('DOMContentLoaded', () => {
-		var imageWrappers = document.getElementsByClassName('wrapper');
-		[...imageWrappers].forEach((imageWrapper) => {
-			const image = imageWrapper.firstChild;
-			imageWrapper?.addEventListener('mousemove', (event) => {
-				const { width, height } = imageWrapper.getBoundingClientRect();
-				const halfWidth = width / 2;
-				const halfHeight = height / 2;
-				const currentTime = Date.now();
-				if (currentTime - lastMouseHoverTriggerTime < delay) {
-					return;
-				}
-				lastMouseHoverTriggerTime = currentTime;
-				const { offsetX, offsetY } = event;
-				const alpha = 15;
-				const rotationX = ((offsetX - halfWidth) / halfWidth) * alpha;
-				const rotationY = ((halfHeight - offsetY) / halfHeight) * alpha;
+	var delay = 50;
+	var lastMouseHoverTriggerTime = Date.now();
+	var imageWrappers = document.getElementsByClassName('wrapper');
+	[...imageWrappers].forEach((imageWrapper) => {
+		const image = imageWrapper.firstChild;
+		imageWrapper?.addEventListener('mousemove', (event) => {
+			const currentTime = Date.now();
+			if (currentTime - lastMouseHoverTriggerTime < delay) {
+				return;
+			}
+			lastMouseHoverTriggerTime = currentTime;
 
-				image.style.transform = `rotateX(${rotationY}deg) rotateY(${rotationX}deg)`;
+			const { width, height } = imageWrapper.getBoundingClientRect();
+			const halfWidth = width / 2;
+			const halfHeight = height / 2;
 
-				const translationX =
-					((offsetX - halfWidth) / halfWidth) * alpha;
-				const translationY =
-					((offsetY - halfHeight) / halfHeight) * alpha;
-				const translation = Math.abs(translationX + translationY) / 2;
-				image.style.boxShadow = `${-translationX + 5}px ${
-					-translationY + 5
-				}px ${30 + translation}px var(--tw-shadow-color)`;
-			});
-			imageWrapper?.addEventListener('mouseleave', () => {
-				image.style.transition = 'all .3s ease-out';
-				image.style.transform = `rotateX(0deg) rotateY(0deg)`;
-				image.style.boxShadow = `5px 5px 30px var(--tw-shadow-color)`;
-			});
+			const { offsetX, offsetY } = event;
+			const alpha = 15;
+			const rotationX = ((offsetX - halfWidth) / halfWidth) * alpha;
+			const rotationY = ((halfHeight - offsetY) / halfHeight) * alpha;
+
+			image.style.transform = `rotateX(${rotationY}deg) rotateY(${rotationX}deg)`;
+
+			const translationX = ((offsetX - halfWidth) / halfWidth) * alpha;
+			const translationY = ((offsetY - halfHeight) / halfHeight) * alpha;
+			const translation =
+				(Math.abs(translationX) + Math.abs(translationY)) / 2;
+			image.style.boxShadow = `${-translationX}px ${-translationY}px ${
+				30 + translation
+			}px var(--tw-shadow-color)`;
+		});
+		imageWrapper?.addEventListener('mouseleave', () => {
+			image.style.transition = 'all .3s ease-out';
+			image.style.transform = `rotateX(0deg) rotateY(0deg)`;
+			image.style.boxShadow = `0px 0px 30px var(--tw-shadow-color)`;
 		});
 	});
 </script>
