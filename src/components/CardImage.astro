@@ -4,7 +4,7 @@ const { id, imageSrc = '', width = 400, altText } = Astro.props;
 
 <div class="wrapper z-10 mx-auto my-0 flex max-w-[350px]">
 	<picture
-		class="image relative -z-10 overflow-hidden rounded-sm shadow-[-5px_5px_30px] shadow-warning-content dark:shadow-accent"
+		class="image relative -z-10 overflow-hidden rounded-md shadow-[-5px_5px_30px] shadow-warning-content transition-all duration-300 ease-out dark:shadow-accent-focus"
 		class="block"
 		class:list={[`max-w-[${width}px]`]}
 	>
@@ -19,24 +19,26 @@ const { id, imageSrc = '', width = 400, altText } = Astro.props;
 		[...imageWrappers].forEach((imageWrapper) => {
 			const image = imageWrapper.firstChild;
 			imageWrapper?.addEventListener('mousemove', (event) => {
+				const { width, height } = imageWrapper.getBoundingClientRect();
+				const halfWidth = width / 2;
+				const halfHeight = height / 2;
 				const currentTime = Date.now();
 				if (currentTime - lastMouseHoverTriggerTime < delay) {
 					return;
 				}
 				lastMouseHoverTriggerTime = currentTime;
-				const { width, height } = imageWrapper.getBoundingClientRect();
-				const halfWidth = width / 2;
-				const halfHeight = height / 2;
 				const { offsetX, offsetY } = event;
 				const alpha = 15;
 				const rotationX = ((offsetX - halfWidth) / halfWidth) * alpha;
 				const rotationY = ((halfHeight - offsetY) / halfHeight) * alpha;
+
 				image.style.transform = `rotateX(${rotationY}deg) rotateY(${rotationX}deg)`;
+
 				const translationX =
 					((offsetX - halfWidth) / halfWidth) * alpha;
 				const translationY =
 					((offsetY - halfHeight) / halfHeight) * alpha;
-				const translation = (translationX + translationY) / 2;
+				const translation = Math.abs(translationX + translationY) / 2;
 				image.style.boxShadow = `${-translationX + 5}px ${
 					-translationY + 5
 				}px ${30 + translation}px var(--tw-shadow-color)`;
