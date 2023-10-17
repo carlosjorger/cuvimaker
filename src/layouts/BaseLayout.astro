@@ -50,10 +50,10 @@ const isEditPage = pageTitle.includes('Editor');
 	>
 		<Header />
 		<main class="max-lg:m-6a m-4 max-md:m-3 max-sm:m-2">
-			<div class="mx-4">
+			<div>
 				{
 					!isEditPage && (
-						<div class="mx-auto flex w-4/5 items-center justify-between gap-4 max-lg:w-5/6 max-md:w-full max-md:justify-center max-md:text-center max-md:text-base">
+						<div class="mx-auto flex w-5/6 items-center justify-between gap-2 max-lg:w-5/6 max-md:w-full max-md:justify-center max-md:text-center max-md:text-base">
 							<slot />
 						</div>
 					)

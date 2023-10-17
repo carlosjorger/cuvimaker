@@ -14,6 +14,9 @@ dependencies:
   '@fontsource/black-ops-one':
     specifier: ^5.0.8
     version: 5.0.8
+  '@fontsource/figtree':
+    specifier: ^5.0.15
+    version: 5.0.15
   '@fontsource/montserrat':
     specifier: ^5.0.8
     version: 5.0.8
@@ -1060,6 +1063,10 @@ packages:
 
   /@fontsource/black-ops-one@5.0.8:
     resolution: {integrity: sha512-Vx+zWLkhFSAO3pV3XSoY0Uu28CL+ultKdyyU4ec3b8DRlKSDZEIrldIJLJqoP25zRQD2QtIjQCYdoMYwTJgmPg==}
+    dev: false
+
+  /@fontsource/figtree@5.0.15:
+    resolution: {integrity: sha512-DQzD4zkwJkKU4pkhnRtLjFOWRJZA3wFrGZJ0bhGClm2Jq1zm3Py6HuCf8W3ynEdAvoYMvvafPhmjUgbbHbEhwA==}
     dev: false
 
   /@fontsource/montserrat@5.0.8:

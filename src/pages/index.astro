@@ -1,15 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CVExampleImages from '../components/CVExampleImages.astro';
-import Subtitle from '../components/Subtitle.astro';
+import Title from '../components/Title.astro';
 import BasicButton from '../components/shared/Button/BasicButton.vue';
 ---
 
 <!-- TODO: Improve design -->
 <BaseLayout pageTitle="An online curriculum vitae maker / Cuvimaker">
-	<div class="p-6 max-md:p-4">
-		<Subtitle>Create your own curriculum vitae</Subtitle>
-		<p class="mb-6 text-base max-md:text-center">
+	<div class="p-2 max-md:p-1">
+		<Title>Create your own <br /> curriculum vitae</Title>
+		<p class="mb-6 text-lg max-md:text-center">
 			Save your personal data, skills, experience, projects and more and
 			download the cv in a pdf file.
 		</p>
@@ -25,7 +25,9 @@ import BasicButton from '../components/shared/Button/BasicButton.vue';
 			</a>
 		</div>
 	</div>
-	<div class="block p-6 max-md:hidden">
-		<CVExampleImages />
+	<div class="block w-1/2 p-3 max-lg:w-2/5 max-md:hidden">
+		<div class="w-72 max-lg:w-60">
+			<CVExampleImages />
+		</div>
 	</div>
 </BaseLayout>

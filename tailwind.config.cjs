@@ -26,6 +26,7 @@ module.exports = {
 		},
 		fontFamily: {
 			montserrat: ['Montserrat', 'ui-sans-serif'],
+			figtree: ['Figtree', 'sans-serif'],
 			blackOpsOne: ['"Black Ops One"'],
 		},
 	},
