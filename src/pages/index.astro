@@ -5,14 +5,12 @@ import Title from '../components/Title.astro';
 import BasicButton from '../components/shared/Button/BasicButton.vue';
 ---
 
-<!-- TODO: Improve design -->
 <BaseLayout pageTitle="An online curriculum vitae maker / Cuvimaker">
 	<div class="p-2 max-md:p-1">
 		<Title>Create your own <br /> curriculum vitae</Title>
-		<p class="mb-6 text-lg max-lg:text-center">
-			Save your personal data, skills, experience, projects <br
-				class="hidden max-lg:block"
-			/> and more and download the cv in a pdf format.
+		<p class="mb-6 text-lg max-lg:text-center max-sm:text-base">
+			Save your personal data, skills, experience, projects <br /> and
+			more and download the cv in a pdf format.
 		</p>
 		<div class="mb-6 hidden max-lg:block">
 			<CVExampleImages />
@@ -26,8 +24,8 @@ import BasicButton from '../components/shared/Button/BasicButton.vue';
 			</a>
 		</div>
 	</div>
-	<div class="block w-1/2 p-3 max-lg:hidden max-lg:w-2/5">
-		<div class="w-72">
+	<div class="flex w-5/12 justify-center p-2 max-lg:hidden max-lg:w-2/5">
+		<div class="w-[22rem]">
 			<CVExampleImages />
 		</div>
 	</div>

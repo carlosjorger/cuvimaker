@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 /*eslint-env node*/
-// TODO: Add new font to title https://fonts.google.com/specimen/Figtree?preview.text=The%20most%20popular
 module.exports = {
 	content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx,astro}'],
 	darkMode: 'class',
