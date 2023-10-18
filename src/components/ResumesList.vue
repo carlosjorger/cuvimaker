@@ -2,11 +2,6 @@
 	<div
 		class="my-5 ml-20 focus:text-neutral-focus max-md:mx-10 max-sm:mx-auto max-sm:w-11/12"
 	>
-		<h2
-			class="py-10 font-montserrat text-5xl font-extrabold max-sm:text-4xl"
-		>
-			Resumes
-		</h2>
 		<ul
 			class="max-h-[calc(100vh-20rem)] min-h-[calc(100vh-15rem)] overflow-scroll overflow-x-hidden"
 		>
