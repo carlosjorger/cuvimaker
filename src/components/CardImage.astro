@@ -4,15 +4,16 @@ const { id, imageSrc = '', width = 500, altText } = Astro.props;
 
 <div class="wrapper z-10 mx-auto my-0 flex max-w-[350px]">
 	<picture
-		class="image relative -z-10 overflow-hidden rounded-md shadow-[0px_0px_30px] shadow-warning-content transition-all duration-300 ease-out dark:shadow-accent-focus"
+		class="image animate-cardImageIn relative -z-10 overflow-hidden rounded-md shadow-[0px_0px_30px] shadow-warning-content transition-all duration-300 ease-out dark:shadow-accent-focus"
 		class="block"
 		class:list={[`max-w-[${width}px]`]}
 	>
-		<img id={id} class="" src={imageSrc} alt={altText} width={width} />
+		<img id={id} src={imageSrc} alt={altText} width={width} />
 	</picture>
 </div>
 <script is:inline>
 	var delay = 50;
+	var alpha = 15;
 	var lastMouseHoverTriggerTime = Date.now();
 	var imageWrappers = document.getElementsByClassName('wrapper');
 	[...imageWrappers].forEach((imageWrapper) => {
@@ -29,19 +30,25 @@ const { id, imageSrc = '', width = 500, altText } = Astro.props;
 			const halfHeight = height / 2;
 
 			const { offsetX, offsetY } = event;
-			const alpha = 15;
 			const rotationX = ((offsetX - halfWidth) / halfWidth) * alpha;
 			const rotationY = ((halfHeight - offsetY) / halfHeight) * alpha;
-
 			image.style.transform = `rotateX(${rotationY}deg) rotateY(${rotationX}deg)`;
 
-			const translationX = ((offsetX - halfWidth) / halfWidth) * alpha;
-			const translationY = ((offsetY - halfHeight) / halfHeight) * alpha;
+			const translationX = -((offsetX - halfWidth) / halfWidth) * alpha;
+			const translationY = -((offsetY - halfHeight) / halfHeight) * alpha;
+
 			const translation =
-				(Math.abs(translationX) + Math.abs(translationY)) / 2;
-			image.style.boxShadow = `${-translationX}px ${-translationY}px ${
-				30 + translation
-			}px var(--tw-shadow-color)`;
+				(Math.abs(translationX) + Math.abs(translationY)) / 2 +
+				2 * alpha;
+
+			image.style.boxShadow = `${translationX}px ${translationY}px ${translation}px var(--tw-shadow-color)`;
+			console.log(
+				rotationY,
+				rotationX,
+				translationX,
+				translationY,
+				translation
+			);
 		});
 		imageWrapper?.addEventListener('mouseleave', () => {
 			image.style.transition = 'all .3s ease-out';
