@@ -5,8 +5,9 @@ import Title from '../components/Title.astro';
 ---
 
 <BaseLayout pageTitle="Editor of curriculums / Cuvimaker">
-	<Title>Resumes</Title>
-	<div class="h-2"></div>
+	<div class="my-6">
+		<Title>Resumes</Title>
+	</div>
 	<div class="rounded-lg bg-base-100">
 		<ResumesList client:idle />
 	</div>
