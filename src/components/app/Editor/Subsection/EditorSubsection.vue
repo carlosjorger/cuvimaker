@@ -36,19 +36,24 @@
 					<SubsectionForm
 						class="mt-1 text-lg"
 						v-model="state.subsection.title"
-						placeholder="Title"
+						:placeholder="sectionTemplate.subsectionTitleName"
 						:errors="v$.subsection.title.$errors"
 					/>
 					<SubsectionForm
+						v-if="sectionTemplate.isEnableSubtitle"
 						class="mt-1"
 						v-model="subsection.text"
-						placeholder="* Subtitle"
+						:placeholder="sectionTemplate.subtitleName"
 					/>
 
 					<EditorSiteSection
 						v-model="subsection.subsectionTimeInterval"
+						v-if="sectionTemplate.isEnableSite"
 					/>
-					<EditorListSection />
+					<EditorListSection
+						v-if="sectionTemplate.isEnableList"
+						:section-template="sectionTemplate"
+					/>
 					<div class="flex justify-between">
 						<ModalButton
 							aria-label="Save"
@@ -97,7 +102,12 @@
 	import { useSectionStore } from '../../../../stores/SectionStore';
 	import { appStore } from '../../../../store';
 	import emitter from '../../../../utils/eventBus';
+	import type { SectionTemplate } from '../../../../models/SectionTemplate';
 	const props = defineProps({
+		sectionTemplate: {
+			type: Object as PropType<SectionTemplate>,
+			required: true,
+		},
 		prevSubsection: {
 			type: Object as PropType<Subsection>,
 			required: true,
@@ -113,11 +123,13 @@
 	const emit = defineEmits(['show-confirmation-to-delete']);
 
 	const initialState = (): {
+		sectionTemplate: SectionTemplate;
 		subsection: Subsection;
 		editing: Ref<boolean>;
 		shake: Ref<boolean>;
 	} => {
 		return {
+			sectionTemplate: props.sectionTemplate,
 			subsection: reactive(
 				isEmptySubsection(props.prevSubsection)
 					? new Subsection()

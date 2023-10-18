@@ -19,7 +19,7 @@
 				<input
 					v-model="section.name"
 					type="text"
-					placeholder="Section Name"
+					:placeholder="section.sectionTemplate.sectionTitleName"
 					class="input input-bordered input-primary mt-2 w-full border-2"
 					:class="{
 						' input-error  text-error placeholder:text-red-600 ':
@@ -35,6 +35,7 @@
 					tag="div"
 				>
 					<editor-subsection
+						:sectionTemplate="section.sectionTemplate"
 						ref="editorSubsection"
 						v-for="(subsection, index) in section.subsections"
 						:key="subsection.id"

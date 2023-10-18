@@ -3,42 +3,41 @@
 		<SwitchCheckbox
 			v-if="editing"
 			v-model="hasElementList"
-			:title="'Add a List'"
+			:title="`Add a ${sectionTemplate.subsectionElement}`"
 		/>
-		<editor-elements v-if="hasElementList" />
+		<editor-elements
+			:section-template="sectionTemplate"
+			v-if="hasElementList"
+		/>
 	</div>
 </template>
 
-<script lang="ts">
-	import { inject } from 'vue';
+<script setup lang="ts">
+	import { inject, onMounted, ref, watch, type PropType } from 'vue';
 	import { Subsection } from '../../../../models/Subsection';
 	import SwitchCheckbox from '../../../shared/checkbox/SwitchCheckbox.vue';
 	import EditorElements from './EditorElements.vue';
-	export default {
-		name: 'EditorListSection',
-		components: { SwitchCheckbox, EditorElements },
-
-		data() {
-			return {
-				editing: inject('editing', false),
-				hasElementList: false,
-				subsection: inject('subsection', new Subsection()),
-			};
+	import type { SectionTemplate } from '../../../../models/SectionTemplate';
+	const editing = inject('editing', false);
+	const hasElementList = ref(false);
+	const subsection = inject('subsection', new Subsection());
+	defineProps({
+		sectionTemplate: {
+			type: Object as PropType<SectionTemplate>,
+			required: true,
 		},
-		mounted() {
-			this.hasElementList = this.updatedHasElementList(this.subsection);
-		},
-		methods: {
-			updatedHasElementList(subsection: Subsection) {
-				return (this.hasElementList = subsection.elements.length > 0);
-			},
-		},
-		watch: {
-			subsection(subsection: Subsection) {
-				this.hasElementList = this.updatedHasElementList(subsection);
-			},
-		},
+	});
+	const updatedHasElementList = (subsection: Subsection) => {
+		return (hasElementList.value = subsection.elements.length > 0);
 	};
+	onMounted(() => {
+		hasElementList.value = updatedHasElementList(subsection);
+	});
+	watch(
+		() => subsection,
+		(subsection: Subsection) => {
+			hasElementList.value = updatedHasElementList(subsection);
+		},
+		{ deep: true }
+	);
 </script>
-
-<style scoped></style>

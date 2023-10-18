@@ -7,14 +7,14 @@
 			ref="newElementHTML"
 			v-model="newElement"
 			class="w-4/5 resize-none overflow-hidden bg-inherit p-4 text-accent-content outline-none"
-			placeholder="New element..."
+			:placeholder="`New ${sectionTemplate.subsectionElement}...`"
 			rows="1"
 			@input="changeTextArea"
 			@change="changeTextArea"
 		></textarea>
 		<AppearFadeTransition>
 			<CloseAddButton
-				toolTipText="Add Element"
+				:toolTipText="`Add ${sectionTemplate.subsectionElement}`"
 				v-if="newElement.trim()"
 				:size="2.3"
 				v-on:click="addElement()"
@@ -52,7 +52,7 @@
 </template>
 
 <script setup lang="ts">
-	import { inject, ref, watch } from 'vue';
+	import { inject, ref, watch, type PropType } from 'vue';
 	import { Subsection } from '../../../../models/Subsection';
 	import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
 	import SubsectionElement from './EditorElement.vue';
@@ -61,7 +61,14 @@
 	import ConfirmationModal from '../../../shared/Modal/ConfirmationModal.vue';
 	import { useDrag } from '../../../../composables/useDrag';
 	import { useOpenModal } from '../../../../composables/useOpenModal';
+	import type { SectionTemplate } from '../../../../models/SectionTemplate';
 
+	defineProps({
+		sectionTemplate: {
+			type: Object as PropType<SectionTemplate>,
+			required: true,
+		},
+	});
 	const newElement = ref('');
 	const selectedElement = ref(undefined as number | undefined);
 	const newElementHTML = ref<HTMLElement | null>(null);
