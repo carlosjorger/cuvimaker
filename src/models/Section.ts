@@ -5,9 +5,13 @@ export class Section {
 	name: string;
 	subsections: Subsection[];
 	sectionTemplate: SectionTemplate;
-	constructor(name?: string, subsections?: Subsection[]) {
+	constructor(
+		name?: string,
+		subsections?: Subsection[],
+		sectionTemplate?: SectionTemplate
+	) {
 		this.name = name ?? '';
 		this.subsections = subsections ?? [new Subsection(0)];
-		this.sectionTemplate = new SectionTemplate();
+		this.sectionTemplate = sectionTemplate ?? new SectionTemplate();
 	}
 }

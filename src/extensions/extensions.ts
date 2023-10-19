@@ -10,7 +10,8 @@ export function copySection(section?: Section) {
 			section.name,
 			section.subsections?.map((s) => copySubsection(s)) ?? [
 				new Subsection(0),
-			]
+			],
+			section.sectionTemplate
 		);
 	}
 }

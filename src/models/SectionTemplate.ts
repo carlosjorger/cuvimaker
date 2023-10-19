@@ -1,3 +1,5 @@
+//TODO: Add fixed section name option
+// TODO: Add subsection name field
 export class SectionTemplate {
 	name: string;
 	sectionTitleName: string;
