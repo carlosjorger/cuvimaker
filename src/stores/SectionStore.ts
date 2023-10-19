@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { Section } from '../models/Section';
 import { Subsection } from '../models/Subsection';
 import { copySection } from '../extensions/extensions';
+import type { SectionTemplate } from '../models/SectionTemplate';
 type SectionStoreState = {
 	section: Section;
 	editingIndex: number;
@@ -46,6 +47,9 @@ export const useSectionStore = defineStore('section', {
 		},
 		setSubsection(index: number, subsection: Subsection) {
 			this.section.subsections[index] = subsection;
+		},
+		setTemplate(template: SectionTemplate) {
+			this.section.sectionTemplate = template;
 		},
 		removeSubsection(index: number) {
 			if (this.editingIndex == index) {

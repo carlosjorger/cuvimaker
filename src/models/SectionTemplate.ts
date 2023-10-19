@@ -1,4 +1,5 @@
 export class SectionTemplate {
+	name: string;
 	sectionTitleName: string;
 	subsectionTitleName: string;
 	subtitleName: string;
@@ -7,6 +8,7 @@ export class SectionTemplate {
 	isEnableList: boolean;
 	subsectionElement: string;
 	constructor(
+		name = 'Custom',
 		sectionTitleName = 'Section Name',
 		subsectionTitleName = 'Title',
 		subtitleName = 'Subtitle',
@@ -15,6 +17,7 @@ export class SectionTemplate {
 		isEnableList = true,
 		subsectionElement = 'element'
 	) {
+		this.name = name;
 		this.sectionTitleName = sectionTitleName;
 		this.subsectionTitleName = subsectionTitleName;
 		this.subtitleName = subtitleName;
@@ -24,3 +27,26 @@ export class SectionTemplate {
 		this.subsectionElement = subsectionElement;
 	}
 }
+export const sectionTemplates = [
+	new SectionTemplate(),
+	new SectionTemplate(
+		'Work Experience',
+		'Work Experience',
+		'Company name',
+		'Position',
+		true,
+		true,
+		true,
+		'description'
+	),
+	new SectionTemplate(
+		'Projects',
+		'Projects',
+		'Project name',
+		'Position',
+		false,
+		true,
+		true,
+		'description'
+	),
+];

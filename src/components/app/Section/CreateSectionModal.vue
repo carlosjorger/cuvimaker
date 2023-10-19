@@ -102,11 +102,23 @@
 	import { appStore } from '../../../store';
 	import type { Section } from '../../../models/Section';
 	import emitter from '../../../utils/eventBus';
-	import { reactive, computed, ref, watch, type Ref } from 'vue';
+	import {
+		reactive,
+		computed,
+		ref,
+		watch,
+		type Ref,
+		type PropType,
+	} from 'vue';
 	import { storeToRefs } from 'pinia';
 	import { useDrag } from '../../../composables/useDrag';
 	import { useOpenModal } from '../../../composables/useOpenModal';
+	import type { SectionTemplate } from '../../../models/SectionTemplate';
 	const props = defineProps({
+		sectionTemplate: {
+			type: Object as PropType<SectionTemplate>,
+			required: true,
+		},
 		showModal: {
 			type: Boolean,
 			required: true,
@@ -133,6 +145,7 @@
 			sectionStore.setSection(tempSection);
 		} else if (props.editIndex == undefined) {
 			sectionStore.clear();
+			sectionStore.setTemplate(props.sectionTemplate);
 		}
 		const { section } = storeToRefs(sectionStore);
 		sectionStore.editingIndex = -1;

@@ -10,12 +10,7 @@
 				aria-label="Add a new Section"
 				class="add-section"
 				name="Add a new Section"
-				@click="
-					() => {
-						showModal = true;
-						editIndex = undefined;
-					}
-				"
+				@click="onNewSection()"
 			/>
 		</SubsectionAlign>
 		<async-create-section-modal
@@ -24,6 +19,7 @@
 			:showModal="showModal"
 			@close-modal="closeSectionModal"
 			:editIndex="editIndex"
+			:section-template="selectedTemplate"
 		/>
 		<ConfirmationModal
 			id="delete_section_modal"
@@ -53,6 +49,34 @@
 				"
 			/>
 		</ListTransition>
+		<dialog
+			id="section_template_selector"
+			ref="sectionTemplateSelector"
+			class="modal"
+		>
+			<div class="modal-box">
+				<h3 class="text-lg font-bold">Select the type of section</h3>
+				<select class="select my-4 w-full" v-model="selectedTemplate">
+					<option
+						v-for="template in sectionTemplates"
+						:key="template.name"
+						:value="template"
+					>
+						{{ template.name }}
+					</option>
+				</select>
+				<form method="dialog" class="flex justify-between">
+					<button
+						aria-label="Yes"
+						class="btn"
+						@click="onCreateSection()"
+					>
+						Create
+					</button>
+					<button aria-label="No" class="btn">Cancel</button>
+				</form>
+			</div>
+		</dialog>
 	</div>
 </template>
 <script setup lang="ts">
@@ -70,7 +94,10 @@
 	import { appStore } from '../../../store';
 	import { useDrag } from '../../../composables/useDrag';
 	import { useOpenModal } from '../../../composables/useOpenModal';
-
+	import {
+		SectionTemplate,
+		sectionTemplates,
+	} from '../../../models/SectionTemplate';
 	const { onShowModal } = useOpenModal('delete_section_modal');
 	const AsyncCreateSectionModal = defineAsyncComponent(
 		() => import('../../app/Section/CreateSectionModal.vue')
@@ -81,6 +108,8 @@
 			required: true,
 		},
 	});
+	const selectedTemplate = ref(new SectionTemplate());
+	const sectionTemplateSelector = ref<HTMLDialogElement | null>(null);
 	const showModal = ref(false);
 	const editIndex = ref(undefined as number | undefined);
 	const sectionIndexToDelete = ref(-1);
@@ -96,6 +125,14 @@
 			emit('update:modelValue', value);
 		},
 	});
+	const onNewSection = () => {
+		editIndex.value = undefined;
+		sectionTemplateSelector.value?.showModal();
+	};
+	const onCreateSection = () => {
+		showModal.value = true;
+		console.log(selectedTemplate.value);
+	};
 	const confirmDeleteSection = (index: number) => {
 		onShowModal();
 		sectionIndexToDelete.value = index;
