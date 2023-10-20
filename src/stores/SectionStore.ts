@@ -50,6 +50,9 @@ export const useSectionStore = defineStore('section', {
 		},
 		setTemplate(template: SectionTemplate) {
 			this.section.sectionTemplate = template;
+			if (template.isFixedSectionName) {
+				this.section.name = template.sectionTitleName;
+			}
 		},
 		removeSubsection(index: number) {
 			if (this.editingIndex == index) {

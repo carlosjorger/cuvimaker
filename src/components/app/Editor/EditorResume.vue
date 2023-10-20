@@ -57,7 +57,10 @@
 		>
 			<div class="modal-box">
 				<h3 class="text-lg font-bold">Select the type of section</h3>
-				<select class="select my-4 w-full" v-model="selectedTemplate">
+				<select
+					class="select select-bordered my-4 w-full"
+					v-model="selectedTemplate"
+				>
 					<option
 						v-for="template in sectionTemplates"
 						:key="template.name"

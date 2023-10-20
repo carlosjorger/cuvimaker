@@ -13,5 +13,8 @@ export class Section {
 		this.name = name ?? '';
 		this.subsections = subsections ?? [new Subsection(0)];
 		this.sectionTemplate = sectionTemplate ?? new SectionTemplate();
+		this.name = this.sectionTemplate.isFixedSectionName
+			? this.sectionTemplate.sectionTitleName
+			: this.name;
 	}
 }

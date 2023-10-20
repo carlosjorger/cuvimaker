@@ -15,7 +15,10 @@
 					:buttonColor="'bg-[var(--primary-color)] dark:bg-dark-primary'"
 				/>
 			</header>
-			<div class="mb-2 box-border">
+			<div
+				class="mb-2 box-border"
+				v-if="!section.sectionTemplate.isFixedSectionName"
+			>
 				<input
 					v-model="section.name"
 					type="text"
@@ -27,6 +30,9 @@
 					}"
 				/>
 				<ErrorsSection :errors="v$.section?.name.$errors" />
+			</div>
+			<div class="mb-2 box-border px-5">
+				<h4 class="mt-2">{{ section.name }}</h4>
 			</div>
 			<div class="mb-2 box-border">
 				<transition-group
