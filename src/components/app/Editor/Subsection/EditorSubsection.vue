@@ -11,8 +11,8 @@
 						<CloseAddButton
 							:toolTipText="
 								subsection.last
-									? 'Add Subsection'
-									: 'Delete Subsection'
+									? `Add ${sectionTemplate.subsectionName}`
+									: `Delete ${sectionTemplate.subsectionName}`
 							"
 							v-on:click="addRemoveSubSection()"
 							:closeButton="!subsection.last"
@@ -23,7 +23,7 @@
 						<CircleButtonWithIcon
 							v-if="!subsection.last && !editing"
 							@click="editSubSection"
-							text="Edit Subsection"
+							:text="`Edit ${sectionTemplate.subsectionName}`"
 							icon="ic:baseline-mode-edit"
 						/>
 					</AppearFadeTransition>

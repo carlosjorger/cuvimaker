@@ -1,4 +1,3 @@
-// TODO: Add subsection name field
 export class SectionTemplate {
 	name: string;
 	sectionTitleName: string;
@@ -9,6 +8,7 @@ export class SectionTemplate {
 	isEnableList: boolean;
 	subsectionElement: string;
 	isFixedSectionName: boolean;
+	subsectionName: string;
 	constructor(
 		name = 'Custom',
 		sectionTitleName = 'Section Name',
@@ -18,7 +18,8 @@ export class SectionTemplate {
 		isEnableSite = true,
 		isEnableList = true,
 		subsectionElement = 'element',
-		isFixedSectionName = false
+		isFixedSectionName = false,
+		subsectionName = 'Subsection'
 	) {
 		this.name = name;
 		this.sectionTitleName = sectionTitleName;
@@ -29,6 +30,7 @@ export class SectionTemplate {
 		this.isEnableList = isEnableList;
 		this.subsectionElement = subsectionElement;
 		this.isFixedSectionName = isFixedSectionName;
+		this.subsectionName = subsectionName;
 	}
 }
 export const sectionTemplates = [
@@ -42,7 +44,8 @@ export const sectionTemplates = [
 		true,
 		true,
 		'description',
-		true
+		true,
+		'work'
 	),
 	new SectionTemplate(
 		'Projects',
@@ -53,6 +56,7 @@ export const sectionTemplates = [
 		true,
 		true,
 		'description',
-		true
+		true,
+		'project'
 	),
 ];

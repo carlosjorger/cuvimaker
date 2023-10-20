@@ -153,7 +153,7 @@
 			<AppearFadeTransition>
 				<div v-if="!isNotEmpty && !isBeingEditingIntroduction">
 					<h2 class="text-lg text-info">
-						Please fill the Introduction Section...
+						Please fill the Introduction of the Resume...
 					</h2>
 				</div>
 			</AppearFadeTransition>
