@@ -3,7 +3,7 @@
 		class="my-5 ml-20 focus:text-neutral-focus max-md:mx-10 max-sm:mx-auto max-sm:w-11/12"
 	>
 		<ul
-			class="max-h-[calc(100vh-20rem)] min-h-[calc(100vh-15rem)] overflow-scroll overflow-x-hidden"
+			class="max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-scroll overflow-x-hidden"
 		>
 			<li v-for="path in paths" :key="path.params.id">
 				<a :href="`/editor/${path.params.id}`">

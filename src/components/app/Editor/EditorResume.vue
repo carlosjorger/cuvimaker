@@ -135,7 +135,6 @@
 	};
 	const onCreateSection = () => {
 		showModal.value = true;
-		console.log(selectedTemplate.value);
 	};
 	const confirmDeleteSection = (index: number) => {
 		onShowModal();
