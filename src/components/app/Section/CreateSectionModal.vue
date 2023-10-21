@@ -91,7 +91,7 @@
 			/>
 			<ConfirmationModal
 				id="delete_subsection_modal"
-				:entityToDelete="'Subsection'"
+				:entityToDelete="sectionTemplate.subsectionName"
 				@delete="removeSubsection"
 			/>
 		</div>

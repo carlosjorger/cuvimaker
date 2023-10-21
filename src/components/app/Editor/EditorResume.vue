@@ -49,7 +49,6 @@
 				"
 			/>
 		</ListTransition>
-		<!-- TODO: improve design of the section_template_selector  -->
 		<dialog
 			id="section_template_selector"
 			ref="sectionTemplateSelector"

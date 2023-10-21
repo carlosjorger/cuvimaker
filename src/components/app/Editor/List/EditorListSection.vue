@@ -3,7 +3,7 @@
 		<SwitchCheckbox
 			v-if="editing"
 			v-model="hasElementList"
-			:title="`Add a ${sectionTemplate.subsectionElement}`"
+			:title="`Add a ${sectionTemplate.subsectionElementSection}`"
 		/>
 		<editor-elements
 			:section-template="sectionTemplate"

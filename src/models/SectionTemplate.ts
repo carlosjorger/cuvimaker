@@ -7,6 +7,7 @@ export class SectionTemplate {
 	isEnableSite: boolean;
 	isEnableList: boolean;
 	subsectionElement: string;
+	subsectionElementSection: string;
 	isFixedSectionName: boolean;
 	subsectionName: string;
 	constructor(
@@ -17,6 +18,7 @@ export class SectionTemplate {
 		isEnableSubtitle = true,
 		isEnableSite = true,
 		isEnableList = true,
+		subsectionElementSection = 'element section',
 		subsectionElement = 'element',
 		isFixedSectionName = false,
 		subsectionName = 'Subsection'
@@ -28,6 +30,7 @@ export class SectionTemplate {
 		this.isEnableSubtitle = isEnableSubtitle;
 		this.isEnableSite = isEnableSite;
 		this.isEnableList = isEnableList;
+		this.subsectionElementSection = subsectionElementSection;
 		this.subsectionElement = subsectionElement;
 		this.isFixedSectionName = isFixedSectionName;
 		this.subsectionName = subsectionName;
@@ -43,6 +46,7 @@ export const sectionTemplates = [
 		true,
 		true,
 		true,
+		'description section',
 		'description',
 		true,
 		'work'
@@ -55,8 +59,10 @@ export const sectionTemplates = [
 		false,
 		true,
 		true,
+		'description section',
 		'description',
 		true,
 		'project'
 	),
+	// TODO: Skills template
 ];
