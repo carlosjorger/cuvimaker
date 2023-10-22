@@ -64,5 +64,17 @@ export const sectionTemplates = [
 		true,
 		'project'
 	),
-	// TODO: Skills template
+	new SectionTemplate(
+		'Skills',
+		'Skills',
+		'Skill name',
+		'Position',
+		false,
+		false,
+		false,
+		'description section',
+		'description',
+		true,
+		'skill'
+	),
 ];
