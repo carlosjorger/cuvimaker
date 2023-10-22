@@ -29,14 +29,11 @@
 							v$.section?.name.$errors.length > 0,
 					}"
 				/>
-				<ErrorsSection :errors="v$.section?.name.$errors" />
 			</div>
-			<div
-				class="mb-2 box-border px-5"
-				v-if="section.sectionTemplate.isFixedSectionName"
-			>
+			<div class="mb-2 box-border px-5" v-else>
 				<h4 class="mt-2">{{ section.name }}</h4>
 			</div>
+			<ErrorsSection :errors="v$.section?.name.$errors" />
 			<div class="mb-2 box-border">
 				<transition-group
 					name="subsection"

@@ -1,5 +1,6 @@
 <template>
 	<SubsectionCard
+		ref="currentElement"
 		class="group"
 		:class="{
 			['marked']: marked,
@@ -10,11 +11,25 @@
 		<template #body>
 			<div @click="changeSetting">
 				<PreviewSectionHeader :name="section?.name" />
-				<SubsectionComponent
-					v-for="(subsection, index) in section?.subsections"
-					:key="index"
-					:subsection="subsection"
-				/>
+				<div v-if="!allSubsectionsHaveOnlyATitle">
+					<SubsectionComponent
+						v-for="(subsection, index) in section?.subsections"
+						:key="index"
+						:subsection="subsection"
+					/>
+				</div>
+				<ul class="ml-6 list-disc" v-else>
+					<li
+						v-for="(subsection, index) in section?.subsections"
+						:key="index"
+						:subsection="subsection"
+						v-show="subsection?.title"
+					>
+						<h3 class="mt-2 text-base font-semibold">
+							{{ subsection?.title }}
+						</h3>
+					</li>
+				</ul>
 			</div>
 		</template>
 		<template #footer>
@@ -31,57 +46,42 @@
 		</template>
 	</SubsectionCard>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 	import type { Section } from '../../../../models/Section';
 	import SubsectionComponent from '../../Preview/PreviewSubsection.vue';
 	import SubsectionCard from '../../../shared/Subsection/SubsectionCard.vue';
 	import { scrollSmoothToElement } from '../../../../utils/scrollServices';
 	import PreviewSectionHeader from '../../Preview/PreviewSectionHeader.vue';
-	import type { PropType } from 'vue';
-	import { useResumeStore } from '../../../../stores/ResumeStore';
-	import { appStore } from '../../../../store';
+	import { onMounted, ref, type PropType, computed } from 'vue';
 	import IconButton from '../../../shared/Button/IconButton.vue';
-	export default {
-		name: 'EditorSection',
-		components: {
-			SubsectionComponent,
-			SubsectionCard,
-			PreviewSectionHeader,
-			IconButton,
+	const props = defineProps({
+		section: {
+			type: Object as PropType<Section>,
+			require: true,
 		},
-		props: {
-			section: {
-				type: Object as PropType<Section>,
-				require: true,
-			},
-			marked: {
-				type: Boolean,
-				require: true,
-			},
+		marked: {
+			type: Boolean,
+			require: true,
 		},
-		setup() {
-			const resumeStore = useResumeStore(appStore);
-			return {
-				resumeStore,
-			};
-		},
-		mounted() {
-			scrollSmoothToElement(this.$el);
-		},
-		data() {
-			return {
-				showSetting: false,
-			};
-		},
-		computed: {
-			isBeingEditingIntroduction() {
-				return this.resumeStore.isBeingEditingIntroduction;
-			},
-		},
-		methods: {
-			changeSetting() {
-				this.showSetting = !this.showSetting;
-			},
-		},
+	});
+	const currentElement = ref<Element | null>(null);
+	const showSetting = ref(false);
+	onMounted(() => {
+		const element = currentElement?.value;
+		if (element) {
+			scrollSmoothToElement(element);
+		}
+	});
+	const changeSetting = () => {
+		showSetting.value = !showSetting.value;
 	};
+	const allSubsectionsHaveOnlyATitle = computed(
+		() =>
+			props.section?.subsections.every(
+				(subsection) =>
+					!subsection.text &&
+					!subsection.location &&
+					subsection.elements.length == 0
+			)
+	);
 </script>
