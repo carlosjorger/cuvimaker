@@ -1,14 +1,16 @@
 ---
-const { id, imageSrc = '', width = 500, altText } = Astro.props;
+const { id, imageSrc = '', width = '22rem', altText } = Astro.props;
 ---
 
-<div class="wrapper z-10 mx-auto my-0 flex max-w-[350px]">
+<div
+	class="wrapper z-10 mx-auto my-0 flex max-w-[350px]"
+	class:list={[`w-[${width}]`]}
+>
 	<picture
 		class="image relative -z-10 animate-cardImageIn overflow-hidden rounded-md shadow-[0px_0px_30px] shadow-warning-content transition-all duration-300 ease-out dark:shadow-accent-focus"
 		class="block"
-		class:list={[`max-w-[${width}px]`]}
 	>
-		<img id={id} src={imageSrc} alt={altText} width={width} />
+		<img id={id} src={imageSrc} alt={altText} width="500" />
 	</picture>
 </div>
 <script is:inline>
