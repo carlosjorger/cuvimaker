@@ -4,8 +4,12 @@ import ThemeIcon from './ThemeIcon.astro';
 ---
 
 <header>
-	<nav class="flex justify-between bg-base-100 shadow-md">
-		<Navigation />
-		<ThemeIcon />
+	<nav class="navbar bg-base-100 shadow-md">
+		<div class="flex-1">
+			<Navigation />
+		</div>
+		<div class="flex-none">
+			<ThemeIcon />
+		</div>
 	</nav>
 </header>

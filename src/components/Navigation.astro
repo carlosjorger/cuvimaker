@@ -2,8 +2,14 @@
 import NavigationLink from './NavigationLink.astro';
 ---
 
-<div class="flex items-center p-1 text-sm">
-	<NavigationLink href="/" text="Cuvimaker" />
-	<NavigationLink href="/editor" text="Editor" />
-	<NavigationLink href="/about" text="About" />
-</div>
+<ul class="menu menu-horizontal px-1 text-sm">
+	<li>
+		<NavigationLink href="/" text="Cuvimaker" />
+	</li>
+	<li>
+		<NavigationLink href="/editor" text="Editor" />
+	</li>
+	<li>
+		<NavigationLink href="/about" text="About" />
+	</li>
+</ul>
