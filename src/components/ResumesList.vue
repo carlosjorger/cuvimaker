@@ -1,9 +1,7 @@
 <template>
-	<div
-		class="my-5 ml-20 focus:text-neutral-focus max-md:mx-10 max-sm:mx-auto max-sm:w-11/12"
-	>
+	<div class="rounded-lg bg-base-100">
 		<ul
-			class="max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-scroll overflow-x-hidden"
+			class="my-5 ml-20 max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-scroll overflow-x-hidden rounded-lg bg-base-100 pt-2 focus:text-neutral-focus max-md:mx-10 max-sm:mx-auto max-sm:w-11/12"
 		>
 			<li v-for="path in paths" :key="path.params.id">
 				<a :href="`/editor/${path.params.id}`">
@@ -19,20 +17,20 @@
 									.profetion
 							"
 						>
-							<div>
-								<div class="text-lg">
+							<hgroup>
+								<h3 class="text-lg">
 									{{
 										getResumeName(path.params.id)
 											?.introduction.name
 									}}
-								</div>
-								<div>
+								</h3>
+								<h4>
 									{{
 										getResumeName(path.params.id)
 											?.introduction.profetion
 									}}
-								</div>
-							</div>
+								</h4>
+							</hgroup>
 							<CircleButtonWithIcon
 								icon="ic:baseline-delete"
 								:width="2"
@@ -42,8 +40,8 @@
 								"
 							/>
 						</div>
-						<div v-else class="font-blackOpsOne text-2xl">
-							EMPTY
+						<div v-else>
+							<h3 class="font-blackOpsOne text-2xl">EMPTY</h3>
 						</div>
 					</div>
 				</a>
