@@ -55,24 +55,22 @@ const isEditPage = pageTitle.includes('Editor');
 		class="min-h-full bg-base-300 font-montserrat text-base-content transition-colors duration-300 dark:transition-colors dark:duration-500"
 	>
 		<Header />
-		<main class="max-lg:m-6a m-4 max-md:m-3 max-sm:m-2">
-			<div class="mx-6" '>
-				{
-					!isEditPage && (
-						<div class="mx-auto flex w-11/12 items-center justify-between max-lg:w-5/6 max-lg:justify-center max-lg:text-center max-md:w-full max-md:text-base">
-							<slot />
-						</div>
-					)
-				}
-				{
-					isEditPage && (
-						<div class="mx-auto w-4/5 max-lg:w-5/6 max-md:w-full max-md:text-center max-md:text-base">
-							<TitleLayout />
-							<slot />
-						</div>
-					)
-				}
-			</div>
+		<main class="max-lg:m-6a m-3 mx-8 max-md:m-3 max-sm:m-2">
+			{
+				!isEditPage && (
+					<div class="mx-auto flex w-11/12 items-center justify-between max-lg:w-5/6 max-lg:justify-center max-lg:text-center max-md:w-full max-md:text-base">
+						<slot />
+					</div>
+				)
+			}
+			{
+				isEditPage && (
+					<div class="mx-auto w-4/5 max-lg:w-5/6 max-md:w-full max-md:text-center max-md:text-base">
+						<TitleLayout />
+						<slot />
+					</div>
+				)
+			}
 		</main>
 	</body>
 </html>
