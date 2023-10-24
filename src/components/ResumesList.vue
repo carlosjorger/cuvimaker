@@ -40,9 +40,7 @@
 								"
 							/>
 						</div>
-						<div v-else>
-							<h3 class="font-blackOpsOne text-2xl">EMPTY</h3>
-						</div>
+						<h3 v-else class="font-blackOpsOne text-2xl">EMPTY</h3>
 					</div>
 				</a>
 			</li>
