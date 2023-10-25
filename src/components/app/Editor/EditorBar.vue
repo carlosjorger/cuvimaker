@@ -4,6 +4,7 @@
 			class="tab tab-lifted tab-lg [--tab-border-color:transparent]"
 			:class="{ 'tab-active': isEditingResume }"
 			@click="isEditingResume = true"
+			aria-label="Edit resume"
 		>
 			Edit
 		</button>
@@ -11,6 +12,7 @@
 			class="tab tab-lifted tab-lg [--tab-border-color:transparent]"
 			:class="{ 'tab-active': !isEditingResume }"
 			@click="isEditingResume = false"
+			aria-label="View preview of resume"
 		>
 			Preview
 		</button>

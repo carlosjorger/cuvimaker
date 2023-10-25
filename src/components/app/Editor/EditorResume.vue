@@ -57,6 +57,7 @@
 			<div class="modal-box">
 				<h3 class="text-lg font-bold">Select the type of section</h3>
 				<select
+					aria-label="Select the type of section"
 					class="select select-bordered my-6 w-full"
 					v-model="selectedTemplate"
 				>
