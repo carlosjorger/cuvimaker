@@ -5,17 +5,15 @@
 		<div
 			class="mt-3 grid grid-cols-3 gap-3 text-sm max-lg:grid-cols-2 max-md:grid-cols-1"
 		>
-			<div>
-				<div class="flex items-center" v-if="introduction.location">
-					<Icon
-						id="location"
-						class="text-accent"
-						icon="mdi:location"
-						width="20"
-					/>
-					<span class="p-1"></span>
-					{{ introduction.location }}
-				</div>
+			<div class="flex items-center" v-if="introduction.location">
+				<Icon
+					id="location"
+					class="text-accent"
+					icon="mdi:location"
+					width="20"
+				/>
+				<span class="p-1"></span>
+				{{ introduction.location }}
 			</div>
 
 			<div class="flex items-center" v-if="introduction.email">

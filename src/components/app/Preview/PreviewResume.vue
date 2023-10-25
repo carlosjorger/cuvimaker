@@ -3,22 +3,20 @@
 		<div
 			class="rounded-md border-primary bg-base-300 p-3 shadow-xl transition-colors duration-700 max-lg:p-2 max-md:p-1"
 		>
-			<div id="resume">
-				<PreviewIntroduction :introduction="resume.introduction" />
-				<div
-					class="mt-5 grid min-w-0 grid-cols-2 gap-2 overflow-hidden p-1 text-base max-md:grid-cols-1"
-				>
-					<PreviewSection
-						v-for="section in resume.sections"
-						:section="section"
-						:key="section.name"
-						:class="{
-							[`row-span-2`]: section.subsections.length == 2,
-							[`row-span-3`]: section.subsections.length == 3,
-							[`row-span-4`]: section.subsections.length > 3,
-						}"
-					/>
-				</div>
+			<PreviewIntroduction :introduction="resume.introduction" />
+			<div
+				class="mt-5 grid min-w-0 grid-cols-2 gap-2 overflow-hidden p-1 text-base max-md:grid-cols-1"
+			>
+				<PreviewSection
+					v-for="section in resume.sections"
+					:section="section"
+					:key="section.name"
+					:class="{
+						[`row-span-2`]: section.subsections.length == 2,
+						[`row-span-3`]: section.subsections.length == 3,
+						[`row-span-4`]: section.subsections.length > 3,
+					}"
+				/>
 			</div>
 			<BasicButton
 				v-if="!isResumeEmpty()"

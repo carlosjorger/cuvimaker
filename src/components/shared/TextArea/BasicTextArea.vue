@@ -1,22 +1,20 @@
 <template>
-	<div>
-		<AdaptableTextArea
-			v-model="value"
-			class="block w-full border-solid bg-inherit py-0.5 transition-form duration-300 focus:outline-none"
-			v-if="editing || value"
-			:class="[
-				editing
-					? 'pointer-events-auto border-b-4 shadow-xl'
-					: 'pointer-events-none border-b-0 shadow-none',
-				errors != undefined && errors.length > 0
-					? 'border-red-600 placeholder:text-red-600 dark:border-rose-500 dark:placeholder:text-rose-500'
-					: `border-accent-content placeholder-base-content`,
-			]"
-			type="text"
-			:placeholder="placeholder"
-		/>
-		<ErrorsSection :errors="errors" />
-	</div>
+	<AdaptableTextArea
+		v-model="value"
+		class="block w-full border-solid bg-inherit py-0.5 transition-form duration-300 focus:outline-none"
+		v-if="editing || value"
+		:class="[
+			editing
+				? 'pointer-events-auto border-b-4 shadow-xl'
+				: 'pointer-events-none border-b-0 shadow-none',
+			errors != undefined && errors.length > 0
+				? 'border-red-600 placeholder:text-red-600 dark:border-rose-500 dark:placeholder:text-rose-500'
+				: `border-accent-content placeholder-base-content`,
+		]"
+		type="text"
+		:placeholder="placeholder"
+	/>
+	<ErrorsSection :errors="errors" />
 </template>
 
 <script lang="ts">

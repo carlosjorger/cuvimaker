@@ -9,7 +9,7 @@
 				<Icon icon="material-symbols:error-outline" width="23" />
 			</span>
 			&nbsp;
-			<div>{{ error.$message }}</div>
+			<label>{{ error.$message }}</label>
 		</div>
 	</div>
 </template>

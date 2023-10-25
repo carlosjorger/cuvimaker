@@ -16,7 +16,11 @@
 						/>
 					</i>
 					&nbsp;
-					<div>
+					<time
+						:datetime="
+							subsection?.subsectionTimeInterval?.dateFrom?.toString()
+						"
+					>
 						{{
 							subsection?.subsectionTimeInterval?.dateFrom?.toLocaleString(
 								'en-US',
@@ -26,9 +30,14 @@
 						{{
 							subsection?.subsectionTimeInterval?.dateFrom?.getFullYear()
 						}}
-					</div>
+					</time>
 					&nbsp;-&nbsp;
-					<div v-if="subsection?.subsectionTimeInterval?.dateTo">
+					<time
+						:datetime="
+							subsection?.subsectionTimeInterval?.dateTo?.toString()
+						"
+						v-if="subsection?.subsectionTimeInterval?.dateTo"
+					>
 						{{
 							subsection?.subsectionTimeInterval?.dateTo?.toLocaleString(
 								'en-US',
@@ -38,7 +47,7 @@
 						{{
 							subsection?.subsectionTimeInterval?.dateTo?.getFullYear()
 						}}
-					</div>
+					</time>
 					<div v-else>current</div>
 				</div>
 				<h5 class="mt-1 font-extrabold">

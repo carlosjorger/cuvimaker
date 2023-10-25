@@ -1,13 +1,13 @@
+<!-- eslint-disable vue/no-use-v-if-with-v-for -->
 <template>
 	<section class="m-2">
 		<PreviewSectionHeader :name="section?.name" />
-		<div v-if="!allSubsectionsHaveOnlyATitle">
-			<PreviewSubsection
-				v-for="(subsection, index) in section?.subsections"
-				:key="index"
-				:subsection="subsection"
-			/>
-		</div>
+		<PreviewSubsection
+			v-if="!allSubsectionsHaveOnlyATitle"
+			v-for="(subsection, index) in section?.subsections"
+			:key="index"
+			:subsection="subsection"
+		/>
 		<ul class="ml-6 list-disc" v-else>
 			<li
 				v-for="(subsection, index) in section?.subsections"
