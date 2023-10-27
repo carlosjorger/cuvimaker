@@ -23,61 +23,42 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 	import SwitchCheckbox from '../../../shared/checkbox/SwitchCheckbox.vue';
-	import { inject } from 'vue';
+	import { computed, inject, onMounted, ref, watch } from 'vue';
 	import { Subsection } from '../../../../models/Subsection';
 	import SubsectionTimeInterval from './EditorTimeInterval.vue';
 	import { TimeInterval } from '../../../../models/SubsectionTimeInterval';
 	import BasicTextArea from '../../../shared/TextArea/BasicTextArea.vue';
-
-	export default {
-		name: 'SubsectionTimeIntervalSection',
-		props: {
-			modelValue: TimeInterval,
-			location: String,
-			validating: {
-				type: Boolean,
-			},
+	const props = defineProps({
+		modelValue: TimeInterval,
+		location: String,
+		validating: {
+			type: Boolean,
 		},
-		emits: ['update:modelValue', 'update:location'],
-		components: { SwitchCheckbox, SubsectionTimeInterval, BasicTextArea },
-		data() {
-			return {
-				editing: inject('editing', false),
-				subsection: inject('subsection', new Subsection()),
-				hasPeriodOfTime: false,
-			};
+	});
+	const emit = defineEmits(['update:modelValue', 'update:location']);
+	const editing = inject('editing', false);
+	const subsection = inject('subsection', new Subsection());
+	const hasPeriodOfTime = ref(false);
+	onMounted(() => {
+		hasPeriodOfTime.value = hasSettedPeriodOfTime.value;
+	});
+	const value = computed({
+		get() {
+			return props.modelValue ?? new TimeInterval();
 		},
-		mounted() {
-			this.hasPeriodOfTime = this.hasSettedPeriodOfTime;
+		set(value: TimeInterval) {
+			emit('update:modelValue', value);
 		},
-		computed: {
-			value: {
-				get() {
-					return this.modelValue;
-				},
-				set(value: TimeInterval) {
-					this.$emit('update:modelValue', value);
-				},
-			},
-			locationValue: {
-				get() {
-					return this.location;
-				},
-				set(value: string) {
-					this.$emit('update:location', value);
-				},
-			},
-
-			hasSettedPeriodOfTime: function () {
-				return Boolean(this.modelValue && this.modelValue?.dateFrom);
-			},
-		},
-		watch: {
-			hasSettedPeriodOfTime(value: boolean) {
-				this.hasPeriodOfTime = value;
-			},
-		},
-	};
+	});
+	const hasSettedPeriodOfTime = computed(() =>
+		Boolean(props.modelValue && props.modelValue?.dateFrom)
+	);
+	watch(
+		() => hasSettedPeriodOfTime.value,
+		(value: boolean) => {
+			hasPeriodOfTime.value = value;
+		}
+	);
 </script>
