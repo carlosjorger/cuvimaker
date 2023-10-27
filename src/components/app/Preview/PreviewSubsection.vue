@@ -68,20 +68,14 @@
 	</section>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 	import type { PropType } from 'vue';
 	import type { Subsection } from '../../../models/Subsection';
 	import { Icon } from '@iconify/vue';
-
-	export default {
-		name: 'PreviewSubsection',
-		components: { Icon },
-		props: {
-			subsection: {
-				type: Object as PropType<Subsection>,
-				require: true,
-			},
+	defineProps({
+		subsection: {
+			type: Object as PropType<Subsection>,
+			require: true,
 		},
-		methods: {},
-	};
+	});
 </script>

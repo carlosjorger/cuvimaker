@@ -29,7 +29,7 @@
 	</SubsectionAlign>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 	import { Resume } from '../../../models/Resume';
 	import BasicButton from '../../shared/Button/BasicButton.vue';
 	import PreviewIntroduction from './PreviewIntroduction.vue';
@@ -42,35 +42,25 @@
 	import type { PropType } from 'vue';
 	import SubsectionAlign from '../../shared/Subsection/SubsectionAlign.vue';
 
-	export default {
-		components: {
-			PreviewIntroduction,
-			PreviewSection,
-			BasicButton,
-			SubsectionAlign,
+	const props = defineProps({
+		resume: {
+			type: Object as PropType<Resume>,
+			required: true,
 		},
-		props: {
-			resume: {
-				type: Object as PropType<Resume>,
-				required: true,
-			},
-			previewResumeTransition: {
-				type: Number,
-				default: 0.5,
-			},
+		previewResumeTransition: {
+			type: Number,
+			default: 0.5,
 		},
-		methods: {
-			async save() {
-				var resumeDefinition = createResumePDFDefinition(this.resume);
-				await savePDF(resumeDefinition);
-			},
-			isResumeEmpty() {
-				return (
-					this.resume.sections.length == 0 &&
-					JSON.stringify(this.resume.introduction) ===
-						JSON.stringify(new Introduction())
-				);
-			},
-		},
+	});
+	const save = async () => {
+		var resumeDefinition = createResumePDFDefinition(props.resume);
+		await savePDF(resumeDefinition);
+	};
+	const isResumeEmpty = () => {
+		return (
+			props.resume.sections.length == 0 &&
+			JSON.stringify(props.resume.introduction) ===
+				JSON.stringify(new Introduction())
+		);
 	};
 </script>

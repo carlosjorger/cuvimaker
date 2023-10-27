@@ -5,12 +5,10 @@
 	<hr class="mt-1 h-1 rounded-md" />
 </template>
 
-<script>
-	export default {
-		props: {
-			name: {
-				type: String,
-			},
+<script setup>
+	defineProps({
+		name: {
+			type: String,
 		},
-	};
+	});
 </script>

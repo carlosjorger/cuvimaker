@@ -55,27 +55,17 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 	import type { PropType } from 'vue';
 	import type { Introduction } from '../../../models/Introduction';
-	import { getInfoFromUrl } from '../../../utils/urlService';
 	import BasicLink from '../../shared/Anchor/BasicLink.vue';
 	import IconByUrl from '../../shared/Icon/IconByUrl.vue';
 	import { Icon } from '@iconify/vue';
 	import BasicEmail from '../../shared/Anchor/BasicEmail.vue';
-
-	export default {
-		props: {
-			introduction: {
-				type: Object as PropType<Introduction>,
-				required: true,
-			},
+	defineProps({
+		introduction: {
+			type: Object as PropType<Introduction>,
+			required: true,
 		},
-		components: { BasicLink, BasicEmail, IconByUrl, Icon },
-		methods: {
-			getInfoFromUrl(link: string | undefined) {
-				return getInfoFromUrl(link ?? '');
-			},
-		},
-	};
+	});
 </script>
