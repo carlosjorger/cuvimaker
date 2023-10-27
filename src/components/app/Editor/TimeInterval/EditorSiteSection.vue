@@ -11,12 +11,14 @@
 				v-model="value"
 				:hasPeriodOfTime="hasPeriodOfTime"
 			/>
-			<BasicTextArea
-				v-if="hasPeriodOfTime"
-				class="mt-1"
-				v-model="subsection.location"
-				placeholder="* Location"
-			/>
+			<div class="mt-2 w-5/12">
+				<BasicTextArea
+					v-if="hasPeriodOfTime"
+					class="mt-1"
+					v-model="subsection.location"
+					placeholder="* Location"
+				/>
+			</div>
 		</div>
 	</div>
 </template>

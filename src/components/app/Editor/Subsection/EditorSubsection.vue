@@ -5,71 +5,69 @@
 			v-scroll-if="subsection"
 			class="max-ms:p-2 mt-3 w-full rounded-lg bg-base-200 p-4 shadow-2xl shadow-zinc-200 transition-all duration-500 dark:shadow-lg dark:shadow-zinc-500 max-md:p-3"
 		>
-			<div>
-				<div class="flex items-center justify-between">
-					<AppearFadeTransition>
-						<CloseAddButton
-							:toolTipText="
-								subsection.last
-									? `Add ${sectionTemplate.subsectionName}`
-									: `Delete ${sectionTemplate.subsectionName}`
-							"
-							v-on:click="addRemoveSubSection()"
-							:closeButton="!subsection.last"
-							v-if="!editing"
-						/>
-					</AppearFadeTransition>
-					<AppearFadeTransition>
-						<CircleButtonWithIcon
-							v-if="!subsection.last && !editing"
-							@click="editSubSection"
-							:text="`Edit ${sectionTemplate.subsectionName}`"
-							icon="ic:baseline-mode-edit"
-						/>
-					</AppearFadeTransition>
-				</div>
-				<form
-					v-on:submit.prevent
-					v-if="!subsection.last"
-					class="max-ms:p-1 p-5 max-md:p-1"
-				>
-					<SubsectionForm
-						class="mt-1 text-lg"
-						v-model="state.subsection.title"
-						:placeholder="sectionTemplate.subsectionTitleName"
-						:errors="v$.subsection.title.$errors"
+			<div class="flex items-center justify-between">
+				<AppearFadeTransition>
+					<CloseAddButton
+						:toolTipText="
+							subsection.last
+								? `Add ${sectionTemplate.subsectionName}`
+								: `Delete ${sectionTemplate.subsectionName}`
+						"
+						v-on:click="addRemoveSubSection()"
+						:closeButton="!subsection.last"
+						v-if="!editing"
 					/>
-					<SubsectionForm
-						v-if="sectionTemplate.isEnableSubtitle"
-						class="mt-1"
-						v-model="subsection.text"
-						:placeholder="sectionTemplate.subtitleName"
+				</AppearFadeTransition>
+				<AppearFadeTransition>
+					<CircleButtonWithIcon
+						v-if="!subsection.last && !editing"
+						@click="editSubSection"
+						:text="`Edit ${sectionTemplate.subsectionName}`"
+						icon="ic:baseline-mode-edit"
 					/>
-
-					<EditorSiteSection
-						v-model="subsection.subsectionTimeInterval"
-						v-if="sectionTemplate.isEnableSite"
-					/>
-					<EditorListSection
-						v-if="sectionTemplate.isEnableList"
-						:section-template="sectionTemplate"
-					/>
-					<div class="flex justify-between">
-						<ModalButton
-							aria-label="Save"
-							v-if="editing"
-							:name="'Save'"
-							v-on:click="saveSubSection"
-						/>
-						<ModalButton
-							v-if="editing && !prevSubsection.isEmpty"
-							aria-label="Cancel"
-							:name="'Cancel'"
-							v-on:click="cancelSubSection"
-						/>
-					</div>
-				</form>
+				</AppearFadeTransition>
 			</div>
+			<form
+				v-on:submit.prevent
+				v-if="!subsection.last"
+				class="max-ms:p-1 p-5 max-md:p-1"
+			>
+				<SubsectionForm
+					class="mt-1 text-lg"
+					v-model="state.subsection.title"
+					:placeholder="sectionTemplate.subsectionTitleName"
+					:errors="v$.subsection.title.$errors"
+				/>
+				<SubsectionForm
+					v-if="sectionTemplate.isEnableSubtitle"
+					class="mt-1"
+					v-model="subsection.text"
+					:placeholder="sectionTemplate.subtitleName"
+				/>
+
+				<EditorSiteSection
+					v-model="subsection.subsectionTimeInterval"
+					v-if="sectionTemplate.isEnableSite"
+				/>
+				<EditorListSection
+					v-if="sectionTemplate.isEnableList"
+					:section-template="sectionTemplate"
+				/>
+				<div class="flex justify-between">
+					<ModalButton
+						aria-label="Save"
+						v-if="editing"
+						:name="'Save'"
+						v-on:click="saveSubSection"
+					/>
+					<ModalButton
+						v-if="editing && !prevSubsection.isEmpty"
+						aria-label="Cancel"
+						:name="'Cancel'"
+						v-on:click="cancelSubSection"
+					/>
+				</div>
+			</form>
 		</ShakeTemplate>
 	</div>
 </template>
