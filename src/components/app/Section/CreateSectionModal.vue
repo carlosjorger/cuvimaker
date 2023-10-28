@@ -37,7 +37,7 @@
 			<div class="mb-2 box-border">
 				<transition-group
 					name="subsection"
-					class="relative block h-96 overflow-scroll overflow-x-hidden p-5 max-md:p-3 max-sm:p-2"
+					class="relative block h-96 overflow-auto overflow-x-hidden p-5 max-md:p-3 max-sm:p-2"
 					tag="div"
 				>
 					<editor-subsection

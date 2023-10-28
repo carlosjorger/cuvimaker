@@ -1,7 +1,7 @@
 <template>
 	<div class="rounded-lg bg-base-100">
 		<ul
-			class="my-5 ml-20 max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-scroll overflow-x-hidden rounded-lg bg-base-100 pt-2 focus:text-neutral-focus max-md:mx-10 max-sm:mx-auto max-sm:w-11/12"
+			class="my-5 ml-20 max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-auto overflow-x-hidden rounded-lg bg-base-100 pt-2 focus:text-neutral-focus max-md:mx-10 max-sm:mx-auto max-sm:w-11/12"
 		>
 			<li v-for="path in paths" :key="path.params.id">
 				<a :href="`/editor/${path.params.id}`">
