@@ -61,7 +61,7 @@
 					v-for="(element, index) in subsection?.elements"
 					:key="index"
 				>
-					{{ element.name }}
+					<p class="break-words">{{ element.name }}</p>
 				</li>
 			</ul>
 		</div>

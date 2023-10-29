@@ -19,7 +19,7 @@
 			rows="1"
 			@input="changeTextArea"
 		></textarea>
-		<div class="w-1/4"></div>
+		<div class="w-1/3"></div>
 		<AppearFadeTransition>
 			<div v-if="selecting && editingElement" class="absolute">
 				<div class="flex items-center gap-1 max-md:flex-col-reverse">
