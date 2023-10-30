@@ -36,6 +36,7 @@
 			@selectElement="
 				selectedElement = selectedElement != index ? index : undefined
 			"
+			:section-template="sectionTemplate"
 			@delete-element="tryToDeleteElement"
 			:index="index"
 			v-bind="$attrs"

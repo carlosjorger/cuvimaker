@@ -27,7 +27,7 @@
 					<CircleButtonWithIcon
 						v-if="editing"
 						@click="saveElement"
-						text="Save element"
+						:text="`Save ${sectionTemplate.subsectionElement}`"
 						icon="el:ok"
 						:width="2"
 					/>
@@ -47,14 +47,14 @@
 					<CircleButtonWithIcon
 						v-if="editing"
 						@click="editElement"
-						text="Edit element"
+						:text="`Edit ${sectionTemplate.subsectionElement}`"
 						icon="ic:baseline-edit"
 						:width="2"
 					/>
 					<CircleButtonWithIcon
 						v-if="editing"
 						@click="deleteElement"
-						text="Delete element"
+						:text="`Delete ${sectionTemplate.subsectionElement}`"
 						icon="ic:baseline-delete"
 						:width="2"
 					/>
@@ -64,10 +64,11 @@
 	</div>
 </template>
 <script lang="ts">
-	import { inject, ref } from 'vue';
+	import { inject, ref, type PropType } from 'vue';
 	import { Subsection } from '../../../../models/Subsection';
 	import AppearFadeTransition from '../../../shared/Transition/AppearFadeTransition.vue';
 	import CircleButtonWithIcon from '../../../shared/Button/CircleButtonWithIcon.vue';
+	import type { SectionTemplate } from '../../../../models/SectionTemplate';
 
 	export default {
 		name: 'EditorElement',
@@ -87,6 +88,10 @@
 			},
 			marked: {
 				type: Boolean,
+				required: true,
+			},
+			sectionTemplate: {
+				type: Object as PropType<SectionTemplate>,
 				required: true,
 			},
 		},
