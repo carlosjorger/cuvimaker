@@ -1,10 +1,11 @@
 <template>
 	<div
-		class="mt-2 flex w-full items-center justify-end rounded-lg border-solid border-accent-content p-3 text-sm shadow-xl transition-all duration-300 ease-linear hover:bg-base-200 max-md:min-h-[5.5rem]"
+		class="mt-2 flex w-full items-center justify-end rounded-lg border-solid border-accent-content p-3 text-sm shadow-xl transition-all duration-300 ease-linear max-md:min-h-[5.5rem]"
 		:class="{
 			['border-4']: editingElement && selecting && editing,
 			['translate-x-2 bg-base-200']: markedElement,
 			['bg-base-100']: !markedElement,
+			['hover:bg-base-200']: editing,
 		}"
 		@click="selectElement"
 	>
