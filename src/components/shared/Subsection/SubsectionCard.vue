@@ -5,7 +5,7 @@
 			ref="element"
 		>
 			<main
-				class="p-7 max-lg:p-10 max-md:p-7 max-sm:p-3"
+				class="p-5 max-lg:p-8 max-md:p-5 max-sm:p-1"
 				@mousedown="changeSetting"
 			>
 				<slot name="body"></slot>

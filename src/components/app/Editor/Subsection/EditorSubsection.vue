@@ -3,7 +3,7 @@
 		<ShakeTemplate
 			:shake="shake"
 			v-scroll-if="subsection"
-			class="max-ms:p-2 mt-3 w-full rounded-lg bg-base-200 p-4 shadow-2xl shadow-zinc-200 transition-all duration-500 dark:shadow-lg dark:shadow-zinc-500 max-md:p-3"
+			class="mt-3 w-full rounded-lg bg-base-200 p-4 shadow-2xl shadow-zinc-200 transition-all duration-500 dark:shadow-lg dark:shadow-zinc-500 max-md:p-3 max-sm:p-1"
 		>
 			<div class="flex items-center justify-between">
 				<AppearFadeTransition>

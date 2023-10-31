@@ -8,7 +8,7 @@
 			:key="index"
 			:subsection="subsection"
 		/>
-		<ul class="ml-6 list-disc" v-else>
+		<ul class="ml-6 list-disc text-left" v-else>
 			<li
 				v-for="(subsection, index) in section?.subsections"
 				:key="index"
