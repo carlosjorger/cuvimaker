@@ -1,3 +1,4 @@
+<!-- TODO: make responsive this button -->
 <template>
 	<TooltipWrapper :text="text">
 		<CircleButton :aria-label="text" :buttonSize="buttonSize">
