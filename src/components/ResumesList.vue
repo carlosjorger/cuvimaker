@@ -33,7 +33,6 @@
 							</hgroup>
 							<CircleButtonWithIcon
 								icon="ic:baseline-delete"
-								:width="2"
 								text="Clear Resume"
 								@click.prevent="
 									tryToClearResume($event, path.params.id)

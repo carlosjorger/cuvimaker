@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="mt-2 flex w-full items-center justify-end rounded-lg border-solid border-accent-content p-3 text-sm shadow-xl transition-all duration-300 ease-linear max-md:min-h-[5.5rem]"
+		class="mt-2 flex w-full items-center justify-end rounded-lg border-solid border-accent-content px-3 py-9 text-sm shadow-xl transition-all duration-300 ease-linear max-md:min-h-[5.5rem]"
 		:class="{
 			['border-4']: editingElement && selecting && editing,
 			['translate-x-2 bg-base-200']: markedElement,
@@ -21,6 +21,7 @@
 			@input="changeTextArea"
 		></textarea>
 		<div class="w-1/3"></div>
+		<!-- TODO: change position in a narrow width -->
 		<AppearFadeTransition>
 			<div v-if="selecting && editingElement" class="absolute">
 				<div class="flex items-center gap-1 max-md:flex-col-reverse">
@@ -29,14 +30,12 @@
 						@click="saveElement"
 						:text="`Save ${sectionTemplate.subsectionElement}`"
 						icon="el:ok"
-						:width="2"
 					/>
 					<CircleButtonWithIcon
 						v-if="editing"
 						@click="cancelElement"
 						text="Cancel"
 						icon="mdi:cancel-bold"
-						:width="2"
 					/>
 				</div>
 			</div>
@@ -49,14 +48,12 @@
 						@click="editElement"
 						:text="`Edit ${sectionTemplate.subsectionElement}`"
 						icon="ic:baseline-edit"
-						:width="2"
 					/>
 					<CircleButtonWithIcon
 						v-if="editing"
 						@click="deleteElement"
 						:text="`Delete ${sectionTemplate.subsectionElement}`"
 						icon="ic:baseline-delete"
-						:width="2"
 					/>
 				</div>
 			</div>

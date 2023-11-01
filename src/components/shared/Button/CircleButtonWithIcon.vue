@@ -1,4 +1,3 @@
-<!-- TODO: make responsive this button -->
 <template>
 	<TooltipWrapper :text="text">
 		<CircleButton :aria-label="text" :buttonSize="buttonSize">
@@ -7,31 +6,28 @@
 	</TooltipWrapper>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 	import CircleButton from '../../shared/Button/CircleButton.vue';
 	import { Icon } from '@iconify/vue';
 	import TooltipWrapper from '../../shared/Tooltip/TooltipWrapper.vue';
 
-	export default {
-		props: {
-			icon: {
-				type: String,
-				required: true,
-			},
-			width: {
-				type: Number,
-				default: 2.2,
-			},
-			text: {
-				type: String,
-				required: true,
-				default: '',
-			},
-			buttonSize: {
-				type: String,
-				default: 'md',
-			},
+	defineProps({
+		icon: {
+			type: String,
+			required: true,
 		},
-		components: { CircleButton, Icon, TooltipWrapper },
-	};
+		width: {
+			type: Number,
+			default: 2,
+		},
+		text: {
+			type: String,
+			required: true,
+			default: '',
+		},
+		buttonSize: {
+			type: String,
+			default: 'md',
+		},
+	});
 </script>
