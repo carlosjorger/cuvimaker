@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="mt-2 flex w-full items-center justify-end rounded-lg border-solid border-accent-content px-3 py-9 text-sm shadow-xl transition-all duration-300 ease-linear max-md:min-h-[5.5rem]"
+		class="mt-2 flex w-full items-center justify-end rounded-lg border-solid border-accent-content px-3 py-9 text-sm shadow-xl transition-all duration-300 ease-linear max-md:min-h-[5.5rem] max-sm:flex-col max-sm:py-3"
 		:class="{
 			['border-4']: editingElement && selecting && editing,
 			['translate-x-2 bg-base-200']: markedElement,
@@ -20,11 +20,15 @@
 			rows="1"
 			@input="changeTextArea"
 		></textarea>
-		<div class="w-1/3"></div>
-		<!-- TODO: change position in a narrow width -->
+		<div class="w-1/3 max-sm:w-0"></div>
 		<AppearFadeTransition>
-			<div v-if="selecting && editingElement" class="absolute">
-				<div class="flex items-center gap-1 max-md:flex-col-reverse">
+			<div
+				v-if="selecting && editingElement"
+				class="absolute max-sm:relative max-sm:w-full"
+			>
+				<div
+					class="flex items-center gap-1 max-md:flex-col-reverse max-sm:flex-row-reverse max-sm:justify-between"
+				>
 					<CircleButtonWithIcon
 						v-if="editing"
 						@click="saveElement"
@@ -41,8 +45,13 @@
 			</div>
 		</AppearFadeTransition>
 		<AppearFadeTransition>
-			<div v-if="selecting && !editingElement" class="absolute">
-				<div class="flex items-center gap-1 max-md:flex-col-reverse">
+			<div
+				v-if="selecting && !editingElement"
+				class="absolute max-sm:relative max-sm:w-full"
+			>
+				<div
+					class="flex items-center gap-1 max-md:flex-col-reverse max-sm:flex-row-reverse max-sm:justify-between"
+				>
 					<CircleButtonWithIcon
 						v-if="editing"
 						@click="editElement"
