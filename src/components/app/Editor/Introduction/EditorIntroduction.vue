@@ -19,7 +19,7 @@
 					:darkColor="'zinc-300'"
 					:errors="v$.currentIntroduction?.profetion?.$errors"
 				/>
-				<div class="grid grid-cols-2 gap-2 max-sm:grid-cols-1">
+				<div class="grid grid-cols-2 gap-2 text-sm max-sm:grid-cols-1">
 					<div class="flex items-center">
 						<div
 							v-if="
@@ -32,7 +32,7 @@
 						</div>
 
 						<SubsectionForm
-							class="mt-1 min-w-[82%] text-sm"
+							class="mt-1 min-w-[82%]"
 							v-model="currentIntroduction.location"
 							placeholder="Location"
 							:lightColor="'primary'"
@@ -41,7 +41,10 @@
 					</div>
 					<div
 						class="flex items-start"
-						v-if="isBeingEditingIntroduction"
+						v-if="
+							currentIntroduction.email ||
+							isBeingEditingIntroduction
+						"
 					>
 						<div
 							class="mt-1 p-1 text-accent transition-colors duration-500"
@@ -50,7 +53,7 @@
 						</div>
 
 						<SubsectionForm
-							class="mt-1 min-w-[82%] text-sm"
+							class="mt-1 min-w-[82%]"
 							v-model="currentIntroduction.email"
 							placeholder="Email"
 							:lightColor="'primary'"
@@ -58,20 +61,7 @@
 							:errors="v$.currentIntroduction?.email?.$errors"
 						/>
 					</div>
-					<div
-						class="flex items-center"
-						v-if="
-							currentIntroduction.email &&
-							!isBeingEditingIntroduction
-						"
-					>
-						<div
-							class="mt-1 p-1 text-accent transition-colors duration-500"
-						>
-							<Icon icon="mdi:email" width="20" />
-						</div>
-						<BasicEmail :email="currentIntroduction.email" />
-					</div>
+
 					<div
 						class="flex items-start"
 						v-if="isBeingEditingIntroduction"
@@ -83,7 +73,7 @@
 						</div>
 
 						<SubsectionForm
-							class="mt-1 min-w-[82%] text-sm"
+							class="mt-1 min-w-[82%]"
 							v-model="currentIntroduction.website"
 							placeholder="Website"
 							:lightColor="'primary'"
@@ -109,6 +99,7 @@
 						/>
 					</div>
 				</div>
+				<!-- TODO: fix social Account in movile view-->
 				<div class="flex items-start" v-if="isBeingEditingIntroduction">
 					<div
 						class="mt-1 p-1 text-accent transition-colors duration-500"
@@ -136,7 +127,7 @@
 					</AppearFadeTransition>
 				</div>
 				<ul
-					class="relative mt-1 grid grid-cols-2 gap-2 max-sm:grid-cols-1"
+					class="relative mt-1 grid grid-cols-2 gap-2 text-sm max-sm:grid-cols-1"
 				>
 					<ListTransition>
 						<SocialAccount
@@ -210,7 +201,6 @@
 	import { appStore } from '../../../../store';
 	import ListTransition from '../../../shared/Transition/ListTransition.vue';
 	import BasicLink from '../../../shared/Anchor/BasicLink.vue';
-	import BasicEmail from '../../../shared/Anchor/BasicEmail.vue';
 	import { useResumeStore } from '../../../../stores/ResumeStore';
 	import IconButton from '../../../shared/Button/IconButton.vue';
 	import { isNotEmptyIntroduction } from '../../../../extensions/extensions';
@@ -225,7 +215,6 @@
 			SocialAccount,
 			ListTransition,
 			BasicLink,
-			BasicEmail,
 			IconButton,
 		},
 		setup() {
