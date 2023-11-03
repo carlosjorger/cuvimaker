@@ -20,12 +20,9 @@
 			rows="1"
 			@input="changeTextArea"
 		></textarea>
-		<div class="w-1/3 max-sm:w-0"></div>
-		<AppearFadeTransition>
-			<div
-				v-if="selecting && editingElement"
-				class="absolute max-sm:relative max-sm:w-full"
-			>
+		<div class="w-1/3 max-sm:h-12 max-sm:w-0"></div>
+		<AppearFadeTransition v-if="selecting" class="max-sm:px-3">
+			<div v-if="editingElement" class="absolute max-sm:w-full">
 				<div
 					class="flex items-center gap-1 max-md:flex-col-reverse max-sm:flex-row-reverse max-sm:justify-between"
 				>
@@ -43,12 +40,7 @@
 					/>
 				</div>
 			</div>
-		</AppearFadeTransition>
-		<AppearFadeTransition>
-			<div
-				v-if="selecting && !editingElement"
-				class="absolute max-sm:relative max-sm:w-full"
-			>
+			<div v-else class="absolute max-sm:w-full">
 				<div
 					class="flex items-center gap-1 max-md:flex-col-reverse max-sm:flex-row-reverse max-sm:justify-between"
 				>

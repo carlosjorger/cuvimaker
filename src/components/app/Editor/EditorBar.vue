@@ -19,25 +19,23 @@
 	</div>
 </template>
 
-<script lang="ts">
-	export default {
-		props: {
-			modelValue: {
-				type: Boolean,
-				required: true,
-			},
-		},
-		computed: {
-			isEditingResume: {
-				get() {
-					return this.modelValue;
-				},
-				set(value: boolean) {
-					this.$emit('update:modelValue', value);
-				},
-			},
-		},
-	};
-</script>
+<script setup lang="ts">
+	import { computed } from 'vue';
 
-<style lang="scss" scoped></style>
+	const emit = defineEmits(['update:modelValue']);
+
+	const props = defineProps({
+		modelValue: {
+			type: Boolean,
+			required: true,
+		},
+	});
+	const isEditingResume = computed({
+		get() {
+			return props.modelValue;
+		},
+		set(value: boolean) {
+			emit('update:modelValue', value);
+		},
+	});
+</script>
