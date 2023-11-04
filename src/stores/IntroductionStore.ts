@@ -32,14 +32,13 @@ export const useIntroductionStore = defineStore('introduction', {
 	},
 	actions: {
 		addSocialAccount(link: string) {
+			this.socialAccountsCount = this.introduction.socialAccounts.length;
 			this.introduction.socialAccounts.push(
-				new SocialAccount(++this.socialAccountsCount, link)
+				new SocialAccount(this.socialAccountsCount, link)
 			);
 		},
 		selectASocialAccount(Id: number) {
-			if (this.selected == -1 || Id == -1) {
-				this.selected = Id;
-			}
+			this.selected = Id;
 		},
 		unSelectASocialAccount(Id: number) {
 			if (this.selected == Id) {

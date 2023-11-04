@@ -1,11 +1,11 @@
 <template>
 	<li
 		class="flex w-11/12 items-center justify-end rounded-lg transition-all duration-300 ease-linear"
-		@mouseover="mouseover"
-		@mouseleave="mouseleave"
 		:class="{
-			[' bg-base-100']: selecting && isBeingEditingIntroduction,
+			['bg-base-100']: selecting && isBeingEditingIntroduction,
+			['hover:bg-base-100']: isBeingEditingIntroduction,
 		}"
+		@click="toggleSocialAccount"
 	>
 		<div class="flex w-4/5 resize-none items-center">
 			<div class="p-1 transition-colors duration-500">
@@ -138,7 +138,23 @@
 					);
 				}
 			},
-
+			toggleSocialAccount() {
+				if (this.editing || !this.isBeingEditingIntroduction) {
+					return;
+				}
+				if (
+					this.introductionStore.selected === this.socialAccount.id &&
+					!this.editing
+				) {
+					this.introductionStore.unSelectASocialAccount(
+						this.socialAccount.id
+					);
+				} else {
+					this.introductionStore.selectASocialAccount(
+						this.socialAccount.id
+					);
+				}
+			},
 			deleteElement() {
 				this.introductionStore.unSelectASocialAccount(
 					this.socialAccount.id
@@ -163,6 +179,13 @@
 			},
 			isBeingEditingIntroduction() {
 				return this.resumeStore.isBeingEditingIntroduction;
+			},
+		},
+		watch: {
+			selecting(newValue: boolean) {
+				if (!newValue) {
+					this.editing = false;
+				}
 			},
 		},
 	};
