@@ -107,14 +107,14 @@
 						<Icon icon="mdi:account" width="20" />
 					</div>
 					<SubsectionForm
-						class="mt-1 min-w-[82%] text-sm"
+						class="mt-1 min-w-[calc(100%-70px)] text-sm"
 						v-model="currentSocialAccount"
 						placeholder="Add a Social Account"
 						:lightColor="'primary'"
 						:darkColor="'zinc-300'"
 						:errors="v$.currentSocialAccount?.$errors"
 					/>
-					<AppearFadeTransition>
+					<AppearFadeTransition class="mx-1">
 						<CloseAddButton
 							toolTipText="Add a Social Account"
 							v-if="currentSocialAccount.trim()"
