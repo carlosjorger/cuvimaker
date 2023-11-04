@@ -33,6 +33,7 @@
 					:width="1.2"
 					buttonSize="xs"
 				/>
+				<!-- TODO: fix cancel button -->
 				<CircleButtonWithIcon
 					@click="cancelElement"
 					text="Cancel"

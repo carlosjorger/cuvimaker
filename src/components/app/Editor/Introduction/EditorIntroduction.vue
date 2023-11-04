@@ -99,7 +99,6 @@
 						/>
 					</div>
 				</div>
-				<!-- TODO: fix social Account in movile view-->
 				<div class="flex items-start" v-if="isBeingEditingIntroduction">
 					<div
 						class="mt-1 p-1 text-accent transition-colors duration-500"
