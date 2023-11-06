@@ -5,13 +5,15 @@
 			v-model="hasPeriodOfTime"
 			:title="'Add a site'"
 		/>
-		<div class="flex items-center justify-between">
+		<div
+			class="grid grid-cols-2 items-center gap-8 max-sm:grid-cols-1 max-sm:gap-0"
+		>
 			<SubsectionTimeInterval
 				v-if="hasPeriodOfTime"
 				v-model="value"
 				:hasPeriodOfTime="hasPeriodOfTime"
 			/>
-			<div class="mt-2 w-5/12">
+			<div class="mt-2">
 				<BasicTextArea
 					v-if="hasPeriodOfTime"
 					class="mt-1"
