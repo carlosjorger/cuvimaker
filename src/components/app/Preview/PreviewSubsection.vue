@@ -1,7 +1,11 @@
 <template>
 	<section class="p-1">
-		<h3 class="mt-2 text-base font-semibold">{{ subsection?.title }}</h3>
-		<h4 class="mt-1 text-sm font-extrabold">{{ subsection?.text }}</h4>
+		<h3 class="ml-1 mt-2 text-left text-base font-semibold">
+			{{ subsection?.title }}
+		</h3>
+		<h4 class="ml-1 mt-1 text-left text-sm font-extrabold">
+			{{ subsection?.text }}
+		</h4>
 		<div class="w-[88%] text-xs max-sm:w-11/12">
 			<div class="flex items-center justify-between">
 				<div
