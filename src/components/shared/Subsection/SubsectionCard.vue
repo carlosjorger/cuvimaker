@@ -1,7 +1,7 @@
 <template>
 	<SubsectionAlign>
 		<section
-			class="section w-full rounded-md bg-base-100 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-base-300 group-[.marked]:translate-x-2 group-[.marked]:bg-base-300"
+			class="section w-full rounded-md bg-base-200 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-base-300 group-[.marked]:translate-x-2 group-[.marked]:bg-base-300"
 			ref="element"
 		>
 			<main

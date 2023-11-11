@@ -1,4 +1,3 @@
-<!-- TODO: avoid to center the text -->
 <template>
 	<SubsectionAlign>
 		<div
