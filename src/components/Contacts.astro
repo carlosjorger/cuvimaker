@@ -1,10 +1,11 @@
 ---
 import Social from './Social.astro';
 import Subtitle from './Subtitle.astro';
+import CustomParagraph from './shared/Paragraph/CustomParagraph.astro';
 ---
 
 <Subtitle>Want to give me some feedback?</Subtitle>
-<p class="text-lg">You can contact me in these social media:</p>
+<CustomParagraph>You can contact me in these social media:</CustomParagraph>
 <address class="mt-2 flex flex-row p-2 max-lg:justify-center">
 	<Social platform="github" username="carlosjorger" icon="github" />
 	<Social platform="twitter" username="carlosjorgerc" icon="twitter" />

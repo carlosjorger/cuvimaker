@@ -3,22 +3,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CVExampleImages from '../components/CVExampleImages.astro';
 import Title from '../components/Title.astro';
 import BasicButton from '../components/shared/Button/BasicButton.vue';
+import CustomParagraph from '../components/shared/Paragraph/CustomParagraph.astro';
 ---
 
 <BaseLayout pageTitle="An online curriculum vitae maker / Cuvimaker">
 	<section class="p-2 max-md:p-1">
 		<Title>Create your own <br /> curriculum vitae</Title>
-		<p class="text-xl max-lg:text-center max-lg:text-lg max-sm:text-base">
+		<CustomParagraph>
 			Save your personal data, skills, experience, projects <br
 				class="max-sm:hidden"
 			/> and more. Download the cv in a pdf format.
-		</p>
+		</CustomParagraph>
 		<aside class="mb-4 mt-3 hidden justify-center max-lg:flex">
 			<div class="w-4/5">
 				<CVExampleImages />
 			</div>
 		</aside>
-		<div class="max-lg:text-center">
+		<div class="mt-4 max-lg:text-center">
 			<a href="editor">
 				<BasicButton
 					aria-label="Create curriculum"

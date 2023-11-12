@@ -3,29 +3,30 @@ import Contacts from '../components/Contacts.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Subtitle from '../components/Subtitle.astro';
 import StaticImage from '../components/StaticImage.astro';
+import CustomParagraph from '../components/shared/Paragraph/CustomParagraph.astro';
+
 const platform = 'github';
 const username = 'carlosjorger';
 const proyect = 'astro-vue-online-cv-maker';
 ---
 
-<!-- TODO: improve design -->
 <BaseLayout pageTitle="About Cuvimaker / Cuvimaker">
-	<section class="p-5 max-md:p-2">
+	<section class="mt-8 p-3 max-md:mt-5 max-md:p-2">
 		<div class="hidden max-lg:mb-5 max-lg:block">
 			<StaticImage imageSrc="/cuvimaker.svg" altText="project example" />
 		</div>
 		<Subtitle>Are you interested in this app?</Subtitle>
-		<p class="text-lg">
+		<CustomParagraph>
 			Learn more about this project on
 			<a
 				class="bg-anchorImage bg-[length:100%_0%] bg-[0%_100%] bg-no-repeat text-accent transition-all duration-300 hover:bg-[length:100%_15%]"
 				href={`https://www.${platform}.com/${username}/${proyect}`}
 			>
 				{platform}</a
-			>
+			>.
 			<br />
 			 Contributions are welcome too!!
-		</p>
+		</CustomParagraph>
 		<Contacts />
 	</section>
 	<aside class="m-5 block max-lg:hidden">
