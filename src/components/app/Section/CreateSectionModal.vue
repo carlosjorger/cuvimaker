@@ -1,7 +1,7 @@
 <template>
 	<ModalTemplate>
 		<div
-			class="m-0 flex w-1/2 flex-col rounded-lg border-primary bg-base-100 p-4 max-xl:w-1/2 max-lg:w-4/5 max-md:w-11/12 max-sm:w-11/12"
+			class="m-0 flex w-1/2 flex-col rounded-lg border-primary bg-base-100 p-3 max-xl:w-1/2 max-lg:w-4/5 max-md:w-11/12 max-sm:w-11/12 max-sm:p-2"
 		>
 			<header class="mb-2 flex items-center justify-between">
 				<h3 class="text-xl font-semibold">

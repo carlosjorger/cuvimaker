@@ -1,5 +1,5 @@
 <template>
-	<div class="flex items-center gap-3">
+	<div class="flex items-center gap-1">
 		<input
 			type="checkbox"
 			class="toggle toggle-primary toggle-lg"

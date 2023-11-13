@@ -3,7 +3,7 @@
 		<ShakeTemplate
 			:shake="shake"
 			v-scroll-if="subsection"
-			class="mt-3 w-full rounded-lg bg-base-200 p-4 shadow-2xl shadow-zinc-200 transition-all duration-500 dark:shadow-lg dark:shadow-zinc-500 max-md:p-3 max-sm:p-2"
+			class="mt-3 w-full rounded-lg bg-base-200 p-3 shadow-2xl shadow-zinc-200 transition-all duration-500 dark:shadow-lg dark:shadow-zinc-500 max-md:p-3 max-sm:p-2"
 		>
 			<div class="flex items-center justify-between">
 				<AppearFadeTransition>
@@ -30,7 +30,7 @@
 			<form
 				v-on:submit.prevent
 				v-if="!subsection.last"
-				class="max-ms:p-2 p-5 max-md:p-3"
+				class="p-5 max-md:p-3 max-sm:p-2"
 			>
 				<SubsectionForm
 					class="mt-1 text-lg"
