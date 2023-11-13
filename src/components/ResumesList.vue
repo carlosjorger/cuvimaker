@@ -6,7 +6,7 @@
 			<li v-for="path in paths" :key="path.params.id">
 				<a :href="`/editor/${path.params.id}`">
 					<div
-						class="card my-3 ml-12 w-5/6 rounded-lg bg-base-200 p-7 font-extrabold shadow-2xl shadow-warning-content transition-all duration-200 hover:translate-x-6 hover:bg-base-300 dark:shadow-success-content max-md:w-11/12 max-sm:w-full max-sm:hover:translate-x-2"
+						class="card my-3 ml-12 w-5/6 rounded-lg bg-base-200 p-7 font-extrabold shadow-2xl shadow-warning-content transition-all duration-200 hover:translate-x-6 hover:bg-base-300 dark:shadow-success-content max-md:ml-8 max-md:w-11/12 max-sm:ml-0 max-sm:w-full max-sm:hover:translate-x-2"
 					>
 						<div
 							class="flex items-center justify-between"
