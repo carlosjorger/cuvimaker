@@ -1,12 +1,12 @@
 <template>
-	<div class="rounded-lg bg-base-100">
+	<div class="m-2 rounded-lg bg-base-100">
 		<ul
-			class="my-5 ml-20 max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-auto overflow-x-hidden rounded-lg bg-base-100 pt-2 focus:text-neutral-focus max-md:mx-10 max-sm:mx-auto max-sm:w-11/12"
+			class="my-5 ml-20 max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-auto overflow-x-hidden rounded-lg bg-base-100 pt-2 focus:text-neutral-focus max-md:mx-10 max-md:w-full max-sm:mx-0"
 		>
 			<li v-for="path in paths" :key="path.params.id">
 				<a :href="`/editor/${path.params.id}`">
 					<div
-						class="card my-3 ml-12 w-5/6 rounded-lg bg-base-200 p-7 font-extrabold shadow-2xl shadow-warning-content transition-all duration-200 hover:translate-x-6 hover:bg-base-300 dark:shadow-success-content max-md:ml-8 max-md:w-11/12 max-sm:ml-0 max-sm:w-full max-sm:hover:translate-x-2"
+						class="card my-3 ml-12 w-5/6 rounded-lg bg-base-200 p-7 font-extrabold shadow-2xl shadow-warning-content transition-all duration-200 hover:translate-x-6 hover:bg-base-300 dark:shadow-success-content max-md:ml-8 max-md:w-11/12 max-sm:mx-auto max-sm:w-11/12 max-sm:hover:translate-x-2"
 					>
 						<div
 							class="flex items-center justify-between"
