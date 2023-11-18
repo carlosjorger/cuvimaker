@@ -1,7 +1,11 @@
 <template>
-	<div class="tabs -mb-px">
+	<div
+		role="tablist"
+		class="tabs-lifted tabs-lg tabs -mb-px justify-self-start"
+	>
 		<button
-			class="tab tab-lifted tab-lg [--tab-border-color:transparent]"
+			role="tab"
+			class="tab tab-lg [--tab-border-color:transparent]"
 			:class="{ 'tab-active': isEditingResume }"
 			@click="isEditingResume = true"
 			aria-label="Edit resume"
@@ -9,7 +13,8 @@
 			Edit
 		</button>
 		<button
-			class="tab tab-lifted tab-lg [--tab-border-color:transparent]"
+			role="tab"
+			class="tab tab-lg [--tab-border-color:transparent]"
 			:class="{ 'tab-active': !isEditingResume }"
 			@click="isEditingResume = false"
 			aria-label="View preview of resume"
