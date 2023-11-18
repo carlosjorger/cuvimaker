@@ -1,12 +1,12 @@
 <template>
 	<div
-		class="mt-2 flex justify-between rounded-3xl border-2 border-solid border-accent-content p-1.5 text-sm shadow-xl"
+		class="mt-2 flex justify-between rounded-3xl border-2 border-solid border-base-content p-1.5 text-sm shadow-xl"
 		v-if="editing"
 	>
 		<textarea
 			ref="newElementHTML"
 			v-model="newElement"
-			class="w-4/5 resize-none overflow-hidden bg-inherit p-4 text-accent-content outline-none"
+			class="w-4/5 resize-none overflow-hidden bg-inherit p-4 text-base-content caret-base-content outline-none"
 			:placeholder="`New ${sectionTemplate.subsectionElement}...`"
 			rows="1"
 			@input="changeTextArea"

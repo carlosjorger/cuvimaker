@@ -1,11 +1,12 @@
 <template>
 	<div
-		class="mt-2 flex w-full items-center justify-end rounded-lg border-solid border-accent-content px-3 py-9 text-sm shadow-xl transition-all duration-300 ease-linear max-md:min-h-[5.5rem] max-sm:flex-col max-sm:py-3"
+		class="mt-2 flex w-full items-center justify-end rounded-lg border-solid border-base-content px-3 py-9 text-sm shadow-xl transition-all duration-300 ease-linear max-sm:flex-col max-sm:py-3"
 		:class="{
-			['border-4']: editingElement && selecting && editing,
+			['border-4 max-md:min-h-[5.5rem]']:
+				editingElement && selecting && editing,
 			['translate-x-2 bg-base-200']: markedElement,
 			['bg-base-100']: !markedElement,
-			['hover:bg-base-200']: editing,
+			['hover:bg-base-200 ']: editing,
 		}"
 		@click="selectElement"
 	>
@@ -20,8 +21,12 @@
 			rows="1"
 			@input="changeTextArea"
 		></textarea>
-		<div class="w-1/3 max-sm:h-12 max-sm:w-0"></div>
-		<AppearFadeTransition v-if="selecting" class="max-sm:px-3">
+		<div v-if="selecting" class="w-1/3 max-sm:h-12 max-sm:w-0"></div>
+		<AppearFadeTransition
+			v-show="selecting"
+			v-if="selecting"
+			class="max-sm:px-3"
+		>
 			<div v-if="editingElement" class="absolute max-sm:w-full">
 				<div
 					class="flex items-center gap-1 max-md:flex-col-reverse max-sm:flex-row-reverse max-sm:justify-between"
