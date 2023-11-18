@@ -2,7 +2,7 @@
 	<p class="flex flex-col">
 		<AdaptableTextArea
 			v-model="value"
-			class="block w-full border-solid bg-inherit py-0.5 transition-form duration-300 focus:outline-none"
+			class="block w-full border-solid bg-inherit py-0.5 transition-[border-bottom-width] focus:outline-none"
 			v-if="editing || value"
 			:class="[
 				editing
@@ -10,7 +10,7 @@
 					: 'pointer-events-none border-b-0 shadow-none',
 				errors != undefined && errors.length > 0
 					? 'border-red-600 placeholder:text-red-600 dark:border-rose-500 dark:placeholder:text-rose-500'
-					: `border-accent-content placeholder-base-content`,
+					: `border-base-content placeholder-base-content`,
 			]"
 			type="text"
 			:placeholder="placeholder"

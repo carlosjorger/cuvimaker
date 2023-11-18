@@ -1,4 +1,5 @@
 <template>
+	<!-- TODO: fix date picker colors -->
 	<div class="mt-2">
 		<VueDatePicker
 			:range="true"

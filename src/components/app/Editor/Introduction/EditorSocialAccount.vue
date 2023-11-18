@@ -1,6 +1,6 @@
 <template>
 	<li
-		class="flex w-11/12 items-center justify-end rounded-lg transition-all duration-300 ease-linear"
+		class="flex w-11/12 items-center justify-end rounded-lg transition-[background-color] duration-300 ease-linear"
 		:class="{
 			['bg-base-100']: selecting && isBeingEditingIntroduction,
 			['hover:bg-base-100']: isBeingEditingIntroduction,
@@ -8,7 +8,7 @@
 		@click="toggleSocialAccount"
 	>
 		<div class="flex w-4/5 resize-none items-center">
-			<div class="p-1 transition-colors duration-500">
+			<div class="p-1 transition-colors">
 				<IconByUrl :url="link" />
 			</div>
 			<BasicLink v-if="!editing" :link="link" />
