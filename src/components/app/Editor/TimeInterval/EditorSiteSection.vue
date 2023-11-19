@@ -1,4 +1,5 @@
 <template>
+	<!-- TODO: add collapse -->
 	<div class="mt-4">
 		<SwitchCheckbox
 			v-if="editing"
