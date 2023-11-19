@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="mt-2 flex w-full items-center justify-end rounded-lg border-solid border-base-content px-3 py-9 text-sm shadow-xl transition-all duration-300 ease-linear max-sm:flex-col max-sm:py-3"
+		class="mt-2 flex w-full items-center justify-end rounded-lg border-solid border-base-content px-3 py-3 text-sm shadow-xl transition-all duration-300 ease-linear max-sm:flex-col max-sm:py-3"
 		:class="{
 			['border-4 max-md:min-h-[5.5rem]']:
 				editingElement && selecting && editing,
