@@ -16,7 +16,7 @@
 				/>
 			</header>
 			<div
-				class="mb-2 box-border"
+				class="mb-2 box-border text-left"
 				v-if="!section.sectionTemplate.isFixedSectionName"
 			>
 				<input
@@ -30,7 +30,7 @@
 					}"
 				/>
 			</div>
-			<div class="mb-2 box-border px-5" v-else>
+			<div class="mb-2 box-border px-5 text-left" v-else>
 				<h4 class="mt-2">{{ section.name }}</h4>
 			</div>
 			<ErrorsSection :errors="v$.section?.name.$errors" />
