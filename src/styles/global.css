@@ -30,20 +30,20 @@
 }
 
 ::-webkit-scrollbar-thumb {
-	background: hsl(var(--p));
+	background: oklch(var(--p));
 	border-radius: 10px;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-	background: hsl(var(--p));
+	background: oklch(var(--p));
 	border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: hsl(var(--pf));
+	background: oklch(var(--pf));
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-	background: hsl(var(--pf));
+	background: oklch(var(--pf));
 	border-radius: 10px;
 }

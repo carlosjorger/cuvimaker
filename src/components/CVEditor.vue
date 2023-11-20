@@ -2,7 +2,7 @@
 	<div class="grid">
 		<EditorBar v-model="isEditingResume" />
 		<div
-			class="max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-auto overflow-x-hidden rounded-sm border-0 bg-base-100 bg-top p-4 max-md:p-2"
+			class="max-h-[calc(100vh-16rem)] min-h-[calc(100vh-14.5rem)] overflow-auto overflow-x-hidden rounded-sm border-0 bg-base-100 bg-top p-4 max-md:p-2"
 		>
 			<AppearFadePanelTransition>
 				<EditorResume v-if="isEditingResume" v-model="resume" />
