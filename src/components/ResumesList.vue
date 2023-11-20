@@ -3,17 +3,17 @@
 		<AppearFadeTransition>
 			<ul
 				v-if="loading"
-				class="my-5 ml-20 max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-auto overflow-x-hidden rounded-lg bg-base-100 pt-2 focus:text-neutral-focus max-md:mx-10 max-md:w-full max-sm:mx-0"
+				class="focus:text-neutral-focus my-5 max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] w-full overflow-auto overflow-x-hidden rounded-lg bg-base-100 pt-2 max-md:mx-10 max-sm:mx-0"
 			>
 				<li
 					v-for="skeletonIndex in [1, 2, 3, 4, 5]"
 					:key="skeletonIndex"
-					class="skeleton my-3 ml-12 h-24 w-5/6 rounded-lg p-7 max-md:ml-8 max-md:w-11/12 max-sm:mx-auto max-sm:w-11/12"
+					class="skeleton mx-auto my-3 h-24 w-2/3 rounded-lg p-7 max-md:ml-8 max-md:w-11/12 max-sm:w-11/12"
 				></li>
 			</ul>
 			<ul
 				v-else
-				class="my-5 ml-20 max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] overflow-auto overflow-x-hidden rounded-lg bg-base-100 pt-2 focus:text-neutral-focus max-md:mx-10 max-md:w-full max-sm:mx-0"
+				class="focus:text-neutral-focus my-5 max-h-[calc(100vh-16rem)] min-h-[calc(100vh-12.5rem)] w-full overflow-auto overflow-x-hidden rounded-lg bg-base-100 pt-2 max-md:mx-10 max-sm:mx-0"
 			>
 				<li v-for="path in paths" :key="path.params.id">
 					<ResumeElement

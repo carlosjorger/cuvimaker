@@ -19,7 +19,9 @@
 					:darkColor="'zinc-300'"
 					:errors="v$.currentIntroduction?.profetion?.$errors"
 				/>
-				<div class="grid grid-cols-2 gap-2 text-sm max-sm:grid-cols-1">
+				<div
+					class="grid grid-cols-2 gap-2 gap-y-0 text-sm max-sm:grid-cols-1"
+				>
 					<div class="flex items-center">
 						<div
 							v-if="
