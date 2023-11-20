@@ -1,9 +1,10 @@
 <template>
-	<div class="mt-4">
+	<div class="mt-2">
 		<SwitchCheckbox
 			v-if="editing"
 			v-model="hasPeriodOfTime"
 			:title="'Add a site'"
+			class="mb-2"
 		/>
 		<div
 			class="grid grid-cols-2 items-center gap-8 max-sm:grid-cols-1 max-sm:gap-0"
@@ -13,14 +14,12 @@
 				v-model="value"
 				:hasPeriodOfTime="hasPeriodOfTime"
 			/>
-			<div class="mt-2">
-				<BasicTextArea
-					v-if="hasPeriodOfTime"
-					class="mt-1"
-					v-model="subsection.location"
-					placeholder="* Location"
-				/>
-			</div>
+			<BasicTextArea
+				v-if="hasPeriodOfTime"
+				class="mt-1"
+				v-model="subsection.location"
+				placeholder="* Location"
+			/>
 		</div>
 	</div>
 </template>

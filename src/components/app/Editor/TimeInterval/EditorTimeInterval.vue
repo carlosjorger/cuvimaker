@@ -1,5 +1,5 @@
 <template>
-	<div class="mt-2">
+	<div>
 		<VueDatePicker
 			:range="true"
 			v-model="interval"
@@ -138,7 +138,7 @@
 		--dp-border-color: rgba(0, 0, 0, 0);
 		--dp-menu-border-color: var(--zinc-color-3);
 		--dp-border-color-hover: #aaaeb7;
-		--dp-disabled-color: : oklch(var(--b1));
+		--dp-disabled-color: oklch(var(--b1));
 		--dp-scroll-bar-background: #120a25;
 		--dp-scroll-bar-color: #3f3268;
 		--dp-success-color: #00701a;
@@ -160,7 +160,7 @@
 		--dp-border-color: rgba(0, 0, 0, 0);
 		--dp-menu-border-color: var(--primary-color);
 		--dp-border-color-hover: #aaaeb7;
-		--dp-disabled-color: : oklch(var(--b1));
+		--dp-disabled-color: oklch(var(--b1));
 		--dp-scroll-bar-background: #f3f3f3;
 		--dp-scroll-bar-color: var(--primary-color);
 		--dp-success-color: #76d275;
