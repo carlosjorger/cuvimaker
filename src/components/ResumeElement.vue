@@ -1,7 +1,7 @@
 <template>
 	<a :href="`/editor/${indexResume}`">
 		<div
-			class="card mx-auto my-3 w-2/3 rounded-lg bg-base-200 p-7 font-extrabold shadow-2xl shadow-warning-content transition-all duration-[400ms] hover:translate-x-6 hover:bg-base-300 hover:duration-100 dark:shadow-success-content max-md:ml-8 max-md:w-5/6 max-sm:w-11/12 max-sm:hover:translate-x-2"
+			class="card mx-auto my-3 w-2/3 rounded-lg bg-base-200 p-7 font-extrabold shadow-2xl shadow-warning-content transition-all duration-[400ms] hover:translate-x-6 hover:bg-base-300 hover:duration-100 dark:shadow-success-content max-md:w-5/6 max-sm:w-11/12 max-sm:hover:translate-x-2"
 		>
 			<div
 				class="flex items-center justify-between"

@@ -8,7 +8,7 @@
 				<li
 					v-for="skeletonIndex in [1, 2, 3, 4, 5]"
 					:key="skeletonIndex"
-					class="skeleton mx-auto my-3 h-24 w-2/3 rounded-lg p-7 max-md:ml-8 max-md:w-11/12 max-sm:w-11/12"
+					class="skeleton mx-auto my-3 h-24 w-2/3 rounded-lg p-7 max-md:w-11/12 max-sm:w-11/12"
 				></li>
 			</ul>
 			<ul
