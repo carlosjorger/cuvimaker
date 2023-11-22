@@ -44,6 +44,7 @@
 						:sectionTemplate="section.sectionTemplate"
 						ref="editorSubsection"
 						v-for="(subsection, index) in section.subsections"
+						:id="subsection.id"
 						:key="subsection.id"
 						:draggable="!editing && !subsection.last"
 						@dragstart="startDrag($event, index)"
@@ -61,6 +62,7 @@
 						"
 						:class="{
 							['translate-x-2']: markedSection == index,
+							['cursor-move']: !editing && !subsection.last,
 						}"
 						@dragover.prevent
 						:subsectionIndex="index"
