@@ -1,4 +1,3 @@
-<!-- TODO: fix hover and click animation -->
 <template>
 	<div
 		class="mt-2 flex w-full items-center justify-end rounded-lg border-solid border-base-content px-3 py-3 text-sm shadow-xl transition-all duration-300 ease-linear max-sm:flex-col max-sm:py-3"
@@ -22,7 +21,12 @@
 			rows="1"
 			@input="changeTextArea"
 		></textarea>
-		<div v-if="selecting" class="w-1/3 max-sm:h-12 max-sm:w-0"></div>
+		<div
+			class="w-1/3 transition-[width] duration-500 max-sm:h-12 max-sm:w-0"
+			:class="{
+				'w-0': !selecting,
+			}"
+		></div>
 		<AppearFadeTransition
 			v-show="selecting"
 			v-if="selecting"
