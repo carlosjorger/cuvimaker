@@ -28,7 +28,7 @@
 	</a>
 </template>
 <script setup lang="ts">
-	import { computed } from 'vue';
+	import { computed, type PropType } from 'vue';
 	import { useOpenModal } from './../composables/useOpenModal';
 	import CircleButtonWithIcon from './shared/Button/CircleButtonWithIcon.vue';
 	import { Resume } from '../models/Resume';
@@ -46,7 +46,7 @@
 			required: true,
 		},
 		resume: {
-			type: Resume,
+			type: Object as PropType<Resume>,
 		},
 	});
 	const indexOfElementToDelete = computed({

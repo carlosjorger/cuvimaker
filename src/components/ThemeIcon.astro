@@ -29,37 +29,39 @@
 	>
 </label>
 <script is:inline>
-	var setDarkMode = () => {
-		const theme = (() => {
-			if (
-				typeof localStorage !== 'undefined' &&
-				localStorage.getItem('theme')
-			) {
-				return localStorage.getItem('theme') ?? 'light';
-			}
-			return 'light';
-		})();
-		const classList = document.documentElement.classList;
-		classList.toggle('dark', theme == 'dark');
-		window.localStorage.setItem('theme', theme);
-		document.querySelector('html').setAttribute('data-theme', theme);
-		var themeToggle = document.getElementById('themeToggle');
-		themeToggle.checked = theme !== 'light';
-	};
-	setDarkMode();
+	document.addEventListener('astro:page-load', () => {
+		var setDarkMode = () => {
+			const theme = (() => {
+				if (
+					typeof localStorage !== 'undefined' &&
+					localStorage.getItem('theme')
+				) {
+					return localStorage.getItem('theme') ?? 'light';
+				}
+				return 'light';
+			})();
+			const classList = document.documentElement.classList;
+			classList.toggle('dark', theme == 'dark');
+			window.localStorage.setItem('theme', theme);
+			document.querySelector('html').setAttribute('data-theme', theme);
+			var themeToggle = document.getElementById('themeToggle');
+			themeToggle.checked = theme !== 'light';
+		};
+		setDarkMode();
 
-	var handleToggleClick = () => {
-		const classList = document.documentElement.classList;
-		classList.toggle('dark');
-		const isDark = classList.contains('dark');
-		localStorage.setItem('theme', isDark ? 'dark' : 'light');
-		document
-			.querySelector('html')
-			.setAttribute('data-theme', isDark ? 'dark' : 'light');
-	};
-	var themeToggle = document.getElementById('themeToggle');
-	if (themeToggle != null) {
-		themeToggle.addEventListener('click', handleToggleClick);
-	}
-	document.addEventListener('astro:after-swap', setDarkMode);
+		var handleToggleClick = () => {
+			const classList = document.documentElement.classList;
+			classList.toggle('dark');
+			const isDark = classList.contains('dark');
+			localStorage.setItem('theme', isDark ? 'dark' : 'light');
+			document
+				.querySelector('html')
+				.setAttribute('data-theme', isDark ? 'dark' : 'light');
+		};
+		var themeToggle = document.getElementById('themeToggle');
+		if (themeToggle != null) {
+			themeToggle.addEventListener('click', handleToggleClick);
+		}
+		document.addEventListener('astro:after-swap', setDarkMode);
+	});
 </script>
