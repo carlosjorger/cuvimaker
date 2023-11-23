@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-	import { inject, ref, type PropType } from 'vue';
+	import { inject, ref, watch, type PropType } from 'vue';
 	import { Subsection } from '../../../../models/Subsection';
 	import CloseAddButton from '../../../shared/Button/CloseAddButton.vue';
 	import SubsectionElement from './EditorElement.vue';

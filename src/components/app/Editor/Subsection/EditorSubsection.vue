@@ -214,7 +214,8 @@
 		sectionStore.disabledEditing();
 	};
 	const cancelSubSection = () => {
-		subsection = copySubsection(props.prevSubsection);
+		const prevSubsectionCopy = copySubsection(props.prevSubsection);
+		setSubsection(prevSubsectionCopy);
 		sectionStore.disabledEditing();
 	};
 
@@ -228,6 +229,16 @@
 			setEditingIndexToThisSubsection();
 		}
 	};
+	const setSubsection = (subsectionToSet: Subsection) => {
+		subsection.title = subsectionToSet.title;
+		subsection.text = subsectionToSet.text;
+		subsection.last = subsectionToSet.last;
+		subsection.editing = subsectionToSet.editing;
+		subsection.subsectionTimeInterval =
+			subsectionToSet.subsectionTimeInterval;
+		subsection.elements = subsectionToSet.elements;
+		subsection.count = subsectionToSet.count;
+	};
 	watch(
 		() => sectionStore.editingIndex,
 		(newValue: number) => {
@@ -237,7 +248,7 @@
 	watch(
 		() => props.prevSubsection,
 		(newValue: Subsection) => {
-			Object.assign(subsection, copySubsection(newValue));
+			setSubsection(copySubsection(newValue));
 		},
 		{ deep: true }
 	);
