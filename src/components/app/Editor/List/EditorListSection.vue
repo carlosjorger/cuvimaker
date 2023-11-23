@@ -27,18 +27,16 @@
 			required: true,
 		},
 	});
-	const updatedHasElementList = (subsection: Subsection) => {
-		return (hasElementList.value = subsection.elements.length > 0);
+	const updatedHasElementList = (numberOfElements: number) => {
+		hasElementList.value = numberOfElements > 0;
 	};
 	onMounted(() => {
-		hasElementList.value = updatedHasElementList(subsection);
+		updatedHasElementList(subsection.elements.length);
 	});
-	//TODO: change watch
 	watch(
-		() => subsection,
-		(subsection: Subsection) => {
-			hasElementList.value = updatedHasElementList(subsection);
-		},
-		{ deep: true }
+		() => subsection.elements.length,
+		(numberOfElements: number) => {
+			updatedHasElementList(numberOfElements);
+		}
 	);
 </script>
