@@ -33,6 +33,7 @@
 	onMounted(() => {
 		hasElementList.value = updatedHasElementList(subsection);
 	});
+	//TODO: change watch
 	watch(
 		() => subsection,
 		(subsection: Subsection) => {

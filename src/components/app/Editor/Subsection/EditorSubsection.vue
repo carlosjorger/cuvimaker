@@ -234,6 +234,7 @@
 			editing.value = newValue == props.subsectionIndex;
 		}
 	);
+	//TODO: change watch
 	watch(
 		() => props.prevSubsection,
 		(newValue: Subsection) => {
