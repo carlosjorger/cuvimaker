@@ -31,6 +31,7 @@ export function useDrag<T>(typeOfDrag: string, save: () => void) {
 		}
 	};
 	const startDrag = (event: DragEvent, index: number) => {
+		event.stopPropagation();
 		const eventDataTransfer = event.dataTransfer;
 		if (eventDataTransfer) {
 			eventDataTransfer.dropEffect = 'move';

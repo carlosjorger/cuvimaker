@@ -37,7 +37,7 @@
 			<div class="mb-2 box-border">
 				<transition-group
 					name="subsection"
-					class="relative block h-96 overflow-auto overflow-x-hidden p-5 max-md:p-3 max-sm:p-2"
+					class="relative z-0 block h-96 overflow-auto overflow-x-hidden p-5 max-md:p-3 max-sm:p-2"
 					tag="div"
 				>
 					<editor-subsection
@@ -62,7 +62,7 @@
 						"
 						:class="{
 							['translate-x-2']: markedSection == index,
-							['cursor-move']: !editing && !subsection.last,
+							['z-10 cursor-move']: !editing && !subsection.last,
 						}"
 						@dragover.prevent
 						:subsectionIndex="index"
@@ -236,10 +236,7 @@
 	);
 </script>
 <style>
-	.subsection-move {
-		transition: opacity 0.5s ease;
-		transition: transform 0.5s ease;
-	}
+	.subsection-move,
 	.subsection-leave-active {
 		transition: all 0.5s ease;
 	}
