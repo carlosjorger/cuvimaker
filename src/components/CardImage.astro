@@ -19,7 +19,7 @@ const { id, imageSrc = '', width = '22rem', altText } = Astro.props;
 	var lastMouseHoverTriggerTime = Date.now();
 	var imageWrappers = document.getElementsByClassName('wrapper');
 	[...imageWrappers].forEach((imageWrapper) => {
-		const image = imageWrapper.firstChild;
+		const image = imageWrapper.children[0];
 		imageWrapper?.addEventListener('mousemove', (event) => {
 			const currentTime = Date.now();
 			if (currentTime - lastMouseHoverTriggerTime < delay) {
