@@ -13,6 +13,9 @@
 			input-class-name="shadow-xl"
 			:dark="isDarkMode()"
 			:format="format"
+			:class="{
+				dp_disabled: !editing,
+			}"
 		/>
 		<ErrorsSection :errors="v$.value.dateFrom.$errors" />
 	</div>
@@ -168,5 +171,8 @@
 		--dp-icon-color: oklch(var(--s));
 		--dp-danger-color: #ff6f60;
 		--dp-highlight-color: rgba(25, 118, 210, 0.1);
+	}
+	.dp_disabled .dp__input {
+		border: 0;
 	}
 </style>
