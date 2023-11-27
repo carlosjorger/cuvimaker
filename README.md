@@ -4,10 +4,11 @@
 </h1>
 An online cv maker web application used to design a custom curriculum vitae and save it in a pdf file.
 
-|                     Dark Mode 🌙                      |                        Light mode 🌞                         |
-| :---------------------------------------------------: | :----------------------------------------------------------: |
-|  ![Editor Example](./public/doc/Editor-example.webp)  |  ![Editor Example2](./public/doc/Editor-example-light.webp)  |
-| ![Editor Example](./public/doc/Editor-example-2.webp) | ![Editor Example2](./public/doc/Editor-example-light-2.webp) |
+|                       Dark Mode 🌙                        |                             Light mode 🌞                             |
+| :-------------------------------------------------------: | :-------------------------------------------------------------------: |
+| ![Cuvimaker Example](./public/doc/Cuvimaker-example.webp) | ![Cuvimaker Example Light](./public/doc/Cuvimaker-example-light.webp) |
+|    ![Editor Example](./public/doc/Editor-example.webp)    |      ![Editor Example2](./public/doc/Editor-example-light.webp)       |
+|   ![Editor Example](./public/doc/Editor-example-2.webp)   |     ![Editor Example2](./public/doc/Editor-example-light-2.webp)      |
 
 ## 🚀 Demo
 
