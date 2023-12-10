@@ -74,6 +74,7 @@ export function createResumePDFDefinition(
 		},
 	};
 }
+// TODO: improve design
 function createSectionsDefinition(sections: Section[]) {
 	return sections.map((section) => creatreSectionDefinition(section));
 }
