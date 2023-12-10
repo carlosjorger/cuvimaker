@@ -26,11 +26,11 @@ export function createResumePDFDefinition(
 			},
 			h3: {
 				fontSize: 17,
-				marginTop: 4,
+				marginTop: 5,
 			},
 			h4: {
 				fontSize: 14,
-				marginTop: 3,
+				marginTop: 5,
 				bold: true,
 				font: 'Lato',
 			},
@@ -39,7 +39,7 @@ export function createResumePDFDefinition(
 				marginTop: 2,
 			},
 			h6: {
-				marginTop: 2,
+				marginTop: 5,
 			},
 			introductionColumn: {
 				fontSize: 10,
@@ -53,8 +53,8 @@ export function createResumePDFDefinition(
 				background: 'black',
 			},
 			ul: {
-				marginTop: 5,
-				marginBottom: 5,
+				marginTop: 2,
+				marginBottom: 2,
 			},
 			introduction: {
 				marginBottom: 12,
@@ -66,7 +66,7 @@ export function createResumePDFDefinition(
 				marginTop: 5,
 			},
 			timeInterval: {
-				marginTop: 3,
+				marginTop: 5,
 			},
 			location: {
 				marginTop: 5,
@@ -74,7 +74,6 @@ export function createResumePDFDefinition(
 		},
 	};
 }
-// TODO: improve design
 function createSectionsDefinition(sections: Section[]) {
 	return sections.map((section) => creatreSectionDefinition(section));
 }
