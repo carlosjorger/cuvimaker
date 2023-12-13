@@ -1,11 +1,11 @@
 <template>
-	<div class="p-2">
+	<div class="p-1">
 		<h2 class="mt-3 text-left text-lg font-extrabold">
 			{{ introduction.name }}
 		</h2>
 		<h3 class="mt-3 text-left text-base">{{ introduction.profetion }}</h3>
 		<div
-			class="mt-3 grid grid-cols-3 gap-3 text-sm max-lg:grid-cols-2 max-md:grid-cols-1"
+			class="mt-3 grid grid-cols-3 gap-2 text-xs max-lg:grid-cols-2 max-md:grid-cols-1"
 		>
 			<div class="flex items-center" v-if="introduction.location">
 				<Icon
