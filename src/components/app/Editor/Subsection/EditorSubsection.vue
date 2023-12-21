@@ -44,7 +44,7 @@
 				/>
 				<SubsectionForm
 					v-if="sectionTemplate.isEnableSubtitle"
-					class="mt-1"
+					class="mt-2"
 					v-model="subsection.text"
 					:placeholder="sectionTemplate.subtitleName"
 				/>
@@ -57,18 +57,20 @@
 					v-if="sectionTemplate.isEnableList"
 					:section-template="sectionTemplate"
 				/>
-				<div class="flex justify-between">
+				<div class="mt-2 flex justify-between">
 					<ModalButton
 						aria-label="Save"
 						v-if="editing"
 						:name="'Save'"
 						v-on:click="saveSubSection"
+						class="mt-2"
 					/>
 					<ModalButton
 						v-if="editing && !prevSubsection.isEmpty"
 						aria-label="Cancel"
 						:name="'Cancel'"
 						v-on:click="cancelSubSection"
+						class="mt-2"
 					/>
 				</div>
 			</form>

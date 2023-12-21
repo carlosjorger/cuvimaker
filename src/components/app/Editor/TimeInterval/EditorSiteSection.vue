@@ -4,7 +4,7 @@
 			v-if="editing"
 			v-model="hasPeriodOfTime"
 			:title="'Add a site'"
-			class="mb-2"
+			class="mb-2 mt-4"
 		/>
 		<div
 			class="grid grid-cols-2 items-center gap-8 max-sm:grid-cols-1 max-sm:gap-0"
