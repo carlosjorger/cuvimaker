@@ -26,11 +26,11 @@ export function createResumePDFDefinition(
 			},
 			h3: {
 				fontSize: 17,
-				marginTop: 5,
+				marginTop: 6,
 			},
 			h4: {
 				fontSize: 14,
-				marginTop: 5,
+				marginTop: 6,
 				bold: true,
 				font: 'Lato',
 			},
@@ -54,7 +54,10 @@ export function createResumePDFDefinition(
 			},
 			ul: {
 				marginTop: 2,
-				marginBottom: 2,
+			},
+			subsection: {
+				marginTop: 8,
+				marginBottom: 8,
 			},
 			introduction: {
 				marginBottom: 12,
@@ -66,7 +69,7 @@ export function createResumePDFDefinition(
 				marginTop: 5,
 			},
 			timeInterval: {
-				marginTop: 5,
+				marginTop: 6,
 			},
 			location: {
 				marginTop: 5,

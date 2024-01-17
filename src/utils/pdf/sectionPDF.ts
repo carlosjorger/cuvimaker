@@ -72,8 +72,12 @@ function createSubsectionDefinition(subsection: Subsection): Content {
 	);
 
 	result.push(createElementsDefinition(subsection.elements));
-	return result;
+	return {
+		stack: result,
+		style: ['subsection'],
+	};
 }
+
 function createStayDefinition(
 	timeInterval: TimeInterval | undefined,
 	location: string
